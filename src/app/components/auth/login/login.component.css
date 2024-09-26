@@ -1,0 +1,28 @@
+.box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: blue;
+}
+.loginForm{
+    height: 30rem;
+    width: 15rem;
+    background-color: red;
+    padding: 10px;
+}
+.input{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.btn-box{
+    display: inline-block
+}
+.btn{
+    position: absolute;
+}
+.bar{
+    display: flex;
+    flex-direction: column;
+}

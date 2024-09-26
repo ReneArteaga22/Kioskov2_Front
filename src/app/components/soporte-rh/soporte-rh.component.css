@@ -1,0 +1,23 @@
+.lateral {
+    display: flex;
+    height: 100vh;
+}
+
+.btns {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; 
+    padding: 10px;
+    background-color:grey; 
+    width: 200px;
+}
+
+.btns p-button {
+    margin: 10px 0; 
+}
+
+.outlet {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #ffffff;
+}
