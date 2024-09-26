@@ -1,18 +1,48 @@
 <div>
-    <nav class="navbar">
-        <div class="logo">
-            <img [routerLink]="['/']" src="icons/CLAYENS_Mexico_Logo.png">
-        </div>
-        <ul class="nav-links">
-          <li><a [routerLink]="['/soporte-rh']">Soporte RH</a></li>
-          <li><a [routerLink]="['/seguridad']">Seguridad</a></li>
-          <li><a href="#">Directorio</a></li>
-          <li><a href="#">Evaluacion de servicios</a></li>
-          <li><a href="">Encuestas</a></li>
-          <li><a href="">Comunicados</a></li>
-          <li><a href="">Reconocimientos</a></li>
-          <i [routerLink]="['/login']" class="pi pi-user" style="font-size: 2rem; color: white;"></i>  
-        </ul>
-      </nav>
-      <router-outlet></router-outlet>
+  <nav class="navbar">
+    <div class="logo">
+      <img [routerLink]="['/']" src="icons/CLAYENS_Mexico_Logo.png">
+    </div>
+    <ul class="nav-links">
+      <li><a [routerLink]="['/soporte-rh']">Soporte RH</a></li>
+      <li><a [routerLink]="['/seguridad']">Seguridad</a></li>
+      <li><a href="#">Directorio</a></li>
+      <li><a href="#">Evaluacion de servicios</a></li>
+      <li><a href="">Encuestas</a></li>
+      <li><a href="">Comunicados</a></li>
+      <li><a href="">Reconocimientos</a></li>
+      <i [routerLink]="['/login']" class="pi pi-user" style="font-size: 2rem; color: white;"></i>
+    </ul>
+  </nav>
+
+  <div class="cards">
+    <div [routerLink]="['/login']" class="card">
+      <h2>Soporte RH</h2>
+      <img src="icons/rh.png" alt="https://www.freepik.es/">
+    </div>
+    <div class="card">
+      <h2>Seguridad</h2>
+      <img src="icons/seguridad.png" alt="https://www.freepik.es/">
+    </div>
+    <div class="card">
+      <h2>Directorio</h2>
+      <img src="icons/directorio.png" alt="https://www.freepik.es/">
+    </div>
+    <div class="card">
+      <h2>Evaluacion de servicios</h2>
+      <img src="icons/servicios.png" alt="https://www.freepik.es/">
+    </div>
+    <div class="card">
+      <h2>Encuestas</h2>
+      <img src="icons/encuestas.png" alt="https://www.freepik.es/">
+    </div>
+    <div class="card">
+      <h2>Comunicados</h2>
+      <img src="icons/comunicados.png" alt="https://www.freepik.es/">
+    </div>
+    <div class="card">
+      <h2>Reconocimientos</h2>
+      <img src="icons/trofeo.png" alt="https://www.freepik.es/">
+    </div>
+  </div>
 </div>
