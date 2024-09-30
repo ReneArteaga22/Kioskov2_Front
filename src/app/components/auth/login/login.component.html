@@ -1,15 +1,19 @@
 <div class="box">
-    <form class="loginForm" [formGroup]="loginForm" (ngSubmit)="login()">
-        <div class="input">
-            <label for="">Usuario</label>
-            <input type="text" name="" id="" placeholder="Nombre de usuario" formControlName="correo">
-        </div>
-        <div class="input">
-            <label for="">Contraseña</label>
-            <input type="text" name="" id="" placeholder="Contraseña" formControlName="contrasena">
-        </div>
-        <div class="btn-box">
-            <p-button class="btn" type="submit">Iniciar sesion</p-button>
-        </div>
-    </form>
+    <div class="clayens"><img class="logo" [routerLink]="['/']" src="icons/CLAYENS_Mexico_Logo.png" alt=""></div>
+    <div class="form">
+        <form class="loginForm" [formGroup]="loginForm" (ngSubmit)="login()">
+            <h1>Iniciar sesion</h1>
+            <div class="input">
+                <label for="">Usuario o correo</label>
+                <input type="text" placeholder="Ingresa tu correo o usuario" pInputText formControlName="correo" />    
+            </div>
+            <div class="input">
+                <label for="">Contraseña</label>
+                <input type="password" placeholder="Ingresa tu contraseña" pInputText formControlName="contrasena" />    
+            </div>
+            <div class="btn-box">
+                <button class="btn" type="submit">Iniciar sesion</button>
+            </div>
+        </form>
+    </div>
 </div>

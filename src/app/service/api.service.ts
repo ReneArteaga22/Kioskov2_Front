@@ -14,6 +14,6 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   login(userData:any):Observable<LoginResponse>{
-    return this.http.post<LoginResponse>(`${this.url}/api/auth/login`,userData)
+    return this.http.post<LoginResponse>(`${this.url}/api/usuarios/login`,userData)
   }
 }
