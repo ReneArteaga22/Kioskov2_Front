@@ -19,22 +19,21 @@ export class LoginComponent {
   constructor(private router:Router, private apiService:ApiService
   ){
     this.loginForm = new FormGroup({
-      correo: new FormControl('',[Validators.required]),
+      uids: new FormControl('',[Validators.required]),
       contrasena: new FormControl('',[Validators.required])
     })
   }
   login(){
-    console.log('success', this.loginForm.value)
-    this.router.navigate(['/'])
-    // if(!this.isSubmit && this.loginForm.valid){
-    //   this.apiService.login(this.loginForm.value).subscribe(
-    //     response =>{
-    //       console.log("Inicio de seion extiso",response)
-    //       this.router.navigate(['/'])
-    //     }
-    //   )
-    // }else{
-    //   console.log('no se pudo')
-    // }
+    console.log(this.loginForm.value)
+    if(!this.isSubmit && this.loginForm.valid){
+      this.apiService.login(this.loginForm.value).subscribe(
+        response =>{
+          console.log("Inicio de seion extiso",response)
+          this.router.navigate(['/'])
+        }
+      )
+    }else{
+      console.log('no se pudo')
+    }
   }
 }
