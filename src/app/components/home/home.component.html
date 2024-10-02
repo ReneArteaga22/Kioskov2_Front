@@ -4,13 +4,13 @@
       <img [routerLink]="['/']" src="icons/CLAYENS_Mexico_Logo.png">
     </div>
     <ul class="nav-links">
-      <li><a [routerLink]="['/soporte-rh']">Soporte RH</a></li>
+      <li><a [routerLink]="['/']">Soporte RH</a></li>
       <li><a [routerLink]="['/seguridad']">Seguridad</a></li>
-      <li><a href="#">Directorio</a></li>
-      <li><a href="#">Evaluacion de servicios</a></li>
-      <li><a href="">Encuestas</a></li>
-      <li><a href="">Comunicados</a></li>
-      <li><a href="">Reconocimientos</a></li>
+      <li><a [routerLink]="['/']">Directorio</a></li>
+      <li><a [routerLink]="['/servicios']">Evaluacion de servicios</a></li>
+      <li><a [routerLink]="['/']">Encuestas</a></li>
+      <li><a [routerLink]="['/']">Comunicados</a></li>
+      <li><a [routerLink]="['/']">Reconocimientos</a></li>
       <i [routerLink]="['/login']" class="pi pi-user" style="font-size: 2rem; color: white;"></i>
     </ul>
   </nav>
@@ -27,8 +27,8 @@
     <button class="card">
       <h2>Directorio</h2>
       <img src="icons/directorio.png" alt="https://www.freepik.es/">
-    </button>
-    <button [routerLink]="['/evaluacion-servicios']" class="card">
+    </div>
+    <div class="card" [routerLink]="['/servicios']">
       <h2>Evaluacion de servicios</h2>
       <img src="icons/servicios.png" alt="https://www.freepik.es/">
     </button>

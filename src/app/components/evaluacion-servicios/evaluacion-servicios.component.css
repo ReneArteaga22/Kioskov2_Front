@@ -1,68 +1,84 @@
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    padding: 1rem 2rem;
+.box{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    gap:10px
 }
-
-.logo {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 1rem 2rem;
+}
+.logo{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  
 }
 
 .logo img {
-    height: 80px;
-    width: 320px;
-    margin-left: -10px;
+  height: 80px;
+  width: 320px;
+  margin-left: -10px;
 }
 
 .nav-links {
-    list-style: none;
-    display: flex;
+  list-style: none;
+  display: flex;
 }
 
 .nav-links li {
-    margin-left: 2rem;
+  margin-left: 2rem;
 }
 
 .nav-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
-    transition: color 0.3s ease;
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
 }
-
 .nav-links a:hover {
-    color: #f3b600;
+  color: #f3b600;
 }
-
-.pi {
-    margin-left: 30px;
+.pi{
+  margin-left: 30px;
 }
-.lateral {
+.servicios{
     display: flex;
-    height: 100vh;
-}
-
-.btns {
-    display: flex;
+    width: 100%;
     flex-direction: column;
-    align-items: flex-end; 
-    padding: 10px;
-    background-color:grey; 
-    width: 200px;
+    text-align: center;
+    margin-top: 3rem;
 }
-
-.btns p-button {
-    margin: 10px 0; 
+.servicios-btn{
+    font-size: 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 5rem;
+    position: absolute;
+    width: 100%;
 }
-
-.outlet {
-    flex-grow: 1;
-    padding: 20px;
-    background-color: #ffffff;
+.card{
+  display: flex;
+  height: 22rem;
+  width: 17rem;
+  border-radius: 3%;
+  text-align: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+img{
+    position: relative;
+    width: 12rem;
+    height: 12rem;
 }
