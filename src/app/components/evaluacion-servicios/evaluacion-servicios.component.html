@@ -1,1 +1,26 @@
-<p>evaluacion-servicios works!</p>
+<div>
+    <nav class="navbar">
+        <div class="logo">
+            <img [routerLink]="['/']" src="icons/CLAYENS_Mexico_Logo.png">
+        </div>
+        <ul class="nav-links">
+            <li><a [routerLink]="['/soporte-rh']">Soporte RH</a></li>
+            <li><a [routerLink]="['/seguridad']">Seguridad</a></li>
+            <li><a href="#">Directorio</a></li>
+            <li><a href="#">Evaluacion de servicios</a></li>
+            <li><a href="">Encuestas</a></li>
+            <li><a href="">Comunicados</a></li>
+            <li><a href="">Reconocimientos</a></li>
+            <i [routerLink]="['/login']" class="pi pi-user" style="font-size: 2rem; color: white;"></i>
+        </ul>
+    </nav>
+    <div class="lateral">
+        <div class="btns">
+            <p-button [routerLink]="['./comedor']">comedor</p-button>
+            <p-button [routerLink]="['./transporte']">transporte</p-button>
+        </div>
+        <div class="outlet">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
