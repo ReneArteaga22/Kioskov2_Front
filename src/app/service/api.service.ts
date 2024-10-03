@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-interface LoginResponse {
-  // Define the structure of your login response here
+interface LoginResponse{
+  rol:string;
 }
 
 @Injectable({

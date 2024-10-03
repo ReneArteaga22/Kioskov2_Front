@@ -1,0 +1,19 @@
+<div class="box">
+    <div class="clayens"><img class="logo" [routerLink]="['/']" src="icons/CLAYENS_Mexico_Logo.png" alt=""></div>
+    <div class="form">
+        <form class="recuperarForm" [formGroup]="recuperarForm" (ngSubmit)="recuperar()">
+            <h1>Recupearcion de contraseña</h1>
+            <div class="input">
+                <label for="">Correo</label>
+                <input type="text" placeholder="Ingresa tu correo" pInputText formControlName="correo" />    
+            </div>
+            <div class="input">
+                <label for="">Nueva contraseña</label>
+                <input type="password" placeholder="Ingresa tu nueva contraseña" pInputText formControlName="contrasena" />    
+            </div>
+            <div class="btn-box">
+                <button class="btn" type="submit">Guardarr</button>
+            </div>
+        </form>
+    </div>
+</div>
