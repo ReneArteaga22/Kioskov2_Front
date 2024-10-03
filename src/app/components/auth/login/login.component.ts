@@ -19,7 +19,7 @@ export class LoginComponent {
   constructor(private router:Router, private apiService:ApiService
   ){
     this.loginForm = new FormGroup({
-      uids: new FormControl('',[Validators.required]),
+      correo: new FormControl('',[Validators.required]),
       contrasena: new FormControl('',[Validators.required])
     })
   }
