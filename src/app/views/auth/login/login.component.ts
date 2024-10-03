@@ -31,7 +31,8 @@ export class LoginComponent {
     if(!this.isSubmit && this.loginForm.valid){
       this.apiService.login(this.loginForm.value).subscribe(
         response =>{
-          this.galleta.set(response.rol,'area')
+          this.galleta.set('area', response.rol)
+          this.galleta.set('sesion','1')
           this.router.navigate(['/'])
         }
       )
