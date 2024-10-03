@@ -8,6 +8,8 @@ import { ReconocimientosComponent } from './views/reconocimientos/reconocimiento
 import { RecuperarContrasenaComponent } from './views/auth/recuperar-contrasena/recuperar-contrasena.component';
 import { LoginComponent } from './views/auth/login/login.component';
 import { RegisterComponent } from './views/auth/register/register.component';
+import { UsuariosComponent } from './views/usuarios/usuarios.component';
+import { ResultadosEvaluacionComponent } from './views/evaluacion/resultados-evaluacion/resultados-evaluacion.component';
 
 
 
@@ -25,5 +27,7 @@ export const routes: Routes = [
     {path:'servicios',component:EvaluacionServiciosComponent},
     {path:'login', component: LoginComponent },
     {path:'register', component: RegisterComponent },
-    {path:'home-prueba',component:ReconocimientosComponent}
+    {path:'home-prueba',component:ReconocimientosComponent},
+    {path:'usuarios',component:UsuariosComponent},
+    {path:'resultados-evaluacion',component:ResultadosEvaluacionComponent}
 ];
