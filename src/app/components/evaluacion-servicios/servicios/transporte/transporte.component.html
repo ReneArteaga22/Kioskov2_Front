@@ -17,18 +17,16 @@
     <div class="box-1">
         <div class="box-form">
             <h1>Formulario de calidad  para el Transporte</h1>
-            <form action="" class="form" [formGroup]="transporteForm" (ngSubmit)="enviar()">
+            <form class="form" [formGroup]="transporteForm" (ngSubmit)="enviar()">
                 <div class="input">
                     <label for="comentario">Deja un comentario</label>
                     <textarea id="comentario" placeholder="Escribe tu comentario (Opcional)"></textarea>
                 </div>
-                <div class="input-1">
-                    <label for="">Calificacion</label>
-                    <select class="btn-select" name="" id="">
-                        <option value="" style="background-color: rgb(93, 197, 93); color: white;">Satisfactorio</option>
-                        <option value="" style="background-color: rgb(238, 186, 89); color: white;">Aceptable</option>
-                        <option value="" style="background-color: rgb(226, 114, 114); color: white;">Mejorable</option>
-                    </select>
+                <h1>Como te parecio el servicio? </h1>
+                <div class="box-imgs">
+                    <img src="icons/love.png" alt="">
+                    <img src="icons/meh.png" alt="">
+                    <img src="icons/sad.png" alt="">
                 </div>
                 <div class="box-btn">
                     <button type="submit" class="btn">Enviar</button>

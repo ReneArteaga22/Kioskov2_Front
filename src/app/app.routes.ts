@@ -6,6 +6,7 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { EvaluacionServiciosComponent } from './components/evaluacion-servicios/evaluacion-servicios.component';
 import { TransporteComponent } from './components/evaluacion-servicios/servicios/transporte/transporte.component';
 import { ComedorComponent } from './components/evaluacion-servicios/servicios/comedor/comedor.component';
+import { ReconocimientosComponent } from './components/reconocimientos/reconocimientos.component';
 
 export const routes: Routes = [
     {
@@ -19,5 +20,6 @@ export const routes: Routes = [
     {path:'transporte',component:TransporteComponent},
     {path:'servicios',component:EvaluacionServiciosComponent},
     {path:'login', component: LoginComponent },
-    {path:'register', component: RegisterComponent }
+    {path:'register', component: RegisterComponent },
+    {path:'home-prueba',component:ReconocimientosComponent}
 ];
