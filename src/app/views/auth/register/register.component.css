@@ -32,7 +32,6 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     background-color: white; 
     padding: 20px;
-    gap:10px;
     height: 60%;
     width: 20%;
     text-align: center;
@@ -40,7 +39,6 @@
 .input{
     display: flex;
     flex-direction: column;
-    gap:10px;
     font-size: 20px;
     margin-top: 20px;
 }

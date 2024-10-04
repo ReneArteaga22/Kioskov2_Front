@@ -11,7 +11,7 @@
     <li *ngIf="!isLoggin"><a [routerLink]="['/']">Encuestas</a></li>
     <li *ngIf="!isLoggin"><a [routerLink]="['/']">Comunicados</a></li>
     <li *ngIf="!isLoggin"><a [routerLink]="['/']">Reconocimientos</a></li>
-    <li *ngIf="isRH"><a [routerLink]="['/']">Resultado de evaluaciones</a></li>
+    <li *ngIf="isRH"><a [routerLink]="['/resultados-evaluacion']">Resultado de evaluaciones</a></li>
     <li *ngIf="isRH"><a [routerLink]="['/usuarios']">Usuarios</a></li>
     <li *ngIf="isLoggin"><a (click)="cerrarSesion()">Cerrar sesion</a></li>
     <i *ngIf="!isLoggin" [routerLink]="['/login']" class="pi pi-user" style="font-size: 2rem; color: white;"></i>
