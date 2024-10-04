@@ -1,18 +1,30 @@
 <div class="box">
     <div class="clayens"><img class="logo" [routerLink]="['/']" src="icons/CLAYENS_Mexico_Logo.png" alt=""></div>
     <div class="form">
-        <form class="loginForm" [formGroup]="registerForm" >
+        <form class="registerForm" [formGroup]="registerForm" >
             <h1>Iniciar sesion</h1>
             <div class="input">
-                <label for="">Usuario o correo</label>
-                <input type="text" placeholder="Ingresa tu correo o usuario" pInputText formControlName="correo" />    
+                <label for="">Nombre</label>
+                <input type="text" placeholder="Ingresa tu correo o usuario" pInputText formControlName="nombre" />    
+            </div>
+            <div class="input">
+                <label for="">Apellidos</label>
+                <input type="text" placeholder="Ingresa tu contraseña" pInputText formControlName="apellidos" />    
+            </div>
+            <div class="input">
+                <label for="">Nombre de usuario</label>
+                <input type="text" placeholder="Ingresa tu contraseña" pInputText formControlName="usuario" />    
             </div>
             <div class="input">
                 <label for="">Contraseña</label>
                 <input type="password" placeholder="Ingresa tu contraseña" pInputText formControlName="contrasena" />    
             </div>
+            <div class="input">
+                <label for="">Area</label>
+                <input type="text" placeholder="Ingresa tu contraseña" pInputText formControlName="area" />    
+            </div>
             <div class="btn-box">
-                <button class="btn" type="submit">Iniciar sesion</button>
+                <button class="btn" type="submit">Registrar</button>
             </div>
         </form>
     </div>

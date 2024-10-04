@@ -6,6 +6,20 @@ interface LoginResponse{
   rol:string;
 }
 
+export interface Usuario {
+  id: number;
+  nombre: string;
+  apellidos: string;
+  usuario: string;
+  area: string;
+}
+
+export interface UsuariosResponse {
+  title: string;
+  usuarios: Usuario[];
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,5 +30,13 @@ export class ApiService {
 
   login(userData: any): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.url}/api/usuarios/login`, userData);
+  }
+
+  lista_usuarios():Observable<UsuariosResponse>{
+    return this.http.get<UsuariosResponse>(`${this.url}/api/usuarios/index`)
+  }
+
+  buscar_usuario(userData:any):Observable<UsuariosResponse>{
+    return this.http.post<UsuariosResponse>(`${this.url}/api/usuarios/buscar-usuario`,userData)
   }
 }

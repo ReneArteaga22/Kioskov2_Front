@@ -12,7 +12,10 @@
                 <input type="password" placeholder="Ingresa tu contraseña" pInputText formControlName="contrasena" />    
             </div>
             <div class="btn-box">
-                <button class="btn" type="submit">Iniciar sesion</button>
+                <button class="btn" type="submit" [disabled]="!loginForm.valid">Iniciar sesion</button>
+                <div *ngIf="error">
+                    <p class="tstr">Usuario o contraseña incorrectos</p>
+                </div>
             </div>
             <a [routerLink]="['/recuperar-contrasena']">¿Olvidaste tu contraseña?</a>
         </form>
