@@ -11,23 +11,22 @@ import { RegisterComponent } from './views/auth/register/register.component';
 import { UsuariosComponent } from './views/usuarios/usuarios.component';
 import { ResultadosEvaluacionComponent } from './views/evaluacion/resultados-evaluacion/resultados-evaluacion.component';
 
-
-
 export const routes: Routes = [
-    {
-        path: '',
-        component: HomeComponent,
-        children: [
-            { path: 'modulo_asistencia', component: ModuloAsistenciaComponent },
-        ]
-    },
-    {path:'recuperar-contrasena',component:RecuperarContrasenaComponent},
-    {path:'comedor',component:ComedorComponent},
-    {path:'transporte',component:TransporteComponent},
-    {path:'servicios',component:EvaluacionServiciosComponent},
-    {path:'login', component: LoginComponent },
-    {path:'register', component: RegisterComponent },
-    {path:'home-prueba',component:ReconocimientosComponent},
-    {path:'usuarios',component:UsuariosComponent},
-    {path:'resultados-evaluacion',component:ResultadosEvaluacionComponent}
+  {
+    path: '',
+    component: HomeComponent,
+    children: [
+     
+    ]
+  },
+  { path: 'modulo_asistencia', component: ModuloAsistenciaComponent },
+  { path: 'comedor', component: ComedorComponent },
+  { path: 'transporte', component: TransporteComponent },
+  { path: 'servicios', component: EvaluacionServiciosComponent },
+  { path: 'resultados-evaluacion', component: ResultadosEvaluacionComponent },
+  { path: 'usuarios', component: UsuariosComponent },
+  { path: 'recuperar-contrasena', component: RecuperarContrasenaComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'home-prueba', component: ReconocimientosComponent },
 ];
