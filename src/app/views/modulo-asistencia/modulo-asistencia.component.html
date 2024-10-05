@@ -1,3 +1,27 @@
-<div>
-    <p>RUTA A MODULO DE ASISTENCIA</p>
+<div class="box">
+ <app-c-nav-bar></app-c-nav-bar>
+<div class="empleados-lista">
+    <h2>Lista de Empleados</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Dirección</th>
+          <th>Teléfono</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees">
+          <td>{{ employee.num_emp }}</td>
+          <td>{{ employee.nombres }}</td>
+          <td>{{ employee.apellidos }}</td>
+          <td>{{ employee.direccion }}</td>
+          <td>{{ employee.telefono }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
 </div>
