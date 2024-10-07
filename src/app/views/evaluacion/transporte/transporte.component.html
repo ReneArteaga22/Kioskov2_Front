@@ -1,23 +1,23 @@
-<div class="box">
-    <app-c-nav-bar></app-c-nav-bar>
-    <div class="box-1">
-        <div class="box-form">
-            <h1>Formulario de calidad  para el Transporte</h1>
-            <form class="form" [formGroup]="transporteForm" (ngSubmit)="enviar()">
-                <div class="input">
-                    <label for="comentario">Deja un comentario</label>
-                    <textarea id="comentario" placeholder="Escribe tu comentario (Opcional)"></textarea>
-                </div>
-                <h1>Como te parecio el servicio? </h1>
-                <div class="box-imgs">
-                    <img src="icons/love.png" alt="">
-                    <img src="icons/meh.png" alt="">
-                    <img src="icons/sad.png" alt="">
-                </div>
-                <div class="box-btn">
-                    <button type="submit" class="btn">Enviar</button>
-                </div>
-            </form>
+<app-c-nav-bar></app-c-nav-bar>
+<div>
+    <form class="form" [formGroup]="transporteForm" (ngSubmit)="enviar()">
+        <h1>Formulario de calidad  para el Transporte</h1>
+        <div class="input">
+            <label>Deja un comentario</label>
+            <textarea placeholder="Escribe tu comentario (Opcional)"></textarea>
         </div>
-    </div>
+        <h1>Que te parecio el servicio? </h1>
+        <div class="box-img">
+            <img src="icons/love.png" alt="">
+            <img src="icons/meh.png" alt="">
+            <img src="icons/sad.png" alt="">
+        </div>
+        <div class="box-btn">
+            <select class="select-btn" placeholder="seelcciona">
+                <option value="planta 1">Planta 1</option>
+                <option value="planta 2">Planta 2</option>
+            </select>
+            <button type="submit" class="btn">Enviar</button>
+        </div>
+    </form>
 </div>

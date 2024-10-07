@@ -1,3 +1,29 @@
-<div>
-    <app-c-nav-bar></app-c-nav-bar>
+<app-c-nav-bar></app-c-nav-bar>
+<div class="box">
+    <div class="graphics-table">
+        <div class="graphics">    
+            <p-chart type="bar" [data]="basicData" [options]="basicOptions" />
+            <p-chart type="pie" [data]="basicData" [options]="basicOptions" />
+        </div>
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>calificacion</th>
+                        <th>comentario</th>
+                        <th>planta</th>
+                        <th>fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bueno</td>
+                        <td>Estaba rico pero queria mas</td>
+                        <td>planta 1</td>
+                        <td>18 febrero 2024</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

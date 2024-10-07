@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 interface LoginResponse{
-  rol:string;
+  usuarios: Usuario,
+  area:string;
 }
 
 export interface Usuario {
@@ -28,8 +29,8 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  login(userData: any): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.url}/api/usuarios/login`, userData);
+  login(userData: any): Observable<any> {
+    return this.http.post<any>(`${this.url}/api/usuarios/login`, userData);
   }
 
   lista_usuarios():Observable<UsuariosResponse>{
