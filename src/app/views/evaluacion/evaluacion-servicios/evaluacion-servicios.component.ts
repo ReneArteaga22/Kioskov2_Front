@@ -17,12 +17,10 @@ export class EvaluacionServiciosComponent {
 
   servicio(servicioClick:string){
     if(servicioClick === 'transporte'){
-      this.cookie.set('servicio','transporte')
       this.router.navigate(['/transporte'])
     }
 
     if(servicioClick === 'comedor'){
-      this.cookie.set('servicio','comedor')
       this.router.navigate(['/comedor'])
     }
   }

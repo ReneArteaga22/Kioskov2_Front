@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { CNavBarComponent } from '../../../components/c-nav-bar/c-nav-bar.component';
+import { ApiService } from '../../../service/api.service';
+
 @Component({
   selector: 'app-comedor',
   standalone: true,
@@ -11,14 +13,29 @@ import { CNavBarComponent } from '../../../components/c-nav-bar/c-nav-bar.compon
 })
 export class ComedorComponent {
   comedorForm: FormGroup
+  isSubmit: boolean = false
+  
 
-  constructor(private router:Router){
+  constructor(private router:Router, private apiService:ApiService){
     this.comedorForm = new FormGroup({
-      calificacion: new FormControl('',[Validators.required])
+      calificacion: new FormControl('',[Validators.required]),
+      comentario: new FormControl('',[Validators.required]),
+      planta: new FormControl('',[Validators.required]),
+      servicio: new FormControl('',[Validators.required])
     })
   }
+
+  calificacion(calificacion: string, servicio: string) {
+    this.comedorForm.patchValue({ calificacion: calificacion, servicio:servicio });
+  }
+  
   enviar(){
-    alert('Gracias por comentar :D')
-    this.router.navigate(['/servicios'])
+    if(this.comedorForm.valid && !this.isSubmit){
+      this.apiService.evaluar_servicio(this.comedorForm.value).subscribe(
+        response =>{
+          this.router.navigate(['/servicios'])
+        }
+      )
+    }
   }
 }

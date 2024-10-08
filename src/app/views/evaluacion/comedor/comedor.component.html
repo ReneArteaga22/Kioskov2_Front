@@ -4,25 +4,38 @@
         <h1>Formulario de calidad  para el Comedor</h1>
         <div class="input">
             <label>Deja un comentario</label>
-            <textarea placeholder="Escribe tu comentario (Opcional)"></textarea>
+            <textarea formControlName="comentario" placeholder="Escribe tu comentario (Opcional)"></textarea>
         </div>
         <h1>Que te parecio el servicio? </h1>
         <div class="box-img">
-            <div class="nombres">
+            <div class="caritas" (click)="calificacion('Muy bueno','comedor')">
                 <h1>Muy bueno</h1>
-                <h1>Bueno</h1>
-                <h1>Malo</h1>
-                <h1>Muy malo</h1>
+                <div class="carita">
+                    <img src="icons/love.png" alt="">
+                </div>
             </div>
-            <div class="caritas">
-                <img src="icons/love.png" alt="">
-                <img src="icons/happy.png" alt="">
-                <img src="icons/triste.png" alt="">
-                <img src="icons/sad.png" alt="">
-            </div>          
+            <div class="caritas" (click)="calificacion('Bueno','comedor')">
+                <h1>Bueno</h1>
+                <div class="carita">
+                    <img src="icons/happy.png" alt="">
+                </div>
+            </div>
+            <div class="caritas" (click)="calificacion('Malo','comedor')">
+                <h1>Malo</h1>
+                <div class="carita">
+                    <img src="icons/triste.png" alt="">
+                </div>
+            </div>
+            <div class="caritas" (click)="calificacion('Muy malo','comedor')">
+                <h1>Muy malo</h1>
+                <div class="carita">
+                    <img src="icons/sad.png" alt="">
+                </div>
+            </div>       
         </div>
         <div class="box-btn">
-            <select class="select-btn" placeholder="seelcciona">
+            <select formControlName="planta" class="select-btn" placeholder="seelcciona">
+                <option value="" disabled selected>Selecciona la planta
                 <option value="planta 1">Planta 1</option>
                 <option value="planta 2">Planta 2</option>
             </select>

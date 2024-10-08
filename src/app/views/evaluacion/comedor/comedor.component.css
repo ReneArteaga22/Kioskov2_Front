@@ -11,7 +11,7 @@
 }
 h1 {
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   text-align: center;
   color: #444;
   font-weight: 400;
@@ -41,21 +41,15 @@ textarea::placeholder {
 
 .box-img {
   display: flex;
-  width: 100%;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
   margin: 20px 0;
-}
-.nombres{
-  display:flex;
+  border: 1px solid #ccc;
   width: 100%;
-  justify-content: space-evenly;
-  align-items:center ;
-}
-.caritas{
-  align-items:center ;
-  display:flex;
-  width: 100%;
-  justify-content: space-evenly;
+  border-radius: 6px;
+  padding: 10px;
+  background-color: #fafafa;
 }
 
 .box-img img {
@@ -65,21 +59,19 @@ textarea::placeholder {
   opacity: 0.8;
   transition: opacity 0.2s ease;
 }
-.table{
-  padding: 10px;
-  align-items: center;
-  width: 100%;
-  background-color: blue;
+
+.caritas{
+  transition: all 0.3s;
   display: flex;
   flex-direction: column;
-}
-tr{
-  background-color: #aaa;
-  width: 2rem;
+  justify-content: center;
+  align-items: center;
 }
 
-.box-img img:hover {
+.carita :hover {
   opacity: 1;
+  width: 80px;
+  height: 80px;
 }
 
 .box-btn {

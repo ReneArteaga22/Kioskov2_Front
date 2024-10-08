@@ -4,32 +4,36 @@
         <h1>Formulario de calidad  para el Transporte</h1>
         <div class="input">
             <label>Deja un comentario</label>
-            <textarea placeholder="Escribe tu comentario (Opcional)"></textarea>
+            <textarea formControlName="comentario" placeholder="Escribe tu comentario (Opcional)"></textarea>
         </div>
         <h1>Que te parecio el servicio? </h1>
         <div class="box-img">
-            <div class="caritas">
+            <div class="caritas" (click)="calificacion('Muy bueno','transporte')">
                 <h1>Muy bueno</h1>
-                <img src="icons/love.png" alt="">
+                <div class="carita">
+                    <img src="icons/love.png" alt="">
+                </div>
             </div>
-            <div class="caritas">
+            <div class="caritas" (click)="calificacion('Bueno','transporte')">
                 <h1>Bueno</h1>
-                <img src="icons/happy.png" alt="">
+                <div class="carita">
+                    <img src="icons/happy.png" alt="">
+                </div>
             </div>
-            <div class="caritas">
+            <div class="caritas" (click)="calificacion('Malo','transporte')">
                 <h1>Malo</h1>
-                <img src="icons/triste.png" alt="">
+                <div class="carita">
+                    <img src="icons/triste.png" alt="">
+                </div>
             </div>
-            <div class="caritas">
+            <div class="caritas" (click)="calificacion('Muy malo','transporte')">
                 <h1>Muy malo</h1>
-                <img src="icons/sad.png" alt="">
+                <div class="carita">
+                    <img src="icons/sad.png" alt="">
+                </div>
             </div>       
         </div>
         <div class="box-btn">
-            <select class="select-btn" placeholder="seelcciona">
-                <option value="planta 1">Planta 1</option>
-                <option value="planta 2">Planta 2</option>
-            </select>
             <button type="submit" class="btn">Enviar</button>
         </div>
     </form>
