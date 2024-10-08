@@ -13,6 +13,7 @@ export interface Usuario {
   apellidos: string;
   usuario: string;
   area: string;
+  idRol:string;
 }
 
 export interface UsuariosResponse {
