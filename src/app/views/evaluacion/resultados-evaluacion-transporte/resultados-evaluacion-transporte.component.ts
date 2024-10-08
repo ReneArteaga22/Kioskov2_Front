@@ -18,13 +18,23 @@ export class ResultadosEvaluacionTransporteComponent {
       labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
       datasets: [
         {
-          label: 'Ventas',
+          label: 'Muy buenas',
           backgroundColor: '#42A5F5',
           data: [65, 59, 80, 81, 56]
         },
         {
-          label: 'Compras',
-          backgroundColor: '#66BB6A',
+          label: 'Buenas',
+          backgroundColor: '#66BB3A',
+          data: [28, 48, 40, 19, 86]
+        },
+        {
+          label: 'Muy malas',
+          backgroundColor: '#66BB6E',
+          data: [28, 48, 40, 19, 86]
+        },
+        {
+          label: 'Malas',
+          backgroundColor: '#69BB6A',
           data: [28, 48, 40, 19, 86]
         }
       ]

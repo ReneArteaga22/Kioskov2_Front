@@ -9,19 +9,19 @@
                 <thead>
                     <tr>
                         <th>Calificacion</th>
-                        <th>Comentario</th>
                         <th>Planta</th>
                         <th>Servicio</th>
                         <th>Fecha</th>
+                        <th>Comentario</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let evaluacion of evaluaciones">
                         <td>{{evaluacion.calificacion}}</td>
-                        <td>{{evaluacion.comentario}}</td>
                         <td>{{evaluacion.planta}}</td>
                         <td>{{evaluacion.servicio}}</td>
-                        <td>{{ evaluacion.createdAt | date: 'yyyy/MM/dd' }}</td>
+                        <td>{{evaluacion.createdAt | date: 'yyyy/MM/dd'}}</td>
+                        <td><button>comentario</button></td>
                     </tr>
                 </tbody>
             </table>
