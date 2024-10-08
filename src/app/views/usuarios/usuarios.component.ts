@@ -20,7 +20,8 @@ export class UsuariosComponent implements OnInit {
 
   constructor(private apiService:ApiService){
     this.buscarUsuarioForm = new FormGroup({
-      nombre: new FormControl('',[Validators.required]),
+      nombre: new FormControl(''),
+      area: new FormControl('')
     })
   }
 
@@ -39,14 +40,11 @@ export class UsuariosComponent implements OnInit {
     if(this.buscarUsuarioForm.valid && !this.isSubmit){
       this.apiService.buscar_usuario(this.buscarUsuarioForm.value).subscribe(
         (response: UsuariosResponse) => {
-          this.usuarios = response.usuarios
-          console.log('usuario encontrado',this.usuarios)
-          console.log('bolilllo')
+          this.usuarios = response.usuarios          
         }
       )
     }
   }
-
 
   alert(){
     alert('alert')

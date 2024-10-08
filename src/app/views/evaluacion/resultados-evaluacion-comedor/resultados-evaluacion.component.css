@@ -1,5 +1,6 @@
 .box{
     width: 100%;
+    background-color: rgb(235, 240, 240);
 }
 .graphics-table{
     gap:2rem;
