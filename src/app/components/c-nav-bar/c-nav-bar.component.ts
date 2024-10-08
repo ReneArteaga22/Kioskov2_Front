@@ -26,10 +26,9 @@ export class CNavBarComponent implements OnInit{
   }
 
   cerrarSesion(){
-    this.galleta.delete('sesion') 
     this.router.navigate(['/login'])
     this.isLoggin = false
-    this.galleta.delete('area')
+    this.galleta.deleteAll()
   }
 }
  

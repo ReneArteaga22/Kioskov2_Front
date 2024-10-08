@@ -16,13 +16,11 @@ import { FormControl, FormGroup, Validators,ReactiveFormsModule} from '@angular/
 export class UsuariosComponent implements OnInit {
   buscarUsuarioForm: FormGroup
   isSubmit: boolean = false
-  
   usuarios: Usuario[] = [];
 
   constructor(private apiService:ApiService){
     this.buscarUsuarioForm = new FormGroup({
       nombre: new FormControl('',[Validators.required]),
-      area: new FormControl('',[Validators.required])
     })
   }
 

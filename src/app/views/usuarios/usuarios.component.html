@@ -4,7 +4,7 @@
         <div class="box-filtros">
             <form [formGroup]="buscarUsuarioForm" (ngSubmit)="buscar_usuario()">
                 <input class="input" type="text" placeholder="Esribe el nombre" formControlName="nombre">
-                <select class="select-btn" formControlName="area">
+                <select class="select-btn">
                     <option value="rh">Recursos Humano</option>
                     <option value="sistemas">Sistemas</option>
                 </select>
