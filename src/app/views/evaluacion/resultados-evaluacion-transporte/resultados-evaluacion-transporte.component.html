@@ -9,17 +9,17 @@
                 <thead>
                     <tr>
                         <th>Calificacion</th>
-                        <th>Comentario</th>
                         <th>Servicio</th>
                         <th>Fecha</th>
+                        <th>Comentario</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Bueno</td>
-                        <td>Estaba rico pero queria mas</td>
-                        <td>Comedor</td>
-                        <td>18 febrero 2024</td>
+                    <tr *ngFor="let evaluacion of evaluaciones">
+                        <td>{{evaluacion.calificacion}}</td>
+                        <td>{{evaluacion.servicio}}</td>
+                        <td>{{evaluacion.createdAt | date: 'yyyy/MM/dd'}}</td>
+                        <td><button>comentario</button></td>
                     </tr>
                 </tbody>
             </table>

@@ -49,4 +49,8 @@ export class ApiService {
   resultados_evaluacion_comedor():Observable<any>{
     return this.http.get<any>(`${this.url}/api/evaluacion/evaluaciones-comedor`)
   }
+
+  resultados_evaluacion_transporte():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/evaluacion/evaluaciones-transporte`)
+  }
 }
