@@ -45,4 +45,8 @@ export class ApiService {
   evaluar_servicio(userData:any):Observable<any>{
     return this.http.post<any>(`${this.url}/api/evaluacion/evaluar`,userData)
   }
+
+  resultados_evaluacion_comedor():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/evaluacion/evaluaciones-comedor`)
+  }
 }

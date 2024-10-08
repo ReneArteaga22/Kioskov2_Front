@@ -2,8 +2,7 @@
 <div class="box">
     <div class="graphics-table">
         <div class="graphics">    
-            <p-chart type="bar" [data]="basicData" [options]="basicOptions" />
-            <p-chart type="pie" [data]="basicData" [options]="basicOptions" />
+            <p-chart type="bar" [data]="evaluaciones" [options]="evaluaciones"/>
         </div>
         <div class="table">
             <table>
@@ -12,17 +11,17 @@
                         <th>Calificacion</th>
                         <th>Comentario</th>
                         <th>Planta</th>
-                        <th>Fecha</th>
                         <th>Servicio</th>
+                        <th>Fecha</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Bueno</td>
-                        <td>Estaba rico pero queria mas</td>
-                        <td>planta 1</td>
-                        <td>18 febrero 2024</td>
-                        <td>Comedor</td>
+                    <tr *ngFor="let evaluacion of evaluaciones">
+                        <td>{{evaluacion.calificacion}}</td>
+                        <td>{{evaluacion.comentario}}</td>
+                        <td>{{evaluacion.planta}}</td>
+                        <td>{{evaluacion.servicio}}</td>
+                        <td>{{ evaluacion.createdAt | date: 'yyyy/MM/dd' }}</td>
                     </tr>
                 </tbody>
             </table>
