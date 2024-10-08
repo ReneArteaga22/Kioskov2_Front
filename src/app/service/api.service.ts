@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 interface LoginResponse{
-  rol:string;
+  usuarios: Usuario,
+  area:string;
 }
 
 export interface Usuario {
@@ -12,6 +13,7 @@ export interface Usuario {
   apellidos: string;
   usuario: string;
   area: string;
+  idRol:string;
 }
 
 export interface UsuariosResponse {
@@ -28,8 +30,8 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  login(userData: any): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.url}/api/usuarios/login`, userData);
+  login(userData: any): Observable<any> {
+    return this.http.post<any>(`${this.url}/api/usuarios/login`, userData);
   }
 
   lista_usuarios():Observable<UsuariosResponse>{
@@ -38,5 +40,13 @@ export class ApiService {
 
   buscar_usuario(userData:any):Observable<UsuariosResponse>{
     return this.http.post<UsuariosResponse>(`${this.url}/api/usuarios/buscar-usuario`,userData)
+  }
+
+  evaluar_servicio(userData:any):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/evaluacion/evaluar`,userData)
+  }
+
+  resultados_evaluacion_comedor():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/evaluacion/evaluaciones-comedor`)
   }
 }

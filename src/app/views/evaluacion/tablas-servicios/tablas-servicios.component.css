@@ -1,0 +1,42 @@
+.box{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    gap:10px
+}
+.servicios{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 3rem;
+}
+.servicios-btn{
+    font-size: 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 5rem;
+    position: absolute;
+    width: 100%;
+}
+.card{
+  display: flex;
+  height: 22rem;
+  width: 17rem;
+  border-radius: 3%;
+  text-align: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+img{
+    position: relative;
+    width: 12rem;
+    height: 12rem;
+}

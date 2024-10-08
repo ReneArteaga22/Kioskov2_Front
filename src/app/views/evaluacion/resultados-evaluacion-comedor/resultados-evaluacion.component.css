@@ -1,0 +1,21 @@
+.box{
+    width: 100%;
+    background-color: rgb(235, 240, 240);
+}
+.graphics-table{
+    gap:2rem;
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    padding: 3rem;
+}
+.graphics{
+    display: flex;
+    width: 50%;
+    gap:5rem;
+}
+thead{
+    background-color: #242323;
+    color: aliceblue;
+    text-align: center;
+}

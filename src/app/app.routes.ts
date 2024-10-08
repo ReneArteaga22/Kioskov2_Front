@@ -9,7 +9,9 @@ import { RecuperarContrasenaComponent } from './views/auth/recuperar-contrasena/
 import { LoginComponent } from './views/auth/login/login.component';
 import { RegisterComponent } from './views/auth/register/register.component';
 import { UsuariosComponent } from './views/usuarios/usuarios.component';
-import { ResultadosEvaluacionComponent } from './views/evaluacion/resultados-evaluacion/resultados-evaluacion.component';
+import { ResultadosEvaluacionComponent } from './views/evaluacion/resultados-evaluacion-comedor/resultados-evaluacion.component';
+import { TablasServiciosComponent } from './views/evaluacion/tablas-servicios/tablas-servicios.component';
+import { ResultadosEvaluacionTransporteComponent } from './views/evaluacion/resultados-evaluacion-transporte/resultados-evaluacion-transporte.component';
 
 export const routes: Routes = [
   {
@@ -23,10 +25,12 @@ export const routes: Routes = [
   { path: 'comedor', component: ComedorComponent },
   { path: 'transporte', component: TransporteComponent },
   { path: 'servicios', component: EvaluacionServiciosComponent },
-  { path: 'resultados-evaluacion', component: ResultadosEvaluacionComponent },
+  { path: 'resultados-evaluacion-comedor', component: ResultadosEvaluacionComponent },
+  { path: 'resultados-evaluacion-transporte',component:ResultadosEvaluacionTransporteComponent},
   { path: 'usuarios', component: UsuariosComponent },
   { path: 'recuperar-contrasena', component: RecuperarContrasenaComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home-prueba', component: ReconocimientosComponent },
+  { path: 'tablas-servicios',component:TablasServiciosComponent}
 ];

@@ -12,14 +12,9 @@ import { CCardsModulesComponent } from '../../components/c-cards-modules/c-cards
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [SidebarModule, ButtonModule, RouterLink, RouterOutlet, CardModule, CNavBarComponent,CCardsModulesComponent ],
+  imports: [SidebarModule, ButtonModule, RouterLink, RouterOutlet, CardModule, CNavBarComponent, CCardsModulesComponent ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-
-  click(){
-    alert('hola jajajaj')
-  }
-
 }

@@ -7,7 +7,7 @@
 }
 .clayens{
     display: flex;
-    background-color: #333;
+    background-color: rgb(31, 30, 30);
     width: 100%;
     height: 10rem;
     justify-content: center;
@@ -39,7 +39,7 @@
     margin-bottom: 3rem;
 }
 th{
-    background-color: #333;
+    background-color: rgb(31, 30, 30);
     text-align: center;
     height: 3rem;
     color: aliceblue;
@@ -78,7 +78,7 @@ tr:hover {
     width: 10rem;
     height: 2.5rem;
     margin-left: 3rem;
-    background-color: #333;
+    background-color: rgb(31, 30, 30);
     color: white;
     font-size: 1rem;
 }
@@ -97,20 +97,13 @@ tr:hover {
     margin-left: 3rem;
     padding: 10px;
 }
-.select-btn option{
-    border: 1px solid #c9c5c5;
-    border-radius: 10px;
-    height: 2.5rem;
-    width: 20rem;
-    padding: 10px;
-}
 .btn-register{
     border: none;
     border-radius: 10px;
     width: 10rem;
     height: 2.5rem;
     margin-left: 3rem;
-    background-color: #333;
+    background-color: rgb(31, 30, 30);
     color: white;
     font-size: 1rem;
 }
