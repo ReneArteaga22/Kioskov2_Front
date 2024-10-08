@@ -23,7 +23,7 @@ export class LoginComponent {
 
   constructor(private router:Router, private apiService:ApiService, private galleta:CookieService){
     this.loginForm = new FormGroup({
-      correo: new FormControl('',[Validators.required]),
+      uids: new FormControl('',[Validators.required]),
       contrasena: new FormControl('',[Validators.required])
     })
   }
@@ -33,7 +33,7 @@ export class LoginComponent {
     if(!this.isSubmit && this.loginForm.valid){
       this.apiService.login(this.loginForm.value).subscribe(
         response =>{
-          this.galleta.set('area', response.rol)
+          console.log(response.idRol)
           this.galleta.set('sesion','1')
           this.router.navigate(['/'])
         },error => {

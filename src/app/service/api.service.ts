@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 interface LoginResponse{
-  rol:string;
+  idRol:number;
 }
 
 export interface Usuario {
@@ -12,6 +12,7 @@ export interface Usuario {
   apellidos: string;
   usuario: string;
   area: string;
+  idRol:string;
 }
 
 export interface UsuariosResponse {
