@@ -11,7 +11,10 @@
     </div>
     <div class="graphics-table">
         <div class="graphics">    
-            <p-chart type="bar" [data]="evaluaciones" [options]="evaluaciones"/>
+            <p-chart type="bar" [data]="basicData" [options]="basicOptions"/>
+            <p-chart type="bar" [data]="basicData" [options]="basicOptions"/>
+            <p-chart type="bar" [data]="basicData" [options]="basicOptions"/>
+            <p>Grafica de calificaciones del servicio de comedor </p>
         </div>
         <div class="table">
             <table class="evaluaciones">
@@ -30,7 +33,7 @@
                         <td>{{evaluacion.planta}}</td>
                         <td>{{evaluacion.servicio}}</td>
                         <td>{{evaluacion.createdAt | date: 'yyyy/MM/dd'}}</td>
-                        <td><button>Comentario</button></td>
+                        <td><button class="comentario">Comentario</button></td>
                     </tr>
                 </tbody>
             </table>
