@@ -12,6 +12,7 @@ import { ApiService } from '../../../service/api.service';
   styleUrl: './transporte.component.css'
 })
 export class TransporteComponent {
+  selectedOption: string = '';
   transporteForm:FormGroup
   isSubmit:boolean = false
 
@@ -24,6 +25,7 @@ export class TransporteComponent {
   }
 
   calificacion(calificacion: string, servicio: string) {
+    this.selectedOption = calificacion;
     this.transporteForm.patchValue({ calificacion: calificacion, servicio:servicio });
   }
   

@@ -8,25 +8,25 @@
         </div>
         <h1>Que te parecio el servicio? </h1>
         <div class="box-img">
-            <div class="caritas" (click)="calificacion('Muy bueno','transporte')">
+            <div class="caritas" (click)="calificacion('Muy bueno','transporte')" [class.selected]="selectedOption === 'Muy bueno'">
                 <h1>Muy bueno</h1>
                 <div class="carita">
                     <img src="icons/love.png" alt="">
                 </div>
             </div>
-            <div class="caritas" (click)="calificacion('Bueno','transporte')">
+            <div class="caritas" (click)="calificacion('Bueno','transporte')" [class.selected]="selectedOption === 'Bueno'">
                 <h1>Bueno</h1>
                 <div class="carita">
                     <img src="icons/happy.png" alt="">
                 </div>
             </div>
-            <div class="caritas" (click)="calificacion('Malo','transporte')">
+            <div class="caritas" (click)="calificacion('Malo','transporte')" [class.selected]="selectedOption === 'Malo'">
                 <h1>Malo</h1>
                 <div class="carita">
                     <img src="icons/triste.png" alt="">
                 </div>
             </div>
-            <div class="caritas" (click)="calificacion('Muy malo','transporte')">
+            <div class="caritas" (click)="calificacion('Muy malo','transporte')" [class.selected]="selectedOption === 'Muy malo'">
                 <h1>Muy malo</h1>
                 <div class="carita">
                     <img src="icons/sad.png" alt="">

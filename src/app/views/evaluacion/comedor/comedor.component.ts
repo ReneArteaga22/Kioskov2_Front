@@ -3,15 +3,17 @@ import { FormControl, FormGroup, Validators,ReactiveFormsModule } from '@angular
 import { Router, RouterLink } from '@angular/router';
 import { CNavBarComponent } from '../../../components/c-nav-bar/c-nav-bar.component';
 import { ApiService } from '../../../service/api.service';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-comedor',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, CNavBarComponent],
+  imports: [RouterLink, ReactiveFormsModule, CNavBarComponent, NgClass],
   templateUrl: './comedor.component.html',
   styleUrl: './comedor.component.css'
 })
 export class ComedorComponent {
+  selectedOption: string = '';
   comedorForm: FormGroup
   isSubmit: boolean = false
   
@@ -26,9 +28,10 @@ export class ComedorComponent {
   }
 
   calificacion(calificacion: string, servicio: string) {
+    this.selectedOption = calificacion;
     this.comedorForm.patchValue({ calificacion: calificacion, servicio:servicio });
   }
-  
+
   enviar(){
     if(this.comedorForm.valid && !this.isSubmit){
       this.apiService.evaluar_servicio(this.comedorForm.value).subscribe(
