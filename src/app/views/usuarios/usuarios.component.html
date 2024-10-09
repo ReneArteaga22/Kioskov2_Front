@@ -3,7 +3,7 @@
     <div class="box-table">
         <div class="box-filtros">
             <form [formGroup]="buscarUsuarioForm" (ngSubmit)="buscar_usuario()">
-                <input class="input" type="text" placeholder="Esribe el nombre" formControlName="nombre">
+                <input class="input" type="text" placeholder="Buscar" formControlName="nombre">
                 <select formControlName="area" class="select-btn">
                     <option value="" disabled selected>Selecciona el area
                     <option value="gerencia">Gerencia</option>
