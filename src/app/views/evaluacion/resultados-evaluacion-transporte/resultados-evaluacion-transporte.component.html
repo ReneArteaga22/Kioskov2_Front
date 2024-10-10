@@ -1,17 +1,29 @@
 <app-c-nav-bar></app-c-nav-bar>
 <div class="box">
+    <div class="filtros">
+        <div class="box-grafico">
+            <h1>Grafico de barras</h1>
+        </div>
+        <form class="box-tabla" [formGroup]="filtrarForm" (ngSubmit)="filtrar()">
+            <input class="input" type="text" placeholder="Buscar" formControlName="calificacion">
+            <button class="btn" type="submit">Buscar</button>
+        </form>
+    </div>
     <div class="graphics-table">
         <div class="graphics">    
             <p-chart type="bar" [data]="basicData" [options]="basicOptions"/>
+            <p-chart type="bar" [data]="basicData" [options]="basicOptions"/>
+            <p-chart type="bar" [data]="basicData" [options]="basicOptions"/>
+            <p>Grafica de calificaciones del servicio comedor</p>
         </div>
         <div class="table">
-            <table>
+            <table class="evaluaciones">
                 <thead>
                     <tr>
-                        <th>Calificacion</th>
+                        <th class="id">Calificacion</th>
                         <th>Servicio</th>
                         <th>Fecha</th>
-                        <th>Comentario</th>
+                        <th class="area">Comentario</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -19,7 +31,7 @@
                         <td>{{evaluacion.calificacion}}</td>
                         <td>{{evaluacion.servicio}}</td>
                         <td>{{evaluacion.createdAt | date: 'yyyy/MM/dd'}}</td>
-                        <td><button>comentario</button></td>
+                        <td><button class="comentario">Comentario</button></td>
                     </tr>
                 </tbody>
             </table>
