@@ -40,10 +40,20 @@
                         <td>{{evaluacion.planta}}</td>
                         <td>{{evaluacion.servicio}}</td>
                         <td>{{evaluacion.createdAt | date: 'yyyy/MM/dd'}}</td>
-                        <td><button class="comentario">Comentario</button></td>
+                        <td><p-button (click)="mostrarComentario(evaluacion.id);" class="Comentario" label="Comentario"/></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
+</div>
+<div class="card flex justify-content-center" style="padding: 20px;">
+  <p-dialog header="Comentario" [modal]="true" [(visible)]="visible" [style]="{ width: '300px', height: '300px', backgroundColor: '#f9f9f9', padding: '20px', borderRadius: '8px'}">
+    <ng-template pTemplate="header">
+        <div style="text-align: center; text-decoration: underline;">
+            <h1>Comentario</h1>
+        </div>
+    </ng-template>
+    <h3>{{ comentario }}</h3>
+  </p-dialog>
 </div>

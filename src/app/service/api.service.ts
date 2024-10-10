@@ -61,4 +61,8 @@ export class ApiService {
   filtrar_resultados_transporte(userData:any):Observable<any>{
     return this.http.post<any>(`${this.url}/api/evaluacion/filtrar-transporte`, userData)
   }
+
+  mostar_comentario_x_id(id:number):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/evaluacion/mostrar-comentario`,{id})
+  }
 }
