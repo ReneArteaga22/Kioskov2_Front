@@ -4,10 +4,15 @@
         <div class="box-grafico">
             <h1>Grafico de barras</h1>
         </div>
-        <div class="box-tabla">
+        <form class="box-tabla">
             <input class="input" type="text" placeholder="Buscar">
+            <select formControlName="area" class="select-btn">
+                <option value="" disabled selected>Selecciona la planta
+                <option value="planta 1">Planta 1</option>
+                <option value="planta 2">Planta 2</option>
+            </select>
             <button class="btn">Buscar</button>
-        </div>
+        </form>
     </div>
     <div class="graphics-table">
         <div class="graphics">    
