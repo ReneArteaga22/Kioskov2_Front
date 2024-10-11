@@ -5,7 +5,7 @@
             <h1>Grafico de barras</h1>
         </div>
         <form class="box-tabla" [formGroup]="filtrarForm" (ngSubmit)="filtrar()">
-            <input class="input" type="text" placeholder="Buscar" formControlName="calificacion">
+            <input class="input" type="text" placeholder="Buscar por calificacion" formControlName="calificacion">
             <select formControlName="planta" class="select-btn">
                 <option value="" disabled selected>Selecciona la planta</option>
                 <option value="planta 1">Planta 1</option>

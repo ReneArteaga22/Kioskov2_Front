@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../service/api.service';
-import { UsuariosResponse } from '../../service/api.service';
-import { Usuario } from '../../service/api.service';
 import { NgFor } from '@angular/common';
-import { FormControl, FormGroup, Validators,ReactiveFormsModule} from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-usuarios',
@@ -16,7 +14,7 @@ import { FormControl, FormGroup, Validators,ReactiveFormsModule} from '@angular/
 export class UsuariosComponent implements OnInit {
   buscarUsuarioForm: FormGroup
   isSubmit: boolean = false
-  usuarios: Usuario[] = [];
+  usuarios: any[] = [];
 
   constructor(private apiService:ApiService){
     this.buscarUsuarioForm = new FormGroup({
@@ -27,7 +25,7 @@ export class UsuariosComponent implements OnInit {
 
   ngOnInit(): void {
     this.apiService.lista_usuarios().subscribe(
-      (response: UsuariosResponse) => {
+      response => {
         this.usuarios = response.usuarios
         console.log('lista usuarios', this.usuarios);
       },error => {
@@ -39,8 +37,8 @@ export class UsuariosComponent implements OnInit {
   buscar_usuario(){
     if(this.buscarUsuarioForm.valid && !this.isSubmit){
       this.apiService.buscar_usuario(this.buscarUsuarioForm.value).subscribe(
-        (response: UsuariosResponse) => {
-          this.usuarios = response.usuarios          
+        response => {
+          this.usuarios = response.filtro         
         }
       )
     }

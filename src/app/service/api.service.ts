@@ -38,8 +38,8 @@ export class ApiService {
     return this.http.get<UsuariosResponse>(`${this.url}/api/usuarios/index`)
   }
 
-  buscar_usuario(userData:any):Observable<UsuariosResponse>{
-    return this.http.post<UsuariosResponse>(`${this.url}/api/usuarios/buscar-usuario`,userData)
+  buscar_usuario(userData:any):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/usuarios/buscar-usuario`,userData)
   }
 
   evaluar_servicio(userData:any):Observable<any>{
