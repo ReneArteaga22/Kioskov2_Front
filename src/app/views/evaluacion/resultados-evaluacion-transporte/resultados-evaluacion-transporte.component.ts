@@ -6,16 +6,19 @@ import { NgFor } from '@angular/common';
 import { DatePipe } from '@angular/common';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-resultados-evaluacion-transporte',
   standalone: true,
-  imports: [CNavBarComponent, ChartModule, NgFor, DatePipe, ReactiveFormsModule],
+  imports: [CNavBarComponent, ChartModule, NgFor, DatePipe, ReactiveFormsModule, DialogModule, ButtonModule],
   templateUrl: './resultados-evaluacion-transporte.component.html',
   styleUrl: './resultados-evaluacion-transporte.component.css'
 })
 export class ResultadosEvaluacionTransporteComponent implements OnInit {
-
+  comentario: string = '';
+  visible: boolean = false;
   basicData: any;
   basicOptions: any;
   evaluaciones: any[] = []
@@ -98,4 +101,16 @@ export class ResultadosEvaluacionTransporteComponent implements OnInit {
       )
     }
   }
+
+  mostrarComentario(id:number){
+    this.apiService.mostar_comentario_x_id(id).subscribe(
+      response =>{
+        this.comentario = response.comentario.comentario
+        this.visible = true
+        console.log(response)
+      }
+    )
+    console.log(id, typeof id)
+  }
+
 }
