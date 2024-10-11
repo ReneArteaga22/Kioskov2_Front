@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
-import { RouterOutlet } from '@angular/router';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-soporte-rh',
   standalone: true,
-  imports: [RouterLink, ButtonModule, RouterOutlet],
+  imports: [RouterLink, ButtonModule, NgIf],
   templateUrl: './soporte-rh.component.html',
   styleUrl: './soporte-rh.component.css'
 })

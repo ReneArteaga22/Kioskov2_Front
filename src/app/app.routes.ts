@@ -12,6 +12,11 @@ import { UsuariosComponent } from './views/usuarios/usuarios.component';
 import { ResultadosEvaluacionComponent } from './views/evaluacion/resultados-evaluacion-comedor/resultados-evaluacion.component';
 import { TablasServiciosComponent } from './views/evaluacion/tablas-servicios/tablas-servicios.component';
 import { ResultadosEvaluacionTransporteComponent } from './views/evaluacion/resultados-evaluacion-transporte/resultados-evaluacion-transporte.component';
+import { SoporteRhComponent } from './views/soporte-rh/soporte-rh.component';
+import { NominasComponent } from './views/soporte-rh/nominas/nominas.component';
+import { RetiroAhorroComponent } from './views/soporte-rh/retiro-ahorro/retiro-ahorro.component';
+import { SolicitudGafeteComponent } from './views/soporte-rh/solicitud-gafete/solicitud-gafete.component';
+import { ConsultarVacacionesComponent } from './views/soporte-rh/consultar-vacaciones/consultar-vacaciones.component';
 
 export const routes: Routes = [
   {
@@ -32,5 +37,11 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home-prueba', component: ReconocimientosComponent },
-  { path: 'tablas-servicios',component:TablasServiciosComponent}
-];
+  { path: 'tablas-servicios',component:TablasServiciosComponent},
+  { path: 'soporte-rh-modulos',component:SoporteRhComponent},
+  { path: 'nomina',component:NominasComponent},
+  { path: 'retiro-ahorro',component:RetiroAhorroComponent},
+  { path: 'solicitud-gafete',component:SolicitudGafeteComponent},
+  { path: 'consultar-vacaciones',component:ConsultarVacacionesComponent}
+
+]
