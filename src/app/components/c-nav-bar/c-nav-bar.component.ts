@@ -30,5 +30,16 @@ export class CNavBarComponent implements OnInit{
     this.isLoggin = false
     this.galleta.deleteAll()
   }
+
+  navegar(event: any) {
+    const selectedValue = event.target.value;
+    if (selectedValue === '/login') {
+      this.router.navigate(['/login'])
+      this.isLoggin = false
+      this.galleta.deleteAll()
+    } else if (selectedValue) {
+      this.router.navigate([selectedValue]);
+    }
+  }
 }
  
