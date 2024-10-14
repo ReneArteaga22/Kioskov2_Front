@@ -22,15 +22,24 @@
   <!--Barra de navegacion-->
   
   <!-- Menú select para pantallas pequeñas -->
-  <select class="mobile-nav">
-    <option value="" selected>Navega por los módulos</option>
-    <option value="/soporte-rh" >Soporte RH</option>
-    <option value="/seguridad">Seguridad</option>
-    <option value="/directorio">Directorio</option>
-    <option value="/servicios">Evaluacion de servicios</option>
-    <option value="/encuestas">Encuestas</option>
-    <option value="/comunicados">Comunicados</option>
-    <option value="/reconocimientos">Reconocimientos</option>
-    <option value="/login">Login</option>
+  <select class="mobile-nav" (change)="navegar($event)">
+    <option *ngIf="!isLoggin" value="" disabled selected>Navega por los módulos</option>
+    <option *ngIf="!isLoggin" value="/soporte-rh" >Soporte RH</option>
+    <option *ngIf="!isLoggin" value="/seguridad">Seguridad</option>
+    <option *ngIf="!isLoggin" value="/directorio">Directorio</option>
+    <option *ngIf="!isLoggin" value="/servicios">Evaluacion de servicios</option>
+    <option *ngIf="!isLoggin" value="/encuestas">Encuestas</option>
+    <option *ngIf="!isLoggin" value="/comunicados">Comunicados</option>
+    <option *ngIf="!isLoggin" value="/reconocimientos">Reconocimientos</option>
+    <option *ngIf="!isLoggin" value="/login">Login</option>
+   
+
+    <!-- Modultos para RH -->
+    <option *ngIf="isRH" value="" disabled selected>Navega por los módulos</option>
+    <option *ngIf="isRH" value="/tablas-servicios">Resultado de evaluaciones</option>
+    <option *ngIf="isRH" value="/usuarios">Usuarios</option>
+
+    <!-- Cerrar sesion option -->
+    <option *ngIf="isLoggin" value="/login">Cerrar Sesion</option>
   </select>
 </nav>

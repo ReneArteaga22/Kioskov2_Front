@@ -1,23 +1,29 @@
 <div class="box">
     <div class="clayens"><img class="logo" [routerLink]="['/']" src="icons/CLAYENS_Mexico_Logo.png" alt=""></div>
-    <div class="form">
-        <form class="loginForm" [formGroup]="loginForm" (ngSubmit)="login()">
-            <h1>Iniciar sesion</h1>
-            <div class="input">
-                <label for="">Usuario o correo</label>
-                <input type="text" placeholder="Ingresa tu correo o usuario" pInputText formControlName="uids" />    
-            </div>
-            <div class="input">
-                <label for="">Contraseña</label>
-                <input type="password" placeholder="Ingresa tu contraseña" pInputText formControlName="contrasena" />    
-            </div>
-            <div class="btn-box">
-                <button class="btn" type="submit" [disabled]="!loginForm.valid">Iniciar sesion</button>
-                <div *ngIf="error">
-                    <p class="tstr">Usuario o contraseña incorrectos</p>
+    <div class="box-form">
+        <form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
+            <div class="inputs">
+                <div class="box-title">
+                    <h1 class="title">Iniciar sesion</h1>
+                </div>
+                <div class="box-input">
+                    <label for="">Usuario o correo</label>
+                    <input class="input" type="text" placeholder="Ingresa tu usuario/correo" formControlName="uids">
+                </div>
+                <div class="box-input">
+                    <label for="">Contraseña</label>
+                    <input class="input" type="password" placeholder="Ingresa tu contraseña" formControlName="contrasena">
+                </div>
+                <div class="box-btn">
+                    <button class="btn" type="submit" [disabled]="!loginForm.valid">Iniciar sesion</button>
+                </div>
+                <div *ngIf="error" class="box-input">
+                    <p class="error">Usuario o contraseña incorrectos</p>
+                </div>
+                <div class="box-input">
+                    <a class="recuperar" [routerLink]="['/recuperar-contrasena']">¿Olvidaste tu contraseña?</a>
                 </div>
             </div>
-            <a [routerLink]="['/recuperar-contrasena']">¿Olvidaste tu contraseña?</a>
         </form>
     </div>
 </div>
