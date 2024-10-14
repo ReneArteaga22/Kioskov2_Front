@@ -1,0 +1,20 @@
+<div class="box">
+  <div class="box-input">
+    <form action="" [formGroup]="editarForm" (ngSubmit)="editar">
+        <div>
+            <div>
+                <label for="">Nombre</label>
+                <input type="text" disabled placeholder="nombre">
+                <input *ngIf="isEditing" type="text" formControlName="nombre">
+            </div>
+            <div>
+                <label for="">Apellido</label>
+                <input type="text" [disabled]="!isEditing" placeholder="nombre">
+            </div>
+        </div>
+        <div>
+            <button (click)="editar()">Editar</button>
+        </div>
+    </form>
+  </div>
+</div>

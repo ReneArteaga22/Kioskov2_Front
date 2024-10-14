@@ -1,0 +1,25 @@
+.box{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100%;
+}
+.clayens{
+    display: flex;
+    background-color: rgb(31, 30, 30);
+    width: 100%;
+    height: 10rem;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.logo{
+    width: 30rem;
+    height: 7rem;
+}
+.box-input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: pink;
+}

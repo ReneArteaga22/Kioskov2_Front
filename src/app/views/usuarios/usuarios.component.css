@@ -3,7 +3,6 @@
     flex-direction: column;
     width: 100vw;
     height: 100%;
-    background-color: rgb(235, 240, 240);
 }
 .clayens{
     display: flex;
@@ -60,7 +59,7 @@ tr{
 }
 tr:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: #f3f2f2;
+    background-color: #f0f0f0;
 }
 .box-table-users table tbody tr td {
     border-bottom: 1px solid #f3f2f2;
