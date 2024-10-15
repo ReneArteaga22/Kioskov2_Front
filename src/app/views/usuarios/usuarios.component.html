@@ -2,7 +2,7 @@
     <div class="clayens"><img class="logo" [routerLink]="['/']" src="icons/CLAYENS_Mexico_Logo.png" alt=""></div>
     <div class="box-table">
         <div class="box-filtros">
-            <form [formGroup]="buscarUsuarioForm" (ngSubmit)="buscar_usuario()">
+            <form class="form" [formGroup]="buscarUsuarioForm" (ngSubmit)="buscar_usuario()">
                 <input class="input" type="text" placeholder="Buscar" formControlName="nombre">
                 <select formControlName="area" class="select-btn">
                     <option value="" disabled selected>Selecciona el area</option>
@@ -11,7 +11,7 @@
                     <option value="rh">Recursos Humano</option>
                     <option value="almacen">Almacen</option>
                 </select>
-                <button class="btn" type="submit">Buscar</button>
+                <button class="btn" type="submit">Buscar usuario</button>
                 <button class="btn-register" [routerLink]="['/register']">Registrar Usuario</button>
             </form>
         </div>
@@ -27,7 +27,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr (click)="alert()" *ngFor="let usuario of usuarios">
+                    <tr (click)="usuarios_info()" *ngFor="let usuario of usuarios">
                         <td>{{ usuario.id }}</td>
                         <td>{{ usuario.nombre }}</td>
                         <td>{{ usuario.apellidos }}</td>
@@ -39,4 +39,8 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 <!-- pruebas-->
+=======
+<!-- pruebas test 01-->
+>>>>>>> miller

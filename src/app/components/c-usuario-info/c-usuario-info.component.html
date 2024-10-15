@@ -1,0 +1,48 @@
+<div class="box">
+    <form class="form" [formGroup]="editarForm" (ngSubmit)="editar">
+        <div class="box-input">
+            <div class="input-1">
+                <div class="input">
+                    <label for="">Estado</label>
+                    <input type="text" placeholder="Estado" formControlName="estatus">
+                </div>
+                <div class="input">
+                    <label for="">Area</label>
+                    <input type="text" placeholder="Area" formControlName="area">
+                </div>
+                <div class="input">
+                    <label for="">Puesto</label>
+                    <input type="text" placeholder="Puesto" formControlName="puesto">
+                </div>
+            </div>
+            <div class="input-1">
+                <div class="input">
+                    <label for="">Nombre</label>
+                    <input type="text">
+                </div>
+                <div class="input">
+                    <label for="">Apellidos</label>
+                    <input type="text">
+                </div>
+                <div class="input">
+                    <label for="">Usuario</label>
+                    <input type="text">
+                </div>
+            </div>
+            <div class="input-1">
+                <div class="input">
+                    <label for="">Correo</label>
+                    <input type="text">
+                </div>
+                <div class="input">
+                    <label for="">Telefono</label>
+                    <input type="text">
+                </div>
+            </div>
+            <div class="input-1">
+                <button class="btn">Editar</button>
+                <button class="btn">Activar</button>
+            </div>
+        </div>
+    </form>
+</div>
