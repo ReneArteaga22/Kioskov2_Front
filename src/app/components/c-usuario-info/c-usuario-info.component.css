@@ -17,9 +17,52 @@
     width: 30rem;
     height: 7rem;
 }
-.box-input{
+.form{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: pink;
+}
+.box-input{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    gap:20px;
+    margin-top: 2rem;
+    padding-bottom: 1.5rem;
+    padding-top: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid #ccc;   
+    background-color: #f3f2f2;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+.input-1{
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    gap:20px;
+}
+.input{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.box-btn{
+    width: 80%;
+}
+.btn{
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    height: 2.5rem;
+    background-color: rgb(31, 30, 30);
+    color: white;
+    font-size: 1rem;
+}
+input{
+    border: 1px solid #c9c5c5;
+    border-radius: 8px;
+    height: 2.5rem;
+    padding: 5px;
 }

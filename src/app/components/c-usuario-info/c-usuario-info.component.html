@@ -1,20 +1,47 @@
 <div class="box">
-  <div class="box-input">
-    <form action="" [formGroup]="editarForm" (ngSubmit)="editar">
-        <div>
-            <div>
-                <label for="">Nombre</label>
-                <input type="text" disabled placeholder="nombre">
-                <input *ngIf="isEditing" type="text" formControlName="nombre">
+    <form class="form" [formGroup]="editarForm" (ngSubmit)="editar()">
+        <div class="box-input">
+            <div class="input-1">
+                <div class="input">
+                    <label for="">Estado</label>
+                    <input type="text" placeholder="{{usuario.estatus}}" formControlName="estatus">
+                </div>
+                <div class="input">
+                    <label for="">Area</label>
+                    <input type="text" placeholder="{{usuario.area}}" formControlName="area">
+                </div>
+                <div class="input">
+                    <label for="">Puesto</label>
+                    <input type="text" placeholder="{{usuario.puesto}}" formControlName="puesto">
+                </div>
             </div>
-            <div>
-                <label for="">Apellido</label>
-                <input type="text" [disabled]="!isEditing" placeholder="nombre">
+            <div class="input-1">
+                <div class="input">
+                    <label for="">Nombre</label>
+                    <input type="text" placeholder="{{usuario.nombre}}" formControlName="nombre">
+                </div>
+                <div class="input">
+                    <label for="">Apellidos</label>
+                    <input type="text" placeholder="{{usuario.apellidos}}" formControlName="apellidos">
+                </div>
+                <div class="input">
+                    <label for="">Usuario</label>
+                    <input type="text" placeholder="{{usuario.usuario}}" formControlName="usuario">
+                </div>
             </div>
-        </div>
-        <div>
-            <button (click)="editar()">Editar</button>
+            <div class="input-1">
+                <div class="input">
+                    <label for="">Correo</label>
+                    <input type="text" placeholder="{{usuario.correo}}" formControlName="correo">
+                </div>
+                <div class="input">
+                    <label for="">Telefono</label>
+                    <input type="text" placeholder="{{usuario.telefono}}" formControlName="telefono">
+                </div>
+            </div>
+            <div class="input-1">
+                <button class="btn" type="submit">Guardar cambios</button>
+            </div>
         </div>
     </form>
-  </div>
 </div>
