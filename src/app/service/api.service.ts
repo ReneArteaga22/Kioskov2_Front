@@ -65,4 +65,12 @@ export class ApiService {
   mostar_comentario_x_id(id:number):Observable<any>{
     return this.http.post<any>(`${this.url}/api/evaluacion/mostrar-comentario`,{id})
   }
+
+  usuario_x_id(id:number):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/usuarios/usuario-id`,{id})
+  }
+
+  editar_usuario(id:number, usuario:any):Observable<any>{
+    return this.http.put<any>(`${this.url}/api/usuarios/editar-usuario`, {id, usuario})
+  }
 }
