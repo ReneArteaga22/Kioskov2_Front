@@ -1,47 +1,46 @@
 <div class="box">
-    <form class="form" [formGroup]="editarForm" (ngSubmit)="editar">
+    <form class="form" [formGroup]="editarForm" (ngSubmit)="editar()">
         <div class="box-input">
             <div class="input-1">
                 <div class="input">
                     <label for="">Estado</label>
-                    <input type="text" placeholder="Estado" formControlName="estatus">
+                    <input type="text" placeholder="{{usuario.estatus}}" formControlName="estatus">
                 </div>
                 <div class="input">
                     <label for="">Area</label>
-                    <input type="text" placeholder="Area" formControlName="area">
+                    <input type="text" placeholder="{{usuario.area}}" formControlName="area">
                 </div>
                 <div class="input">
                     <label for="">Puesto</label>
-                    <input type="text" placeholder="Puesto" formControlName="puesto">
+                    <input type="text" placeholder="{{usuario.puesto}}" formControlName="puesto">
                 </div>
             </div>
             <div class="input-1">
                 <div class="input">
                     <label for="">Nombre</label>
-                    <input type="text">
+                    <input type="text" placeholder="{{usuario.nombre}}" formControlName="nombre">
                 </div>
                 <div class="input">
                     <label for="">Apellidos</label>
-                    <input type="text">
+                    <input type="text" placeholder="{{usuario.apellidos}}" formControlName="apellidos">
                 </div>
                 <div class="input">
                     <label for="">Usuario</label>
-                    <input type="text">
+                    <input type="text" placeholder="{{usuario.usuario}}" formControlName="usuario">
                 </div>
             </div>
             <div class="input-1">
                 <div class="input">
                     <label for="">Correo</label>
-                    <input type="text">
+                    <input type="text" placeholder="{{usuario.correo}}" formControlName="correo">
                 </div>
                 <div class="input">
                     <label for="">Telefono</label>
-                    <input type="text">
+                    <input type="text" placeholder="{{usuario.telefono}}" formControlName="telefono">
                 </div>
             </div>
             <div class="input-1">
-                <button class="btn">Editar</button>
-                <button class="btn">Activar</button>
+                <button class="btn" type="submit">Guardar cambios</button>
             </div>
         </div>
     </form>
