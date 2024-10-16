@@ -31,18 +31,30 @@ export class CUsuarioInfoComponent implements OnInit{
       telefono: new FormControl()
     })
   }
-
   editar() {
-    let id = parseInt(this.cookie.get('user_id'))
-    console.log(this.editarForm.value)
-
-    if(this.editarForm.valid && !this.isSubmit){
-      this.apiService.editar_usuario(id, this.editarForm.value).subscribe(
-        response =>{
-          this.usuario = response.usuario
-          console.log(this.usuario, id)
+    let id = parseInt(this.cookie.get('user_id'));
+  
+    // Obtener los valores del formulario
+    const formValues = this.editarForm.value;
+  
+    // Filtrar el formulario para que solo se envíen campos no vacíos
+    const filteredValues = Object.keys(formValues).reduce((acc:any, key) => {
+      // Solo agregar los campos que tienen un valor no vacío, null o undefined
+      if (formValues[key] !== null && formValues[key] !== undefined && formValues[key] !== '') {
+        acc[key] = formValues[key];
+      }
+      return acc;
+    }, {});
+  
+    // Asegurarse de que el formulario sea válido antes de enviar
+    if (this.editarForm.valid) {
+      // Llamada a la API para editar el usuario, enviando solo los valores filtrados
+      this.apiService.editar_usuario(id, filteredValues).subscribe(
+        response => {
+          this.usuario = response.usuario;
+          console.log(this.usuario, id);
         }
-      )
+      );
     }
   }
 
