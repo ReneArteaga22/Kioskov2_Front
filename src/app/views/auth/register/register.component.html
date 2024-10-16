@@ -1,30 +1,68 @@
 <div class="box">
     <div class="clayens"><img class="logo" [routerLink]="['/']" src="icons/CLAYENS_Mexico_Logo.png" alt=""></div>
-    <div class="form">
-        <form class="registerForm" [formGroup]="registerForm" >
-            <h1>Iniciar sesion</h1>
-            <div class="input">
-                <label for="">Nombre</label>
-                <input type="text" placeholder="Ingresa tu correo o usuario" pInputText formControlName="nombre" />    
-            </div>
-            <div class="input">
-                <label for="">Apellidos</label>
-                <input type="text" placeholder="Ingresa tu contraseña" pInputText formControlName="apellidos" />    
-            </div>
-            <div class="input">
-                <label for="">Nombre de usuario</label>
-                <input type="text" placeholder="Ingresa tu contraseña" pInputText formControlName="usuario" />    
-            </div>
-            <div class="input">
-                <label for="">Contraseña</label>
-                <input type="password" placeholder="Ingresa tu contraseña" pInputText formControlName="contrasena" />    
-            </div>
-            <div class="input">
-                <label for="">Area</label>
-                <input type="text" placeholder="Ingresa tu contraseña" pInputText formControlName="area" />    
-            </div>
-            <div class="btn-box">
-                <button class="btn" type="submit">Registrar</button>
+    <div class="box-form">
+        <form class="form" (ngSubmit)="register()">
+            <div class="box-input">
+                <h1>Registrar usuario</h1>
+                <div class="input">
+                    <div>
+                        <label for="">Nombre</label>
+                        <input type="text" placeholder="Ingresa el nombre">
+                    </div>
+                    <div>
+                        <label for="">Apellido</label>
+                        <input type="text" placeholder="Ingresa el apellido">
+                    </div>
+                </div>
+                <div class="input">
+                    <div>
+                        <label for="">Usuario</label>
+                        <input type="text" placeholder="Ingresa el nombre de usuario">
+                    </div>
+                    <div>
+                        <label for="">Contraseña</label>
+                        <input type="text" placeholder="Ingresa la contraseña">
+                    </div>
+                </div>
+                <div class="input">
+                    <div>
+                        <label for="">Area</label>
+                        <select class="select-btn">
+                            <option disabled selected>Selecciona el area</option>
+                            <option value="rh">Recursos Humanos</option>
+                            <option value="sistemas">Sistemas</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input">
+                    <div>
+                        <label for="">Puesto</label>
+                        <input type="text" placeholder="Ingresa la puesto">
+                    </div>
+                    <div>
+                        <label for="">Firma</label>
+                        <input type="text" placeholder="Ingresa la firma">
+                    </div>
+                </div>
+                <div class="input">
+                    <div>
+                        <label for="">Correo</label>
+                        <input type="text" placeholder="Ingresa el correo">
+                    </div>
+                    <div>
+                        <label for="">Telefono</label>
+                        <input type="text" placeholder="Ingresa el telefono">
+                    </div>
+                </div>
+                <div class="input">
+                    <div>
+                        <label for="">Foto</label>
+                        <input type="text" placeholder="Ingresa la fotografia">
+                    </div>
+                </div>
+                <div class="box-btn">
+                    <button class="btn" type="submit">Registrar</button>
+                </div>
             </div>
         </form>
     </div>
