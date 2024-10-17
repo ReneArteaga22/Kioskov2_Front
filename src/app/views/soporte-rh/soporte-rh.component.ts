@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { NgIf } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
@@ -15,28 +15,28 @@ export class SoporteRhComponent {
 
   categoria:string = ''
 
-  constructor(private cookie:CookieService){}
+  constructor(private cookie:CookieService, private router:Router){}
 
   reporte(categoria:string){
     if(categoria === 'Nominas'){
       this.cookie.set('categoria',categoria)
-      alert('saludo nominas')
+      this.router.navigate(['/nomina'])
     }
     if(categoria === 'Retiro Ahorro'){
       this.cookie.set('categoria',categoria)
-      alert('saludos retiro de ahorro')
+      this.router.navigate(['/retiro-ahorro'])
     }
     if(categoria === 'Gafete'){
       this.cookie.set('categoria',categoria)
-      alert('saludos gafete')
+      this.router.navigate(['/solicitud-gafete'])
     }
     if(categoria === 'Consulta Vacaciones'){
       this.cookie.set('categoria',categoria)
-      alert('saludos constulas vacaciones')
+      this.router.navigate(['/consultar-vacaciones'])
     }
     if(categoria === 'Atencion Personal'){
       this.cookie.set('categoria',categoria)
-      alert('saludos atencion persnoal')
+      this.router.navigate(['/nominas'])
     }
   }
 }
