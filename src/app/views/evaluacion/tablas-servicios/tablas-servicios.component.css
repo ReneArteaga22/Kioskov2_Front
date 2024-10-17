@@ -35,6 +35,11 @@
   align-items: center;
   justify-content: space-around;
 }
+.card:hover {
+  border-radius: 3%;
+  background-color: #ffffff;
+  border: 2px solid #ccc;
+}
 img{
     position: relative;
     width: 12rem;

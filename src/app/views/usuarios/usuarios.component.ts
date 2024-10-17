@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ApiService } from '../../service/api.service';
 import { NgFor } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-usuarios',
@@ -16,7 +17,7 @@ export class UsuariosComponent implements OnInit {
   isSubmit: boolean = false
   usuarios: any[] = [];
 
-  constructor(private apiService:ApiService){
+  constructor(private apiService:ApiService, private router:Router, private cookie: CookieService){
     this.buscarUsuarioForm = new FormGroup({
       nombre: new FormControl(''),
       area: new FormControl('')
@@ -44,7 +45,12 @@ export class UsuariosComponent implements OnInit {
     }
   }
 
-  alert(){
-    alert('alert')
+  usuarios_info(id:number){
+    this.apiService.usuario_x_id(id).subscribe(
+      response =>{
+        this.cookie.set('user_id',response.usuario.id)
+        this.router.navigate(['/usuarios-info'])
+      }
+    )
   }
 }

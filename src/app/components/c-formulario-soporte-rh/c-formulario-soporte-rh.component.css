@@ -66,5 +66,7 @@
 .btn:hover {
   background-color: #ff5722; 
 }
-
+.inp{
+    width: 100%;
+}
 
