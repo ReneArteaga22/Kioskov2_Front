@@ -46,6 +46,11 @@
                 <textarea placeholder="Escribe tu reporte..." formControlName="descripcion"></textarea>
             </div>
         </div>
+        <div *ngIf="error" class="box-inputs">
+            <div class="input">
+                <h3>No puedes dejar campos vacios.</h3>
+            </div>
+        </div>
         <div class="box-inputs">
             <div class="input">
                 <button class="btn" type="submit">Enviar</button>

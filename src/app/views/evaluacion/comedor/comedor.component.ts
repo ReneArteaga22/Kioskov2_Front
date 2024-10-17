@@ -36,6 +36,7 @@ export class ComedorComponent {
     if(this.comedorForm.valid && !this.isSubmit){
       this.apiService.evaluar_servicio(this.comedorForm.value).subscribe(
         response =>{
+          console.log(response)
           this.router.navigate(['/servicios'])
         }
       )
