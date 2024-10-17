@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ApiService } from '../../service/api.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-c-formulario-soporte-rh',
@@ -11,22 +13,32 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class CFormularioSoporteRhComponent {
 
+  isSubmit: boolean = false
+
   soporterhForm: FormGroup
 
-  constructor(){
+  constructor(private apiService:ApiService, private cookie:CookieService){
     this.soporterhForm = new FormGroup({
       folio: new FormControl(''),
-      num_empleado: new FormControl(''),
+      no_empleado: new FormControl(''),
       grupo: new FormControl(''),
-      planta: new FormControl(''),
       nombre: new FormControl(''),
+      descripcion: new FormControl(''),
+      planta: new FormControl(''),
       telefono: new FormControl(''),
-      reporte: new FormControl('')
     })
   }
 
   enviar(){
-    console.log('Si ves esto, el formulario funciona', this.soporterhForm.value)
+    console.log(this.soporterhForm.value)
+    const categoria = this.cookie.get('categoria')
+    if(this.soporterhForm.valid && !this.isSubmit){
+      this.apiService.crear_reporte(categoria, this.soporterhForm.value).subscribe(
+        response =>{
+          console.log(response)
+          this.cookie.delete('categoria')
+        }
+      )
+    }
   }
-
 }

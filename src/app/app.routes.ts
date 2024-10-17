@@ -17,7 +17,6 @@ import { NominasComponent } from './views/soporte-rh/nominas/nominas.component';
 import { RetiroAhorroComponent } from './views/soporte-rh/retiro-ahorro/retiro-ahorro.component';
 import { SolicitudGafeteComponent } from './views/soporte-rh/solicitud-gafete/solicitud-gafete.component';
 import { ConsultarVacacionesComponent } from './views/soporte-rh/consultar-vacaciones/consultar-vacaciones.component';
-import { CUsuarioInfoComponent } from './components/c-usuario-info/c-usuario-info.component';
 import { UsuariosInfoComponent } from './views/usuarios/usuarios-info/usuarios-info.component';
 
 export const routes: Routes = [
