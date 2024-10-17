@@ -34,7 +34,7 @@ export class LoginComponent {
       this.apiService.login(this.loginForm.value).subscribe(
         response =>{
           console.log(response)
-          this.galleta.set('area', response.usuario.area)
+          this.galleta.set('area', response.usuario.area)                       
           this.galleta.set('sesion','1')
           this.router.navigate(['/'])
         },error => {

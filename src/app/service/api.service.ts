@@ -73,4 +73,8 @@ export class ApiService {
   editar_usuario(id:number, usuario:any):Observable<any>{
     return this.http.put<any>(`${this.url}/api/usuarios/editar-usuario`, {id, usuario})
   }
+
+  crear_reporte(categoria:string, reporte:any):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/reporte/crear-reporte`,{categoria, reporte})
+  }
 }
