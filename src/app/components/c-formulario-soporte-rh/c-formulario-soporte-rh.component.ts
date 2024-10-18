@@ -5,24 +5,31 @@ import { ApiService } from '../../service/api.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
+import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
 
 @Component({
   selector: 'app-c-formulario-soporte-rh',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule, NgIf,TriStateCheckboxModule],
   templateUrl: './c-formulario-soporte-rh.component.html',
   styleUrl: './c-formulario-soporte-rh.component.css'
 })
-export class CFormularioSoporteRhComponent {
+export class CFormularioSoporteRhComponent{
 
+  hoy: string = ''
   isSubmit: boolean = false
   error: boolean = false
   soporterhForm: FormGroup
+  planta: string = ''
 
   constructor(private apiService:ApiService, private cookie:CookieService, private router:Router){
+    
+    const ahora = new Date();
+    this.hoy = ahora.toISOString().substring(0, 16)
+
+    
     this.soporterhForm = new FormGroup({
       categoria: new FormControl(this.cookie.get('categoria')),
-      folio: new FormControl('01-110'),
       no_empleado: new FormControl(''),
       grupo: new FormControl(''),
       nombre: new FormControl(''),
@@ -31,8 +38,13 @@ export class CFormularioSoporteRhComponent {
       telefono: new FormControl(''),
     })
   }
-  
-  
+
+  click(plant: string) {
+    this.planta = plant
+    console.log(this.planta)
+    return this.planta
+  }
+
   enviar() {
     console.log(this.soporterhForm.value);
     if (this.soporterhForm.valid && !this.isSubmit) {

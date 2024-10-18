@@ -30,6 +30,10 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
+  ultimo_reporte(planta:string, reporte:any):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/reporte/reporte`,{planta, reporte})
+  }
+
   login(userData: any): Observable<any> {
     return this.http.post<any>(`${this.url}/api/usuarios/login`, userData);
   }

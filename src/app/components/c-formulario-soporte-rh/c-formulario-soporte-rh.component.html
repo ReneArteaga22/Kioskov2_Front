@@ -3,11 +3,11 @@
         <div class="box-inputs">
             <div class="input">
                 <label>Folio</label>
-                <input type="text" placeholder="01-106"  disabled>
+                <input type="text" placeholder="Folio automatico.." disabled>
             </div>
             <div class="input">
                 <label>Fecha</label>
-                <input type="datetime-local">
+                <input type="datetime-local" [min]="hoy">
             </div>
         </div>
         <div class="box-inputs">
@@ -25,10 +25,11 @@
                 <option value="Administrativo">Administrativo</option>
             </select>
             <select class="select" formControlName="planta">
-                <option value="" disabled selected>Selecciona la plata</option>
+                <option value="" selected disabled>Selecciona una planta</option>
                 <option value="1">Planta 1</option>
                 <option value="2">Planta 2</option>
             </select>
+
         </div>
         <div class="box-inputs">
             <div class="input">
