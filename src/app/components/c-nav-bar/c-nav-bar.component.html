@@ -14,8 +14,8 @@
     <li *ngIf="!isLoggin"><a [routerLink]="['/modulo_asistencia']">Modulo de asistencia</a></li>
 
     <!-- Moodulos de usuario RH -->
-    <li *ngIf="isRH"><a [routerLink]="['/tablas-servicios']">Resultado de evaluaciones</a></li>
-    <li *ngIf="isRH"><a [routerLink]="['/usuarios']">Usuarios</a></li>
+    <li *ngIf="isRH || isSistemas"><a [routerLink]="['/tablas-servicios']">Resultado de evaluaciones</a></li>
+    <li *ngIf="isRH || isSistemas"><a [routerLink]="['/usuarios']">Usuarios</a></li>
 
     <li *ngIf="isLoggin"><a (click)="cerrarSesion()">Cerrar sesion</a></li>
     <i *ngIf="!isLoggin" [routerLink]="['/login']" class="pi pi-user" style="font-size: 2rem; color: white;"></i>
@@ -36,9 +36,9 @@
    
 
     <!-- Modultos para RH -->
-    <option *ngIf="isRH" value="" disabled selected>Navega por los módulos</option>
-    <option *ngIf="isRH" value="/tablas-servicios">Resultado de evaluaciones</option>
-    <option *ngIf="isRH" value="/usuarios">Usuarios</option>
+    <option *ngIf="isRH || isSistemas" value="" disabled selected>Navega por los módulos</option>
+    <option *ngIf="isRH || isSistemas" value="/tablas-servicios">Resultado de evaluaciones</option>
+    <option *ngIf="isRH || isSistemas" value="/usuarios">Usuarios</option>
 
     <!-- Cerrar sesion option -->
     <option *ngIf="isLoggin" value="/login">Cerrar Sesion</option>

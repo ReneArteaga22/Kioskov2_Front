@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from '../../service/api.service';
@@ -22,7 +22,7 @@ export class CFormularioSoporteRhComponent {
   constructor(private apiService:ApiService, private cookie:CookieService, private router:Router){
     this.soporterhForm = new FormGroup({
       categoria: new FormControl(this.cookie.get('categoria')),
-      folio: new FormControl('',),
+      folio: new FormControl(''),
       no_empleado: new FormControl(''),
       grupo: new FormControl(''),
       nombre: new FormControl(''),
@@ -32,6 +32,7 @@ export class CFormularioSoporteRhComponent {
     })
   }
   
+  
   enviar() {
     console.log(this.soporterhForm.value);
     if (this.soporterhForm.valid && !this.isSubmit) {
@@ -40,6 +41,7 @@ export class CFormularioSoporteRhComponent {
           console.log(response);
           this.cookie.delete('categoria');
           this.router.navigate(['/soporte-rh-modulos'])
+          this.isSubmit = false
         },error =>{
           if(error.status ===400 )[
             this.error = true
