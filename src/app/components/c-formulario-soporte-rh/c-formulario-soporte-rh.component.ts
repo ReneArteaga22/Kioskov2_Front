@@ -22,7 +22,7 @@ export class CFormularioSoporteRhComponent {
   constructor(private apiService:ApiService, private cookie:CookieService, private router:Router){
     this.soporterhForm = new FormGroup({
       categoria: new FormControl(this.cookie.get('categoria')),
-      folio: new FormControl(''),
+      folio: new FormControl('01-110'),
       no_empleado: new FormControl(''),
       grupo: new FormControl(''),
       nombre: new FormControl(''),
