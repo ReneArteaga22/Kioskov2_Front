@@ -18,6 +18,8 @@ import { RetiroAhorroComponent } from './views/soporte-rh/retiro-ahorro/retiro-a
 import { SolicitudGafeteComponent } from './views/soporte-rh/solicitud-gafete/solicitud-gafete.component';
 import { ConsultarVacacionesComponent } from './views/soporte-rh/consultar-vacaciones/consultar-vacaciones.component';
 import { UsuariosInfoComponent } from './views/usuarios/usuarios-info/usuarios-info.component';
+import { SolicitudesComponent } from './views/solicitudes/solicitudes.component';
+import { SolicitudComponent } from './views/solicitudes/solicitud/solicitud.component';
 
 export const routes: Routes = [
   {
@@ -44,6 +46,7 @@ export const routes: Routes = [
   { path: 'retiro-ahorro',component:RetiroAhorroComponent},
   { path: 'solicitud-gafete',component:SolicitudGafeteComponent},
   { path: 'consultar-vacaciones',component:ConsultarVacacionesComponent},
-  { path: 'usuarios-info',component:UsuariosInfoComponent}
-
+  { path: 'usuarios-info',component:UsuariosInfoComponent},
+  { path: 'solicitudes',component:SolicitudesComponent},
+  { path: 'solicitud',component:SolicitudComponent}
 ]
