@@ -85,4 +85,8 @@ export class ApiService {
   reportes():Observable<any>{
     return this.http.get<any>(`${this.url}/api/reporte/reportes`)
   }
+
+  reporte_x_id(id:any):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/reporte/reporte_x_id`,{id})
+  }
 }

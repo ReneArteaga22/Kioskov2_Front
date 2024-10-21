@@ -28,7 +28,7 @@ export class ResultadosEvaluacionComponent implements OnInit {
 
   constructor(private apiService: ApiService) {
     this.filtrarForm = new FormGroup({
-      calificacion: new FormControl('',[Validators.required]),
+      calificacion: new FormControl(''),
       planta: new FormControl('',[Validators.required])
     })
   }

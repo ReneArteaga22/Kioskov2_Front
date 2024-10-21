@@ -31,6 +31,6 @@ export class SolicitudesComponent implements OnInit{
 
   abrir_reporte(id:string){
     this.cookie.set('user',id)
-    this.router.navigate(['/'])
+    this.router.navigate(['/solicitud'])
   }
 }
