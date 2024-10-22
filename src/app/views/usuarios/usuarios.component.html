@@ -30,7 +30,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr (click)="usuarios_info(usuario.id)" *ngFor="let usuario of usuarios">
+                    <tr (click)="usuarios_info(usuario.id)" *ngFor="let usuario of paginatedUsuarios">
                         <td>{{usuario.id}}</td>
                         <td>{{usuario.nombre}}</td>
                         <td>{{usuario.apellidos}}</td>
@@ -38,6 +38,15 @@
                     </tr>
                 </tbody>
             </table>
-        </div> 
+        </div>
+        <div class="card flex justify-content-center">
+            <p-paginator 
+            (onPageChange)="onPageChange($event)" 
+            [first]="first" 
+            [rows]="rows"
+            [totalRecords]="totalRecords" 
+            [rowsPerPageOptions]="[15, 20]">
+            </p-paginator>
+        </div>
     </div>
 </div>
