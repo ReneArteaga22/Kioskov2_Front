@@ -89,4 +89,12 @@ export class ApiService {
   reporte_x_id(id:any):Observable<any>{
     return this.http.post<any>(`${this.url}/api/reporte/reporte_x_id`,{id})
   }
+
+  filtrar_reporte(data:any):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/reporte/filtrar_reporte`,data)
+  }
+
+  actualizar_estado_reporte(id:any, estatus:string):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/reporte/actualizar_estado`,{id, estatus})
+  }
 }

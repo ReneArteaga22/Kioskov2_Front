@@ -1,33 +1,37 @@
 <div class="box">
     <div class="clayens"><img class="logo" [routerLink]="['/']" src="icons/CLAYENS_Mexico_Logo.png" alt=""></div>
+    <h2 *ngIf="error">No existen registros con estos datos</h2>
     <div class="container">
-        <form class="filters">
+        <form class="filters" [formGroup]="filtrosForm" (ngSubmit)="filtrar_reportes()">
             <div>
-                <select>
+                <select formControlName="categoria">
                     <option value="" disabled selected>Categoria</option>
                     <option value="Nominas">Nominas</option>
                     <option value="Retiro Ahorro">Retiro de ahorro</option>
                     <option value="Gafete">Gafete</option>
                     <option value="Consulta Vacaciones">Consultar vacaciones</option>
+                    <option value="">Todas</option>
                 </select>
             </div>
             <div>
-                <select>
+                <select formControlName="planta">
                     <option value="" disabled selected>Planta</option>
                     <option value="1">Planta 1</option>
                     <option value="2">Planta 2</option>
+                    <option value="">Ambas</option>
                 </select>
             </div>
             <div>
-                <select>
+                <select formControlName="estatus">
                     <option value="" disabled selected>Estado</option>
                     <option value="abierto">Abierto</option>
                     <option value="pendiente">Pendiente</option>
                     <option value="resuelto">Resuelto</option>
+                    <option value="">Todas</option>
                 </select>
             </div>
             <div>
-                <button class="btn">Buscar</button>
+                <button class="btn" type="submit" [disabled]="!filtrosForm.valid">Buscar</button>
             </div>
         </form>
         <div class="table">

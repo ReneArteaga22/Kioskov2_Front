@@ -1,8 +1,54 @@
 <div class="box">
     <div class="clayens"><img class="logo" [routerLink]="['/']" src="icons/CLAYENS_Mexico_Logo.png" alt=""></div>
     <div class="info">
-        <input type="text" name="" id="" placeholder="{{reporte.categoria}}">
-
-        
+        <h1>Reporte</h1>
+        <div class="input-1">
+            <div>
+                <label>Folio</label>
+                <input type="text" disabled placeholder="{{reporte.folio}}">
+            </div>
+            <div>
+                <label>Fecha</label>
+                <input type="text" disabled placeholder="{{reporte.fecha | date: 'yyyy/MM/dd'}}">
+            </div>
+            <div>
+                <label>Estado</label>
+                <input type="text" disabled placeholder="{{reporte.estatus}}">
+            </div>
+        </div>
+        <div class="input-1">
+            <div>
+                <label>Categoria</label>
+                <input type="text" disabled placeholder="{{reporte.categoria}}">
+            </div>
+            <div>
+                <label>Grupo</label>
+                <input type="text" disabled placeholder="{{reporte.grupo}}">
+            </div>
+            <div>
+                <label>Planta</label>
+                <input type="text" disabled placeholder="{{reporte.planta}}">
+            </div>
+        </div>
+        <div class="input-1">
+            <div>
+                <label>No. del empleado</label>
+                <input type="text" disabled placeholder="{{reporte.noEmpleado}}">
+            </div>
+            <div>
+                <label>Nombre completo</label>
+                <input type="text" disabled placeholder="{{reporte.nombre}}">
+            </div>
+        </div>
+        <div class="input-1">
+            <div>
+                <label>Descripcion del reporte</label>
+                <textarea disabled placeholder="{{reporte.descripcion}}"></textarea>
+            </div>
+        </div>
+        <div class="box-btn">
+            <button class="btn-1" (click)="cambiar_estado('pendiente')">Marcar como Pendiente</button>
+            <button class="btn-2" (click)="cambiar_estado('resuelto')">Marcar como Resuelto</button>
+        </div>
     </div>
 </div>

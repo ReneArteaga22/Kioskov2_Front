@@ -92,3 +92,7 @@ tbody tr:hover {
   font-size: 1rem;
   width: 100%;
 }
+h2{
+  margin-top: 10px;
+  color: red;
+}

@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrl: './tablas-servicios.component.css'
 })
 export class TablasServiciosComponent {
+  
   constructor(private router:Router){}
 
   servicio(servicioClick:string){
