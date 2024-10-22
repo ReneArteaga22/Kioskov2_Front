@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrl: './tablas-servicios.component.css'
 })
 export class TablasServiciosComponent {
-  isComedor:boolean = false
+  
   constructor(private router:Router){}
 
   servicio(servicioClick:string){
