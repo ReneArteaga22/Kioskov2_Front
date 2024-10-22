@@ -12,6 +12,7 @@ import { NgIf } from '@angular/common';
 })
 export class CCardsModulesComponent implements OnInit{
   isRH:boolean = false
+  isComedor: boolean = false
   isLoggin:boolean = false
 
   constructor(private cookie:CookieService){
@@ -20,6 +21,7 @@ export class CCardsModulesComponent implements OnInit{
   ngOnInit(): void {
     const area = this.cookie.get('area')
     this.isRH = area === 'rh'
+    this.isComedor = area === 'comedor_1'
     this.isLoggin = this.cookie.check('sesion')
   }
 }
