@@ -15,7 +15,16 @@ export class RegisterComponent {
 
   constructor(){
     this.registerForm = new FormGroup({
-      nombre: new FormControl('',[Validators.required])
+      nombre: new FormControl('',[Validators.required]),
+      apellidos: new FormControl('',[]),
+      usuario: new FormControl('',[]),
+      contrasena: new FormControl('',[]),
+      area: new FormControl('',[]),
+      puesto: new FormControl('',[]),
+      firma: new FormControl('',[]),
+      correo: new FormControl('',[]),
+      telefono: new FormControl('',[]),
+      foto: new FormControl('',[]),
     })
   }
 

@@ -1,22 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { ApiService } from '../../service/api.service';
-import { NgFor } from '@angular/common';
-import { FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import { Component, OnInit } from '@angular/core'
+import { Router, RouterLink } from '@angular/router'
+import { ApiService } from '../../service/api.service'
+import { NgFor } from '@angular/common'
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms'
+import { CookieService } from 'ngx-cookie-service'
+import { PaginatorModule } from 'primeng/paginator'
 
 @Component({
   selector: 'app-usuarios',
   standalone: true,
-  imports: [RouterLink, NgFor, ReactiveFormsModule],
+  imports: [RouterLink, NgFor, ReactiveFormsModule, PaginatorModule],
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.css'
 })
 export class UsuariosComponent implements OnInit {
   buscarUsuarioForm: FormGroup
   isSubmit: boolean = false
-  usuarios: any[] = [];
+  usuarios: any[] = []
+  
+  paginatedUsuarios: any[] = []
+  first: number = 0
+  rows: number = 15
+  totalRecords: any
 
-  constructor(private apiService:ApiService){
+  constructor(private apiService: ApiService, private router: Router, private cookie: CookieService) {
     this.buscarUsuarioForm = new FormGroup({
       nombre: new FormControl(''),
       area: new FormControl('')
@@ -27,24 +34,43 @@ export class UsuariosComponent implements OnInit {
     this.apiService.lista_usuarios().subscribe(
       response => {
         this.usuarios = response.usuarios
-        console.log('lista usuarios', this.usuarios);
-      },error => {
-        console.error('Error al obtener la lista de usuarios', error);
+        this.totalRecords = this.usuarios.length
+        this.paginateUsuarios()
+      },
+      error => {
+        console.error('Error al obtener la lista de usuarios', error)
       }
-    ) 
+    )
   }
 
-  buscar_usuario(){
-    if(this.buscarUsuarioForm.valid && !this.isSubmit){
+  paginateUsuarios() {
+    this.paginatedUsuarios = this.usuarios.slice(this.first, this.first + this.rows)
+  }
+
+  onPageChange(event:any) {
+    this.first = event.first
+    this.rows = event.rows
+    this.paginateUsuarios()
+  }
+
+  buscar_usuario() {
+    if (this.buscarUsuarioForm.valid && !this.isSubmit) {
       this.apiService.buscar_usuario(this.buscarUsuarioForm.value).subscribe(
         response => {
-          this.usuarios = response.filtro         
+          this.usuarios = response.filtro
+          this.totalRecords = this.usuarios.length
+          this.paginateUsuarios() // Actualiza paginación
         }
       )
     }
   }
 
-  alert(){
-    alert('alert')
+  usuarios_info(id: number) {
+    this.apiService.usuario_x_id(id).subscribe(
+      response => {
+        this.cookie.set('user_id', response.usuario.id)
+        this.router.navigate(['/usuarios-info'])
+      }
+    )
   }
 }

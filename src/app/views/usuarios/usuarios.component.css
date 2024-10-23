@@ -1,9 +1,9 @@
 .box{
     display: flex;
+    align-items: center;
     flex-direction: column;
     width: 100vw;
     height: 100%;
-    background-color: rgb(235, 240, 240);
 }
 .clayens{
     display: flex;
@@ -18,94 +18,84 @@
     width: 30rem;
     height: 7rem;
 }
-.box-table{
+.container{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    width: 100%;
-    justify-content: space-around;
-    margin-top: 2rem;
-}
-.box-table-users{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 80%;
+    width: 95%;
     margin-top: 1.5rem;
-    border: 1px solid rgb(243, 243, 243);
+    padding: 1rem;
     border-radius: 10px;
     background-color: white;
-    margin-bottom: 3rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #c9c5c5;
+}
+.filtros {
+  display: flex;
+  gap: 30px; /* Espacio entre los filtros */
+}
+
+.filtros > div {
+  flex-grow: 1; /* Los filtros se expanden uniformemente */
+  display: flex;
+  align-items: center; /* Alinear verticalmente los elementos */
+}
+select {
+  width: 100%; /* Los select ocuparán todo el espacio dentro de su div */
+  padding: 5px;
+  font-size: 1em;
+  border: 1px solid #c9c5c5;
+  border-radius: 10px;
+  height: 2.5rem;
+}
+input {
+  flex-grow: 1; /* El input ocupará todo el espacio disponible */
+  border: 1px solid #c9c5c5;
+  border-radius: 10px;
+  padding: 7px;
+  height: 2.5rem;
+  font-size: 1rem;
+}
+.table{
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #c9c5c5;
+  text-align: center;
+  border-collapse: collapse; /* Elimina los espacios entre celdas */
+}
+table {
+  width: 100%;
+  border-collapse: collapse; /* Elimina los espacios entre celdas */
+  margin-top: 1.5rem;
+}
+h1{
+  border-bottom: 1px solid #e79371;
+  padding-bottom: 5px;
 }
 th{
-    background-color: rgb(31, 30, 30);
-    text-align: center;
-    height: 3rem;
-    color: aliceblue;
-}
-.id{
-    border-top-left-radius: 10px;
-}
-.area{
-    border-top-right-radius: 10px;
+  background-color: rgb(31, 30, 30);
+  color: white;
+  height: 2rem;
 }
 tr{
-    text-align: center;
-    height: 3rem;
+  height: 2rem;
+  border-bottom: 1px solid #f0f0f0;
 }
-.data{
-    border-top: 1px solid #333;
-}
-tr:hover {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: #f3f2f2;
-}
-.box-table-users table tbody tr td {
-    border-bottom: 1px solid #f3f2f2;
-}
-.box-filtros{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    width: 80%;
-    border-radius: 10px;
-    gap:10px;
+tbody tr:hover {
+
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #f0f0f0;
 }
 .btn{
-    border: none;
-    border-radius: 10px;
-    width: 10rem;
-    height: 2.5rem;
-    margin-left: 3rem;
-    background-color: rgb(31, 30, 30);
-    color: white;
-    font-size: 1rem;
-}
-.input{
-    border: 1px solid #c9c5c5;
-    border-radius: 10px;
-    height: 2.5rem;
-    width: 20rem;
-    padding: 10px;
-}
-.select-btn{
-    border: 1px solid #c9c5c5;
-    border-radius: 10px;
-    height: 2.5rem;
-    width: 20rem;
-    margin-left: 3rem;
-    padding: 10px;
-}
-.btn-register{
-    border: none;
-    border-radius: 10px;
-    width: 10rem;
-    height: 2.5rem;
-    margin-left: 3rem;
-    background-color: rgb(31, 30, 30);
-    color: white;
-    font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  height: 2.5rem;
+  background-color: rgb(31, 30, 30);
+  color: white;
+  font-size: 1rem;
+  width: 100%;
 }
 

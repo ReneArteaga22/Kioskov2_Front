@@ -4,7 +4,7 @@ import { ChartModule } from 'primeng/chart';
 import { ApiService } from '../../../service/api.service';
 import { NgFor } from '@angular/common';
 import { DatePipe } from '@angular/common';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
@@ -29,9 +29,8 @@ export class ResultadosEvaluacionTransporteComponent implements OnInit {
 
   constructor(private apiService:ApiService) {
     this.filtrarForm = new FormGroup({
-      calificacion: new FormControl(),
-      planta: new FormControl()
-    })  }
+      calificacion: new FormControl('',[Validators.required]),
+    })}
 
 
   ngOnInit(): void {

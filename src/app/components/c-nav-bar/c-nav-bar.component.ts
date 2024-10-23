@@ -13,6 +13,7 @@ import { NgIf } from '@angular/common';
 export class CNavBarComponent implements OnInit{
   isSistemas: boolean = false;
   isRH: boolean = false;
+  isComedor: boolean = false
   isLoggin: boolean = false;
 
 
@@ -22,6 +23,7 @@ export class CNavBarComponent implements OnInit{
     const area = this.galleta.get('area')
     this.isSistemas = area === 'sistemas'
     this.isRH = area === 'rh'
+    this.isComedor = area === 'comedor_1'
     this.isLoggin = this.galleta.check('sesion')//cookie que verifica si existe una sesion iniciada
   }
 

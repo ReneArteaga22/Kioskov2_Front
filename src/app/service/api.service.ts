@@ -30,6 +30,10 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
+  ultimo_reporte(planta:string, reporte:any):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/reporte/reporte`,{planta, reporte})
+  }
+
   login(userData: any): Observable<any> {
     return this.http.post<any>(`${this.url}/api/usuarios/login`, userData);
   }
@@ -64,5 +68,33 @@ export class ApiService {
 
   mostar_comentario_x_id(id:number):Observable<any>{
     return this.http.post<any>(`${this.url}/api/evaluacion/mostrar-comentario`,{id})
+  }
+
+  usuario_x_id(id:number):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/usuarios/usuario-id`,{id})
+  }
+
+  editar_usuario(id:number, usuario:any):Observable<any>{
+    return this.http.put<any>(`${this.url}/api/usuarios/editar-usuario`, {id, usuario})
+  }
+
+  crear_reporte(userData:any):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/reporte/crear-reporte`,userData)
+  }
+
+  reportes():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/reporte/reportes`)
+  }
+
+  reporte_x_id(id:any):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/reporte/reporte_x_id`,{id})
+  }
+
+  filtrar_reporte(data:any):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/reporte/filtrar_reporte`,data)
+  }
+
+  actualizar_estado_reporte(id:any, estatus:string):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/reporte/actualizar_estado`,{id, estatus})
   }
 }

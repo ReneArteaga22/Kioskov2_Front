@@ -1,42 +1,52 @@
 <div class="box">
     <div class="clayens"><img class="logo" [routerLink]="['/']" src="icons/CLAYENS_Mexico_Logo.png" alt=""></div>
-    <div class="box-table">
-        <div class="box-filtros">
-            <form [formGroup]="buscarUsuarioForm" (ngSubmit)="buscar_usuario()">
-                <input class="input" type="text" placeholder="Buscar" formControlName="nombre">
-                <select formControlName="area" class="select-btn">
-                    <option value="" disabled selected>Selecciona el area</option>
+    <div class="container">
+        <form class="filtros" [formGroup]="buscarUsuarioForm" (ngSubmit)="buscar_usuario()">
+            <div>
+                <input type="text" placeholder="Buscar usuario..." formControlName="nombre">
+            </div>
+            <div>
+                <select class="select-btn" formControlName="area">
+                    <option value="" disabled selected>Area</option>
                     <option value="gerencia">Gerencia</option>
                     <option value="sistemas">Sistemas</option>
-                    <option value="rh">Recursos Humano</option>
+                    <option value="rh">Recursos Humanos</option>
                     <option value="almacen">Almacen</option>
                 </select>
+            </div>
+            <div>
                 <button class="btn" type="submit">Buscar</button>
-                <button class="btn-register" [routerLink]="['/register']">Registrar Usuario</button>
-            </form>
-        </div>
-        <div class="box-table-users">
-            <table>
+            </div>
+        </form>
+        <div class="table">
+            <h1>Lista de Usuarios</h1>
+            <table class="reportes">
                 <thead>
                     <tr>
-                        <th class="id">ID</th>
+                        <th>ID</th>
                         <th>Nombre</th>
-                        <th>Apellidos</th>
-                        <th>Usuario</th>
-                        <th class="area">Área</th>
+                        <th>Apellido</th>
+                        <th>Area</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr (click)="alert()" *ngFor="let usuario of usuarios">
-                        <td>{{ usuario.id }}</td>
-                        <td>{{ usuario.nombre }}</td>
-                        <td>{{ usuario.apellidos }}</td>
-                        <td>{{ usuario.usuario }}</td>
-                        <td>{{ usuario.area }}</td>
+                    <tr (click)="usuarios_info(usuario.id)" *ngFor="let usuario of paginatedUsuarios">
+                        <td>{{usuario.id}}</td>
+                        <td>{{usuario.nombre}}</td>
+                        <td>{{usuario.apellidos}}</td>
+                        <td>{{usuario.area}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        <div class="card flex justify-content-center">
+            <p-paginator 
+            (onPageChange)="onPageChange($event)" 
+            [first]="first" 
+            [rows]="rows"
+            [totalRecords]="totalRecords" 
+            [rowsPerPageOptions]="[15, 20]">
+            </p-paginator>
+        </div>
     </div>
 </div>
-<!-- pruebas-->

@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { CNavBarComponent } from '../../../components/c-nav-bar/c-nav-bar.component';
 import { ApiService } from '../../../service/api.service';
 import { NgClass } from '@angular/common';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-comedor',
@@ -18,13 +19,22 @@ export class ComedorComponent {
   isSubmit: boolean = false
   
 
-  constructor(private router:Router, private apiService:ApiService){
+  constructor(private router:Router, private apiService:ApiService, private cookie:CookieService){
     this.comedorForm = new FormGroup({
       calificacion: new FormControl('',[Validators.required]),
       comentario: new FormControl('',[Validators.required]),
       planta: new FormControl('',[Validators.required]),
       servicio: new FormControl('',[Validators.required])
     })
+  }
+
+  ngOnInit() {
+    const area = this.cookie.get('area');
+    if (area === 'comedor_1') {
+      this.comedorForm.patchValue({ planta: 'planta 1' });
+    } else if (area === 'comedor_2') {
+      this.comedorForm.patchValue({ planta: 'planta 2' });
+    }
   }
 
   calificacion(calificacion: string, servicio: string) {
@@ -36,6 +46,7 @@ export class ComedorComponent {
     if(this.comedorForm.valid && !this.isSubmit){
       this.apiService.evaluar_servicio(this.comedorForm.value).subscribe(
         response =>{
+          console.log(response)
           this.router.navigate(['/servicios'])
         }
       )

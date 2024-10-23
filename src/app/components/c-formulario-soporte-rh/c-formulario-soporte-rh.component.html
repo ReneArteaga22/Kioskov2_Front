@@ -3,47 +3,53 @@
         <div class="box-inputs">
             <div class="input">
                 <label>Folio</label>
-                <input type="text" placeholder="folio" formControlName="folio">
+                <input type="text" placeholder="Folio automatico.." disabled>
             </div>
             <div class="input">
                 <label>Fecha</label>
-                <input type="datetime-local">
+                <input type="datetime-local" [min]="hoy">
             </div>
         </div>
         <div class="box-inputs">
             <div class="input">
                 <label>No. de empleado</label>
-                <input type="text" placeholder="Numero de empleado" formControlName="num_empleado">
+                <input type="text" placeholder="Numero de empleado" formControlName="no_empleado">
             </div>
             <select class="select" formControlName="grupo">
                 <option value="" disabled selected>Selecciona el grupo</option>
-                <option value="grupo a">Grupo A</option>
-                <option value="grupo b">Grupo B</option>
-                <option value="grupo c">Grupo C</option>
-                <option value="grupo d">Grupo D</option>
-                <option value="calidad">Calidad</option>
-                <option value="administrativo">Administrativo</option>
+                <option value="A">Grupo A</option>
+                <option value="B">Grupo B</option>
+                <option value="C">Grupo C</option>
+                <option value="D">Grupo D</option>
+                <option value="Calidad">Calidad</option>
+                <option value="Administrativo">Administrativo</option>
             </select>
             <select class="select" formControlName="planta">
-                <option value="" disabled selected>Selecciona la plata</option>
-                <option value="planta 1">Planta 1</option>
-                <option value="planta 2">Planta 2</option>
+                <option value="" selected disabled>Selecciona una planta</option>
+                <option value="1">Planta 1</option>
+                <option value="2">Planta 2</option>
             </select>
+
         </div>
         <div class="box-inputs">
             <div class="input">
                 <label>Nombre completo</label>
-                <input type="text" placeholder="Escribe tu nombre completo" formControlName="nombre">
+                <input class="inp" type="text" placeholder="Escribe tu nombre completo" formControlName="nombre">
             </div>
             <div class="input">
                 <label>Telefono</label>
-                <input type="text" placeholder="Escribe tu numero de telefono" formControlName="telefono">
+                <input class="inp" type="text" placeholder="Escribe tu numero de telefono" formControlName="telefono">
             </div>
         </div>
         <div class="box-inputs">
             <div class="input">
                 <label>Reporte</label>
-                <textarea placeholder="Escribe tu reporte..." formControlName="reporte"></textarea>
+                <textarea placeholder="Escribe tu reporte..." formControlName="descripcion"></textarea>
+            </div>
+        </div>
+        <div *ngIf="error" class="box-inputs">
+            <div class="input">
+                <h3>No puedes dejar campos vacios.</h3>
             </div>
         </div>
         <div class="box-inputs">
