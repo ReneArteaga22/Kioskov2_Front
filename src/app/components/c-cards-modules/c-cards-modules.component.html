@@ -13,8 +13,12 @@
         <h2>Directorio</h2>
         <img src="icons/directorio.png" alt="https://www.freepik.es/">
     </div>
+    <div *ngIf="isComedor" class="card" [routerLink]="['/comedor']">
+        <h2>Comedor</h2>
+        <img src="icons/comedor.png" alt="">
+    </div>
 
-    <div *ngIf="!isLoggin || isComedor1 || isComedor2" class="card" [routerLink]="['/servicios']">
+    <div *ngIf="!isLoggin" class="card" [routerLink]="['/servicios']">
         <h2>Evaluacion de servicios</h2>
         <img src="icons/servicios.png" alt="https://www.freepik.es/">
     </div>
@@ -24,7 +28,7 @@
         <img src="icons/encuestas.png" alt="https://www.freepik.es/">
     </div>
 
-    <div *ngIf="!isLoggin" class="card">
+    <div *ngIf="!isLoggin" class="card" [routerLink]="['/comunicados']">
         <h2>Comunicados</h2>
         <img src="icons/comunicados.png" alt="https://www.freepik.es/">
     </div>

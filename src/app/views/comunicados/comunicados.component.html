@@ -1,1 +1,24 @@
-<p>comunicados works!</p>
+<div class="box">
+    <div class="clayens"><img class="logo" [routerLink]="['/']" src="icons/CLAYENS_Mexico_Logo.png" alt=""></div>
+    <div>
+        <h1>Comunicados</h1>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Imagen</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let comunicado of comunicados">
+                        <td>{{comunicado.nombre}}</td>
+                        <td><img [src]="comunicado.imagen" alt="{{comunicado.nombre}}" width="100"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

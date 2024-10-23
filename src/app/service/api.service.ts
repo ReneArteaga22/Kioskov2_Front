@@ -97,4 +97,8 @@ export class ApiService {
   actualizar_estado_reporte(id:any, estatus:string):Observable<any>{
     return this.http.post<any>(`${this.url}/api/reporte/actualizar_estado`,{id, estatus})
   }
+
+  comunicados():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/comunicado/comunicados`)
+  }
 }

@@ -20,15 +20,10 @@ import { ConsultarVacacionesComponent } from './views/soporte-rh/consultar-vacac
 import { UsuariosInfoComponent } from './views/usuarios/usuarios-info/usuarios-info.component';
 import { SolicitudesComponent } from './views/solicitudes/solicitudes.component';
 import { SolicitudComponent } from './views/solicitudes/solicitud/solicitud.component';
+import { ComunicadosComponent } from './views/comunicados/comunicados.component';
 
 export const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent,
-    children: [
-     
-    ]
-  },
+  { path: '',component: HomeComponent},
   { path: 'modulo_asistencia', component: ModuloAsistenciaComponent },
   { path: 'comedor', component: ComedorComponent },
   { path: 'transporte', component: TransporteComponent },
@@ -47,6 +42,7 @@ export const routes: Routes = [
   { path: 'solicitud-gafete',component:SolicitudGafeteComponent},
   { path: 'consultar-vacaciones',component:ConsultarVacacionesComponent},
   { path: 'usuarios-info',component:UsuariosInfoComponent},
+  { path: 'comunicados',component:ComunicadosComponent},
   { path: 'solicitudes',component:SolicitudesComponent},
-  { path: 'solicitud',component:SolicitudComponent}
+  { path: 'solicitud',component:SolicitudComponent},
 ]
