@@ -18,13 +18,20 @@ export class CNavBarComponent implements OnInit{
 
 
   constructor(private galleta:CookieService, private router:Router){}
-
+  
+  // verificar la sesion iniciada y mostrar sus modulos correspondientes
   ngOnInit(): void {
     const area = this.galleta.get('area')
-    this.isSistemas = area === 'sistemas'
-    this.isRH = area === 'rh'
-    this.isComedor = area === 'comedor_1'
-    this.isLoggin = this.galleta.check('sesion')//cookie que verifica si existe una sesion iniciada
+    if(area === 'sistemas'){
+      this.isSistemas = true
+    }
+    if(area === 'rh'){
+      this.isRH = true
+    }
+    if(area === 'comedor_1' || area === 'comedor_2'){
+      this.isComedor = true
+    }
+    this.isLoggin = this.galleta.check('sesion')
   }
 
   cerrarSesion(){

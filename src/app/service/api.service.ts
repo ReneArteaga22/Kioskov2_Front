@@ -34,6 +34,10 @@ export class ApiService {
     return this.http.post<any>(`${this.url}/api/reporte/reporte`,{planta, reporte})
   }
 
+  register(data:any):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/usuarios/register`,data)
+  }
+
   login(userData: any): Observable<any> {
     return this.http.post<any>(`${this.url}/api/usuarios/login`, userData);
   }
