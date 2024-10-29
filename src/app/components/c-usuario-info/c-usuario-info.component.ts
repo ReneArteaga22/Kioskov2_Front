@@ -21,14 +21,14 @@ export class CUsuarioInfoComponent implements OnInit{
 
   constructor(private apiService: ApiService, private cookie:CookieService){
     this.editarForm = new FormGroup({
-      estatus: new FormControl(),
-      area: new FormControl(),
-      puesto: new FormControl(),
-      nombre: new FormControl(),
-      apellidos: new FormControl(),
-      usuario: new FormControl(),
-      correo: new FormControl(),
-      telefono: new FormControl()
+      estatus: new FormControl(''),
+      area: new FormControl(''),
+      puesto: new FormControl(''),
+      nombre: new FormControl(''),
+      apellidos: new FormControl(''),
+      usuario: new FormControl(''),
+      correo: new FormControl(''),
+      telefono: new FormControl('')
     })
   }
   editar() {

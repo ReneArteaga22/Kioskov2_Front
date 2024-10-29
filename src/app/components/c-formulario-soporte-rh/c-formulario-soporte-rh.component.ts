@@ -6,16 +6,18 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-c-formulario-soporte-rh',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf,TriStateCheckboxModule],
+  imports: [ReactiveFormsModule, NgIf,TriStateCheckboxModule, DialogModule],
   templateUrl: './c-formulario-soporte-rh.component.html',
   styleUrl: './c-formulario-soporte-rh.component.css'
 })
 export class CFormularioSoporteRhComponent{
 
+  visible:boolean = false
   hoy: string = ''
   isSubmit: boolean = false
   error: boolean = false
@@ -50,10 +52,14 @@ export class CFormularioSoporteRhComponent{
     if (this.soporterhForm.valid && !this.isSubmit) {
       this.apiService.crear_reporte(this.soporterhForm.value).subscribe(
         response => {
-          console.log(response);
+          this.visible = true
           this.cookie.delete('categoria');
-          this.router.navigate(['/soporte-rh-modulos'])
-          this.isSubmit = false
+
+          setTimeout(()=>{
+            this.visible = false
+            this.router.navigate(['/soporte-rh-modulos'])
+            this.isSubmit = false
+          },1600)
         },error =>{
           if(error.status ===400 )[
             this.error = true
