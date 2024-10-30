@@ -1,0 +1,82 @@
+.box{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100%;
+}
+.clayens{
+  display: flex;
+  background-color: rgb(31, 30, 30);
+  width: 100%;
+  height: 10rem;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+.logo{
+  width: 30rem;
+  height: 7rem;
+}
+.form{
+    width: 40%;
+    margin-top: 25px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #c9c5c5;
+    text-align: center;
+}
+h1{
+    border-bottom: 1px solid #e79371;
+    padding-bottom: 5px;
+}
+.input{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    gap: 6px;
+}
+.inputs{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+input{
+    border: 1px solid #c9c5c5;
+    border-radius: 10px;
+    padding: 7px;
+    height: 2.5rem;
+    font-size: 1rem;
+}
+.btn{
+    height: 2rem;
+    font-size: 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: #ff7f50; 
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.btn:hover{
+    background-color: #ff5722; 
+}
+.error{
+    color: red;
+}
+.box-modal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: space-around;
+    width: 100%;
+    height: 100%;
+}
+.box-modal img{
+    width: 100px;
+    height: 100px;
+    margin-top: 10px;
+}

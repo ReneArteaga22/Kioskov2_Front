@@ -20,33 +20,35 @@ import { ConsultarVacacionesComponent } from './views/soporte-rh/consultar-vacac
 import { UsuariosInfoComponent } from './views/usuarios/usuarios-info/usuarios-info.component';
 import { SolicitudesComponent } from './views/solicitudes/solicitudes.component';
 import { SolicitudComponent } from './views/solicitudes/solicitud/solicitud.component';
+import { ComunicadosComponent } from './views/comunicados/comunicados.component';
+import { guardGuard } from './service/guard.guard';
+import { rhGuard } from './service/rh.guard';
+import { BuzonComponent } from './views/buzon/buzon.component';
+import { SugerenciasComponent } from './views/sugerencias/sugerencias.component';
 
 export const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent,
-    children: [
-     
-    ]
-  },
-  { path: 'modulo_asistencia', component: ModuloAsistenciaComponent },
-  { path: 'comedor', component: ComedorComponent },
-  { path: 'transporte', component: TransporteComponent },
-  { path: 'servicios', component: EvaluacionServiciosComponent },
-  { path: 'resultados-evaluacion-comedor', component: ResultadosEvaluacionComponent },
-  { path: 'resultados-evaluacion-transporte',component:ResultadosEvaluacionTransporteComponent},
-  { path: 'usuarios', component: UsuariosComponent },
-  { path: 'recuperar-contrasena', component: RecuperarContrasenaComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'home-prueba', component: ReconocimientosComponent },
-  { path: 'tablas-servicios',component:TablasServiciosComponent},
-  { path: 'soporte-rh-modulos',component:SoporteRhComponent},
-  { path: 'nomina',component:NominasComponent},
-  { path: 'retiro-ahorro',component:RetiroAhorroComponent},
-  { path: 'solicitud-gafete',component:SolicitudGafeteComponent},
-  { path: 'consultar-vacaciones',component:ConsultarVacacionesComponent},
-  { path: 'usuarios-info',component:UsuariosInfoComponent},
-  { path: 'solicitudes',component:SolicitudesComponent},
-  { path: 'solicitud',component:SolicitudComponent}
+  { path: '',component: HomeComponent},
+  { path: 'modulo_asistencia', component: ModuloAsistenciaComponent,canActivate:[rhGuard] },
+  { path: 'comedor', component: ComedorComponent, },
+  { path: 'transporte', component: TransporteComponent, },
+  { path: 'servicios', component: EvaluacionServiciosComponent, },
+  { path: 'resultados-evaluacion-comedor', component: ResultadosEvaluacionComponent,canActivate:[rhGuard] },
+  { path: 'resultados-evaluacion-transporte',component:ResultadosEvaluacionTransporteComponent,canActivate:[rhGuard]},
+  { path: 'usuarios', component: UsuariosComponent,canActivate:[rhGuard] },
+  { path: 'recuperar-contrasena', component: RecuperarContrasenaComponent,},
+  { path: 'login', component: LoginComponent,canActivate:[guardGuard] },
+  { path: 'register', component: RegisterComponent,canActivate:[rhGuard] },
+  { path: 'reconocimientos', component: ReconocimientosComponent},
+  { path: 'tablas-servicios',component:TablasServiciosComponent,canActivate:[rhGuard]},
+  { path: 'soporte-rh-modulos',component:SoporteRhComponent,},
+  { path: 'nomina',component:NominasComponent,},
+  { path: 'retiro-ahorro',component:RetiroAhorroComponent,},
+  { path: 'solicitud-gafete',component:SolicitudGafeteComponent,},
+  { path: 'consultar-vacaciones',component:ConsultarVacacionesComponent,},
+  { path: 'usuarios-info',component:UsuariosInfoComponent,canActivate:[rhGuard]},
+  { path: 'comunicados',component:ComunicadosComponent,},
+  { path: 'solicitudes',component:SolicitudesComponent,},
+  { path: 'solicitud',component:SolicitudComponent,},
+  { path: 'buzon',component:BuzonComponent},
+  { path: 'sugerencias',component:SugerenciasComponent,canActivate:[rhGuard]}
 ]

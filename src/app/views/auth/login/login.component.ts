@@ -6,11 +6,12 @@ import { Router } from '@angular/router';
 import { ApiService } from '../../../service/api.service';
 import { CookieService } from 'ngx-cookie-service';
 import { NgIf } from '@angular/common';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ButtonModule, ReactiveFormsModule, RouterLink, NgIf],
+  imports: [ButtonModule, ReactiveFormsModule, RouterLink, NgIf, DialogModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -19,6 +20,7 @@ export class LoginComponent {
   isSubmit: boolean = false
   galletas: string = 'galleta'
   error:boolean = false
+  visible:boolean = false
 
 
   constructor(private router:Router, private apiService:ApiService, private galleta:CookieService){
@@ -34,7 +36,13 @@ export class LoginComponent {
         response =>{
           this.galleta.set('area', response.usuario.area)                       
           this.galleta.set('sesion','1')
-          this.router.navigate(['/'])
+          this.visible = true
+
+          setTimeout(() => { 
+            this.router.navigate(['/']); 
+            this.visible = false; 
+          }, 1600);
+          
         },error => {
           if(error.status === 404 || 500){
             this.error = true

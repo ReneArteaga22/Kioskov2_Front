@@ -34,6 +34,10 @@ export class ApiService {
     return this.http.post<any>(`${this.url}/api/reporte/reporte`,{planta, reporte})
   }
 
+  register(data:any):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/usuarios/register`,data)
+  }
+
   login(userData: any): Observable<any> {
     return this.http.post<any>(`${this.url}/api/usuarios/login`, userData);
   }
@@ -58,9 +62,11 @@ export class ApiService {
     return this.http.get<any>(`${this.url}/api/evaluacion/evaluaciones-transporte`)
   }
 
-  filtrar_resultados_comedor(userData:any):Observable<any>{
-    return this.http.post<any>(`${this.url}/api/evaluacion/filtrar-comedor`, userData)
+  filtrar_resultados_comedor(filtro: any) {
+    console.log('Enviando datos al servidor:', filtro); // Verifica los datos que se envían
+    return this.http.post<any>(`${this.url}/api/evaluacion/filtrar-comedor`, filtro);
   }
+  
 
   filtrar_resultados_transporte(userData:any):Observable<any>{
     return this.http.post<any>(`${this.url}/api/evaluacion/filtrar-transporte`, userData)
@@ -96,5 +102,17 @@ export class ApiService {
 
   actualizar_estado_reporte(id:any, estatus:string):Observable<any>{
     return this.http.post<any>(`${this.url}/api/reporte/actualizar_estado`,{id, estatus})
+  }
+
+  comunicados():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/comunicado/comunicados`)
+  }
+
+  crear_sugerencia(data:any):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/sugerencia/crear_sugerencia`,data)
+  }
+
+  sugerencias():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/sugerencia/sugerencias`)
   }
 }

@@ -1,34 +1,34 @@
 <div class="box">
     <div class="clayens"><img class="logo" [routerLink]="['/']" src="icons/CLAYENS_Mexico_Logo.png" alt=""></div>
     <div class="box-form">
-        <form class="form" (ngSubmit)="register()">
+        <form class="form" [formGroup]="registerForm" (ngSubmit)="register()">
             <div class="box-input">
                 <h1>Registrar usuario</h1>
                 <div class="input">
                     <div>
                         <label for="">Nombre</label>
-                        <input type="text" placeholder="Ingresa el nombre">
+                        <input type="text" placeholder="Ingresa el nombre" formControlName="nombre">
                     </div>
                     <div>
                         <label for="">Apellido</label>
-                        <input type="text" placeholder="Ingresa el apellido">
+                        <input type="text" placeholder="Ingresa el apellido" formControlName="apellidos">
                     </div>
                 </div>
                 <div class="input">
                     <div>
                         <label for="">Usuario</label>
-                        <input type="text" placeholder="Ingresa el nombre de usuario">
+                        <input type="text" placeholder="Ingresa el nombre de usuario" formControlName="usuario">
                     </div>
                     <div>
                         <label for="">Contraseña</label>
-                        <input type="text" placeholder="Ingresa la contraseña">
+                        <input type="password" placeholder="Ingresa la contraseña" formControlName="contrasena">
                     </div>
                 </div>
                 <div class="input">
                     <div>
                         <label for="">Area</label>
-                        <select class="select-btn">
-                            <option disabled selected>Selecciona el area</option>
+                        <select class="select-btn" formControlName="area">
+                            <option value="Area" selected disabled>Selecciona el area</option>
                             <option value="rh">Recursos Humanos</option>
                             <option value="sistemas">Sistemas</option>
                         </select>
@@ -37,27 +37,27 @@
                 <div class="input">
                     <div>
                         <label for="">Puesto</label>
-                        <input type="text" placeholder="Ingresa la puesto">
+                        <input type="text" placeholder="Ingresa la puesto" formControlName="puesto">
                     </div>
                     <div>
                         <label for="">Firma</label>
-                        <input type="text" placeholder="Ingresa la firma">
+                        <input type="text" placeholder="Ingresa la firma" formControlName="firma">
                     </div>
                 </div>
                 <div class="input">
                     <div>
                         <label for="">Correo</label>
-                        <input type="text" placeholder="Ingresa el correo">
+                        <input type="text" placeholder="Ingresa el correo" formControlName="correo">
                     </div>
                     <div>
                         <label for="">Telefono</label>
-                        <input type="text" placeholder="Ingresa el telefono">
+                        <input type="text" placeholder="Ingresa el telefono" formControlName="telefono">
                     </div>
                 </div>
                 <div class="input">
                     <div>
                         <label for="">Foto</label>
-                        <input type="text" placeholder="Ingresa la fotografia">
+                        <input type="text" placeholder="Ingresa la fotografia" formControlName="foto">
                     </div>
                 </div>
                 <div class="box-btn">

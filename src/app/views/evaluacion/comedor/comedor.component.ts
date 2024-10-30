@@ -5,26 +5,30 @@ import { CNavBarComponent } from '../../../components/c-nav-bar/c-nav-bar.compon
 import { ApiService } from '../../../service/api.service';
 import { NgClass } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
+import { DialogModule } from 'primeng/dialog';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-comedor',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, CNavBarComponent, NgClass],
+  imports: [RouterLink, ReactiveFormsModule, CNavBarComponent, NgClass, DialogModule, NgIf],
   templateUrl: './comedor.component.html',
   styleUrl: './comedor.component.css'
 })
 export class ComedorComponent {
+  visible: boolean = false;
   selectedOption: string = '';
   comedorForm: FormGroup
   isSubmit: boolean = false
+  error:boolean= false
   
 
   constructor(private router:Router, private apiService:ApiService, private cookie:CookieService){
     this.comedorForm = new FormGroup({
-      calificacion: new FormControl('',[Validators.required]),
-      comentario: new FormControl('',[Validators.required]),
-      planta: new FormControl('',[Validators.required]),
-      servicio: new FormControl('',[Validators.required])
+      calificacion: new FormControl(''),
+      comentario: new FormControl(''),
+      planta: new FormControl(''),
+      servicio: new FormControl('')
     })
   }
 
@@ -46,8 +50,15 @@ export class ComedorComponent {
     if(this.comedorForm.valid && !this.isSubmit){
       this.apiService.evaluar_servicio(this.comedorForm.value).subscribe(
         response =>{
-          console.log(response)
-          this.router.navigate(['/servicios'])
+          this.visible = true
+          setTimeout(()=>{
+            this.visible = false
+            this.router.navigate(['/'])
+          },1600)
+        },error =>{
+          if(error.status === 400){
+            this.error = true
+          }
         }
       )
     }
