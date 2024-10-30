@@ -1,0 +1,22 @@
+<div class="box">
+    <div class="clayens"><img class="logo" [routerLink]="['/']" src="icons/CLAYENS_Mexico_Logo.png" alt=""></div>
+    <div class="table">
+        <h1>Lista de sugerencias generales.</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Sugerencia</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let sugerencia of sugerencias">
+                    <td>{{sugerencia.id}}</td>
+                    <td>{{sugerencia.sugerencia}}</td>
+                    <td>{{sugerencia.createdAt | date: 'yyyy/MM/dd'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

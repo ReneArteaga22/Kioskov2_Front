@@ -33,8 +33,17 @@
                 </div>
             </div>       
         </div>
+        <p *ngIf="error" class="error">Porfavor selecciona una calificacion.</p>
         <div class="box-btn">
             <button type="submit" class="btn">Enviar</button>
         </div>
     </form>
+    <div>
+        <p-dialog [modal]="true" [(visible)]="visible" [style]="{ width: '400px', height: '200px', borderRadius: '8px'}">
+            <div class="box-modal">
+                <h2 class="">Gracias por evaluar!!</h2>
+                <img src="icons/mail.png" alt="">
+            </div>
+        </p-dialog>
+    </div>
 </div>

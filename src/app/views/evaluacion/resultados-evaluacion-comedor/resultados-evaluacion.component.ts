@@ -31,6 +31,7 @@ export class ResultadosEvaluacionComponent implements OnInit {
   first: number = 0;
   rows: number = 15;
   totalRecords: any;
+  rangeDates: Date[] | undefined
 
   constructor(private apiService: ApiService) {
     this.filtrarForm = new FormGroup({
