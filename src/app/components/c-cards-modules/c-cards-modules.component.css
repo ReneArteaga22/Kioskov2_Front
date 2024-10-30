@@ -17,6 +17,7 @@
   max-width: 100%; /* Ancho máximo */
   border-radius: 3%;
   text-align: center;
+  cursor: pointer;
   background-color: #f0f0f0;
   border: 2px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

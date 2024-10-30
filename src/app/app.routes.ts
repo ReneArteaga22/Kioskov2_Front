@@ -23,6 +23,8 @@ import { SolicitudComponent } from './views/solicitudes/solicitud/solicitud.comp
 import { ComunicadosComponent } from './views/comunicados/comunicados.component';
 import { guardGuard } from './service/guard.guard';
 import { rhGuard } from './service/rh.guard';
+import { BuzonComponent } from './views/buzon/buzon.component';
+import { SugerenciasComponent } from './views/sugerencias/sugerencias.component';
 
 export const routes: Routes = [
   { path: '',component: HomeComponent},
@@ -47,4 +49,6 @@ export const routes: Routes = [
   { path: 'comunicados',component:ComunicadosComponent,},
   { path: 'solicitudes',component:SolicitudesComponent,},
   { path: 'solicitud',component:SolicitudComponent,},
+  { path: 'buzon',component:BuzonComponent},
+  { path: 'sugerencias',component:SugerenciasComponent,canActivate:[rhGuard]}
 ]

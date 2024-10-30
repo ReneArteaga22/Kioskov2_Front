@@ -6,11 +6,12 @@ import { ApiService } from '../../../service/api.service';
 import { NgClass } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
 import { DialogModule } from 'primeng/dialog';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-comedor',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, CNavBarComponent, NgClass, DialogModule],
+  imports: [RouterLink, ReactiveFormsModule, CNavBarComponent, NgClass, DialogModule, NgIf],
   templateUrl: './comedor.component.html',
   styleUrl: './comedor.component.css'
 })
@@ -19,14 +20,15 @@ export class ComedorComponent {
   selectedOption: string = '';
   comedorForm: FormGroup
   isSubmit: boolean = false
+  error:boolean= false
   
 
   constructor(private router:Router, private apiService:ApiService, private cookie:CookieService){
     this.comedorForm = new FormGroup({
-      calificacion: new FormControl('',[Validators.required]),
+      calificacion: new FormControl(''),
       comentario: new FormControl(''),
-      planta: new FormControl('',[Validators.required]),
-      servicio: new FormControl('',[Validators.required])
+      planta: new FormControl(''),
+      servicio: new FormControl('')
     })
   }
 
@@ -51,8 +53,12 @@ export class ComedorComponent {
           this.visible = true
           setTimeout(()=>{
             this.visible = false
-            this.router.navigate(['/servicios'])
+            this.router.navigate(['/'])
           },1600)
+        },error =>{
+          if(error.status === 400){
+            this.error = true
+          }
         }
       )
     }

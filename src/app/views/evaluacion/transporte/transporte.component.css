@@ -128,3 +128,6 @@ textarea::placeholder {
   height: 100px;
   margin-top: 10px;
 }
+.error{
+  color: red;
+}

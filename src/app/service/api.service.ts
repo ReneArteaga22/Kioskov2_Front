@@ -105,4 +105,12 @@ export class ApiService {
   comunicados():Observable<any>{
     return this.http.get<any>(`${this.url}/api/comunicado/comunicados`)
   }
+
+  crear_sugerencia(data:any):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/sugerencia/crear_sugerencia`,data)
+  }
+
+  sugerencias():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/sugerencia/sugerencias`)
+  }
 }
