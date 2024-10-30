@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup,ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { CNavBarComponent } from '../../../components/c-nav-bar/c-nav-bar.component';
 import { ApiService } from '../../../service/api.service';

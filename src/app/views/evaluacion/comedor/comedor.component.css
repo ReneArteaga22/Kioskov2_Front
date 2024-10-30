@@ -6,7 +6,7 @@
 .form{
   height: 100%;
   flex-grow: 6;
-  width: 70%;
+  width: 80%;
   margin: 15px auto;
   background-color: #fff;
   padding: 20px;
@@ -22,35 +22,36 @@
   border-radius: 10px;
   border: 1px solid #ccc;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  
-  width: 70%;
+  width: 80%;
   height: 3rem;
   gap: 2rem;
 }
 h1 {
-  font-size: 24px;
+  font-size: 34px;
   margin-bottom: 10px;
   text-align: center;
-  color: #444;
+  color:black;
   font-weight: 400;
 }
 .input label {
   display: block;
-  font-size: 20px;
+  font-size: 25px;
   margin-bottom: 8px;
-  color: #666;
+  color: black;
 }
 textarea {
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 20px;
   margin-bottom: 20px;
   resize: vertical;
   background-color: #fafafa;
 }
 textarea::placeholder {
-  color: #aaa;
+  color: rgb(102, 102, 102);
+  font-size: 20px;
 }
 .box-img {
   display: flex;
@@ -65,8 +66,8 @@ textarea::placeholder {
   background-color: #fafafa;
 }
 .box-img img {
-  width: 75px;
-  height: 75px;
+  width: 90px;
+  height: 90px;
   cursor: pointer;
   opacity: 0.8;
   transition: opacity 0.2s ease;
@@ -80,15 +81,15 @@ textarea::placeholder {
 }
 .carita :hover {
   opacity: 1;
-  width: 80px;
-  height: 80px;
+  width: 95px;
+  height: 95px;
 }
 .box-btn {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
-  height: 3rem;
+  height: 4rem;
 }
 .select-btn {
   padding: 10px;
@@ -129,7 +130,7 @@ textarea::placeholder {
 }
 .caritas.selected {
   border-radius: 10px;
-  width: 130px;
+  width: 190px;
   background-color: rgba(156, 214, 156, 0.774);
 }
 .box-modal{
