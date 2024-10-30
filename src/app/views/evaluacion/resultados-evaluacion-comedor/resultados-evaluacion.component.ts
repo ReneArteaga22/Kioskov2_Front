@@ -9,15 +9,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { PaginatorModule } from 'primeng/paginator';
+import { CalendarModule } from 'primeng/calendar';
 
 @Component({
   selector: 'app-resultados-evaluacion',
   standalone: true,
-  imports: [CNavBarComponent, ChartModule, NgFor, DatePipe, ReactiveFormsModule, DialogModule, ButtonModule, PaginatorModule],
+  imports: [CNavBarComponent, ChartModule, NgFor, DatePipe, ReactiveFormsModule, DialogModule, ButtonModule, PaginatorModule, CalendarModule],
   templateUrl: './resultados-evaluacion.component.html',
   styleUrls: ['./resultados-evaluacion.component.css']
 })
-export class ResultadosEvaluacionComponent implements OnInit {
+export class ResultadosEvaluacionComponent implements OnInit { 
+  fechas: Date[] = [];
   visible: boolean = false;
   basicData: any;
   basicOptions: any;
@@ -33,7 +35,8 @@ export class ResultadosEvaluacionComponent implements OnInit {
   constructor(private apiService: ApiService) {
     this.filtrarForm = new FormGroup({
       calificacion: new FormControl(''),
-      planta: new FormControl('', [Validators.required])
+      planta: new FormControl('', [Validators.required]),
+      fechas: new FormControl(null)  // Agrega el campo de fecha
     });
   }
 
@@ -44,6 +47,7 @@ export class ResultadosEvaluacionComponent implements OnInit {
         this.totalRecords = this.evaluaciones.length;
         this.paginateUsuarios();
         this.configurarGrafica();
+        
       },
       error => {
         console.error('Error al obtener las evaluaciones', error);
@@ -62,9 +66,17 @@ export class ResultadosEvaluacionComponent implements OnInit {
   }
 
   filtrar() {
-    if (this.filtrarForm.valid && !this.isSubmit) {
-      this.apiService.filtrar_resultados_comedor(this.filtrarForm.value).subscribe(
+    const fechas = this.fechas ? this.fechas.map(date => date.toISOString().split('T')[0]) : [];
+    if (this.filtrarForm.valid || fechas.length === 2) {
+      console.log('Formulario válido o fechas seleccionadas, enviando datos...'); // Verifica que esto se imprime
+      const filtro = { ...this.filtrarForm.value };
+      filtro.fechas = fechas;
+  
+      console.log('Datos a enviar:', filtro); // Verifica los datos que se envían
+  
+      this.apiService.filtrar_resultados_comedor(filtro).subscribe(
         response => {
+          console.log('Respuesta del servidor:', response); // Verifica la respuesta del servidor
           this.evaluaciones = response.filtro;
           this.totalRecords = this.evaluaciones.length;
           this.paginateUsuarios();
@@ -73,9 +85,17 @@ export class ResultadosEvaluacionComponent implements OnInit {
           console.error('Error al filtrar las evaluaciones', error);
         }
       );
+    } else {
+      console.log('Formulario no válido y fechas no seleccionadas'); // Verifica si el formulario es inválido y no hay fechas
     }
   }
 
+  logFecha(event: any) {
+    console.log('Fecha seleccionada:', event);
+    console.log('rangeDates:', this.fechas); // Verifica el contenido de rangeDates
+  }
+  
+  
   mostrarComentario(id: number) {
     this.apiService.mostar_comentario_x_id(id).subscribe(
       response => {

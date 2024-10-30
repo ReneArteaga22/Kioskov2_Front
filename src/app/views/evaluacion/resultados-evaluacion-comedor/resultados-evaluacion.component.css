@@ -97,3 +97,43 @@ tbody tr:hover {
   padding: 7px;
   height: 2rem;
 }
+::ng-deep .custom-calendar {
+  display: flex;
+  align-items: center;
+}
+
+::ng-deep .custom-calendar .p-inputtext {
+  flex: 1;
+  padding-right: 10px; /* Ajusta el padding para centrar el icono */
+  border: 1px solid #007bff; /* Cambia el color del borde */
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px; /* Redondea las esquinas */
+  padding: 5px; /* Agrega espacio interno */
+  font-size: 16px; /* Cambia el tamaño de la fuente */
+ 
+}
+
+::ng-deep .custom-calendar .p-datepicker {
+  background-color: #f9f9f9; /* Cambia el color de fondo */
+  border: 1px solid #ddd; /* Cambia el color del borde */
+  border-radius: 5px; /* Redondea las esquinas */
+}
+
+::ng-deep .custom-calendar .p-datepicker-header {
+  background-color: #007bff; /* Cambia el color de fondo del encabezado */
+  color: #fff; /* Cambia el color del texto */
+}
+
+::ng-deep .custom-calendar .p-datepicker-today,
+::ng-deep .custom-calendar .p-datepicker .p-highlight {
+  background-color: #007bff !important; /* Cambia el color de fondo del día seleccionado */
+  color: #fff !important; /* Cambia el color del texto del día seleccionado */
+}
+
+::ng-deep .custom-calendar .p-datepicker .p-datepicker-prev,
+::ng-deep .custom-calendar .p-datepicker .p-datepicker-next {
+  color: #007bff; /* Cambia el color de las flechas de navegación */
+}
+
+
+

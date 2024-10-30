@@ -7,7 +7,7 @@
         <h6>Transporte</h6>
         <img src="icons/bus.png" alt="">
       </div>
-      <div class="card" (click)="servicio('comedor')">
+      <div *ngIf="isLoggin" class="card" (click)="servicio('comedor')">
         <h6>Comedor</h6>
         <img src="icons/comedor.png" alt="">
       </div>

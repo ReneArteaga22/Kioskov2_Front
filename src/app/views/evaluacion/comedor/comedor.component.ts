@@ -22,7 +22,7 @@ export class ComedorComponent {
   constructor(private router:Router, private apiService:ApiService, private cookie:CookieService){
     this.comedorForm = new FormGroup({
       calificacion: new FormControl('',[Validators.required]),
-      comentario: new FormControl('',[Validators.required]),
+      comentario: new FormControl,
       planta: new FormControl('',[Validators.required]),
       servicio: new FormControl('',[Validators.required])
     })
