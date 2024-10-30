@@ -34,6 +34,10 @@ export class ApiService {
     return this.http.post<any>(`${this.url}/api/reporte/reporte`,{planta, reporte})
   }
 
+  register(data:any):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/usuarios/register`,data)
+  }
+
   login(userData: any): Observable<any> {
     return this.http.post<any>(`${this.url}/api/usuarios/login`, userData);
   }
@@ -98,5 +102,17 @@ export class ApiService {
 
   actualizar_estado_reporte(id:any, estatus:string):Observable<any>{
     return this.http.post<any>(`${this.url}/api/reporte/actualizar_estado`,{id, estatus})
+  }
+
+  comunicados():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/comunicado/comunicados`)
+  }
+
+  crear_sugerencia(data:any):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/sugerencia/crear_sugerencia`,data)
+  }
+
+  sugerencias():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/sugerencia/sugerencias`)
   }
 }

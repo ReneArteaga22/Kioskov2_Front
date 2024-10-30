@@ -21,9 +21,17 @@
                     <p class="error">Usuario o contraseña incorrectos</p>
                 </div>
                 <div class="box-input">
-                    <a class="recuperar" [routerLink]="['/recuperar-contrasena']">¿Olvidaste tu contraseña?</a>
+                    <!-- <a class="recuperar" [routerLink]="['/recuperar-contrasena']">¿Olvidaste tu contraseña?</a> -->
                 </div>
             </div>
         </form>
+    </div>
+    <div>
+        <p-dialog [modal]="true" [(visible)]="visible" [style]="{ width: '400px', height: '200px', borderRadius: '8px'}">
+            <div class="box-modal">
+                <h2 class="">Inicio de sesion exitoso!!</h2>
+                <img src="icons/success.png" alt="">
+            </div>
+        </p-dialog>
     </div>
 </div>

@@ -1,0 +1,24 @@
+<div class="box">
+    <div class="clayens"><img class="logo" [routerLink]="['/']" src="icons/CLAYENS_Mexico_Logo.png" alt=""></div>
+    <form [formGroup]="sugerenciaForm" (ngSubmit)="mandar_sugerencia()" class="form">
+        <h1>Dejanos tu suegerencia</h1>
+        <div class="inputs">
+            <div class="input">
+                <label for="">Sugerencia</label>
+                <input type="text" placeholder="Escribe tu sugerencia general..." formControlName="sugerencia">
+                <p class="error" *ngIf="error">No puedes dejar espacios vacios.</p>
+            </div>
+            <div class="input">
+                <button class="btn" type="submit">Mandar sugerencia</button>
+            </div>
+        </div>
+    </form>
+    <div>
+        <p-dialog [modal]="true" [(visible)]="visible" [style]="{ width: '400px', height: '200px', borderRadius: '8px'}">
+            <div class="box-modal">
+                <h2 class="">Gracias por tu sugerencia!</h2>
+                <img src="icons/success.png" alt="">
+            </div>
+        </p-dialog>
+    </div>
+</div>

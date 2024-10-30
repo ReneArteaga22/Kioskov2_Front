@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule} from '@angular/forms';
 
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { ApiService } from '../../../service/api.service';
 
 @Component({
   selector: 'app-register',
@@ -13,23 +14,28 @@ import { RouterLink } from '@angular/router';
 export class RegisterComponent {
   registerForm: FormGroup
 
-  constructor(){
+  constructor(private apiService:ApiService, private router:Router){
     this.registerForm = new FormGroup({
       nombre: new FormControl('',[Validators.required]),
-      apellidos: new FormControl('',[]),
-      usuario: new FormControl('',[]),
-      contrasena: new FormControl('',[]),
-      area: new FormControl('',[]),
-      puesto: new FormControl('',[]),
-      firma: new FormControl('',[]),
-      correo: new FormControl('',[]),
-      telefono: new FormControl('',[]),
-      foto: new FormControl('',[]),
+      apellidos: new FormControl('',[Validators.required]),
+      usuario: new FormControl('',[Validators.required]),
+      contrasena: new FormControl('',[Validators.required]),
+      area: new FormControl('Area',[Validators.required]),
+      puesto: new FormControl('',[Validators.required]),
+      firma: new FormControl('',[Validators.required]),
+      correo: new FormControl('',[Validators.required]),
+      telefono: new FormControl('',[Validators.required]),
+      foto: new FormControl('',[Validators.required]),
     })
   }
 
   register(){
-    alert('ahsdf')
+    this.apiService.register(this.registerForm.value).subscribe(
+      response =>{
+        console.log(response)
+        this.router.navigate(['/login'])
+      }
+    )
   }
 
 }

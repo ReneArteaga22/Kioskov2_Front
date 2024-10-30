@@ -1,22 +1,23 @@
 .box{
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
 }
 .clayens{
-    display: flex;
-    background-color: #1c1c1c;
-    width: 100%;
-    height: 10rem;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+  display: flex;
+  background-color: #1c1c1c;
+  width: 100%;
+  height: 10rem;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 .logo{
-    width: 30rem;
-    height: 7rem;
+  width: 30rem;
+  height: 7rem;
+  cursor: pointer;
 }
 .cards {
   display: flex;
@@ -37,6 +38,7 @@
   max-width: 100%; /* Ancho máximo */
   border-radius: 3%;
   text-align: center;
+  cursor: pointer;
   background-color: #f0f0f0;
   border: 2px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

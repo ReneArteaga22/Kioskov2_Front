@@ -13,7 +13,7 @@
         <div class="box-inputs">
             <div class="input">
                 <label>No. de empleado</label>
-                <input type="text" placeholder="Numero de empleado" formControlName="no_empleado">
+                <input type="number" placeholder="Numero de empleado" formControlName="no_empleado">
             </div>
             <select class="select" formControlName="grupo">
                 <option value="" disabled selected>Selecciona el grupo</option>
@@ -38,7 +38,7 @@
             </div>
             <div class="input">
                 <label>Telefono</label>
-                <input class="inp" type="text" placeholder="Escribe tu numero de telefono" formControlName="telefono">
+                <input class="inp" type="number" placeholder="Escribe tu numero de telefono" formControlName="telefono">
             </div>
         </div>
         <div class="box-inputs">
@@ -58,4 +58,12 @@
             </div>
         </div>
     </form>
+    <div>
+        <p-dialog [modal]="true" [(visible)]="visible" [style]="{ width: '400px', height: '200px', borderRadius: '8px'}">
+            <div class="box-modal">
+                <h2 class="">Reporte enviado!!</h2>
+                <img src="icons/report.png" alt="">
+            </div>
+        </p-dialog>
+    </div>
 </div>

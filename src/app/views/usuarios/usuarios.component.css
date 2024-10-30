@@ -1,40 +1,40 @@
 .box{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100vw;
-    height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100%;
 }
 .clayens{
-    display: flex;
-    background-color: rgb(31, 30, 30);
-    width: 100%;
-    height: 10rem;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+  display: flex;
+  background-color: rgb(31, 30, 30);
+  width: 100%;
+  height: 10rem;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
 }
 .logo{
-    width: 30rem;
-    height: 7rem;
+  width: 30rem;
+  height: 7rem;
 }
 .container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 95%;
-    margin-top: 1.5rem;
-    padding: 1rem;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: 1px solid #c9c5c5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 95%;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #c9c5c5;
 }
 .filtros {
   display: flex;
   gap: 30px; /* Espacio entre los filtros */
 }
-
 .filtros > div {
   flex-grow: 1; /* Los filtros se expanden uniformemente */
   display: flex;

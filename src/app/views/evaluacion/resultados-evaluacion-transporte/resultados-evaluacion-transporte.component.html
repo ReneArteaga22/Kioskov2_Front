@@ -30,7 +30,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let evaluacion of evaluaciones">
+                        <tr *ngFor="let evaluacion of paginacionEvaluaciones">
                             <td>{{evaluacion.calificacion}}</td>
                             <td>{{evaluacion.planta}}</td>
                             <td>{{evaluacion.servicio}}</td>
@@ -39,6 +39,15 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="card flex justify-content-center">
+                <p-paginator 
+                (onPageChange)="onPageChange($event)" 
+                [first]="first" 
+                [rows]="rows"
+                [totalRecords]="totalRecords" 
+                [rowsPerPageOptions]="[15, 20]">
+                </p-paginator>
             </div>
         </div>
     </div>
