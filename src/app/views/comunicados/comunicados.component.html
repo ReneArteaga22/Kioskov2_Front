@@ -1,5 +1,57 @@
 <div class="box">
     <div class="clayens"><img class="logo" [routerLink]="['/']" src="icons/CLAYENS_Mexico_Logo.png" alt=""></div>
+    <div class="comunicados">
+        <div class="comunicado">
+            <h1>Comunicados</h1>
+            <table>  
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Imagen</th>
+                        <th>Fecha</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let comunicado of paginacionComunicados">
+                        <td>{{comunicado.id}}</td>
+                        <td><img src="comunicados/hamster.jpg" alt=""></td>
+                        <td>{{comunicado.fecha | date : "yyyy/MM/dd"}}</td>
+                        <td><button (click)="dialog(comunicado.id)"><i class="pi pi-trash" style="font-size: 2rem"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="card flex justify-content-center">
+                <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="totalRecords">
+                </p-paginator>
+            </div>
+        </div>
+        <div class="menu">
+            <h1>Menu semanal</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="comunicados/hamster.jpg" alt=""></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <div>
+        <p-dialog [modal]="true" [(visible)]="visible" [style]="{ width: '400px', height: '400px', borderRadius: '8px'}">
+            <div class="box-modal">
+                <img src="icons/warning.png" alt="">
+                <h2 class="">¿Seguro que quieres eliminar este comunicado?</h2>
+                <div class="buttons">
+                    <button (click)="eliminar()">Eliminar</button>
+                    <button (click)="cancelar()" style="background-color: orange;">Cancelar</button>
+                </div>
+            </div>
+        </p-dialog>
     </div>
 </div>

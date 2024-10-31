@@ -29,10 +29,12 @@
         <img src="icons/encuestas.png" alt="https://www.freepik.es/">
     </div> -->
 
-    <div *ngIf="!isLoggin" class="card" [routerLink]="['/comunicados']">
+    <div *ngIf="!isLoggin" class="card" (click)="modal()" >
         <h2>Comunicados</h2>
         <img src="icons/comunicados.png" alt="https://www.freepik.es/">
     </div>
+
+    
 
     <div *ngIf="!isLoggin" [routerLink]="['/buzon']" class="card">
         <h2>Buzon de sugerencias</h2>
@@ -59,8 +61,23 @@
         <img src="icons/usuarios.png" alt="https://www.freepik.es/">
     </div>
 
+    <div *ngIf="isRH || isSistemas" class="card" [routerLink]="['/comunicados']">
+        <h2>Comunicados</h2>
+        <img src="icons/comunicados.png" alt="https://www.freepik.es/">
+    </div>
+
     <div *ngIf="isRH || isSistemas" [routerLink]="['/sugerencias']" class="card">
         <h2>Buzon de sugerencias</h2>
         <img src="icons/buzon.png" alt="https://www.freepik.es/">
     </div>
+    <p-dialog [modal]="true" [(visible)]="visible" [style]="{ width: '55rem', height: '87rem' }"
+        [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+        <p-carousel [value]="images" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="3000">
+            <ng-template pTemplate="item" let-image>
+                <div class="carousel-item" style="display:flex; justify-content:center; align-items:center; height: 100%;">
+                    <img [src]="image.src" alt="{{image.alt}}" style="width: 100%; height: auto;">
+                </div>
+            </ng-template>
+        </p-carousel>
+    </p-dialog>
 </div>
