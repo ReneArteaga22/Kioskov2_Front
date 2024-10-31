@@ -48,12 +48,12 @@ input{
     border: 1px solid #c9c5c5;
     border-radius: 10px;
     padding: 7px;
-    height: 2.5rem;
+    height: 4rem;
     font-size: 1rem;
 }
 .btn{
-    height: 2rem;
-    font-size: 20px;
+    height: 3.5rem;
+    font-size: 25px;
     border: none;
     border-radius: 6px;
     background-color: #ff7f50; 
@@ -79,4 +79,12 @@ input{
     width: 100px;
     height: 100px;
     margin-top: 10px;
+}
+h1{
+    font-size: 35px;
+    color:black;
+}
+label{
+    font-size: 30px;
+    color:black;
 }

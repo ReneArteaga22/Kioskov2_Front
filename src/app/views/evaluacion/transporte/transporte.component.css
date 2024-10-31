@@ -54,8 +54,8 @@ textarea::placeholder {
 }
 
 .box-img img {
-  width: 75px;
-  height: 75px;
+  width: 90px;
+  height: 90px;
   cursor: pointer;
   opacity: 0.8;
   transition: opacity 0.2s ease;
