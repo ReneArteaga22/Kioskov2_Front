@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup,ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { CNavBarComponent } from '../../../components/c-nav-bar/c-nav-bar.component';
 import { ApiService } from '../../../service/api.service';
@@ -17,7 +17,7 @@ import { NgIf } from '@angular/common';
 })
 export class ComedorComponent {
   visible: boolean = false;
-  selectedOption: string = '';
+  selectedOption: string | null = null;
   comedorForm: FormGroup
   isSubmit: boolean = false
   error:boolean= false
@@ -46,18 +46,23 @@ export class ComedorComponent {
     this.comedorForm.patchValue({ calificacion: calificacion, servicio:servicio });
   }
 
-  enviar(){
-    if(this.comedorForm.valid && !this.isSubmit){
+  enviar() {
+    if (this.comedorForm.valid && !this.isSubmit) {
       this.apiService.evaluar_servicio(this.comedorForm.value).subscribe(
-        response =>{
-          this.visible = true
-          setTimeout(()=>{
-            this.visible = false
-            this.router.navigate(['/'])
-          },1600)
-        },error =>{
-          if(error.status === 400){
-            this.error = true
+        response => {
+          this.visible = true;
+          setTimeout(() => {
+            this.visible = false;
+            this.comedorForm.reset(); 
+            this.selectedOption = null;  
+            this.router.navigateByUrl('/comedor', { skipLocationChange: true }).then(() => {
+              this.router.navigate([this.router.url]);
+            });
+          }, 1600);
+        },
+        error => {
+          if (error.status === 400) {
+            this.error = true;
           }
         }
       )
