@@ -51,8 +51,11 @@
             </button>
           </div>
         </form>
+        <p-button label="Exportar" icon="pi pi-file-export" [text]="true" iconPos="right" (click)="exportToExcel()"></p-button>
       </div>
+      
       <div class="tabla">
+        
         <table>
           <thead>
             <tr>
@@ -71,10 +74,11 @@
               <td>{{ evaluacion.createdAt | date : "yyyy/MM/dd" }}</td>
               <td>
                 <p-button
-                  (click)="mostrarComentario(evaluacion.id)"
-                  class="Comentario"
-                  label="Comentario"
-                />
+      [disabled]="!evaluacion.comentario || evaluacion.comentario.trim() === ''"
+      (click)="mostrarComentario(evaluacion.id)"
+      class="Comentario"
+      label="Comentario"
+    ></p-button>
               </td>
             </tr>
           </tbody>
@@ -90,6 +94,7 @@
         >
         </p-paginator>
       </div>
+
     </div>
   </div>
   <div class="card flex justify-content-center" style="padding: 20px">
