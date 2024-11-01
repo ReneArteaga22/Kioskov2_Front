@@ -16,7 +16,7 @@
                 <tbody>
                     <tr *ngFor="let comunicado of paginacionComunicados">
                         <td>{{comunicado.id}}</td>
-                        <td><img src="comunicados/hamster.jpg" alt=""></td>
+                        <td><img src="{{comunicado.imagen}}" alt=""></td>
                         <td>{{comunicado.fecha | date : "yyyy/MM/dd"}}</td>
                         <td><button class="delete" (click)="dialog(comunicado.id)"><i class="pi pi-trash" style="font-size: 2rem"></i></button></td>
                         <td><button class="post" (click)="agregar()"><i class="pi pi-plus-circle" style="font-size: 2rem"></i></button></td>
@@ -74,9 +74,17 @@
                         <input type="date" formControlName="fecha">
                     </div>
                     <div class="btn">
-                        <button type="submit">Agregar</button>
+                        <button type="submit" (click)="alert()" [disabled]="!comunicadoForm.valid">Agregar</button>
                     </div>
                 </form>
+            </div>
+        </p-dialog>
+    </div>
+    <div>
+        <p-dialog [modal]="true" [(visible)]="modal" [style]="{ width: '400px', height: '250px', borderRadius: '8px'}">
+            <div class="box-modal">
+                <h2 class="">Comunicado agregado correctamente</h2>
+                <img src="icons/success.png" alt="">
             </div>
         </p-dialog>
     </div>

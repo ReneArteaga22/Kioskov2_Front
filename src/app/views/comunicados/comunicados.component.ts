@@ -7,7 +7,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { DialogModule } from 'primeng/dialog';
 import { CookieService } from 'ngx-cookie-service';
 import { CBarComponent } from '../../components/c-bar/c-bar.component';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -28,12 +28,13 @@ export class ComunicadosComponent implements OnInit{
   rows: number = 6;
   paginacionComunicados: any[]=[]
   isSubmit:boolean = false
+  modal:boolean = false
 
   constructor(private apiService:ApiService, private cookie:CookieService){
     this.comunicadoForm = new FormGroup({
-      imagen: new FormControl(''),
-      nombre: new FormControl(''),
-      fecha: new FormControl('')
+      imagen: new FormControl('',[Validators.required]),
+      nombre: new FormControl('',Validators.required),
+      fecha: new FormControl('',[Validators.required])
     })
   }
 
@@ -88,7 +89,17 @@ export class ComunicadosComponent implements OnInit{
       response=>{
         console.log('eliminar: ',response)
         this.visible = false
+        location.reload()
       }
     )
+  }
+
+  alert(){
+    this.modal = true
+    setTimeout(() => { 
+      this.modal = false
+      location.reload()
+    }, 1600);
+
   }
 }
