@@ -29,10 +29,12 @@
         <img src="icons/encuestas.png" alt="https://www.freepik.es/">
     </div> -->
 
-    <div *ngIf="!isLoggin" class="card" [routerLink]="['/comunicados']">
+    <div *ngIf="!isLoggin" class="card" [routerLink]="['/comunicado']" >
         <h2>Comunicados</h2>
         <img src="icons/comunicados.png" alt="https://www.freepik.es/">
     </div>
+
+    
 
     <div *ngIf="!isLoggin" [routerLink]="['/buzon']" class="card">
         <h2>Buzon de sugerencias</h2>
@@ -57,6 +59,11 @@
     <div *ngIf="isRH || isSistemas"  [routerLink]="['/usuarios']" class="card">
         <h2>Usuarios</h2>
         <img src="icons/usuarios.png" alt="https://www.freepik.es/">
+    </div>
+
+    <div *ngIf="isRH || isSistemas" class="card" [routerLink]="['/comunicados']">
+        <h2>Comunicados</h2>
+        <img src="icons/comunicados.png" alt="https://www.freepik.es/">
     </div>
 
     <div *ngIf="isRH || isSistemas" [routerLink]="['/sugerencias']" class="card">

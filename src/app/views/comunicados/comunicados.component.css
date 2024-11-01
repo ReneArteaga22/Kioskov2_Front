@@ -1,21 +1,166 @@
-.box{
+.comunicados{
+    gap: 15px;
+    margin-top: 1.5rem;
     display: flex;
-    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    width: 95%;
+    text-align: center;
+    background-color: red;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #c9c5c5;
+}
+.comunicados > div{
+    flex-grow: 1;
+}
+.comunicado{
+    display: flex;
+    justify-content: center;
     flex-direction: column;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #c9c5c5;
+    padding: 10px;
+}
+.menu{
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #c9c5c5;
+}
+h1{
+    border-bottom: 1px solid #e79371;
+    padding-bottom: 5px; 
+}
+table{
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+thead{
+    background-color: rgb(31, 30, 30);
+}
+th{
+    color: white;
+    height: 3rem;
+    text-align: center;
+}
+tbody tr:hover {
+  box-shadow: 0 4px 6px orange;
+}
+tr{
+    border-bottom: 1px solid #f0f0f0;
+}
+img{
+    width: 90px;
+    height: 90px;
+}
+td{
+    padding-top: 5px;
+}
+.delete{
+    background-color: #f8432fd0;
+    border: none;
+    width: 50%;
+    height: 3rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color:white;
+    font-size: 1.5rem;
+}
+.delete:hover{
+    background-color: #ff1900;
+}
+.post{
+    background-color: #4deb94d0;
+    border: none;
+    width: 50%;
+    height: 3rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color:white;
+    font-size: 1.5rem;
+}
+.post:hover{
+    background-color: #03b447d0;
+}
+.box-modal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: space-around;
+    text-align: center;
+    padding: 15px;
     width: 100%;
     height: 100%;
 }
-.clayens{
+.box-modal img{
+    width: 100px;
+    height: 100px;
+    margin-top: 10px;
+}
+.buttons{
     display: flex;
-    background-color: rgb(31, 30, 30);
     width: 100%;
-    height: 7rem;
+    margin-top: 7rem;
+    gap: 20px;
+}
+.done{
+    border: none;
+    width: 50%;
+    height: 3rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color:white;
+    font-size: 1.5rem;
+}
+.input{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    width: 100%;
+    gap: 9px;
+    text-align: center;
+}
+input{
+    border: 1px solid #c9c5c5;
+    border-radius: 10px;
+    height: 2.5rem;
+    width: 100%;
+    padding: 10px;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    gap:15px;
+    width: 80%;
+}
+.btn{
+    display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
+    width: 100%;
+}
+.btn button{
+    width: 100%;
+    height: 2.5rem;
+    border: none;
+    border-radius: 10px;
     cursor: pointer;
+    background-color: #ff7f50; 
+    color: white;
 }
-.logo{
-    width: 25rem;
-    height: 5rem;
+.btn button:hover {
+  background-color: #ff5722; 
 }
+

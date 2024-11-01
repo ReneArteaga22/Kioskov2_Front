@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { CBarComponent } from '../../../components/c-bar/c-bar.component';
 
 @Component({
   selector: 'app-recuperar-contrasena',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule],
+  imports: [RouterLink, ReactiveFormsModule,CBarComponent],
   templateUrl: './recuperar-contrasena.component.html',
   styleUrl: './recuperar-contrasena.component.css'
 })

@@ -7,14 +7,16 @@ import { ApiService } from '../../../service/api.service';
 import { CookieService } from 'ngx-cookie-service';
 import { NgIf } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
+import { CBarComponent } from '../../../components/c-bar/c-bar.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ButtonModule, ReactiveFormsModule, RouterLink, NgIf, DialogModule],
+  imports: [ButtonModule, ReactiveFormsModule, RouterLink, NgIf, DialogModule, CBarComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
+
 export class LoginComponent {
   loginForm: FormGroup
   isSubmit: boolean = false

@@ -23,13 +23,14 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
 }
-
+p-dialog::header{
+  text-align: center;
+}
 .card:hover {
   border-radius: 3%;
   background-color: #ffffff;
   border: 2px solid #ccc;
 }
-
 /* Imágenes */
 img {
   width: 100%; /* Ajustar el ancho de la imagen al 100% del contenedor */

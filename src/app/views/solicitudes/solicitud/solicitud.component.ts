@@ -3,11 +3,12 @@ import { Router, RouterLink } from '@angular/router';
 import { ApiService } from '../../../service/api.service';
 import { CookieService } from 'ngx-cookie-service';
 import { DatePipe } from '@angular/common';
+import { CBarComponent } from '../../../components/c-bar/c-bar.component';
 
 @Component({
   selector: 'app-solicitud',
   standalone: true,
-  imports: [RouterLink, DatePipe],
+  imports: [RouterLink, DatePipe, CBarComponent],
   templateUrl: './solicitud.component.html',
   styleUrl: './solicitud.component.css'
 })

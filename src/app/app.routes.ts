@@ -25,6 +25,7 @@ import { guardGuard } from './service/guard.guard';
 import { rhGuard } from './service/rh.guard';
 import { BuzonComponent } from './views/buzon/buzon.component';
 import { SugerenciasComponent } from './views/sugerencias/sugerencias.component';
+import { ComunicadoComponent } from './views/comunicado/comunicado.component';
 
 export const routes: Routes = [
   { path: '',component: HomeComponent},
@@ -50,5 +51,6 @@ export const routes: Routes = [
   { path: 'solicitudes',component:SolicitudesComponent,},
   { path: 'solicitud',component:SolicitudComponent,},
   { path: 'buzon',component:BuzonComponent},
-  { path: 'sugerencias',component:SugerenciasComponent,canActivate:[rhGuard]}
+  { path: 'sugerencias',component:SugerenciasComponent,canActivate:[rhGuard]},
+  { path: 'comunicado',component:ComunicadoComponent}
 ]
