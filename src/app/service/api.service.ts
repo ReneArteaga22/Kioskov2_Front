@@ -119,4 +119,8 @@ export class ApiService {
   eliminar_comunicado(id:any):Observable<any>{
     return this.http.delete<any>(`${this.url}/api/comunicado/eliminar_comunicado/${id}`)
   }
+
+  agregar_comunicado(data:any):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/comunicado/agregar_comunicado`,data)
+  }
 }

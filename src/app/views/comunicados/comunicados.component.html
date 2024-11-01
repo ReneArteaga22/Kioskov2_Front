@@ -1,5 +1,5 @@
 <div class="box">
-    <div class="clayens"><img class="logo" [routerLink]="['/']" src="icons/CLAYENS_Mexico_Logo.png" alt=""></div>
+    <app-c-bar></app-c-bar>
     <div class="comunicados">
         <div class="comunicado">
             <h1>Comunicados</h1>
@@ -10,6 +10,7 @@
                         <th>Imagen</th>
                         <th>Fecha</th>
                         <th>Eliminar</th>
+                        <th>Agregar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -17,7 +18,8 @@
                         <td>{{comunicado.id}}</td>
                         <td><img src="comunicados/hamster.jpg" alt=""></td>
                         <td>{{comunicado.fecha | date : "yyyy/MM/dd"}}</td>
-                        <td><button (click)="dialog(comunicado.id)"><i class="pi pi-trash" style="font-size: 2rem"></i></button></td>
+                        <td><button class="delete" (click)="dialog(comunicado.id)"><i class="pi pi-trash" style="font-size: 2rem"></i></button></td>
+                        <td><button class="post" (click)="agregar()"><i class="pi pi-plus-circle" style="font-size: 2rem"></i></button></td>
                     </tr>
                 </tbody>
             </table>
@@ -48,9 +50,33 @@
                 <img src="icons/warning.png" alt="">
                 <h2 class="">¿Seguro que quieres eliminar este comunicado?</h2>
                 <div class="buttons">
-                    <button (click)="eliminar()">Eliminar</button>
-                    <button (click)="cancelar()" style="background-color: orange;">Cancelar</button>
+                    <button class="delete" (click)="eliminar()">Eliminar</button>
+                    <button class="done" (click)="cancelar()" style="background-color: orange;">Cancelar</button>
                 </div>
+            </div>
+        </p-dialog>
+    </div>
+    <div>
+        <p-dialog [modal]="true" [(visible)]="visibleForm" [style]="{ width: '600px', height: '400px', borderRadius: '8px'}">
+            <div class="box-modal">
+                <h2 class="">Agregar comunicado</h2>
+                <form class="form" [formGroup]="comunicadoForm" (ngSubmit)="agregar_comunicado()">
+                    <div class="input">
+                        <label for="">Imagen</label>
+                        <input type="text" formControlName="imagen" placeholder="Ingresa la imagen">
+                    </div>
+                    <div class="input">
+                        <label for="">Nombre</label>
+                        <input type="text" formControlName="nombre" placeholder="Ingresa el nombre">
+                    </div>
+                    <div class="input">
+                        <label for="">Fecha</label>
+                        <input type="date" formControlName="fecha">
+                    </div>
+                    <div class="btn">
+                        <button type="submit">Agregar</button>
+                    </div>
+                </form>
             </div>
         </p-dialog>
     </div>

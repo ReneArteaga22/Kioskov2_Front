@@ -6,23 +6,36 @@ import { DatePipe } from '@angular/common';
 import { PaginatorModule } from 'primeng/paginator';
 import { DialogModule } from 'primeng/dialog';
 import { CookieService } from 'ngx-cookie-service';
+import { CBarComponent } from '../../components/c-bar/c-bar.component';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-comunicados',
   standalone: true,
-  imports: [RouterLink, NgFor, DatePipe, PaginatorModule,DialogModule],
+  imports: [RouterLink, NgFor, DatePipe, PaginatorModule,DialogModule,CBarComponent, ReactiveFormsModule],
   templateUrl: './comunicados.component.html',
   styleUrl: './comunicados.component.css'
 })
 export class ComunicadosComponent implements OnInit{
 
-  constructor(private apiService:ApiService, private cookie:CookieService){}
+  comunicadoForm: FormGroup
   visible:boolean = false
+  visibleForm:boolean = false
   comunicados: any[] = []
   first: number = 0;
   totalRecords: any;
   rows: number = 6;
   paginacionComunicados: any[]=[]
+  isSubmit:boolean = false
+
+  constructor(private apiService:ApiService, private cookie:CookieService){
+    this.comunicadoForm = new FormGroup({
+      imagen: new FormControl(''),
+      nombre: new FormControl(''),
+      fecha: new FormControl('')
+    })
+  }
 
   ngOnInit(): void {
     this.apiService.comunicados().subscribe(
@@ -51,6 +64,21 @@ export class ComunicadosComponent implements OnInit{
   }
   cancelar(){
     this.visible = false
+  }
+
+  agregar(){
+    this.visibleForm = true
+  }
+
+  agregar_comunicado(){
+    if(this.comunicadoForm.valid && !this.isSubmit){
+      this.apiService.agregar_comunicado(this.comunicadoForm.value).subscribe(
+        response=>{
+          console.log(response)
+        }
+      )
+    }
+    this.visibleForm = false
   }
 
   eliminar(){

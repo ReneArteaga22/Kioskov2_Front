@@ -1,5 +1,5 @@
 <div class="box">
-    <div class="clayens"><img class="logo" [routerLink]="['/']" src="icons/CLAYENS_Mexico_Logo.png" alt=""></div>
+    <app-c-bar></app-c-bar>
     <h2 *ngIf="error">No existen registros con estos datos</h2>
     <div class="container">
         <form class="filters" [formGroup]="filtrosForm" (ngSubmit)="filtrar_reportes()">
