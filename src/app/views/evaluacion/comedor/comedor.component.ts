@@ -36,7 +36,8 @@ export class ComedorComponent {
     const area = this.cookie.get('area');
     if (area === 'comedor_1') {
       this.comedorForm.patchValue({ planta: 'planta 1' });
-    } else if (area === 'comedor_2') {
+    }
+    if (area === 'comedor_2') {
       this.comedorForm.patchValue({ planta: 'planta 2' });
     }
   }
@@ -51,13 +52,12 @@ export class ComedorComponent {
       this.apiService.evaluar_servicio(this.comedorForm.value).subscribe(
         response => {
           this.visible = true;
+          console.log(response)
           setTimeout(() => {
             this.visible = false;
             this.comedorForm.reset(); 
             this.selectedOption = null;  
-            this.router.navigateByUrl('/comedor', { skipLocationChange: true }).then(() => {
-              this.router.navigate([this.router.url]);
-            });
+            location.reload();
           }, 1600);
         },
         error => {

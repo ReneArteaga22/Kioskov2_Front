@@ -2,35 +2,46 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { NgIf } from '@angular/common';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
+import { CarouselModule } from 'primeng/carousel';
+import { ApiService } from '../../service/api.service';
 
 @Component({
   selector: 'app-c-cards-modules',
   standalone: true,
-  imports: [RouterLink, NgIf],
+  imports: [RouterLink, NgIf, DialogModule, ButtonModule, CarouselModule],
   templateUrl: './c-cards-modules.component.html',
-  styleUrl: './c-cards-modules.component.css'
+  styleUrls: ['./c-cards-modules.component.css'],
 })
-export class CCardsModulesComponent implements OnInit{
-  isRH:boolean = false
-  isSistemas:boolean = false
-  isComedor:boolean = false
-  isLoggin:boolean = false
+export class CCardsModulesComponent implements OnInit {
+  isRH: boolean = false;
+  isSistemas: boolean = false;
+  isComedor: boolean = false;
+  isLoggin: boolean = false;
+  images: any[]=[];
+  responsiveOptions: any[] | undefined;
 
-  constructor(private cookie:CookieService){}
+  constructor(private cookie: CookieService, private apiService:ApiService) {}
 
-  // verificar la sesion iniciada y mostrar sus modulos correspondientes
   ngOnInit(): void {
-    const area = this.cookie.get('area')
-    if(area === 'rh'){
-      this.isRH = true
+    const area = this.cookie.get('area');
+    if (area === 'rh') {
+      this.isRH = true;
     }
-    if(area === 'comedor_1' || area === 'comedor_2'){
-      this.isComedor = true
+    if (area === 'comedor_1' || area === 'comedor_2') {
+      this.isComedor = true;
     }
-    if(area === 'sistemas'){
-      this.isSistemas = true
+    if (area === 'sistemas') {
+      this.isSistemas = true;
     }
 
-    this.isLoggin = this.cookie.check('sesion')
+    this.apiService.comunicados().subscribe(
+      response=>{
+
+      }
+    )
+    
+    this.isLoggin = this.cookie.check('sesion');
   }
 }
