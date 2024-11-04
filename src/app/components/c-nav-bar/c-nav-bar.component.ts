@@ -44,9 +44,13 @@ export class CNavBarComponent implements OnInit{
   }
 
   cerrarSesion(){
-    this.router.navigate(['/login'])
+    this.isSistemas = false
     this.isLoggin = false
+    this.isComedor = false
+    this.isRH = false
     this.galleta.deleteAll()
+    this.router.navigate(['/'])
+    location.reload()
   }
 
   navegar(event: any) {
