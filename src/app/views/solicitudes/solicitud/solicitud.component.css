@@ -59,6 +59,7 @@ button{
   font-size: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
+  cursor: pointer;
 }
 .btn-2{
   border: none;
@@ -68,5 +69,6 @@ button{
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   color: white;
   font-size: 1rem;
+  cursor: pointer;
   width: 100%;
 }

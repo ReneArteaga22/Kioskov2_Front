@@ -7,18 +7,28 @@ import { PaginatorModule } from 'primeng/paginator';
 import { DialogModule } from 'primeng/dialog';
 import { CookieService } from 'ngx-cookie-service';
 import { CBarComponent } from '../../components/c-bar/c-bar.component';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MessageService } from 'primeng/api';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ToastModule } from 'primeng/toast';
+import { NgIf } from '@angular/common';
+
+interface UploadEvent {
+  originalEvent: Event;
+  files: File[];
+}
 
 @Component({
   selector: 'app-comunicados',
   standalone: true,
-  imports: [RouterLink, NgFor, DatePipe, PaginatorModule,DialogModule,CBarComponent, ReactiveFormsModule],
+  imports: [RouterLink, NgFor, DatePipe, PaginatorModule,DialogModule,CBarComponent, ReactiveFormsModule, FileUploadModule, NgIf],
   templateUrl: './comunicados.component.html',
-  styleUrl: './comunicados.component.css'
+  styleUrl: './comunicados.component.css',
+  providers: [MessageService]
 })
 export class ComunicadosComponent implements OnInit{
-
+  uploadedFiles: any[] = []
   comunicadoForm: FormGroup
   visible:boolean = false
   visibleForm:boolean = false
@@ -28,12 +38,13 @@ export class ComunicadosComponent implements OnInit{
   rows: number = 6;
   paginacionComunicados: any[]=[]
   isSubmit:boolean = false
+  modal:boolean = false
 
-  constructor(private apiService:ApiService, private cookie:CookieService){
+  constructor(private apiService:ApiService, private cookie:CookieService, private messageService: MessageService){
     this.comunicadoForm = new FormGroup({
-      imagen: new FormControl(''),
-      nombre: new FormControl(''),
-      fecha: new FormControl('')
+      imagen: new FormControl('',[Validators.required]),
+      nombre: new FormControl('',Validators.required),
+      fecha: new FormControl('',[Validators.required])
     })
   }
 
@@ -71,16 +82,23 @@ export class ComunicadosComponent implements OnInit{
   }
 
   agregar_comunicado(){
-    if(this.comunicadoForm.valid && !this.isSubmit){
-      this.apiService.agregar_comunicado(this.comunicadoForm.value).subscribe(
-        response=>{
-          console.log(response)
-        }
-      )
-    }
+    console.log(this.comunicadoForm.value)
+    // if(this.comunicadoForm.valid && !this.isSubmit){
+    //   this.apiService.agregar_comunicado(this.comunicadoForm.value).subscribe(
+    //     response=>{
+    //       console.log(response)
+          
+    //     }
+    //   )
+    // }
     this.visibleForm = false
   }
-
+  onUpload(event:UploadEvent) {
+    for(let file of event.files) {
+      this.uploadedFiles.push(file);
+    }
+    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
+  }
   eliminar(){
     let comunicado = parseInt(this.cookie.get('comunicado'))
     console.log('eliminar',comunicado)
@@ -88,7 +106,17 @@ export class ComunicadosComponent implements OnInit{
       response=>{
         console.log('eliminar: ',response)
         this.visible = false
+        location.reload()
       }
     )
+  }
+
+  alert(){
+    this.modal = true
+    setTimeout(() => { 
+      this.modal = false
+      location.reload()
+    }, 1600);
+
   }
 }

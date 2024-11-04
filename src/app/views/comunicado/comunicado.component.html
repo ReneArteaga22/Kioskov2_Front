@@ -5,7 +5,7 @@
         <p-carousel [value]="images" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="3000">
             <ng-template pTemplate="item" let-image>
                 <div class="carousel-item" style="display:flex; justify-content:center; align-items:center; height: 100%;">
-                    <img [src]="image.src" alt="{{image.alt}}" style="width: 100%; height: auto;">
+                    <img [src]="image.imagen" alt="{{image.alt}}" style="width: 100%; height: auto;">
                 </div>
             </ng-template>
         </p-carousel>
