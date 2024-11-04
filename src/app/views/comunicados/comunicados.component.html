@@ -62,8 +62,16 @@
                 <h2 class="">Agregar comunicado</h2>
                 <form class="form" [formGroup]="comunicadoForm" (ngSubmit)="agregar_comunicado()">
                     <div class="input">
-                        <label for="">Imagen</label>
-                        <input type="text" formControlName="imagen" placeholder="Ingresa la imagen">
+                        <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
+                            [multiple]="true" accept="image/*" maxFileSize="1000000" formContorlName="imagen">
+                            <ng-template pTemplate="content">
+                                <ul *ngIf="uploadedFiles.length">
+                                    <li *ngFor="let file of uploadedFiles">
+                                        {{ file.name }} - {{ file.size }} bytes
+                                    </li>
+                                </ul>
+                            </ng-template>
+                        </p-fileUpload>
                     </div>
                     <div class="input">
                         <label for="">Nombre</label>
