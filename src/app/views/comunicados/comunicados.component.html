@@ -61,20 +61,28 @@
             <div class="box-modal">
                 <h2 class="">Agregar comunicado</h2>
                 <form class="form" [formGroup]="comunicadoForm" (ngSubmit)="agregar_comunicado()">
-                    <div class="input">
-                        <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
-                            [multiple]="true" accept="image/*" maxFileSize="1000000" formContorlName="imagen">
+                    <div class="card">
+                        <p-toast />
+                        <p-fileUpload
+                            name="demo[]"
+                            (onUpload)="onUpload($event)"
+                            [multiple]="true"
+                            accept="image/*"
+                            maxFileSize="1000000"
+                            mode="advanced"
+                        >
+                            <ng-template pTemplate="empty">
+                                <div>Drag and drop files to here to upload.</div>
+                            </ng-template>
                             <ng-template pTemplate="content">
                                 <ul *ngIf="uploadedFiles.length">
-                                    <li *ngFor="let file of uploadedFiles">
-                                        {{ file.name }} - {{ file.size }} bytes
-                                    </li>
+                                    <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
                                 </ul>
                             </ng-template>
                         </p-fileUpload>
                     </div>
                     <div class="input">
-                        <label for="">Nombre</label>
+                        <label for=""></label>
                         <input type="text" formControlName="nombre" placeholder="Ingresa el nombre">
                     </div>
                     <div class="input">
