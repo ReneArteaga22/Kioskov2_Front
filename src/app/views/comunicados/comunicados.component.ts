@@ -11,13 +11,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { FileUploadModule } from 'primeng/fileupload';
-import { ToastModule } from 'primeng/toast';
 import { NgIf } from '@angular/common';
 
-interface UploadEvent {
-  originalEvent: Event;
-  files: File[];
-}
+
 
 @Component({
   selector: 'app-comunicados',
@@ -28,6 +24,8 @@ interface UploadEvent {
   providers: [MessageService]
 })
 export class ComunicadosComponent implements OnInit{
+
+  hoy:string = ''
   uploadedFiles: any[] = []
   comunicadoForm: FormGroup
   visible:boolean = false
@@ -41,12 +39,18 @@ export class ComunicadosComponent implements OnInit{
   modal:boolean = false
 
   constructor(private apiService:ApiService, private cookie:CookieService, private messageService: MessageService){
+
+    const ahora = new Date();
+    ahora.setHours(ahora.getHours() - 6); 
+    this.hoy = ahora.toISOString().substring(0, 16)
+
     this.comunicadoForm = new FormGroup({
       imagen: new FormControl('',[Validators.required]),
-      nombre: new FormControl('',Validators.required),
-      fecha: new FormControl('',[Validators.required])
+      nombre: new FormControl('',[Validators.required]),
+      fecha: new FormControl(this.hoy,[Validators.required])
     })
   }
+  
 
   ngOnInit(): void {
     this.apiService.comunicados().subscribe(
@@ -77,28 +81,28 @@ export class ComunicadosComponent implements OnInit{
     this.visible = false
   }
 
+  onUpload(event:any){ 
+    for (let file of event.files)
+      { this.uploadedFiles.push(file); this.comunicadoForm.patchValue({ imagen: file }) 
+    } 
+  }
+
   agregar(){
     this.visibleForm = true
   }
 
   agregar_comunicado(){
-    console.log(this.comunicadoForm.value)
-    // if(this.comunicadoForm.valid && !this.isSubmit){
-    //   this.apiService.agregar_comunicado(this.comunicadoForm.value).subscribe(
-    //     response=>{
-    //       console.log(response)
+    if(this.comunicadoForm.valid && !this.isSubmit){
+      this.apiService.agregar_comunicado(this.comunicadoForm.value).subscribe(
+        response=>{
+          console.log(response)
           
-    //     }
-    //   )
-    // }
+        }
+      )
+    }
     this.visibleForm = false
   }
-  onUpload(event:UploadEvent) {
-    for(let file of event.files) {
-      this.uploadedFiles.push(file);
-    }
-    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
-  }
+
   eliminar(){
     let comunicado = parseInt(this.cookie.get('comunicado'))
     console.log('eliminar',comunicado)
@@ -118,5 +122,11 @@ export class ComunicadosComponent implements OnInit{
       location.reload()
     }, 1600);
 
+  }
+
+  onFileChange(event:any) 
+  { const file = event.target.files[0]; if (file) 
+      {this.comunicadoForm.patchValue({ imagen: file.name})
+    } 
   }
 }

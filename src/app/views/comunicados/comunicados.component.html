@@ -62,24 +62,22 @@
                 <h2 class="">Agregar comunicado</h2>
                 <form class="form" [formGroup]="comunicadoForm" (ngSubmit)="agregar_comunicado()">
                     <div class="input">
-                        <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
-                            [multiple]="true" accept="image/*" maxFileSize="1000000" formContorlName="imagen">
-                            <ng-template pTemplate="content">
-                                <ul *ngIf="uploadedFiles.length">
-                                    <li *ngFor="let file of uploadedFiles">
-                                        {{ file.name }} - {{ file.size }} bytes
-                                    </li>
-                                </ul>
-                            </ng-template>
-                        </p-fileUpload>
+                        <input type="file" id="file" formControlName="imagen" (change)="onFileChange($event)" hidden> 
+                        <label for="file" class="custom-file-upload"> 
+                            <i class="pi pi-upload"></i>Seleccionar archivo
+                        </label> 
+                        <div *ngIf="comunicadoForm.get('imagen')?.value"> 
+                            Archivo seleccionado: {{ comunicadoForm.get('imagen')?.value }} 
+                        </div>
+                        <!-- <input type="file" formControlName="imagen" (change)="onFileChange($event)"> -->
                     </div>
                     <div class="input">
-                        <label for="">Nombre</label>
-                        <input type="text" formControlName="nombre" placeholder="Ingresa el nombre">
+                        <label for="">Imagen</label>
+                        <input type="text" formControlName="nombre" placeholder="Nombre de la imagen...">
                     </div>
                     <div class="input">
                         <label for="">Fecha</label>
-                        <input type="date" formControlName="fecha">
+                        <input type="datetime-local" formControlName="fecha" [min]="hoy">
                     </div>
                     <div class="btn">
                         <button type="submit" (click)="alert()" [disabled]="!comunicadoForm.valid">Agregar</button>
