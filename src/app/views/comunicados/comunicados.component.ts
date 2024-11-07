@@ -78,7 +78,6 @@ export class ComunicadosComponent implements OnInit{
       }
     )
   }
-
   paginateComunicados() {
     this.paginacionComunicados = this.comunicados.slice(this.first, this.first + this.rows);
   }
@@ -118,6 +117,7 @@ export class ComunicadosComponent implements OnInit{
       this.apiService.agregar_comunicado(this.comunicadoForm.value).subscribe(
         response=>{
           console.log(response)
+          location.reload()
         }
       )
     }
@@ -130,6 +130,7 @@ export class ComunicadosComponent implements OnInit{
       this.apiService.agregar_comunicado(this.menuForm.value).subscribe(
         response=>{
           console.log(response)
+          // location.reload()
         }
       )
     }
@@ -143,6 +144,7 @@ export class ComunicadosComponent implements OnInit{
       response=>{
         console.log('eliminar: ',response)
         this.visible = false
+        this.cookie.delete('comunicado')
         location.reload()
       }
     )
@@ -152,7 +154,6 @@ export class ComunicadosComponent implements OnInit{
     this.modal = true
     setTimeout(() => { 
       this.modal = false
-      location.reload()
     }, 1600);
   }
 
