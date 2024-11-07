@@ -36,11 +36,7 @@ export class CCardsModulesComponent implements OnInit {
       this.isSistemas = true;
     }
 
-    this.apiService.comunicados().subscribe(
-      response=>{
-
-      }
-    )
+    
     
     this.isLoggin = this.cookie.check('sesion');
   }

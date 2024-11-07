@@ -59,3 +59,11 @@
     <option *ngIf="isLoggin" value="/login">Cerrar Sesion</option>
   </select>
 </nav>
+<div>
+  <p-dialog [modal]="true" [(visible)]="closeSession" [style]="{ width: '400px', height: '200px', borderRadius: '8px'}">
+      <div class="box-modal">
+          <h2 class="">Cerrando sesion</h2>
+          <img src="icons/cerrar_sesion.png" alt="">
+      </div>
+  </p-dialog>
+</div>

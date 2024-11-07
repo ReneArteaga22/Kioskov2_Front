@@ -18,6 +18,7 @@ export class CNavBarComponent implements OnInit{
   isComedor: boolean = false
   isLoggin: boolean = false;
   visible:boolean = false
+  closeSession:boolean = false
   images:any[]=[]
 
   constructor(private galleta:CookieService, private router:Router){}
@@ -42,8 +43,14 @@ export class CNavBarComponent implements OnInit{
     this.isSistemas = false
     this.isLoggin = false
     this.isRH = false
-    this.router.navigate(['/'])
-    location.reload()
+    this.closeSession = true
+
+    setTimeout(()=>{
+      this.router.navigate(['/'])
+      this.closeSession = false
+
+      location.reload()
+    },1200)
   }
 
   navegar(event: any) {
