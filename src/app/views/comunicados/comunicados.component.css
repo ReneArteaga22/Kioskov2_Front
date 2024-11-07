@@ -26,6 +26,16 @@
     border: 1px solid #c9c5c5;
     padding: 10px;
 }
+.titulo{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e79371;
+    padding-bottom: 5px; 
+}
+.titulo button{
+    width: 30%;
+    margin-right: 4rem;
+}
 .menu{
     display: flex;
     flex-direction: column;
@@ -34,10 +44,6 @@
     background-color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border: 1px solid #c9c5c5;
-}
-h1{
-    border-bottom: 1px solid #e79371;
-    padding-bottom: 5px; 
 }
 table{
     border-collapse: collapse;
@@ -82,12 +88,12 @@ td{
     background-color: #4deb94d0;
     border: none;
     width: 50%;
-    height: 3rem;
+    height: 2.2rem;
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    color:white;
-    font-size: 1.5rem;
+    color:rgb(73, 71, 71);
+    font-size: 1.1rem;
 }
 .post:hover{
     background-color: #03b447d0;
@@ -144,6 +150,7 @@ input{
     flex-direction: column;
     gap:15px;
     width: 80%;
+    margin-top: 15px;
 }
 .btn{
     display: flex;
@@ -159,6 +166,7 @@ input{
     cursor: pointer;
     background-color: #ff7f50; 
     color: white;
+    font-size: 1.5rem;
 }
 .btn button:hover {
   background-color: #ff5722; 
@@ -167,4 +175,24 @@ label{
     color: black;
     font-size: 20px;
 }
+.custom-file-upload { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    cursor: pointer; 
+    background-color: #007bff; 
+    color: white; 
+    border-radius: 10px;
+    height: 2.5rem;
+    font-size: 16px; 
+    transition: background-color 0.3s; 
+    text-align: center; 
+} 
 
+.custom-file-upload:hover { 
+    background-color: #0056b3; 
+} 
+.custom-file-upload i { 
+    margin-right: 8px;
+}

@@ -11,13 +11,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { FileUploadModule } from 'primeng/fileupload';
-import { ToastModule } from 'primeng/toast';
 import { NgIf } from '@angular/common';
 
-interface UploadEvent {
-  originalEvent: Event;
-  files: File[];
-}
+
 
 @Component({
   selector: 'app-comunicados',
@@ -28,8 +24,11 @@ interface UploadEvent {
   providers: [MessageService]
 })
 export class ComunicadosComponent implements OnInit{
+
+  hoy:string = ''
   uploadedFiles: any[] = []
   comunicadoForm: FormGroup
+  menuForm:FormGroup
   visible:boolean = false
   visibleForm:boolean = false
   comunicados: any[] = []
@@ -39,16 +38,37 @@ export class ComunicadosComponent implements OnInit{
   paginacionComunicados: any[]=[]
   isSubmit:boolean = false
   modal:boolean = false
+  visibleFormMenu: boolean = false
+  menus:any[]=[]
 
   constructor(private apiService:ApiService, private cookie:CookieService, private messageService: MessageService){
+
+    const ahora = new Date();
+    ahora.setHours(ahora.getHours() - 6); 
+    this.hoy = ahora.toISOString().substring(0, 16)
+
     this.comunicadoForm = new FormGroup({
       imagen: new FormControl('',[Validators.required]),
-      nombre: new FormControl('',Validators.required),
-      fecha: new FormControl('',[Validators.required])
+      nombre: new FormControl('',[Validators.required]),
+      tipo: new FormControl('comunicado')
+    })
+
+    this.menuForm = new FormGroup({
+      imagen: new FormControl('',[Validators.required]),
+      nombre: new FormControl('',[Validators.required]),
+      tipo: new FormControl('menu')
     })
   }
+  
 
   ngOnInit(): void {
+    this.apiService.menu_comunicado().subscribe(
+      response =>{
+        this.menus = response.comunicado
+        console.log('mira',this.menus)
+      }
+    )
+
     this.apiService.comunicados().subscribe(
       response=>{
         this.comunicados = response.comunicados;
@@ -58,6 +78,7 @@ export class ComunicadosComponent implements OnInit{
       }
     )
   }
+
   paginateComunicados() {
     this.paginacionComunicados = this.comunicados.slice(this.first, this.first + this.rows);
   }
@@ -77,28 +98,44 @@ export class ComunicadosComponent implements OnInit{
     this.visible = false
   }
 
+  onUpload(event:any){ 
+    for (let file of event.files)
+      { this.uploadedFiles.push(file); this.comunicadoForm.patchValue({ imagen: file }) 
+    } 
+  }
+
   agregar(){
     this.visibleForm = true
   }
 
+  agregarMenu(){
+    this.visibleFormMenu = true
+  }
+
   agregar_comunicado(){
     console.log(this.comunicadoForm.value)
-    // if(this.comunicadoForm.valid && !this.isSubmit){
-    //   this.apiService.agregar_comunicado(this.comunicadoForm.value).subscribe(
-    //     response=>{
-    //       console.log(response)
-          
-    //     }
-    //   )
-    // }
+    if(this.comunicadoForm.valid && !this.isSubmit){
+      this.apiService.agregar_comunicado(this.comunicadoForm.value).subscribe(
+        response=>{
+          console.log(response)
+        }
+      )
+    }
     this.visibleForm = false
   }
-  onUpload(event:UploadEvent) {
-    for(let file of event.files) {
-      this.uploadedFiles.push(file);
+
+  agregar_menu(){
+    console.log(this.menuForm.value)
+    if(this.menuForm.valid && !this.isSubmit){
+      this.apiService.agregar_comunicado(this.menuForm.value).subscribe(
+        response=>{
+          console.log(response)
+        }
+      )
     }
-    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
+    this.visibleFormMenu = false
   }
+
   eliminar(){
     let comunicado = parseInt(this.cookie.get('comunicado'))
     console.log('eliminar',comunicado)
@@ -117,6 +154,23 @@ export class ComunicadosComponent implements OnInit{
       this.modal = false
       location.reload()
     }, 1600);
+  }
 
+  onFileChange(event:any) 
+  { const file = event.target.files[0]; 
+  if (file){
+      this.comunicadoForm.patchValue({ 
+        imagen: file.name
+      })
+    } 
+  }
+
+  onFileChangeMenu(event:any) 
+  { const file = event.target.files[0]; 
+  if (file){
+      this.menuForm.patchValue({ 
+        imagen: file.name
+      })
+    } 
   }
 }

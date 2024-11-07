@@ -30,7 +30,7 @@
     <li *ngIf="isRH || isSistemas"><a [routerLink]="['/usuarios']">Usuarios</a></li>
     <!-- <li *ngIf="isRH || isSistemas"><a [routerLink]="['/comunicados']">Comunicados</a></li> -->
     <li *ngIf="isRH || isSistemas"><a [routerLink]="['/sugerencias']">Buzon</a></li>
-    <li *ngIf="isRH || isSistemas"><a (click)="cerrarSesion()">Cerrar sesion</a></li>
+    <li *ngIf="isRH || isSistemas || isLoggin"><a (click)="cerrarSesion()">Cerrar sesion</a></li>
     <li *ngIf="isComedor"><a (click)="cerrarSesion()" style="color:rgb(31, 30, 30)">Cerrar sesion comedor</a></li>
 
     <i *ngIf="!isLoggin" [routerLink]="['/login']" class="pi pi-user" style="font-size: 2rem; color: white;"></i>
@@ -59,3 +59,11 @@
     <option *ngIf="isLoggin" value="/login">Cerrar Sesion</option>
   </select>
 </nav>
+<div>
+  <p-dialog [modal]="true" [(visible)]="closeSession" [style]="{ width: '400px', height: '200px', borderRadius: '8px'}">
+      <div class="box-modal">
+          <h2 class="">Cerrando sesion</h2>
+          <img src="icons/cerrar_sesion.png" alt="">
+      </div>
+  </p-dialog>
+</div>
