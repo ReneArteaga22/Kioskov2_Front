@@ -87,14 +87,8 @@ export class ComunicadosComponent implements OnInit{
         console.log(this.comunicados)
       }
     )
-
-    this.apiService.foto().subscribe(
-      response=>{
-        this.imagenes = response.imagenes
-        console.log(this.imagenes)
-      }
-    )
   }
+  
   paginateComunicados() {
     this.paginacionComunicados = this.comunicados.slice(this.first, this.first + this.rows);
   }
