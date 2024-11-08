@@ -51,7 +51,7 @@ export const routes: Routes = [
   { path: 'comunicados',component:ComunicadosComponent,canActivate:[rhGuard]},
   { path: 'solicitudes',component:SolicitudesComponent,canActivate:[rhGuard]}, 
   { path: 'solicitud',component:SolicitudComponent,},
-  { path: 'buzon',component:BuzonComponent,canActivate:[rhGuard]},
+  { path: 'buzon',component:BuzonComponent,canActivate:[]},
   { path: 'sugerencias',component:SugerenciasComponent,canActivate:[rhGuard]},
-  { path: 'comunicado',component:ComunicadoComponent,canActivate:[rhGuard]}
+  { path: 'comunicado',component:ComunicadoComponent,canActivate:[]}
 ]
