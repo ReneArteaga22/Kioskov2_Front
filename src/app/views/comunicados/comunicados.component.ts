@@ -128,17 +128,6 @@ export class ComunicadosComponent implements OnInit{
     this.visibleFormMenu = true
   }
 
-  // agregar_comunicado(){
-  //   console.log(this.comunicadoForm.value)
-  //   if(this.comunicadoForm.valid && !this.isSubmit){
-  //     this.apiService.agregar_comunicado(this.comunicadoForm.value).subscribe(
-  //       response=>{
-  //         console.log(response)
-  //       }
-  //     )
-  //   }
-  //   this.visibleForm = false
-  // }
   onFileChange(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
@@ -161,6 +150,7 @@ export class ComunicadosComponent implements OnInit{
     this.apiService.agregar_comunicado(formData).subscribe(
       (response) => {
         console.log('Imagen subida y comunicado agregado:', response);
+        location.reload()
       },
       (error) => {
         console.error('Error al agregar comunicado:', error);
