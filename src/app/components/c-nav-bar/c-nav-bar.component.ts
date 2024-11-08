@@ -39,7 +39,7 @@ export class CNavBarComponent implements OnInit{
   }
 
   cerrarSesion(){
-    this.galleta.deleteAll()
+    this.galleta.deleteAll('/')
     this.isSistemas = false
     this.isLoggin = false
     this.isRH = false
@@ -48,9 +48,8 @@ export class CNavBarComponent implements OnInit{
     setTimeout(()=>{
       this.router.navigate(['/'])
       this.closeSession = false
-
       location.reload()
-    },1200)
+    },1600)
   }
 
   navegar(event: any) {
