@@ -78,7 +78,7 @@ export class ComunicadosComponent implements OnInit{
   ngOnInit(): void {
     this.apiService.menu_comunicado().subscribe(
       response =>{
-        this.menus = response.comunicado
+        this.menus = response.comunicados;
         console.log('mira',this.menus)
       }
     )
