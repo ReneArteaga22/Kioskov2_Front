@@ -1,198 +1,129 @@
 <div class="box">
-  <app-c-bar></app-c-bar>
-  <div class="comunicados">
-    <div class="comunicado">
-      <div class="titulo">
-        <button class="post" (click)="agregar()">Agregar Comunicado</button>
-        <h1>Comunicados</h1>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Imagen</th>
-            <th>Fecha</th>
-            <th>Eliminar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let comunicado of paginacionComunicados">
-            <td>{{ comunicado.id }}</td>
-            <td><img src="{{ comunicado.imagen }}" alt="" /></td>
-            <td>{{ comunicado.createdAt | date : "yyyy/MM/dd" }}</td>
-            <td>
-              <button class="delete" (click)="dialog(comunicado.id)">
-                <i class="pi pi-trash" style="font-size: 2rem"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="card flex justify-content-center">
-        <p-paginator
-          (onPageChange)="onPageChange($event)"
-          [first]="first"
-          [rows]="rows"
-          [totalRecords]="totalRecords"
-        >
-        </p-paginator>
-      </div>
-    </div>
-    <div class="menu">
-      <div class="titulo">
-        <button class="post" (click)="agregarMenu()">Agregar Menu</button>
-        <h1>Menu de la semana</h1>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Imagen</th>
-            <th>Fecha</th>
-            <th>Eliminar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let menu of menus">
-            <td>{{ menu.id }}</td>
-            <td><img src="{{ menu.imagen }}" alt="" /></td>
-            <td>{{ menu.createdAt | date : "yyyy/MM/dd" }}</td>
-            <td>
-              <button class="delete" (click)="dialog(menu.id)">
-                <i class="pi pi-trash" style="font-size: 2rem"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div>
-    <p-dialog
-      [modal]="true"
-      [(visible)]="visible"
-      [style]="{ width: '400px', height: '400px', borderRadius: '8px' }"
-    >
-      <div class="box-modal">
-        <img src="icons/warning.png" alt="" />
-        <h2 class="">¿Seguro que quieres eliminar este comunicado?</h2>
-        <div class="buttons">
-          <button class="delete" (click)="eliminar()">Eliminar</button>
-          <button
-            class="done"
-            (click)="cancelar()"
-            style="background-color: orange"
-          >
-            Cancelar
-          </button>
+    <app-c-bar></app-c-bar>
+    <div class="comunicados">
+        <div class="comunicado">
+            <div class="titulo">
+                <button class="post" (click)="agregar()">Agregar Comunicado</button>
+                <h1>Comunicados</h1>
+            </div>
+            <table>  
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Imagen</th>
+                        <th>Fecha</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let comunicado of paginacionComunicados">
+                        <td>{{comunicado.id}}</td>
+                        <!-- ESTE ES LA RUTA DE LA IMG GURDADA EN EL BACK -->
+                        <td><img [src]="'http://localhost:3333/' + comunicado.imagen" alt="Imagen del comunicado"></td>
+                        <td>{{comunicado.createdAt | date : "yyyy/MM/dd"}}</td>
+                        <td><button class="delete" (click)="dialog(comunicado.id)"><i class="pi pi-trash" style="font-size: 2rem"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="card flex justify-content-center">
+                <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="totalRecords">
+                </p-paginator>
+            </div>
         </div>
-      </div>
-    </p-dialog>
-  </div>
-  <div>
-    <p-dialog
-      [modal]="true"
-      [(visible)]="visibleForm"
-      [style]="{ width: '600px', height: '350px', borderRadius: '8px' }"
-    >
-      <div class="box-modal">
-        <h2 class="">Agregar comunicado</h2>
-        <form
-          class="form"
-          [formGroup]="comunicadoForm"
-          (ngSubmit)="agregar_comunicado()"
-        >
-          <div class="input">
-            <input
-              type="file"
-              id="file"
-              formControlName="imagen"
-              (change)="onFileChange($event)"
-              hidden
-            />
-            <label for="file" class="custom-file-upload">
-              <i class="pi pi-upload"></i>Seleccionar archivo
-            </label>
-            <div *ngIf="comunicadoForm.get('imagen')?.value">
-              Archivo seleccionado: {{ comunicadoForm.get("imagen")?.value }}
+        <div class="menu">
+            <div class="titulo">
+                <button class="post" (click)="agregarMenu()">Agregar Menu</button>
+                <h1>Menu de la semana</h1>
             </div>
-          </div>
-          <div class="input">
-            <label for="nombre">Nombre</label>
-            <input
-              type="text"
-              formControlName="nombre"
-              placeholder="Nombre del comunicado..."
-            />
-          </div>
-          <div class="btn">
-            <button
-              type="submit"
-              (click)="alert()"
-              [disabled]="!comunicadoForm.valid"
-            >
-              Agregar
-            </button>
-          </div>
-        </form>
-      </div>
-    </p-dialog>
-  </div>
-  <div>
-    <p-dialog
-      [modal]="true"
-      [(visible)]="visibleFormMenu"
-      [style]="{ width: '600px', height: '350px', borderRadius: '8px' }"
-    >
-      <div class="box-modal">
-        <h2 class="">Agregar Menu</h2>
-        <form class="form" [formGroup]="menuForm" (ngSubmit)="agregar_menu()">
-          <div class="input">
-            <input
-              type="file"
-              id="file"
-              formControlName="imagen"
-              (change)="onFileChangeMenu($event)"
-              hidden
-            />
-            <label for="file" class="custom-file-upload">
-              <i class="pi pi-upload"></i>Seleccionar archivo
-            </label>
-            <div *ngIf="menuForm.get('imagen')?.value">
-              Archivo seleccionado: {{ menuForm.get("imagen")?.value }}
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Imagen</th>
+                        <th>Fecha</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let menu of menus">
+                        <td>{{menu.id}}</td>
+                        <!-- ESTE ES LA RUTA DE LA IMG GURDADA EN EL BACK -->
+                        <td><img [src]="'http://localhost:3333/' + menu.imagen" alt="Imagen del comunicado"></td>
+                        <td>{{menu.createdAt | date : "yyyy/MM/dd"}}</td>
+                        <td><button class="delete" (click)="dialog(menu.id)"><i class="pi pi-trash" style="font-size: 2rem"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+        <p-dialog [modal]="true" [(visible)]="visible" [style]="{ width: '400px', height: '400px', borderRadius: '8px'}">
+            <div class="box-modal">
+                <img src="icons/warning.png" alt="">
+                <h2 class="">¿Seguro que quieres eliminar este comunicado?</h2>
+                <div class="buttons">
+                    <button class="delete" (click)="eliminar()">Eliminar</button>
+                    <button class="done" (click)="cancelar()" style="background-color: orange;">Cancelar</button>
+                </div>
             </div>
-            <div class="input">
-              <label for="nombre">Nombre</label>
-              <input
-                type="text"
-                formControlName="nombre"
-                placeholder="Nombre de menu..."
-              />
+        </p-dialog>
+    </div>
+    <div>
+        <p-dialog [modal]="true" [(visible)]="visibleForm" [style]="{ width: '600px', height: '350px', borderRadius: '8px'}">
+            <div class="box-modal">
+                <h2 class="">Agregar comunicado</h2>
+                <form class="form" [formGroup]="comunicadoForm" (ngSubmit)="agregar_comunicado()">
+                    <div class="input">
+                        <input type="file" id="file" formControlName="imagen" (change)="onFileChange($event)" hidden> 
+                        <label for="file" class="custom-file-upload"> 
+                            <i class="pi pi-upload"></i>Seleccionar archivo
+                        </label> 
+                        <div *ngIf="comunicadoForm.get('imagen')?.value"> 
+                            Archivo seleccionado: {{ comunicadoForm.get('imagen')?.value }} 
+                        </div>
+                    </div>
+                    <div class="input">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" formControlName="nombre" placeholder="Nombre del comunicado...">
+                    </div>
+                    <div class="btn">
+                        <button type="submit" (click)="alert()" [disabled]="!comunicadoForm.valid">Agregar</button>
+                    </div>
+                </form>
             </div>
-          </div>
-          <div class="btn">
-            <button
-              type="submit"
-              (click)="alert()"
-              [disabled]="!menuForm.valid"
-            >
-              Agregar
-            </button>
-          </div>
-        </form>
-      </div>
-    </p-dialog>
-  </div>
-  <div>
-    <p-dialog
-      [modal]="true"
-      [(visible)]="modal"
-      [style]="{ width: '400px', height: '250px', borderRadius: '8px' }"
-    >
-      <div class="box-modal">
-        <h2 class="">Agregado correctamente</h2>
-        <img src="icons/success.png" alt="" />
-      </div>
-    </p-dialog>
-  </div>
+        </p-dialog>
+    </div>
+    <div>
+        <p-dialog [modal]="true" [(visible)]="visibleFormMenu" [style]="{ width: '600px', height: '350px', borderRadius: '8px'}">
+            <div class="box-modal">
+                <h2 class="">Agregar Menu</h2>
+                <form class="form" [formGroup]="menuForm" (ngSubmit)="agregar_menu()">
+                    <div class="input">
+                        <input type="file" id="file" formControlName="imagen" (change)="onFileChangeMenu($event)" hidden> 
+                        <label for="file" class="custom-file-upload"> 
+                            <i class="pi pi-upload"></i>Seleccionar archivo
+                        </label> 
+                        <div *ngIf="menuForm.get('imagen')?.value"> 
+                            Archivo seleccionado: {{ menuForm.get('imagen')?.value }} 
+                        </div>
+                        <div class="input">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" formControlName="nombre" placeholder="Nombre de menu...">
+                        </div>
+                    </div>
+                    <div class="btn">
+                        <button type="submit" (click)="alert()" [disabled]="!menuForm.valid">Agregar</button>
+                    </div>
+                </form>
+            </div>
+        </p-dialog>
+    </div>
+    <div>
+        <p-dialog [modal]="true" [(visible)]="modal" [style]="{ width: '400px', height: '250px', borderRadius: '8px'}">
+            <div class="box-modal">
+                <h2 class="">Agregado correctamente</h2>
+                <img src="icons/success.png" alt="">
+            </div>
+        </p-dialog>
+    </div>
 </div>
