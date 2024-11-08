@@ -26,11 +26,12 @@ import { rhGuard } from './service/rh.guard';
 import { BuzonComponent } from './views/buzon/buzon.component';
 import { SugerenciasComponent } from './views/sugerencias/sugerencias.component';
 import { ComunicadoComponent } from './views/comunicado/comunicado.component';
+import { comedorGuard } from './service/comedor.guard';
 
 export const routes: Routes = [
   { path: '',component: HomeComponent},
   { path: 'modulo_asistencia', component: ModuloAsistenciaComponent,canActivate:[rhGuard] },
-  { path: 'comedor', component: ComedorComponent, },
+  { path: 'comedor', component: ComedorComponent,canActivate:[comedorGuard] },
   { path: 'transporte', component: TransporteComponent, },
   { path: 'servicios', component: EvaluacionServiciosComponent, },
   { path: 'resultados-evaluacion-comedor', component: ResultadosEvaluacionComponent,canActivate:[rhGuard] },
