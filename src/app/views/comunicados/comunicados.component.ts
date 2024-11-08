@@ -14,8 +14,6 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { NgIf } from '@angular/common';
 import { FormBuilder } from '@angular/forms';
 
-
-
 @Component({
   selector: 'app-comunicados',
   standalone: true,
@@ -56,11 +54,17 @@ export class ComunicadosComponent implements OnInit{
     //   tipo: new FormControl('comunicado')
     // })
 
-    this.menuForm = new FormGroup({
-      imagen: new FormControl('',[Validators.required]),
-      nombre: new FormControl('',[Validators.required]),
-      tipo: new FormControl('menu')
-    })
+    // this.menuForm = new FormGroup({
+    //   imagen: new FormControl('',[Validators.required]),
+    //   nombre: new FormControl('',[Validators.required]),
+    //   tipo: new FormControl('menu')
+    // })
+
+    this.menuForm = this.fb.group({
+      imagen: [null],
+      nombre: [''],
+      tipo:[]
+    });
 
     this.comunicadoForm = this.fb.group({
       imagen: [null],
@@ -74,7 +78,7 @@ export class ComunicadosComponent implements OnInit{
   ngOnInit(): void {
     this.apiService.menu_comunicado().subscribe(
       response =>{
-        this.menus = response.comunicado
+        this.menus = response.comunicados;
         console.log('mira',this.menus)
       }
     )
@@ -151,19 +155,31 @@ export class ComunicadosComponent implements OnInit{
       }
     );
   }
-
-
-  agregar_menu(){
-    console.log(this.menuForm.value)
-    if(this.menuForm.valid && !this.isSubmit){
-      this.apiService.agregar_comunicado(this.menuForm.value).subscribe(
-        response=>{
-          console.log(response)
-          // location.reload()
-        }
-      )
+  onFileChangeMenu(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      this.selectedFile = input.files[0];
+      this.menuForm.patchValue({ imagen: this.selectedFile.name });
     }
-    this.visibleFormMenu = false
+  }
+  agregar_menu() {
+    const formData = new FormData();
+    formData.append('nombre', this.menuForm.get('nombre')?.value);
+    formData.append('tipo', 'menu');
+  
+    if (this.selectedFile) {
+      formData.append('imagen', this.selectedFile);
+    }
+  
+    // Llama al método correcto para agregar el menú
+    this.apiService.agregar_menu(formData).subscribe(
+      (response) => {
+        console.log('Menu subido', response);
+      },
+      (error) => {
+        console.error('Error al agregar menú:', error);
+      }
+    );
   }
 
   eliminar(){
@@ -187,12 +203,12 @@ export class ComunicadosComponent implements OnInit{
   }
 
 
-  onFileChangeMenu(event:any) 
-  { const file = event.target.files[0]; 
-  if (file){
-      this.menuForm.patchValue({ 
-        imagen: file.name
-      })
-    } 
-  }
+  // onFileChangeMenu(event:any) 
+  // { const file = event.target.files[0]; 
+  // if (file){
+  //     this.menuForm.patchValue({ 
+  //       imagen: file.name
+  //     })
+  //   } 
+  // }
 }
