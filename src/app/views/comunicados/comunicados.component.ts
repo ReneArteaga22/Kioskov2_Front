@@ -40,6 +40,7 @@ export class ComunicadosComponent implements OnInit{
   modal:boolean = false
   visibleFormMenu: boolean = false
   menus:any[]=[]
+  imagenes:any[]=[]
 
   constructor(private apiService:ApiService, private cookie:CookieService, private messageService: MessageService){
 
@@ -75,6 +76,13 @@ export class ComunicadosComponent implements OnInit{
         this.totalRecords = this.comunicados.length;
         this.paginateComunicados()
         console.log(this.comunicados)
+      }
+    )
+
+    this.apiService.foto().subscribe(
+      response=>{
+        this.imagenes = response.imagenes
+        console.log(this.imagenes)
       }
     )
   }

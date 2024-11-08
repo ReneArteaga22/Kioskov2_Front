@@ -127,4 +127,8 @@ export class ApiService {
   menu_comunicado():Observable<any>{
     return this.http.get<any>(`${this.url}/api/comunicado/menu_comunicado`)
   }
+
+  foto():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/comunicado/img`)
+  }
 }
