@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { FileUploadModule } from 'primeng/fileupload';
 import { NgIf } from '@angular/common';
+import { FormBuilder } from '@angular/forms';
 
 
 
@@ -41,24 +42,32 @@ export class ComunicadosComponent implements OnInit{
   visibleFormMenu: boolean = false
   menus:any[]=[]
   imagenes:any[]=[]
+  selectedFile: File | null = null;
 
-  constructor(private apiService:ApiService, private cookie:CookieService, private messageService: MessageService){
+  constructor(private apiService:ApiService, private cookie:CookieService, private messageService: MessageService, private fb: FormBuilder){
 
     const ahora = new Date();
     ahora.setHours(ahora.getHours() - 6); 
     this.hoy = ahora.toISOString().substring(0, 16)
 
-    this.comunicadoForm = new FormGroup({
-      imagen: new FormControl('',[Validators.required]),
-      nombre: new FormControl('',[Validators.required]),
-      tipo: new FormControl('comunicado')
-    })
+    // this.comunicadoForm = new FormGroup({
+    //   imagen: new FormControl('',[Validators.required]),
+    //   nombre: new FormControl('',[Validators.required]),
+    //   tipo: new FormControl('comunicado')
+    // })
 
     this.menuForm = new FormGroup({
       imagen: new FormControl('',[Validators.required]),
       nombre: new FormControl('',[Validators.required]),
       tipo: new FormControl('menu')
     })
+
+    this.comunicadoForm = this.fb.group({
+      imagen: [null],
+      nombre: [''],
+      tipo: []
+    });
+  
   }
   
 
@@ -119,18 +128,46 @@ export class ComunicadosComponent implements OnInit{
     this.visibleFormMenu = true
   }
 
-  agregar_comunicado(){
-    console.log(this.comunicadoForm.value)
-    if(this.comunicadoForm.valid && !this.isSubmit){
-      this.apiService.agregar_comunicado(this.comunicadoForm.value).subscribe(
-        response=>{
-          console.log(response)
-          location.reload()
-        }
-      )
+  // agregar_comunicado(){
+  //   console.log(this.comunicadoForm.value)
+  //   if(this.comunicadoForm.valid && !this.isSubmit){
+  //     this.apiService.agregar_comunicado(this.comunicadoForm.value).subscribe(
+  //       response=>{
+  //         console.log(response)
+  //       }
+  //     )
+  //   }
+  //   this.visibleForm = false
+  // }
+  onFileChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      this.selectedFile = input.files[0];
+      this.comunicadoForm.patchValue({ imagen: this.selectedFile.name });
     }
-    this.visibleForm = false
   }
+
+  // Método para enviar datos al backend
+  agregar_comunicado() {
+    const formData = new FormData();
+    formData.append('nombre', this.comunicadoForm.get('nombre')?.value);
+    formData.append('tipo', 'comunicado'); 
+
+    if (this.selectedFile) {
+      formData.append('imagen', this.selectedFile);
+    }
+
+    // Llama al método del servicio para hacer la solicitud
+    this.apiService.agregar_comunicado(formData).subscribe(
+      (response) => {
+        console.log('Imagen subida y comunicado agregado:', response);
+      },
+      (error) => {
+        console.error('Error al agregar comunicado:', error);
+      }
+    );
+  }
+
 
   agregar_menu(){
     console.log(this.menuForm.value)
@@ -165,14 +202,6 @@ export class ComunicadosComponent implements OnInit{
     }, 1600);
   }
 
-  onFileChange(event:any) 
-  { const file = event.target.files[0]; 
-  if (file){
-      this.comunicadoForm.patchValue({ 
-        imagen: file.name
-      })
-    } 
-  }
 
   onFileChangeMenu(event:any) 
   { const file = event.target.files[0]; 
