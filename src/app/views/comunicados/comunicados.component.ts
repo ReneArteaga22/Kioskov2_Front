@@ -6,7 +6,7 @@ import { DatePipe } from '@angular/common';
 import { PaginatorModule } from 'primeng/paginator';
 import { DialogModule } from 'primeng/dialog';
 import { CookieService } from 'ngx-cookie-service';
-import { CBarComponent } from '../../components/c-bar/c-bar.component';
+import { CNavBarComponent } from '../../components/c-nav-bar/c-nav-bar.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MessageService } from 'primeng/api';
@@ -17,7 +17,7 @@ import { FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-comunicados',
   standalone: true,
-  imports: [RouterLink, NgFor, DatePipe, PaginatorModule,DialogModule,CBarComponent, ReactiveFormsModule, FileUploadModule, NgIf],
+  imports: [RouterLink, NgFor, DatePipe, PaginatorModule,DialogModule,CNavBarComponent, ReactiveFormsModule, FileUploadModule, NgIf],
   templateUrl: './comunicados.component.html',
   styleUrl: './comunicados.component.css',
   providers: [MessageService]
@@ -175,6 +175,7 @@ export class ComunicadosComponent implements OnInit{
     this.apiService.agregar_menu(formData).subscribe(
       (response) => {
         console.log('Menu subido', response);
+        location.reload()
       },
       (error) => {
         console.error('Error al agregar menú:', error);

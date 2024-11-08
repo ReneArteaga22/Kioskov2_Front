@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { CBarComponent } from '../../components/c-bar/c-bar.component';
 import { DialogModule } from 'primeng/dialog';
 import { CarouselModule } from 'primeng/carousel';
 import { ApiService } from '../../service/api.service';
+import { CNavBarComponent } from '../../components/c-nav-bar/c-nav-bar.component';
 
 @Component({
   selector: 'app-comunicado',
   standalone: true,
-  imports: [CBarComponent, DialogModule, CarouselModule],
+  imports: [CNavBarComponent, DialogModule, CarouselModule],
   templateUrl: './comunicado.component.html',
   styleUrl: './comunicado.component.css'
 })

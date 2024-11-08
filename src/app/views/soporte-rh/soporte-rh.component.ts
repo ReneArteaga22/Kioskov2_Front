@@ -3,12 +3,11 @@ import { Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { NgIf } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
-import { CBarComponent } from '../../components/c-bar/c-bar.component';
-
+import { CNavBarComponent } from '../../components/c-nav-bar/c-nav-bar.component';
 @Component({
   selector: 'app-soporte-rh',
   standalone: true,
-  imports: [RouterLink, ButtonModule, NgIf, CBarComponent],
+  imports: [RouterLink, ButtonModule, NgIf, CNavBarComponent],
   templateUrl: './soporte-rh.component.html',
   styleUrl: './soporte-rh.component.css'
 })

@@ -48,10 +48,10 @@ export const routes: Routes = [
   { path: 'solicitud-gafete',component:SolicitudGafeteComponent,},
   { path: 'consultar-vacaciones',component:ConsultarVacacionesComponent,},
   { path: 'usuarios-info',component:UsuariosInfoComponent,canActivate:[rhGuard]},
-  { path: 'comunicados',component:ComunicadosComponent,},
-  { path: 'solicitudes',component:SolicitudesComponent,},
+  { path: 'comunicados',component:ComunicadosComponent,canActivate:[rhGuard]},
+  { path: 'solicitudes',component:SolicitudesComponent,canActivate:[rhGuard]}, 
   { path: 'solicitud',component:SolicitudComponent,},
-  { path: 'buzon',component:BuzonComponent},
+  { path: 'buzon',component:BuzonComponent,canActivate:[rhGuard]},
   { path: 'sugerencias',component:SugerenciasComponent,canActivate:[rhGuard]},
-  { path: 'comunicado',component:ComunicadoComponent}
+  { path: 'comunicado',component:ComunicadoComponent,canActivate:[rhGuard]}
 ]
