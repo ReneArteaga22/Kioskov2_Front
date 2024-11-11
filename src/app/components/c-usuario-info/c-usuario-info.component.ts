@@ -3,67 +3,98 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../service/api.service';
 import { CookieService } from 'ngx-cookie-service';
+import { DialogModule } from 'primeng/dialog';
 import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-c-usuario-info',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, NgFor],
+  imports: [RouterLink, ReactiveFormsModule, NgFor, DialogModule],
   templateUrl: './c-usuario-info.component.html',
   styleUrl: './c-usuario-info.component.css'
 })
 export class CUsuarioInfoComponent implements OnInit{
 
   usuario: any
+  visible:boolean = false
   editarForm: FormGroup
   isEditing: boolean = false
   isSubmit:boolean =false
 
   constructor(private apiService: ApiService, private cookie:CookieService){
     this.editarForm = new FormGroup({
-      estatus: new FormControl(''),
-      area: new FormControl(''),
-      puesto: new FormControl(''),
-      nombre: new FormControl(''),
-      apellidos: new FormControl(''),
-      usuario: new FormControl(''),
-      correo: new FormControl(''),
-      telefono: new FormControl('')
+      estatus: new FormControl(),
+      area: new FormControl(),
+      puesto: new FormControl(),
+      nombre: new FormControl(),
+      apellidos: new FormControl(),
+      usuario: new FormControl(),
+      correo: new FormControl(),
+      telefono: new FormControl()
     })
   }
-  editar() {
-    let id = parseInt(this.cookie.get('user_id'));
-  
-    // Obtener los valores del formulario
-    const formValues = this.editarForm.value;
-  
-    // Filtrar el formulario para que solo se envíen campos no vacíos
-    const filteredValues = Object.keys(formValues).reduce((acc:any, key) => {
-      // Solo agregar los campos que tienen un valor no vacío, null o undefined
-      if (formValues[key] !== null && formValues[key] !== undefined && formValues[key] !== '') {
-        acc[key] = formValues[key];
-      }
-      return acc;
-    }, {});
-  
-    // Asegurarse de que el formulario sea válido antes de enviar
-    if (this.editarForm.valid) {
-      // Llamada a la API para editar el usuario, enviando solo los valores filtrados
-      this.apiService.editar_usuario(id, filteredValues).subscribe(
-        response => {
-          this.usuario = response.usuario;
-          console.log(this.usuario, id);
-        }
-      );
-    }
+
+  ngOnInit(): void { 
+    this.cargarDatosUsuario(); 
+  } 
+  cargarDatosUsuario(){
+    const id = this.cookie.get('user_id');this.apiService.usuario_x_id(id).subscribe( 
+    response => { 
+      this.usuario = response.usuario
+      this.editarForm.setValue({ 
+        estatus: this.usuario.estatus, 
+        area: this.usuario.area, 
+        puesto: this.usuario.puesto, 
+        nombre: this.usuario.nombre, 
+        apellidos: this.usuario.apellidos, 
+        usuario: this.usuario.usuario, 
+        correo: this.usuario.correo, 
+        telefono: this.usuario.telefono 
+      }); 
+    }, error => { 
+      console.error('Error al cargar datos del usuario', error); 
+      } 
+    ); 
+  } 
+  editar() { 
+    console.log(this.editarForm.value)
+    const id = this.cookie.get('user_id'); this.apiService.editar_usuario(id, this.editarForm.value).subscribe( 
+      response => { 
+        console.log('Usuario actualizado:', response); 
+        this.visible = true
+        setTimeout(() => { 
+          this.visible = false;
+          location.reload()
+        }, 1400);
+
+      }, error => { 
+        console.error('Error al actualizar usuario:', error); 
+      } 
+    ); 
   }
 
-  ngOnInit(): void {
-    let id = parseInt(this.cookie.get('user_id'))
-    this.apiService.usuario_x_id(id).subscribe(
+  activar(estatus:any){
+    const id = this.cookie.get('user_id');
+    this.apiService.modificar_estado(id, estatus).subscribe(
       response =>{
-        this.usuario = response.usuario
-        console.log(this.usuario)
+        this.visible = true
+        setTimeout(() => { 
+          this.visible = false;
+          location.reload()
+        }, 1400);
+      }
+    )
+  }
+
+  desactivar(estatus:any){
+    const id = this.cookie.get('user_id');
+    this.apiService.modificar_estado(id, estatus).subscribe(
+      response =>{
+        this.visible = true
+        setTimeout(() => { 
+          this.visible = false;
+          location.reload()
+        }, 1400);
       }
     )
   }
