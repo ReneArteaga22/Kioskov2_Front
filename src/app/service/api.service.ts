@@ -143,4 +143,10 @@ export class ApiService {
   agregar_menu(formData: FormData): Observable<any> {
     return this.http.post<any>(`${this.url}/api/comunicado/agregar_comunicado`, formData);
   }
+
+  lista_comunicados():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/comunicado/lista_comunicados`)
+  }
+
+  
 }

@@ -83,7 +83,7 @@ export class ComunicadosComponent implements OnInit{
       }
     )
 
-    this.apiService.comunicados().subscribe(
+    this.apiService.lista_comunicados().subscribe(
       response=>{
         this.comunicados = response.comunicados;
         this.totalRecords = this.comunicados.length;
