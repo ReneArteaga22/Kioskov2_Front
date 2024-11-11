@@ -27,6 +27,7 @@ export class CFormularioSoporteRhComponent{
   constructor(private apiService:ApiService, private cookie:CookieService, private router:Router){
     
     const ahora = new Date();
+    ahora.setHours(ahora.getHours() - 6); 
     this.hoy = ahora.toISOString().substring(0, 16)
 
     

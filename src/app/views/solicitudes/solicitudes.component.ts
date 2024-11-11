@@ -6,12 +6,12 @@ import { DatePipe } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CBarComponent } from '../../components/c-bar/c-bar.component';
+import { CNavBarComponent } from '../../components/c-nav-bar/c-nav-bar.component';
 
 @Component({
   selector: 'app-solicitudes',
   standalone: true,
-  imports: [RouterLink, NgFor, DatePipe, ReactiveFormsModule, NgIf, CBarComponent],
+  imports: [RouterLink, NgFor, DatePipe, ReactiveFormsModule, NgIf, CNavBarComponent],
   templateUrl: './solicitudes.component.html',
   styleUrl: './solicitudes.component.css'
 })

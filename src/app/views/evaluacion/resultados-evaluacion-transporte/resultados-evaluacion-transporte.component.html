@@ -23,7 +23,6 @@
                     <thead>
                         <tr>
                             <th class="id">Calificacion</th>
-                            <th>Planta</th>
                             <th>Servicio</th>
                             <th>Fecha</th>
                             <th class="area">Comentario</th>
@@ -32,7 +31,6 @@
                     <tbody>
                         <tr *ngFor="let evaluacion of paginacionEvaluaciones">
                             <td>{{evaluacion.calificacion}}</td>
-                            <td>{{evaluacion.planta}}</td>
                             <td>{{evaluacion.servicio}}</td>
                             <td>{{evaluacion.createdAt | date: 'yyyy/MM/dd'}}</td>
                             <td><p-button (click)="mostrarComentario(evaluacion.id);" class="Comentario" label="Comentario"/></td>

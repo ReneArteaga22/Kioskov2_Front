@@ -6,30 +6,28 @@ import { DatePipe } from '@angular/common';
 import { PaginatorModule } from 'primeng/paginator';
 import { DialogModule } from 'primeng/dialog';
 import { CookieService } from 'ngx-cookie-service';
-import { CBarComponent } from '../../components/c-bar/c-bar.component';
+import { CNavBarComponent } from '../../components/c-nav-bar/c-nav-bar.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { FileUploadModule } from 'primeng/fileupload';
-import { ToastModule } from 'primeng/toast';
 import { NgIf } from '@angular/common';
-
-interface UploadEvent {
-  originalEvent: Event;
-  files: File[];
-}
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-comunicados',
   standalone: true,
-  imports: [RouterLink, NgFor, DatePipe, PaginatorModule,DialogModule,CBarComponent, ReactiveFormsModule, FileUploadModule, NgIf],
+  imports: [RouterLink, NgFor, DatePipe, PaginatorModule,DialogModule,CNavBarComponent, ReactiveFormsModule, FileUploadModule, NgIf],
   templateUrl: './comunicados.component.html',
   styleUrl: './comunicados.component.css',
   providers: [MessageService]
 })
 export class ComunicadosComponent implements OnInit{
+
+  hoy:string = ''
   uploadedFiles: any[] = []
   comunicadoForm: FormGroup
+  menuForm:FormGroup
   visible:boolean = false
   visibleForm:boolean = false
   comunicados: any[] = []
@@ -39,17 +37,53 @@ export class ComunicadosComponent implements OnInit{
   paginacionComunicados: any[]=[]
   isSubmit:boolean = false
   modal:boolean = false
+  visibleFormMenu: boolean = false
+  menus:any[]=[]
+  imagenes:any[]=[]
+  selectedFile: File | null = null;
 
-  constructor(private apiService:ApiService, private cookie:CookieService, private messageService: MessageService){
-    this.comunicadoForm = new FormGroup({
-      imagen: new FormControl('',[Validators.required]),
-      nombre: new FormControl('',Validators.required),
-      fecha: new FormControl('',[Validators.required])
-    })
+  constructor(private apiService:ApiService, private cookie:CookieService, private messageService: MessageService, private fb: FormBuilder){
+
+    const ahora = new Date();
+    ahora.setHours(ahora.getHours() - 6); 
+    this.hoy = ahora.toISOString().substring(0, 16)
+
+    // this.comunicadoForm = new FormGroup({
+    //   imagen: new FormControl('',[Validators.required]),
+    //   nombre: new FormControl('',[Validators.required]),
+    //   tipo: new FormControl('comunicado')
+    // })
+
+    // this.menuForm = new FormGroup({
+    //   imagen: new FormControl('',[Validators.required]),
+    //   nombre: new FormControl('',[Validators.required]),
+    //   tipo: new FormControl('menu')
+    // })
+
+    this.menuForm = this.fb.group({
+      imagen: [null],
+      nombre: [''],
+      tipo:[]
+    });
+
+    this.comunicadoForm = this.fb.group({
+      imagen: [null],
+      nombre: [''],
+      tipo: []
+    });
+  
   }
+  
 
   ngOnInit(): void {
-    this.apiService.comunicados().subscribe(
+    this.apiService.menu_comunicado().subscribe(
+      response =>{
+        this.menus = response.comunicados;
+        console.log('mira',this.menus)
+      }
+    )
+
+    this.apiService.lista_comunicados().subscribe(
       response=>{
         this.comunicados = response.comunicados;
         this.totalRecords = this.comunicados.length;
@@ -58,6 +92,7 @@ export class ComunicadosComponent implements OnInit{
       }
     )
   }
+  
   paginateComunicados() {
     this.paginacionComunicados = this.comunicados.slice(this.first, this.first + this.rows);
   }
@@ -77,28 +112,77 @@ export class ComunicadosComponent implements OnInit{
     this.visible = false
   }
 
+  onUpload(event:any){ 
+    for (let file of event.files)
+      { this.uploadedFiles.push(file); this.comunicadoForm.patchValue({ imagen: file }) 
+    } 
+  }
+
   agregar(){
     this.visibleForm = true
   }
 
-  agregar_comunicado(){
-    console.log(this.comunicadoForm.value)
-    // if(this.comunicadoForm.valid && !this.isSubmit){
-    //   this.apiService.agregar_comunicado(this.comunicadoForm.value).subscribe(
-    //     response=>{
-    //       console.log(response)
-          
-    //     }
-    //   )
-    // }
-    this.visibleForm = false
+  agregarMenu(){
+    this.visibleFormMenu = true
   }
-  onUpload(event:UploadEvent) {
-    for(let file of event.files) {
-      this.uploadedFiles.push(file);
+
+  onFileChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      this.selectedFile = input.files[0];
+      this.comunicadoForm.patchValue({ imagen: this.selectedFile.name });
     }
-    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
   }
+
+  // Método para enviar datos al backend
+  agregar_comunicado() {
+    const formData = new FormData();
+    formData.append('nombre', this.comunicadoForm.get('nombre')?.value);
+    formData.append('tipo', 'comunicado'); 
+
+    if (this.selectedFile) {
+      formData.append('imagen', this.selectedFile);
+    }
+
+    // Llama al método del servicio para hacer la solicitud
+    this.apiService.agregar_comunicado(formData).subscribe(
+      (response) => {
+        console.log('Imagen subida y comunicado agregado:', response);
+        location.reload()
+      },
+      (error) => {
+        console.error('Error al agregar comunicado:', error);
+      }
+    );
+  }
+  onFileChangeMenu(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      this.selectedFile = input.files[0];
+      this.menuForm.patchValue({ imagen: this.selectedFile.name });
+    }
+  }
+  agregar_menu() {
+    const formData = new FormData();
+    formData.append('nombre', this.menuForm.get('nombre')?.value);
+    formData.append('tipo', 'menu');
+  
+    if (this.selectedFile) {
+      formData.append('imagen', this.selectedFile);
+    }
+  
+    // Llama al método correcto para agregar el menú
+    this.apiService.agregar_menu(formData).subscribe(
+      (response) => {
+        console.log('Menu subido', response);
+        location.reload()
+      },
+      (error) => {
+        console.error('Error al agregar menú:', error);
+      }
+    );
+  }
+
   eliminar(){
     let comunicado = parseInt(this.cookie.get('comunicado'))
     console.log('eliminar',comunicado)
@@ -106,6 +190,7 @@ export class ComunicadosComponent implements OnInit{
       response=>{
         console.log('eliminar: ',response)
         this.visible = false
+        this.cookie.delete('comunicado')
         location.reload()
       }
     )
@@ -115,8 +200,16 @@ export class ComunicadosComponent implements OnInit{
     this.modal = true
     setTimeout(() => { 
       this.modal = false
-      location.reload()
     }, 1600);
-
   }
+
+
+  // onFileChangeMenu(event:any) 
+  // { const file = event.target.files[0]; 
+  // if (file){
+  //     this.menuForm.patchValue({ 
+  //       imagen: file.name
+  //     })
+  //   } 
+  // }
 }

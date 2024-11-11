@@ -3,12 +3,11 @@ import { RouterLink } from '@angular/router';
 import { ApiService } from '../../service/api.service';
 import { DatePipe } from '@angular/common';
 import { NgFor } from '@angular/common';
-import { CBarComponent } from '../../components/c-bar/c-bar.component';
-
+import { CNavBarComponent } from '../../components/c-nav-bar/c-nav-bar.component';
 @Component({
   selector: 'app-sugerencias',
   standalone: true,
-  imports: [RouterLink, DatePipe, NgFor ,CBarComponent],
+  imports: [RouterLink, DatePipe, NgFor ,CNavBarComponent],
   templateUrl: './sugerencias.component.html',
   styleUrl: './sugerencias.component.css'
 })

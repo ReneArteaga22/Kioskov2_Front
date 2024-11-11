@@ -5,13 +5,12 @@ import { ApiService } from '../../service/api.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
-import { CBarComponent } from '../../components/c-bar/c-bar.component';
-
+import { CNavBarComponent } from '../../components/c-nav-bar/c-nav-bar.component';
 
 @Component({
   selector: 'app-buzon',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, NgIf, DialogModule, CBarComponent],
+  imports: [RouterLink, ReactiveFormsModule, NgIf, DialogModule, CNavBarComponent],
   templateUrl: './buzon.component.html',
   styleUrl: './buzon.component.css'
 })

@@ -1,5 +1,5 @@
 <div class="box">
-    <app-c-bar></app-c-bar>
+    <app-c-nav-bar></app-c-nav-bar>
     <div class="container">
         <form class="filtros" [formGroup]="buscarUsuarioForm" (ngSubmit)="buscar_usuario()">
             <div>
@@ -12,6 +12,7 @@
                     <option value="sistemas">Sistemas</option>
                     <option value="rh">Recursos Humanos</option>
                     <option value="almacen">Almacen</option>
+                    <option value="">Todos</option>
                 </select>
             </div>
             <div>

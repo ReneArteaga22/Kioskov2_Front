@@ -1,25 +1,26 @@
 <div class="box">
-    <app-c-bar></app-c-bar>
+    <app-c-nav-bar></app-c-nav-bar>
     <div class="comunicados">
         <div class="comunicado">
-            <h1>Comunicados</h1>
+            <div class="titulo">
+                <button class="post" (click)="agregar()">Agregar Comunicado</button>
+                <h1>Comunicados</h1>
+            </div>
             <table>  
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Nombre</th>
                         <th>Imagen</th>
                         <th>Fecha</th>
                         <th>Eliminar</th>
-                        <th>Agregar</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let comunicado of paginacionComunicados">
-                        <td>{{comunicado.id}}</td>
-                        <td><img src="{{comunicado.imagen}}" alt=""></td>
-                        <td>{{comunicado.fecha | date : "yyyy/MM/dd"}}</td>
+                        <td>{{comunicado.nombre}}</td>
+                        <td><img [src]="'http://10.99.22.17:3333/' + comunicado.imagen" alt="Imagen del comunicado"></td>
+                        <td>{{comunicado.createdAt | date : "yyyy/MM/dd"}}</td>
                         <td><button class="delete" (click)="dialog(comunicado.id)"><i class="pi pi-trash" style="font-size: 2rem"></i></button></td>
-                        <td><button class="post" (click)="agregar()"><i class="pi pi-plus-circle" style="font-size: 2rem"></i></button></td>
                     </tr>
                 </tbody>
             </table>
@@ -29,16 +30,25 @@
             </div>
         </div>
         <div class="menu">
-            <h1>Menu semanal</h1>
+            <div class="titulo">
+                <button class="post" (click)="agregarMenu()">Agregar Menu</button>
+                <h1>Menu de la semana</h1>
+            </div>
             <table>
                 <thead>
                     <tr>
+                        <th>Nombre</th>
                         <th>Imagen</th>
+                        <th>Fecha</th>
+                        <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><img src="comunicados/hamster.jpg" alt=""></td>
+                    <tr *ngFor="let menu of menus">
+                        <td>{{menu.nombre}}</td>
+                        <td><img [src]="'http://10.99.22.17:3333/' + menu.imagen" alt="Imagen del comunicado"></td>
+                        <td>{{menu.createdAt | date : "yyyy/MM/dd"}}</td>
+                        <td><button class="delete" (click)="dialog(menu.id)"><i class="pi pi-trash" style="font-size: 2rem"></i></button></td>
                     </tr>
                 </tbody>
             </table>
@@ -57,29 +67,22 @@
         </p-dialog>
     </div>
     <div>
-        <p-dialog [modal]="true" [(visible)]="visibleForm" [style]="{ width: '600px', height: '400px', borderRadius: '8px'}">
+        <p-dialog [modal]="true" [(visible)]="visibleForm" [style]="{ width: '600px', height: '350px', borderRadius: '8px'}">
             <div class="box-modal">
                 <h2 class="">Agregar comunicado</h2>
                 <form class="form" [formGroup]="comunicadoForm" (ngSubmit)="agregar_comunicado()">
                     <div class="input">
-                        <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
-                            [multiple]="true" accept="image/*" maxFileSize="1000000" formContorlName="imagen">
-                            <ng-template pTemplate="content">
-                                <ul *ngIf="uploadedFiles.length">
-                                    <li *ngFor="let file of uploadedFiles">
-                                        {{ file.name }} - {{ file.size }} bytes
-                                    </li>
-                                </ul>
-                            </ng-template>
-                        </p-fileUpload>
+                        <input type="file" id="file" formControlName="imagen" (change)="onFileChange($event)" hidden> 
+                        <label for="file" class="custom-file-upload"> 
+                            <i class="pi pi-upload"></i>Seleccionar archivo
+                        </label> 
+                        <div *ngIf="comunicadoForm.get('imagen')?.value"> 
+                            Archivo seleccionado: {{ comunicadoForm.get('imagen')?.value }} 
+                        </div>
                     </div>
                     <div class="input">
-                        <label for="">Nombre</label>
-                        <input type="text" formControlName="nombre" placeholder="Ingresa el nombre">
-                    </div>
-                    <div class="input">
-                        <label for="">Fecha</label>
-                        <input type="date" formControlName="fecha">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" formControlName="nombre" placeholder="Nombre del comunicado...">
                     </div>
                     <div class="btn">
                         <button type="submit" (click)="alert()" [disabled]="!comunicadoForm.valid">Agregar</button>
@@ -89,9 +92,34 @@
         </p-dialog>
     </div>
     <div>
+        <p-dialog [modal]="true" [(visible)]="visibleFormMenu" [style]="{ width: '600px', height: '350px', borderRadius: '8px'}">
+            <div class="box-modal">
+                <h2 class="">Agregar Menu</h2>
+                <form class="form" [formGroup]="menuForm" (ngSubmit)="agregar_menu()">
+                    <div class="input">
+                        <input type="file" id="file" formControlName="imagen" (change)="onFileChangeMenu($event)" hidden> 
+                        <label for="file" class="custom-file-upload"> 
+                            <i class="pi pi-upload"></i>Seleccionar archivo
+                        </label> 
+                        <div *ngIf="menuForm.get('imagen')?.value"> 
+                            Archivo seleccionado: {{ menuForm.get('imagen')?.value }} 
+                        </div>
+                        <div class="input">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" formControlName="nombre" placeholder="Nombre de menu...">
+                        </div>
+                    </div>
+                    <div class="btn">
+                        <button type="submit" (click)="alert()" [disabled]="!menuForm.valid">Agregar</button>
+                    </div>
+                </form>
+            </div>
+        </p-dialog>
+    </div>
+    <div>
         <p-dialog [modal]="true" [(visible)]="modal" [style]="{ width: '400px', height: '250px', borderRadius: '8px'}">
             <div class="box-modal">
-                <h2 class="">Comunicado agregado correctamente</h2>
+                <h2 class="">Agregado correctamente</h2>
                 <img src="icons/success.png" alt="">
             </div>
         </p-dialog>

@@ -26,11 +26,12 @@ import { rhGuard } from './service/rh.guard';
 import { BuzonComponent } from './views/buzon/buzon.component';
 import { SugerenciasComponent } from './views/sugerencias/sugerencias.component';
 import { ComunicadoComponent } from './views/comunicado/comunicado.component';
+import { comedorGuard } from './service/comedor.guard';
 
 export const routes: Routes = [
   { path: '',component: HomeComponent},
   { path: 'modulo_asistencia', component: ModuloAsistenciaComponent,canActivate:[rhGuard] },
-  { path: 'comedor', component: ComedorComponent, },
+  { path: 'comedor', component: ComedorComponent,canActivate:[comedorGuard] },
   { path: 'transporte', component: TransporteComponent, },
   { path: 'servicios', component: EvaluacionServiciosComponent, },
   { path: 'resultados-evaluacion-comedor', component: ResultadosEvaluacionComponent,canActivate:[rhGuard] },
@@ -47,10 +48,10 @@ export const routes: Routes = [
   { path: 'solicitud-gafete',component:SolicitudGafeteComponent,},
   { path: 'consultar-vacaciones',component:ConsultarVacacionesComponent,},
   { path: 'usuarios-info',component:UsuariosInfoComponent,canActivate:[rhGuard]},
-  { path: 'comunicados',component:ComunicadosComponent,},
-  { path: 'solicitudes',component:SolicitudesComponent,},
+  { path: 'comunicados',component:ComunicadosComponent,canActivate:[rhGuard]},
+  { path: 'solicitudes',component:SolicitudesComponent,canActivate:[rhGuard]}, 
   { path: 'solicitud',component:SolicitudComponent,},
-  { path: 'buzon',component:BuzonComponent},
+  { path: 'buzon',component:BuzonComponent,canActivate:[]},
   { path: 'sugerencias',component:SugerenciasComponent,canActivate:[rhGuard]},
-  { path: 'comunicado',component:ComunicadoComponent}
+  { path: 'comunicado',component:ComunicadoComponent,canActivate:[]}
 ]

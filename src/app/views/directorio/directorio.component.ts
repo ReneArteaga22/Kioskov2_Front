@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { CBarComponent } from '../../components/c-bar/c-bar.component';
+import { CNavBarComponent } from '../../components/c-nav-bar/c-nav-bar.component';
 
 @Component({
   selector: 'app-directorio',
   standalone: true,
-  imports: [CBarComponent],
+  imports: [CNavBarComponent],
   templateUrl: './directorio.component.html',
   styleUrl: './directorio.component.css'
 })

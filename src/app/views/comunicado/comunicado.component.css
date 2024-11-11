@@ -1,0 +1,42 @@
+.fondo {
+    height: 82vh;
+    background-color: #ffffff;
+}
+
+/* Responsividad del diálogo y carrusel */
+@media (max-width: 1199px) {
+    .p-dialog {
+        width: 75vw !important;
+        height: auto !important;
+    }
+}
+
+@media (max-width: 991px) {
+    .p-dialog {
+        width: 90vw !important;
+        height: auto !important;
+    }
+    .carousel-item img {
+        height: 40rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .p-dialog {
+        width: 95vw !important;
+        height: auto !important;
+    }
+    .carousel-item img {
+        height: 35rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .p-dialog {
+        width: 100vw !important;
+        height: auto !important;
+    }
+    .carousel-item img {
+        height: 25rem;
+    }
+}

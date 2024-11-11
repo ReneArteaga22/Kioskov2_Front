@@ -76,12 +76,16 @@ export class ApiService {
     return this.http.post<any>(`${this.url}/api/evaluacion/mostrar-comentario`,{id})
   }
 
-  usuario_x_id(id:number):Observable<any>{
+  usuario_x_id(id:any):Observable<any>{
     return this.http.post<any>(`${this.url}/api/usuarios/usuario-id`,{id})
   }
 
-  editar_usuario(id:number, usuario:any):Observable<any>{
-    return this.http.put<any>(`${this.url}/api/usuarios/editar-usuario`, {id, usuario})
+  editar_usuario(id:any, usuario:any):Observable<any>{
+    return this.http.put<any>(`${this.url}/api/usuarios/editar-usuario/${id}`, {usuario})
+  }
+
+  modificar_estado(id:any, estatus:any):Observable<any>{
+    return this.http.put<any>(`${this.url}/api/usuarios/modificar_estado/${id}`, {estatus})
   }
 
   crear_reporte(userData:any):Observable<any>{
@@ -120,7 +124,29 @@ export class ApiService {
     return this.http.delete<any>(`${this.url}/api/comunicado/eliminar_comunicado/${id}`)
   }
 
-  agregar_comunicado(data:any):Observable<any>{
-    return this.http.post<any>(`${this.url}/api/comunicado/agregar_comunicado`,data)
+  // agregar_comunicado(data:any):Observable<any>{
+  //   return this.http.post<any>(`${this.url}/api/comunicado/agregar_comunicado`,data)
+  // }
+
+  menu_comunicado():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/comunicado/menu_comunicado`)
   }
+
+  foto():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/comunicado/img`)
+  }
+  
+  agregar_comunicado(formData: FormData): Observable<any> {
+    return this.http.post<any>(`${this.url}/api/comunicado/agregar_comunicado`, formData);
+  }
+  
+  agregar_menu(formData: FormData): Observable<any> {
+    return this.http.post<any>(`${this.url}/api/comunicado/agregar_comunicado`, formData);
+  }
+
+  lista_comunicados():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/comunicado/lista_comunicados`)
+  }
+
+  
 }

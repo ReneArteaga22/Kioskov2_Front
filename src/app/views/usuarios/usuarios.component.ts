@@ -5,12 +5,11 @@ import { NgFor } from '@angular/common'
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms'
 import { CookieService } from 'ngx-cookie-service'
 import { PaginatorModule } from 'primeng/paginator'
-import { CBarComponent } from '../../components/c-bar/c-bar.component'
-
+import { CNavBarComponent } from '../../components/c-nav-bar/c-nav-bar.component'
 @Component({
   selector: 'app-usuarios',
   standalone: true,
-  imports: [RouterLink, NgFor, ReactiveFormsModule, PaginatorModule, CBarComponent],
+  imports: [RouterLink, NgFor, ReactiveFormsModule, PaginatorModule, CNavBarComponent],
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.css'
 })

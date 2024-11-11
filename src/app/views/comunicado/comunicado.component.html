@@ -1,11 +1,11 @@
 <div>
-    <app-c-bar></app-c-bar>
-    <p-dialog [modal]="true" [(visible)]="visible" [style]="{ width: '55rem', height: '87rem' }"
-        [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
-        <p-carousel [value]="images" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="3000">
+    <app-c-nav-bar></app-c-nav-bar>
+    <div class="fondo"></div>
+    <p-dialog [modal]="true" [(visible)]="visible" [style]="dialogStyle" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+        <p-carousel [value]="images" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="3000" [responsiveOptions]="carouselResponsiveOptions">
             <ng-template pTemplate="item" let-image>
                 <div class="carousel-item" style="display:flex; justify-content:center; align-items:center; height: 100%;">
-                    <img [src]="image.imagen" alt="{{image.alt}}" style="width: 100%; height: auto;">
+                    <img [src]="'http://10.99.22.17:3333' + image.imagen" alt="{{image.alt}}" [style]="carouselImageStyle">
                 </div>
             </ng-template>
         </p-carousel>

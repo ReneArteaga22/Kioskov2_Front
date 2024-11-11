@@ -6,44 +6,54 @@
             <div class="input-1">
                 <div class="input">
                     <label for="">Estado</label>
-                    <input type="text" placeholder="{{usuario.estatus}}" disabled >
+                    <input type="text" placeholder="{{usuario.estatus}}" disabled>
                 </div>
                 <div class="input">
                     <label for="">Area</label>
-                    <input type="text" placeholder="{{usuario.area}}" disabled >
+                    <input type="text" placeholder="{{usuario.area}}" disabled>
                 </div>
                 <div class="input">
                     <label for="">Puesto</label>
-                    <input type="text" placeholder="{{usuario.puesto}}" disabled >
+                    <input type="text" placeholder="{{usuario.puesto}}" formControlName="puesto">
                 </div>
             </div>
             <div class="input-1">
                 <div class="input">
                     <label for="">Nombre</label>
-                    <input type="text" placeholder="{{usuario.nombre}}" disabled >
+                    <input type="text" placeholder="{{usuario.nombre}}" formControlName="nombre">
                 </div>
                 <div class="input">
                     <label for="">Apellidos</label>
-                    <input type="text" placeholder="{{usuario.apellidos}}" disabled >
+                    <input type="text" placeholder="{{usuario.apellidos}}" formControlName="apellidos">
                 </div>
                 <div class="input">
                     <label for="">Usuario</label>
-                    <input type="text" placeholder="{{usuario.usuario}}" disabled >
+                    <input type="text" placeholder="{{usuario.usuario}}" formControlName="usuario">
                 </div>
             </div>
             <div class="input-1">
                 <div class="input">
                     <label for="">Correo</label>
-                    <input type="text" placeholder="{{usuario.correo}}" disabled >
+                    <input type="text" placeholder="{{usuario.correo}}" formControlName="correo">
                 </div>
                 <div class="input">
                     <label for="">Telefono</label>
-                    <input type="text" placeholder="{{usuario.telefono}}" disabled >
+                    <input type="text" placeholder="{{usuario.telefono}}" formControlName="telefono">
                 </div>
             </div>
-            <!-- <div class="input-1">
+            <div class="input-1">
                 <button class="btn" type="submit">Guardar cambios</button>
-            </div> -->
+                <button class="btn" (click)="activar('activo')">Activar</button>
+                <button class="btn" (click)="desactivar('inactivo')">Desctivar</button>
+            </div>
         </div>
     </form>
+</div>
+<div>
+    <p-dialog [modal]="true" [(visible)]="visible" [style]="{ width: '400px', height: '220px', borderRadius: '8px'}">
+        <div class="box-modal">
+            <h2 class="text">Datos actualizados correctamente!!</h2>
+            <img src="icons/success.png" alt="">
+        </div>
+    </p-dialog>
 </div>

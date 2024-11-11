@@ -59,6 +59,7 @@
     background-color: rgb(31, 30, 30);
     color: white;
     font-size: 1rem;
+    cursor: pointer;
 }
 input{
     border: 1px solid #c9c5c5;
@@ -67,3 +68,20 @@ input{
     padding: 5px;
     font-size: larger;
 }
+.box-modal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: space-around;
+    width: 100%;
+    height: 100%;
+}
+.box-modal img{
+    width: 100px;
+    height: 100px;
+    margin-top: 10px;
+}
+.box-modal .text{
+    text-align: center;
+}
+
