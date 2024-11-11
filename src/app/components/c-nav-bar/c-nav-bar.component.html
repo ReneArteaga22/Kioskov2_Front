@@ -4,6 +4,7 @@
   </div>
   <!--Barra de navegacion-->
   <ul class="nav-links">
+    <li *ngIf="isComedor"><a (click)="cerrarSesion()" style="color:rgb(31, 30, 30)">Cerrar sesion comedor</a></li>
     <li *ngIf="!isLoggin"><a [routerLink]="['/soporte-rh-modulos']">Soporte RH</a></li>
     <!-- <li *ngIf="!isLoggin"><a [routerLink]="['/']">Seguridad</a></li>
     <li *ngIf="!isLoggin"><a [routerLink]="['/']">Directorio</a></li> -->
@@ -31,8 +32,6 @@
     <li *ngIf="isRH || isSistemas"><a [routerLink]="['/comunicados']">Comunicados</a></li>
     <li *ngIf="isRH || isSistemas"><a [routerLink]="['/sugerencias']">Buzon</a></li>
     <li *ngIf="isRH || isSistemas"><a (click)="cerrarSesion()">Cerrar sesion</a></li>
-
-    <li *ngIf="isComedor"><a (click)="cerrarSesion()" style="color:rgb(31, 30, 30)">Cerrar sesion comedor</a></li>
 
     <i *ngIf="!isLoggin" [routerLink]="['/login']" class="pi pi-user" style="font-size: 2rem; color: white;"></i>
   </ul>
