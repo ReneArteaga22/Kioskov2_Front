@@ -1,49 +1,42 @@
 .fondo {
-    height: 82%;
+    height: 82vh;
     background-color: #ffffff;
 }
 
 /* Responsividad del diálogo y carrusel */
-@media (max-height: 1199px) {
+@media (max-width: 1199px) {
     .p-dialog {
-        width: 75% !important;
+        width: 75vw !important;
         height: auto !important;
-    }
-    .carousel-item img {
-        width: 100%;
-        height: 5rem;
     }
 }
 
-@media (max-height: 991px) {
+@media (max-width: 991px) {
     .p-dialog {
-        width: 90% !important;
+        width: 90vw !important;
         height: auto !important;
     }
     .carousel-item img {
-        width: 100%;
-        height: 45rem;
+        height: 40rem;
     }
 }
 
-@media (max-height: 767px) {
+@media (max-width: 767px) {
     .p-dialog {
-        width: 95% !important;
+        width: 95vw !important;
         height: auto !important;
     }
     .carousel-item img {
-        width: 100%;
-        height: 36rem;
+        height: 35rem;
     }
 }
 
-@media (max-height: 575px) {
+@media (max-width: 575px) {
     .p-dialog {
-        width: 100% !important;
+        width: 100vw !important;
         height: auto !important;
     }
     .carousel-item img {
-        width: 100%;
-        height: 27rem;
+        height: 25rem;
     }
 }
