@@ -18,40 +18,10 @@ export class ComunicadoComponent implements OnInit {
 
   // Estilos responsivos para el diálogo y el carrusel
   dialogStyle = {
-    width: '55rem',
-    height: '87rem'
+    width: '50%',
+    height: '100%'
   };
 
-  carouselImageStyle = {
-    width: '100%',
-    height: '45rem'
-  };
-
-  carouselResponsiveOptions = [
-    {
-      breakpoint: '1199px',
-      numVisible: 1,
-      numScroll: 1
-    },
-    {
-      breakpoint: '991px',
-      numVisible: 1,
-      numScroll: 1,
-      style: { height: '40rem' } // Ajuste para tabletas
-    },
-    {
-      breakpoint: '767px',
-      numVisible: 1,
-      numScroll: 1,
-      style: { height: '35rem' } // Ajuste para móviles grandes
-    },
-    {
-      breakpoint: '575px',
-      numVisible: 1,
-      numScroll: 1,
-      style: { height: '25rem' } // Ajuste para móviles pequeños
-    }
-  ];
 
   constructor(private apiService: ApiService) {}
 
