@@ -18,7 +18,7 @@
                 <tbody>
                     <tr *ngFor="let comunicado of paginacionComunicados">
                         <td>{{comunicado.nombre}}</td>
-                        <td><img [src]="'http://10.99.22.17:3333/' + comunicado.imagen" alt="Imagen del comunicado"></td>
+                        <td><img [src]="'http://localhost:3333/' + comunicado.imagen" alt="Imagen del comunicado"></td>
                         <td>{{comunicado.createdAt | date : "yyyy/MM/dd"}}</td>
                         <td><button class="delete" (click)="dialog(comunicado.id)"><i class="pi pi-trash" style="font-size: 2rem"></i></button></td>
                     </tr>
@@ -46,7 +46,7 @@
                 <tbody>
                     <tr *ngFor="let menu of menus">
                         <td>{{menu.nombre}}</td>
-                        <td><img [src]="'http://10.99.22.17:3333/' + menu.imagen" alt="Imagen del comunicado"></td>
+                        <td><img [src]="'http://localhost:3333/' + menu.imagen" alt="Imagen del comunicado"></td>
                         <td>{{menu.createdAt | date : "yyyy/MM/dd"}}</td>
                         <td><button class="delete" (click)="dialog(menu.id)"><i class="pi pi-trash" style="font-size: 2rem"></i></button></td>
                     </tr>
