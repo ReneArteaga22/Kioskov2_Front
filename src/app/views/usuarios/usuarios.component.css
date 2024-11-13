@@ -1,3 +1,7 @@
+.box{
+  display: flex;
+  justify-content: center;
+}
 .container{
   display: flex;
   flex-direction: column;
@@ -37,7 +41,7 @@ input {
 }
 .table{
   margin-top: 1.5rem;
-  padding: 1rem;
+  padding: .7rem;
   border-radius: 10px;
   background-color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -49,10 +53,6 @@ table {
   width: 100%;
   border-collapse: collapse; /* Elimina los espacios entre celdas */
   margin-top: 1.5rem;
-}
-h1{
-  border-bottom: 1px solid #e79371;
-  padding-bottom: 5px;
 }
 th{
   background-color: rgb(31, 30, 30);
@@ -66,6 +66,7 @@ tr{
 tbody tr:hover {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: #f0f0f0;
+  cursor: pointer;
 }
 .btn{
   border: none;
@@ -74,6 +75,32 @@ tbody tr:hover {
   background-color: rgb(31, 30, 30);
   color: white;
   font-size: 1rem;
+  cursor: pointer;
   width: 100%;
 }
+.title {
+  display: flex;
+  justify-content: center; /* Centra los elementos horizontalmente */
+  align-items: center; /* Centra los elementos verticalmente */
+  position: relative; /* Para que el h1 absoluto se posicione en relación a este contenedor */
+}
 
+.title h1 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%); /* Centra el h1 horizontalmente */
+}
+
+.title button {
+  margin-left: auto; /* Empuja el botón hacia el borde derecho del contenedor */
+}
+.btn-register{
+  border: none;
+  border-radius: 10px;
+  height: 2.5rem;
+  background-color: rgb(31, 30, 30);
+  color: white;
+  font-size: 1rem;
+  width: 10%;
+  cursor: pointer;
+}
