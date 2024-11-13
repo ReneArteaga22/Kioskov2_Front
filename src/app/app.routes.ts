@@ -27,6 +27,8 @@ import { BuzonComponent } from './views/buzon/buzon.component';
 import { SugerenciasComponent } from './views/sugerencias/sugerencias.component';
 import { ComunicadoComponent } from './views/comunicado/comunicado.component';
 import { comedorGuard } from './service/comedor.guard';
+import { ComedorGuestComponent } from './views/evaluacion/comedor-guest/comedor-guest.component';
+import { LimpiezaGuestComponent } from './views/evaluacion/limpieza-guest/limpieza-guest.component';
 
 export const routes: Routes = [
   { path: '',component: HomeComponent},
@@ -53,5 +55,7 @@ export const routes: Routes = [
   { path: 'solicitud',component:SolicitudComponent,},
   { path: 'buzon',component:BuzonComponent,canActivate:[]},
   { path: 'sugerencias',component:SugerenciasComponent,canActivate:[rhGuard]},
-  { path: 'comunicado',component:ComunicadoComponent,canActivate:[]}
+  { path: 'comunicado',component:ComunicadoComponent,canActivate:[]},
+  { path: 'comedor-guest',component:ComedorGuestComponent},
+  { path: 'limpieza-guest',component:LimpiezaGuestComponent}
 ]

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { DialogModule } from 'primeng/dialog';
-import { CarouselModule } from 'primeng/carousel';
-import { ApiService } from '../../service/api.service';
-import { CNavBarComponent } from '../../components/c-nav-bar/c-nav-bar.component';
+import { Component, OnInit } from '@angular/core'
+import { DialogModule } from 'primeng/dialog'
+import { CarouselModule } from 'primeng/carousel'
+import { ApiService } from '../../service/api.service'
+import { CNavBarComponent } from '../../components/c-nav-bar/c-nav-bar.component'
 
 @Component({
   selector: 'app-comunicado',
@@ -13,19 +13,20 @@ import { CNavBarComponent } from '../../components/c-nav-bar/c-nav-bar.component
 })
 export class ComunicadoComponent implements OnInit {
   
-  visible: boolean = false;
-  images: any[] = [];
+  visible: boolean = false
+  images: any[] = []
+  timer = 35000
 
   // Estilos responsivos para el diálogo y el carrusel
   dialogStyle = {
     width: '55rem',
     height: '87rem'
-  };
+  }
 
   carouselImageStyle = {
     width: '100%',
     height: '45rem'
-  };
+  }
 
   carouselResponsiveOptions = [
     {
@@ -51,17 +52,39 @@ export class ComunicadoComponent implements OnInit {
       numScroll: 1,
       style: { height: '25rem' } // Ajuste para móviles pequeños
     }
-  ];
+  ]
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService){}
+  ngOnInit(): void { 
+    this.apiService.comunicados().subscribe( 
+      response => { 
+        this.images = response.comunicados 
+        console.log(this.images)
+        // if(this.images.length > 0 ){
+        //   this.images.forEach((comunicado, index = 0)=>{
+        //     const tipo = comunicado.tipo
+        //     console.log(`Iteración ${index}:`,tipo)
+        //     this.setAutoplayInterval(tipo)
+        //   })
+        // }
+      }, error => { 
+        console.error('Error al obtener los comunicados', error) 
+      } 
+    )
+    this.visible = true 
+  } 
+  // setAutoplayInterval(tipo: string){ 
+  //   if (tipo === 'comunicado'){ 
+  //     this.timer = 35000 
+  //   } else if (tipo === 'menu'){ 
+  //     this.timer = 6000 
+  //   } else { 
+  //     this.timer = 3000 
+  //   } 
+  // } 
 
-  ngOnInit(): void {
-    this.apiService.comunicados().subscribe(
-      response => {
-        this.images = response.comunicados;
-        console.log(this.images);
-      }
-    );
-    this.visible = true;
-  }
+  // onCarouselChange(event:any) { 
+  //   const currentImage = this.images[event.page] 
+  //   this.setAutoplayInterval(currentImage.tipo) 
+  // }
 }

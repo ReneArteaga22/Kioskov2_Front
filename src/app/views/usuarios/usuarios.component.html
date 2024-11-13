@@ -1,5 +1,5 @@
+<app-c-nav-bar></app-c-nav-bar>
 <div class="box">
-    <app-c-nav-bar></app-c-nav-bar>
     <div class="container">
         <form class="filtros" [formGroup]="buscarUsuarioForm" (ngSubmit)="buscar_usuario()">
             <div>
@@ -20,7 +20,10 @@
             </div>
         </form>
         <div class="table">
-            <h1>Lista de Usuarios</h1>
+            <div class="title"> 
+                <h1>Lista de Usuarios</h1> 
+                <button class="btn-register">Registrar Usuario</button> 
+            </div>
             <table class="reportes">
                 <thead>
                     <tr>
