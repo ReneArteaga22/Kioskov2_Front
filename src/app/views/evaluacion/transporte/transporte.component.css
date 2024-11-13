@@ -130,5 +130,6 @@ textarea::placeholder {
   margin-top: 10px;
 }
 .error{
+  font-size: 1.5rem;
   color: red;
 }
