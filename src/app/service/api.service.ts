@@ -148,5 +148,9 @@ export class ApiService {
     return this.http.get<any>(`${this.url}/api/comunicado/lista_comunicados`)
   }
 
+  cambiar_contrasena(id:any, contrasena:string):Observable<any>{
+    return this.http.put<any>(`${this.url}/api/usuarios/recuperar-contrasena`,{id, contrasena})
+  }
+
   
 }

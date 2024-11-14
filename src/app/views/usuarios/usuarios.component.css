@@ -104,3 +104,8 @@ tbody tr:hover {
   width: 10%;
   cursor: pointer;
 }
+.uppercase {
+  width: 33%;
+  text-transform: uppercase;
+}
+
