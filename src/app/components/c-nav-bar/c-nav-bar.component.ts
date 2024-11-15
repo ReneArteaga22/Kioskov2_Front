@@ -4,6 +4,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { NgIf } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { CarouselModule } from 'primeng/carousel';
+import { ApiService } from '../../service/api.service';
 
 @Component({
   selector: 'app-c-nav-bar',
@@ -14,17 +15,29 @@ import { CarouselModule } from 'primeng/carousel';
 })
 export class CNavBarComponent implements OnInit{
   isSistemas: boolean = false;
+  isSeguridad:boolean=false
   isRH: boolean = false;
   isComedor: boolean = false
   isLoggin: boolean = false;
   visible:boolean = false
   closeSession:boolean = false
   images:any[]=[]
+  usuario:string = ''
 
-  constructor(private galleta:CookieService, private router:Router){}
+  constructor(private galleta:CookieService, private router:Router, private apiService:ApiService){
+    
+  }
+  isMenuOpen = false; toggleMenu() { this.isMenuOpen = !this.isMenuOpen; }
   
   // verificar la sesion iniciada y mostrar sus modulos correspondientes
   ngOnInit(): void {
+    let id = this.galleta.get('user_id')
+    this.apiService.usuario_x_id(id).subscribe(
+      response=>{
+        this.usuario = response.usuario.nombre
+        console.log(this.usuario)
+      }
+    )
     const area = this.galleta.get('area')
     if(area === 'sistemas'){
       this.isSistemas = true
@@ -35,6 +48,9 @@ export class CNavBarComponent implements OnInit{
     if(area === 'comedor_1' || area === 'comedor_2'){
       this.isComedor = true
     }
+    if(area === 'seguridad'){
+      this.isSeguridad = true
+    }
     this.isLoggin = this.galleta.check('sesion')
   }
 
@@ -43,6 +59,7 @@ export class CNavBarComponent implements OnInit{
     this.isSistemas = false
     this.isLoggin = false
     this.isRH = false
+    this.isSeguridad = false
     this.closeSession = true
 
     setTimeout(()=>{

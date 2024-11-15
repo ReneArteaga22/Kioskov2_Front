@@ -9,7 +9,7 @@ export const rhGuard: CanActivateFn = (route, state) => {
   const token = cookieService.get('sesion')
   const area = cookieService.get('area')
 
-  if (token && area === 'rh' || area === 'sistemas') {
+  if (token && area === 'rh' || area === 'sistemas' || area === 'seguridad') {
     return true
   } 
   router.navigate(['/'])
