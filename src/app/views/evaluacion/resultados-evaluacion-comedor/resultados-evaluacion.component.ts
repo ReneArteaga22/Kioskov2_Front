@@ -144,7 +144,7 @@ export class ResultadosEvaluacionComponent implements OnInit {
   }
   
   exportToExcel() {
-    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.evaluaciones);
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.totalRecords);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Evaluaciones');
 

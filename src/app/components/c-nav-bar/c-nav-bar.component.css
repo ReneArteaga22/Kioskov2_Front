@@ -20,6 +20,13 @@
   max-width: 100%; /* Ancho máximo */
   cursor: pointer;
 }
+.logo a{
+  text-align: center;
+}
+.user{
+  margin-left: 1rem;
+  width:208px;
+}
 
 .nav-links {
   list-style: none;
@@ -148,4 +155,47 @@ img {
   width: 100px;
   height: 100px;
   margin-top: 10px;
+}
+/* Estilos para el dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-height: 30px;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 10px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 10px 10px;
+  text-decoration: none;
+  display: block;
+  border-radius: 10px;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown i {
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown button:hover,
+.dropdown button:focus {
+  background-color: #3e8e41;
+}
+
+/* Mostrar el contenido cuando el menú está abierto */
+.dropdown-content {
+  display: block;
 }

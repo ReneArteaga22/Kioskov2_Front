@@ -38,6 +38,7 @@ export class LoginComponent {
         response =>{
           this.galleta.set('area', response.usuario.area)                       
           this.galleta.set('sesion','1')
+          this.galleta.set('user_id',response.usuario.id)
           this.visible = true
 
           setTimeout(() => { 
