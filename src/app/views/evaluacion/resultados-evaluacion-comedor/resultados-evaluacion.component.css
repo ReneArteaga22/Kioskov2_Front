@@ -135,5 +135,10 @@ tbody tr:hover {
   color: #007bff; /* Cambia el color de las flechas de navegación */
 }
 
+::ng-deep .boton-margen {
+  margin-right: 10px; 
+}
+
+
 
 

@@ -27,7 +27,6 @@
             <table class="reportes">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Area</th>
@@ -35,10 +34,9 @@
                 </thead>
                 <tbody>
                     <tr (click)="usuarios_info(usuario.id)" *ngFor="let usuario of paginatedUsuarios">
-                        <td>{{usuario.id}}</td>
-                        <td>{{usuario.nombre}}</td>
-                        <td>{{usuario.apellidos}}</td>
-                        <td>{{usuario.area}}</td>
+                        <td class="uppercase">{{usuario.nombre}}</td>
+                        <td class="uppercase">{{usuario.apellidos}}</td>
+                        <td class="uppercase">{{usuario.area === 'rh' ? 'Recursos Humanos' : usuario.area }}</td>
                     </tr>
                 </tbody>
             </table>

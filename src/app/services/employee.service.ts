@@ -6,9 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EmployeeService {
-
   private apiUrl = 'http://10.99.22.17:3333';
-
   constructor(private http: HttpClient) { }
 
   getEmployees(): Observable<any[]>

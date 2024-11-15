@@ -1,23 +1,30 @@
 <div class="box">
     <app-c-bar></app-c-bar>
     <div class="box-form">
-        <form class="form" (ngSubmit)="recuperar()">
+        <form class="form" [formGroup]="recuperarForm" (ngSubmit)="recuperar()">
             <div class="inputs">
                 <div class="box-title">
                     <h1 class="title">Recuperar contraseña</h1>
                 </div>
                 <div class="box-input">
-                    <label for="">Correo</label>
-                    <input class="input" type="text" placeholder="Ingresa tu correo" formControlName="correo">
-                </div>
-                <div class="box-input">
                     <label for="">Contraseña</label>
-                    <input class="input" type="password" placeholder="Ingresa tu contraseña" formControlName="contrasena">
+                    <input class="input" id="contrasena" type="password" placeholder="Ingresa tu nueva contraseña" formControlName="contrasena">
+                </div>
+                <div *ngIf="error" class="box-input">
+                    <p class="error">No puedes dejar la contraseña vacia.</p>
                 </div>
                 <div class="box-btn">
-                    <button class="btn" type="submit">Recuperar</button>
+                    <button class="btn" type="submit">Guardar</button>
                 </div>
             </div>
         </form>
     </div>
+</div>
+<div>
+    <p-dialog [modal]="true" [(visible)]="visible" [style]="{ width: '400px', height: '230px', borderRadius: '8px'}">
+        <div class="box-modal">
+            <h2 class="">Contraseña guardada exitosamente!!</h2>
+            <img src="icons/success.png" alt="">
+        </div>
+    </p-dialog>
 </div>

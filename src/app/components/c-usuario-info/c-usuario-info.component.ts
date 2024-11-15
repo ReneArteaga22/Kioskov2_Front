@@ -5,11 +5,12 @@ import { ApiService } from '../../service/api.service';
 import { CookieService } from 'ngx-cookie-service';
 import { DialogModule } from 'primeng/dialog';
 import { NgFor } from '@angular/common';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-c-usuario-info',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, NgFor, DialogModule],
+  imports: [RouterLink, ReactiveFormsModule, NgFor,NgIf, DialogModule],
   templateUrl: './c-usuario-info.component.html',
   styleUrl: './c-usuario-info.component.css'
 })
