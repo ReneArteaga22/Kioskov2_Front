@@ -1,5 +1,5 @@
+<app-c-nav-bar></app-c-nav-bar>
 <div class="box">
-    <app-c-nav-bar></app-c-nav-bar>
     <h2 *ngIf="error">No existen registros con estos datos</h2>
     <div class="container">
         <form class="filters" [formGroup]="filtrosForm" (ngSubmit)="filtrar_reportes()">

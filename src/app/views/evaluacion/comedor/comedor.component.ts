@@ -21,6 +21,7 @@ export class ComedorComponent {
   comedorForm: FormGroup
   isSubmit: boolean = false
   error:boolean= false
+  comunicado:object={}
   
 
   constructor(private router:Router, private apiService:ApiService, private cookie:CookieService){
@@ -67,5 +68,13 @@ export class ComedorComponent {
         }
       )
     }
+  }
+
+  menu(){
+    this.apiService.menu_comunicado().subscribe(
+      response =>{
+        console.log(response)
+      }
+    )
   }
 }
