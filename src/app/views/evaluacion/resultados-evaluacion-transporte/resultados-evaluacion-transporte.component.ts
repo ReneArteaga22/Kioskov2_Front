@@ -9,6 +9,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { PaginatorModule } from 'primeng/paginator';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-resultados-evaluacion-transporte',
@@ -29,7 +31,7 @@ export class ResultadosEvaluacionTransporteComponent implements OnInit {
   first: number = 0;
   rows: number = 15;
   totalRecords: any;
-
+  fechas: Date[] = [];
 
 
   constructor(private apiService:ApiService) {
@@ -39,6 +41,20 @@ export class ResultadosEvaluacionTransporteComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.apiService.resultados_evaluacion_transporte().subscribe(
+      response => {
+        this.evaluaciones = response.evaluaciones;
+        this.totalRecords = this.evaluaciones.length;
+        this.paginateUsuarios();
+        this.configurarGrafica();
+      },
+      error => {
+        console.error('Error al obtener las evaluaciones', error);
+      }
+    );
+  }
+
+  obtenerEvaluaciones() {
     this.apiService.resultados_evaluacion_transporte().subscribe(
       response => {
         this.evaluaciones = response.evaluaciones;
@@ -62,10 +78,19 @@ export class ResultadosEvaluacionTransporteComponent implements OnInit {
     this.paginateUsuarios();
   }
 
+  
   filtrar() {
-    if (this.filtrarForm.valid && !this.isSubmit) {
-      this.apiService.filtrar_resultados_transporte(this.filtrarForm.value).subscribe(
+    const fechas = this.fechas ? this.fechas.map(date => date.toISOString().split('T')[0]) : [];
+    if (this.filtrarForm.valid || fechas.length === 2) {
+      console.log('Formulario válido o fechas seleccionadas, enviando datos...'); 
+      const filtro = { ...this.filtrarForm.value };
+      filtro.fechas = fechas;
+  
+      console.log('Datos a enviar:', filtro); 
+  
+      this.apiService.filtrar_resultados_transporte(filtro).subscribe(
         response => {
+          console.log('Respuesta del servidor:', response); 
           this.evaluaciones = response.filtro;
           this.totalRecords = this.evaluaciones.length;
           this.paginateUsuarios();
@@ -74,7 +99,20 @@ export class ResultadosEvaluacionTransporteComponent implements OnInit {
           console.error('Error al filtrar las evaluaciones', error);
         }
       );
+    } else {
+      console.log('Formulario no válido y fechas no seleccionadas'); 
     }
+  }
+  
+  clearFilters() {
+    this.filtrarForm.reset();
+    this.fechas = [];
+    this.obtenerEvaluaciones();  // Lógica para obtener todos los registros sin filtro
+  }
+
+  logFecha(event: any) {
+    console.log('Fecha seleccionada:', event);
+    console.log('rangeDates:', this.fechas); 
   }
 
   mostrarComentario(id: number) {
@@ -118,4 +156,19 @@ export class ResultadosEvaluacionTransporteComponent implements OnInit {
       }
     };
   }
+  exportToExcel() {
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.evaluaciones);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Evaluaciones');
+
+    const excelBuffer: any = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    this.saveAsExcelFile(excelBuffer, 'evaluaciones_transporte');
+  }
+
+  private saveAsExcelFile(buffer: any, fileName: string): void {
+    const data: Blob = new Blob([buffer], { type: EXCEL_TYPE });
+    saveAs(data, `${fileName}_export_${new Date().getTime()}.xlsx`);
+  }
 }
+const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+

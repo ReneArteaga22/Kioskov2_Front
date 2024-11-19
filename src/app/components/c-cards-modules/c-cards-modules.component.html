@@ -46,27 +46,28 @@
         <img src="icons/trofeo.png" alt="https://www.freepik.es/">
     </div> -->
 
-    <div *ngIf="isRH || isSistemas"  [routerLink]="['/solicitudes']" class="card">
+    <!-- MODULOS PARA USUARIOS rh, sistemas, seguridad -->
+    <div *ngIf="isRH || isSistemas || isSeguridad"  [routerLink]="['/solicitudes']" class="card">
         <h2>Solicitudes</h2>
         <img src="icons/solicitud.png" alt="https://www.freepik.es/">
     </div>
 
-    <div *ngIf="isRH || isSistemas"  [routerLink]="['/tablas-servicios']" class="card">
+    <div *ngIf="isRH || isSistemas || isSeguridad"  [routerLink]="['/tablas-servicios']" class="card">
         <h2>Resultados de evaluacion</h2>
         <img src="icons/resultados_evaluacion.png" alt="https://www.freepik.es/">
     </div>
     
-    <div *ngIf="isRH || isSistemas"  [routerLink]="['/usuarios']" class="card">
+    <div *ngIf="isRH || isSistemas || isSeguridad"  [routerLink]="['/usuarios']" class="card">
         <h2>Usuarios</h2>
         <img src="icons/usuarios.png" alt="https://www.freepik.es/">
     </div>
 
-    <div *ngIf="isRH || isSistemas" class="card" [routerLink]="['/comunicados']">
+    <div *ngIf="isRH || isSistemas || isSeguridad" class="card" [routerLink]="['/comunicados']">
         <h2>Comunicados</h2>
         <img src="icons/comunicados.png" alt="https://www.freepik.es/">
     </div>
 
-    <div *ngIf="isRH || isSistemas" [routerLink]="['/sugerencias']" class="card">
+    <div *ngIf="isRH || isSistemas || isSeguridad" [routerLink]="['/sugerencias']" class="card">
         <h2>Buzon de sugerencias</h2>
         <img src="icons/buzon.png" alt="https://www.freepik.es/">
     </div>

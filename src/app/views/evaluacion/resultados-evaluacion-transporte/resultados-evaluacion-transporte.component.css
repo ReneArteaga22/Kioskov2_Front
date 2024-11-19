@@ -97,3 +97,7 @@ tbody tr:hover {
   padding: 7px;
   height: 2rem;
 }
+.boton-margen {
+  margin-left: 6px;
+  margin-right: 10px; 
+}

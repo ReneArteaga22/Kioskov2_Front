@@ -13,6 +13,7 @@ import { CalendarModule } from 'primeng/calendar';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 
+
 @Component({
   selector: 'app-resultados-evaluacion',
   standalone: true,
@@ -33,18 +34,29 @@ export class ResultadosEvaluacionComponent implements OnInit {
   first: number = 0;
   rows: number = 15;
   totalRecords: any;
-  rangeDates: Date[] | undefined;
+  rangeDates: Date[] | undefined
 
   constructor(private apiService: ApiService) {
     this.filtrarForm = new FormGroup({
       calificacion: new FormControl(''),
-      planta: new FormControl('', [Validators.required]),
-      fechas: new FormControl([])  // Inicializa con un array vacío
+      planta: new FormControl(''),
+      fechas: new FormControl(null)  // Agrega el campo de fecha
     });
   }
 
   ngOnInit(): void {
-    this.obtenerEvaluaciones();
+    this.apiService.resultados_evaluacion_comedor().subscribe(
+      response => {
+        this.evaluaciones = response.evaluaciones;
+        this.totalRecords = this.evaluaciones.length;
+        this.paginateUsuarios();
+        this.configurarGrafica();
+        
+      },
+      error => {
+        console.error('Error al obtener las evaluaciones', error);
+      }
+    );
   }
 
   obtenerEvaluaciones() {
@@ -74,15 +86,15 @@ export class ResultadosEvaluacionComponent implements OnInit {
   filtrar() {
     const fechas = this.fechas ? this.fechas.map(date => date.toISOString().split('T')[0]) : [];
     if (this.filtrarForm.valid || fechas.length === 2) {
-      console.log('Formulario válido o fechas seleccionadas, enviando datos...'); 
+      console.log('Formulario válido o fechas seleccionadas, enviando datos...'); // Verifica que esto se imprime
       const filtro = { ...this.filtrarForm.value };
       filtro.fechas = fechas;
   
-      console.log('Datos a enviar:', filtro); 
+      console.log('Datos a enviar:', filtro); // Verifica los datos que se envían
   
       this.apiService.filtrar_resultados_comedor(filtro).subscribe(
         response => {
-          console.log('Respuesta del servidor:', response); 
+          console.log('Respuesta del servidor:', response); // Verifica la respuesta del servidor
           this.evaluaciones = response.filtro;
           this.totalRecords = this.evaluaciones.length;
           this.paginateUsuarios();
@@ -92,7 +104,7 @@ export class ResultadosEvaluacionComponent implements OnInit {
         }
       );
     } else {
-      console.log('Formulario no válido y fechas no seleccionadas'); 
+      console.log('Formulario no válido y fechas no seleccionadas'); // Verifica si el formulario es inválido y no hay fechas
     }
   }
 
@@ -104,9 +116,10 @@ export class ResultadosEvaluacionComponent implements OnInit {
 
   logFecha(event: any) {
     console.log('Fecha seleccionada:', event);
-    console.log('rangeDates:', this.fechas); 
+    console.log('rangeDates:', this.fechas); // Verifica el contenido de rangeDates
   }
-
+  
+  
   mostrarComentario(id: number) {
     this.apiService.mostar_comentario_x_id(id).subscribe(
       response => {
@@ -120,6 +133,7 @@ export class ResultadosEvaluacionComponent implements OnInit {
     );
     console.log(id, typeof id);
   }
+  
 
   configurarGrafica() {
     const calificaciones: { [key: string]: number } = { 'Muy bueno': 0, 'Bueno': 0, 'Malo': 0, 'Muy malo': 0 };
@@ -148,7 +162,7 @@ export class ResultadosEvaluacionComponent implements OnInit {
       }
     };
   }
-
+  
   exportToExcel() {
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.evaluaciones);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();

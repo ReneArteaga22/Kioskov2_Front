@@ -10,13 +10,20 @@
             <div>
                 <h1>Filtros</h1>
                 <form class="form" [formGroup]="filtrarForm" (ngSubmit)="filtrar()">
-                    <div>
-                        <input class="input" type="text" placeholder="Buscar por calificacion" formControlName="calificacion">
-                    </div>
+                    <select name="" id="" formControlName="calificacion">
+                        <option value="" selected disabled>Calificacion</option>
+                        <option value="Muy bueno">Muy bueno</option>
+                        <option value="Bueno">Bueno</option>
+                        <option value="Malo">Malo</option>
+                        <option value="Muy malo">Muy malo</option>
+                        <option value="o">Todas</option>
+                    </select>
                     <div>
                         <button class="btn" type="submit" [disabled]="!filtrarForm.valid">Buscar</button>
                     </div>
                 </form>
+                <p-button label="Recargar" icon="pi pi-sync" [text]="true" iconPos="right" [severity]="'danger'" (click)="clearFilters()" class="boton-margen"></p-button>
+                <p-button label="Exportar" icon="pi pi-file-export" [text]="true" iconPos="right" [severity]="'success'" (click)="exportToExcel()" class="boton-margen"></p-button>
             </div>
             <div class="tabla">
                 <table>

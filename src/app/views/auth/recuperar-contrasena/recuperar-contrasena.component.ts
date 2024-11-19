@@ -28,8 +28,6 @@ export class RecuperarContrasenaComponent {
   }
 
   recuperar(){
-   
-    
     if (this.recuperarForm.invalid) {
       this.error = true;
       return;
@@ -52,3 +50,4 @@ export class RecuperarContrasenaComponent {
     }
   }
 }
+
