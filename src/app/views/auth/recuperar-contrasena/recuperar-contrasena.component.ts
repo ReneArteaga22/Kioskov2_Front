@@ -28,7 +28,8 @@ export class RecuperarContrasenaComponent {
   }
 
   recuperar(){
-    // prueba
+   
+    
     if (this.recuperarForm.invalid) {
       this.error = true;
       return;
