@@ -54,53 +54,8 @@
               "extractLicenses": false,
               "sourceMap": true
             }
-          },  "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "1.5MB",
-                  "maximumError": "2.5MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "6kB"
-                }
-              ],
-              "outputHashing": "all"
-            },
-            "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true
-            }
-          },
- },  "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "1.5MB",
-                  "maximumError": "2.5MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "6kB"
-                }
-              ],
-              "outputHashing": "all"
-            },
-            "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true
-            }
-          },
-
-          "defaultConfiguration": "production"
-        },
+          }
+ },  
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
@@ -137,12 +92,10 @@
           }
         }
       }
-    },
-    "cli": {
-      "analytics": false
-    }
+    }    
   },
   "cli": {
     "analytics": false
   }
 }
+
