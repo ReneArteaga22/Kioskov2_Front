@@ -39,31 +39,42 @@
                         <label for="">Puesto</label>
                         <input type="text" placeholder="Ingresa la puesto" formControlName="puesto">
                     </div>
-                    <div>
+                    <!-- <div>
                         <label for="">Firma</label>
                         <input type="text" placeholder="Ingresa la firma" formControlName="firma">
-                    </div>
+                    </div> -->
                 </div>
                 <div class="input">
                     <div>
                         <label for="">Correo</label>
-                        <input type="text" placeholder="Ingresa el correo" formControlName="correo">
+                        <input type="email" placeholder="Ingresa el correo" formControlName="correo">
                     </div>
                     <div>
                         <label for="">Telefono</label>
-                        <input type="text" placeholder="Ingresa el telefono" formControlName="telefono">
+                        <input type="number" placeholder="Ingresa el telefono" formControlName="telefono">
                     </div>
                 </div>
                 <div class="input">
-                    <div>
+                    <!-- <div>
                         <label for="">Foto</label>
                         <input type="text" placeholder="Ingresa la fotografia" formControlName="foto">
-                    </div>
+                    </div> -->
+                </div>
+                <div *ngIf="error" class="box-input">
+                    <p class="error">No puedes dejar espacios vacios!!</p>
                 </div>
                 <div class="box-btn">
                     <button class="btn" type="submit">Registrar</button>
                 </div>
             </div>
         </form>
+    </div>
+    <div>
+        <p-dialog [modal]="true" [(visible)]="visible" [style]="{ width: '400px', height: '200px', borderRadius: '8px'}">
+            <div class="box-modal">
+                <h2 class="">Usuario registrado!!</h2>
+                <img src="icons/success.png" alt="">
+            </div>
+        </p-dialog>
     </div>
 </div>

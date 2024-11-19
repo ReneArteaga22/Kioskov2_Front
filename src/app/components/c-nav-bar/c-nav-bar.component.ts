@@ -31,7 +31,7 @@ export class CNavBarComponent implements OnInit{
   
   // verificar la sesion iniciada y mostrar sus modulos correspondientes
   ngOnInit(): void {
-    let id = this.galleta.get('user_id')
+    let id = this.galleta.get('user_num')
     this.apiService.usuario_x_id(id).subscribe(
       response=>{
         this.usuario = response.usuario.nombre
