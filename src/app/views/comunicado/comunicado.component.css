@@ -1,3 +1,4 @@
+/* Fondo */
 .fondo {
     height: 82vh;
     background-color: #ffffff;
@@ -17,7 +18,8 @@
         height: auto !important;
     }
     .carousel-item img {
-        height: 40rem;
+        max-height: 40rem;
+        object-fit: contain;
     }
 }
 
@@ -27,7 +29,8 @@
         height: auto !important;
     }
     .carousel-item img {
-        height: 35rem;
+        max-height: 35rem;
+        object-fit: contain;
     }
 }
 
@@ -37,6 +40,33 @@
         height: auto !important;
     }
     .carousel-item img {
-        height: 25rem;
+        max-height: 25rem;
+        object-fit: contain;
+    }
+}
+
+/* Altura entre 500px y 650px */
+@media (max-height: 650px) and (min-height: 500px) {
+    .p-dialog {
+        width: 95vw !important;
+        height: 75vh !important; /* Más compacto */
+    }
+    .carousel-item img {
+        max-height: 82vh; /* Ajustar proporcionalmente */
+        width: auto; /* Mantener el aspecto */
+        object-fit:contain;
+    }
+}
+
+/* Altura menor a 500px */
+@media (max-height: 499px) {
+    .p-dialog {
+        width: 95vw !important;
+        height: 70vh !important;
+    }
+    .carousel-item img {
+        max-height: 35vh; /* Aún más compacto */
+        width: auto;
+        object-fit: contain;
     }
 }
