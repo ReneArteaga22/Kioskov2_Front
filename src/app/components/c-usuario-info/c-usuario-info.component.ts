@@ -18,13 +18,14 @@ export class CUsuarioInfoComponent implements OnInit{
 
   usuario: any
   visible:boolean = false
+  isSistemas:boolean = false
+  isRh:boolean = false
   editarForm: FormGroup
   isEditing: boolean = false
-  isSubmit:boolean =false
+  isSubmit:boolean = false
 
   constructor(private apiService: ApiService, private cookie:CookieService){
     this.editarForm = new FormGroup({
-      estatus: new FormControl(),
       area: new FormControl(),
       puesto: new FormControl(),
       nombre: new FormControl(),
@@ -36,6 +37,13 @@ export class CUsuarioInfoComponent implements OnInit{
   }
 
   ngOnInit(): void { 
+    let area = this.cookie.get('area')
+    if(area === 'sistemas'){
+      this.isSistemas = true
+    }
+    if(area === 'rh'){
+      this.isRh = true
+    }
     this.cargarDatosUsuario(); 
   } 
   cargarDatosUsuario(){

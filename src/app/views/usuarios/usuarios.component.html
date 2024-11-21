@@ -22,7 +22,7 @@
         <div class="table">
             <div class="title"> 
                 <h1>Lista de Usuarios</h1> 
-                <button class="btn-register" [routerLink]="['/register']">Registrar Usuario</button> 
+                <button class="btn-register" *ngIf="isRh || isSistemas" [routerLink]="['/register']">Registrar Usuario</button> 
             </div>
             <table class="reportes">
                 <thead>
