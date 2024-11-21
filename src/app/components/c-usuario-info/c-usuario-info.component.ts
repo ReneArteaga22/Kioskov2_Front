@@ -18,6 +18,8 @@ export class CUsuarioInfoComponent implements OnInit{
 
   usuario: any
   visible:boolean = false
+  isSistemas:boolean = false
+  isRh:boolean = false
   editarForm: FormGroup
   isEditing: boolean = false
   isSubmit:boolean =false
@@ -36,6 +38,13 @@ export class CUsuarioInfoComponent implements OnInit{
   }
 
   ngOnInit(): void { 
+    let area = this.cookie.get('area')
+    if(area === 'sistemas'){
+      this.isSistemas = true
+    }
+    if(area === 'rh'){
+      this.isRh = true
+    }
     this.cargarDatosUsuario(); 
   } 
   cargarDatosUsuario(){

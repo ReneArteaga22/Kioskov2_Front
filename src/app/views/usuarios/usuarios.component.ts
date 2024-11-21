@@ -6,16 +6,20 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms'
 import { CookieService } from 'ngx-cookie-service'
 import { PaginatorModule } from 'primeng/paginator'
 import { CNavBarComponent } from '../../components/c-nav-bar/c-nav-bar.component'
+import { NgIf } from '@angular/common'
+
 @Component({
   selector: 'app-usuarios',
   standalone: true,
-  imports: [RouterLink, NgFor, ReactiveFormsModule, PaginatorModule, CNavBarComponent],
+  imports: [RouterLink, NgFor, ReactiveFormsModule, PaginatorModule, CNavBarComponent, NgIf],
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.css'
 })
 export class UsuariosComponent implements OnInit {
   buscarUsuarioForm: FormGroup
   isSubmit: boolean = false
+  isRh:boolean = false
+  isSistemas:boolean = false
   usuarios: any[] = []
   
   paginatedUsuarios: any[] = []
@@ -31,6 +35,11 @@ export class UsuariosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let area = this.cookie.get('area')
+    if(area === 'rh' || area === 'sistemas'){
+      this.isSistemas = true
+      this.isRh = true
+    }
     this.apiService.lista_usuarios().subscribe(
       response => {
         this.usuarios = response.usuarios
