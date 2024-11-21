@@ -29,7 +29,7 @@ export class CNavBarComponent implements OnInit{
   }
   isMenuOpen = false; toggleMenu() { this.isMenuOpen = !this.isMenuOpen; }
   
-  // verificar la sesion iniciada y mostrar sus modulos correspondientes
+  
   ngOnInit(): void {
     let id = this.galleta.get('user_num')
     this.apiService.usuario_x_id(id).subscribe(
@@ -39,6 +39,8 @@ export class CNavBarComponent implements OnInit{
       }
     )
     const area = this.galleta.get('area')
+
+    // CONDICION DE SU ROL QUE MODULOS VA A VER
     if(area === 'sistemas'){
       this.isSistemas = true
     }
