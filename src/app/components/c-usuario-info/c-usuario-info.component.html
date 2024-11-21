@@ -43,8 +43,8 @@
             </div>
             <div class="input-1">
                 <button class="btn" type="submit">Guardar cambios</button>
-                <button class="btn" *ngIf="usuario.estatus === 'inactivo' && isSistemas || isRh" (click)="activar('activo')">Activar</button>
-                <button class="btn" *ngIf="usuario.estatus === 'activo' && isSistemas || isRh"  (click)="desactivar('inactivo')">Desctivar</button>
+                <button class="btn" *ngIf="(usuario.estatus === 'inactivo' && (isSistemas || isRh))" (click)="activar('activo')">Activar</button>
+                <button class="btn" *ngIf="(usuario.estatus === 'activo' && (isSistemas || isRh))" (click)="desactivar('inactivo')">Desactivar</button>                
                 <button class="btn" *ngIf="isSistemas" [routerLink]="['/recuperar-contrasena']">Cambiar Contrasena</button>
             </div>
         </div>

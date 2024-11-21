@@ -22,11 +22,10 @@ export class CUsuarioInfoComponent implements OnInit{
   isRh:boolean = false
   editarForm: FormGroup
   isEditing: boolean = false
-  isSubmit:boolean =false
+  isSubmit:boolean = false
 
   constructor(private apiService: ApiService, private cookie:CookieService){
     this.editarForm = new FormGroup({
-      estatus: new FormControl(),
       area: new FormControl(),
       puesto: new FormControl(),
       nombre: new FormControl(),
