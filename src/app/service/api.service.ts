@@ -58,15 +58,23 @@ export class ApiService {
     return this.http.get<any>(`${this.url}/api/evaluacion/evaluaciones-comedor`)
   }
 
+  resultados_evaluacion_limpieza():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/evaluacion/evaluaciones-limpieza`)
+  }
+
   resultados_evaluacion_transporte():Observable<any>{
     return this.http.get<any>(`${this.url}/api/evaluacion/evaluaciones-transporte`)
+  }
+
+  filtrar_resultados_limpieza(filtro: any) {
+    console.log('Enviando datos al servidor:', filtro); // Verifica los datos que se envían
+    return this.http.post<any>(`${this.url}/api/evaluacion/filtrar-limpieza`, filtro);
   }
 
   filtrar_resultados_comedor(filtro: any) {
     console.log('Enviando datos al servidor:', filtro); // Verifica los datos que se envían
     return this.http.post<any>(`${this.url}/api/evaluacion/filtrar-comedor`, filtro);
   }
-  
 
   filtrar_resultados_transporte(userData:any):Observable<any>{
     return this.http.post<any>(`${this.url}/api/evaluacion/filtrar-transporte`, userData)

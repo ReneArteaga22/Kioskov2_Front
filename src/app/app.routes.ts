@@ -29,6 +29,7 @@ import { ComunicadoComponent } from './views/comunicado/comunicado.component';
 import { comedorGuard } from './service/comedor.guard';
 import { ComedorGuestComponent } from './views/evaluacion/comedor-guest/comedor-guest.component';
 import { LimpiezaGuestComponent } from './views/evaluacion/limpieza-guest/limpieza-guest.component';
+import { ResultadosEvaluacionLimpiezaComponent } from './views/evaluacion/resultados-evaluacion-limpieza/resultados-evaluacion-limpieza.component';
 
 export const routes: Routes = [
   { path: '',component: HomeComponent},
@@ -57,5 +58,6 @@ export const routes: Routes = [
   { path: 'sugerencias',component:SugerenciasComponent,canActivate:[rhGuard]},
   { path: 'comunicado',component:ComunicadoComponent,canActivate:[]},
   { path: 'comedor-guest',component:ComedorGuestComponent},
-  { path: 'limpieza-guest',component:LimpiezaGuestComponent}
+  { path: 'limpieza-guest',component:LimpiezaGuestComponent},
+  { path: 'resultados-evaluacion-limpieza',component:ResultadosEvaluacionLimpiezaComponent,canActivate:[]}
 ]
