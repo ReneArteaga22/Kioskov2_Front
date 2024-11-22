@@ -46,7 +46,7 @@
 }
 
 /* Altura entre 500px y 650px */
-@media (max-height: 650px) and (min-height: 500px) {
+@media (max-height: 720px) and (min-height: 500px) {
     .p-dialog {
         width: 95vw !important;
         height: 75vh !important; /* Más compacto */
