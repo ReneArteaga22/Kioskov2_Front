@@ -1,3 +1,10 @@
+.box{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
 .comunicados{
     gap: 15px;
     margin-top: 1.5rem;

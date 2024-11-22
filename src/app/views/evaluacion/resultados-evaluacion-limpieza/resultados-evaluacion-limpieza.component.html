@@ -1,0 +1,126 @@
+<app-c-nav-bar></app-c-nav-bar>
+<div class="box">
+  <div class="container">
+    <div>
+      <h1>Graficas generales</h1>
+      <p-chart type="bar" [data]="basicData" [options]="basicOptions" />
+      <p-chart type="bar" [data]="basicData" [options]="basicOptions" />
+    </div>
+    <div class="table">
+      <div>
+        <h1>Filtros</h1>
+        <form class="form" [formGroup]="filtrarForm" (ngSubmit)="filtrar()">
+          <div class="flex-auto">
+            <p-calendar
+              formControlName="fechas"
+              [(ngModel)]="fechas"
+              selectionMode="range"
+              [readonlyInput]="true"
+              dateFormat="yy/mm/dd"
+              (onSelect)="logFecha($event)"
+              [iconDisplay]="'button'"
+              [showIcon]="'true'"
+              [showOnFocus]="'false'"
+              inputId="buttondisplay"
+              class="custom-calendar"
+            ></p-calendar>
+          </div>
+          <div>
+            <select name="" id="" formControlName="calificacion">
+              <option value=""select disabled>Calificacion</option>
+              <option value="Muy bueno">Muy bueno</option>
+              <option value="Bueno">Bueno</option>
+              <option value="Malo">Malo</option>
+              <option value="Muy malo">Muy malo</option>
+              <option value="">Todas</option>
+            </select>
+          </div>
+          <div>
+            <select formControlName="planta">
+              <option value="" disabled selected>Plantas</option>
+              <option value="planta 1">Planta 1</option>
+              <option value="planta 2">Planta 2</option>
+              <option value="planta">Ambas</option>
+            </select>
+          </div>
+          <div>
+            <button
+              class="btn"
+              type="submit"
+              [disabled]="!filtrarForm.valid && !fechas.length"
+            >
+              Buscar
+            </button>
+            <!-- <button
+              class="btn"
+              type="button"
+              (click)="clearFilters()"
+            >
+              Clear
+            </button> -->
+          </div>
+        </form>
+        <p-button label="Recargar" icon="pi pi-sync" [text]="true" iconPos="right" [severity]="'danger'" (click)="clearFilters()" class="boton-margen"></p-button>
+        <p-button label="Exportar" icon="pi pi-file-export" [text]="true" iconPos="right" [severity]="'success'" (click)="exportToExcel()" class="boton-margen"></p-button>
+      </div>
+      
+      <div class="tabla">
+        
+        <table>
+          <thead>
+            <tr>
+              <th class="id">Calificacion</th>
+              <th>Planta</th>
+              <th>Servicio</th>
+              <th>Fecha</th>
+              <th class="area">Comentario</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let evaluacion of paginacionEvaluaciones">
+              <td>{{ evaluacion.calificacion }}</td>
+              <td>{{ evaluacion.planta }}</td>
+              <td>{{ evaluacion.servicio }}</td>
+              <td>{{ evaluacion.createdAt | date : "yyyy/MM/dd" }}</td>
+              <td>
+                <p-button
+      [disabled]="!evaluacion.comentario || evaluacion.comentario.trim() === ''"
+      (click)="mostrarComentario(evaluacion.id)"
+      class="Comentario"
+      label="Comentario"
+    ></p-button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card flex justify-content-center">
+        <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="totalRecords"
+          [rowsPerPageOptions]="[15, 20]">
+        </p-paginator>
+      </div>
+
+    </div>
+  </div>
+  <div class="card flex justify-content-center" style="padding: 20px">
+    <p-dialog
+      header="Comentario"
+      [modal]="true"
+      [(visible)]="visible"
+      [style]="{
+        width: '300px',
+        height: '300px',
+        backgroundColor: '#f9f9f9',
+        padding: '20px',
+        borderRadius: '8px'
+      }"
+    >
+      <ng-template pTemplate="header">
+        <div style="text-align: center; text-decoration: underline">
+          <h1>Comentario</h1>
+        </div>
+      </ng-template>
+      <h3>{{ comentario }}</h3>
+    </p-dialog>
+  </div>
+</div>

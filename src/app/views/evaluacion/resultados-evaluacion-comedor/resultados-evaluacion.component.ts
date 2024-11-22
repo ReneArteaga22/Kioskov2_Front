@@ -21,6 +21,7 @@ import { saveAs } from 'file-saver';
   templateUrl: './resultados-evaluacion.component.html',
   styleUrls: ['./resultados-evaluacion.component.css']
 })
+
 export class ResultadosEvaluacionComponent implements OnInit { 
   fechas: Date[] = [];
   visible: boolean = false;
