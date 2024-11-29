@@ -40,11 +40,7 @@ export class RecuperarContrasenaComponent {
           this.visible = true
           setTimeout(() => { 
             this.visible = false; 
-<<<<<<< HEAD
-=======
-            this.router.navigate(['/'])
             // SI SALE ESTO ES PORQUE EL MERGE SI JALO CHINGAO
->>>>>>> miller
           }, 1600);
         },error => {
           if(error.status === 404 || 500){
