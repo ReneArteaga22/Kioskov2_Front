@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CBarComponent } from '../../../components/c-bar/c-bar.component';
 import { ApiService } from '../../../service/api.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -21,7 +21,7 @@ export class RecuperarContrasenaComponent {
   visible:boolean = false
   error:boolean = false
 
-  constructor(private apiService:ApiService, private cookie:CookieService){
+  constructor(private apiService:ApiService, private cookie:CookieService, private router:Router){
     this.recuperarForm = new FormGroup({
       contrasena: new FormControl('',[Validators.required]),
     })
@@ -40,6 +40,7 @@ export class RecuperarContrasenaComponent {
           this.visible = true
           setTimeout(() => { 
             this.visible = false; 
+            this.router.navigate(['/'])
           }, 1600);
         },error => {
           if(error.status === 404 || 500){

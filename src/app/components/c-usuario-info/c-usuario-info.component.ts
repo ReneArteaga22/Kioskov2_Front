@@ -51,7 +51,6 @@ export class CUsuarioInfoComponent implements OnInit{
     response => { 
       this.usuario = response.usuario
       this.editarForm.setValue({ 
-        estatus: this.usuario.estatus, 
         area: this.usuario.area, 
         puesto: this.usuario.puesto, 
         nombre: this.usuario.nombre, 
@@ -65,6 +64,7 @@ export class CUsuarioInfoComponent implements OnInit{
       } 
     ); 
   } 
+
   editar() { 
     console.log(this.editarForm.value)
     const id = this.cookie.get('user_id'); this.apiService.editar_usuario(id, this.editarForm.value).subscribe( 
