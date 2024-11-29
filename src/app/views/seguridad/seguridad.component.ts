@@ -10,5 +10,5 @@ import { CNavBarComponent } from '../../components/c-nav-bar/c-nav-bar.component
   styleUrl: './seguridad.component.css'
 })
 export class SeguridadComponent {
-
+// QUE ONDA RENE
 }
