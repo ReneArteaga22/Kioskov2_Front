@@ -1,0 +1,38 @@
+.box{
+  display: flex;
+  flex-wrap: wrap; /* Permitir que las tarjetas se envuelvan */
+  gap: 20px;
+  margin: 20px;
+  justify-content: center; /* Centrar las tarjetas */
+}
+.card {
+  padding:20px;
+  display: flex;
+  flex-direction: column; /* Mantener el contenido en columna */
+  align-items: center;
+  justify-content: space-around;
+  height: auto; /* Ajustar altura automáticamente */
+  width: 18rem; /* Ancho fijo para tarjetas */
+  max-width: 100%; /* Ancho máximo */
+  border-radius: 3%;
+  text-align: center;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
+}
+p-dialog::header{
+  text-align: center;
+}
+.card:hover {
+  border-radius: 3%;
+  background-color: #ffffff;
+  border: 2px solid #ccc;
+}
+/* Imágenes */
+img {
+  width: 100%; /* Ajustar el ancho de la imagen al 100% del contenedor */
+  height: auto; /* Altura automática */
+  border-radius: 3%;
+}

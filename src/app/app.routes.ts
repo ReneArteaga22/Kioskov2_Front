@@ -30,6 +30,9 @@ import { comedorGuard } from './service/comedor.guard';
 import { ComedorGuestComponent } from './views/evaluacion/comedor-guest/comedor-guest.component';
 import { LimpiezaGuestComponent } from './views/evaluacion/limpieza-guest/limpieza-guest.component';
 import { ResultadosEvaluacionLimpiezaComponent } from './views/evaluacion/resultados-evaluacion-limpieza/resultados-evaluacion-limpieza.component';
+import { SeguridadComponent } from './views/seguridad/seguridad.component';
+import { ActosInsegurosComponent } from './views/seguridad/actos-inseguros/actos-inseguros.component';
+import { AcosoComponent } from './views/seguridad/acoso/acoso.component';
 
 export const routes: Routes = [
   { path: '',component: HomeComponent},
@@ -59,5 +62,8 @@ export const routes: Routes = [
   { path: 'comunicado',component:ComunicadoComponent,canActivate:[]},
   { path: 'comedor-guest',component:ComedorGuestComponent},
   { path: 'limpieza-guest',component:LimpiezaGuestComponent},
+  { path: 'seguridad',component:SeguridadComponent,canActivate:[]},
+  { path: 'actos-inseguros',component:ActosInsegurosComponent,canActivate:[]},
+  { path: 'acoso',component:AcosoComponent,canActivate:[]},
   { path: 'resultados-evaluacion-limpieza',component:ResultadosEvaluacionLimpiezaComponent,canActivate:[]}
 ]

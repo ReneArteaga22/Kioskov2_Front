@@ -23,19 +23,23 @@ export class CNavBarComponent implements OnInit{
   closeSession:boolean = false
   images:any[]=[]
   usuario:string = ''
+  isSubmit:boolean = false
 
-  constructor(private galleta:CookieService, private router:Router, private apiService:ApiService){
-    
-  }
+  constructor(private galleta:CookieService, private router:Router, private apiService:ApiService){}
+
   isMenuOpen = false; toggleMenu() { this.isMenuOpen = !this.isMenuOpen; }
-  
   
   ngOnInit(): void {
     let id = this.galleta.get('user_num')
+
     this.apiService.usuario_x_id(id).subscribe(
       response=>{
         this.usuario = response.usuario.nombre
         console.log(this.usuario)
+      },error =>{
+        if(error.status === 400){
+          console.log('No deberias estar viendo esto... 😑')
+        }
       }
     )
     const area = this.galleta.get('area')
@@ -53,7 +57,7 @@ export class CNavBarComponent implements OnInit{
     if(area === 'seguridad'){
       this.isSeguridad = true
     }
-    this.isLoggin = this.galleta.check('sesion')
+    this.isLoggin = this.galleta.check('sesion') 
   }
 
   cerrarSesion(){

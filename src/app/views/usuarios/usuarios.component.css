@@ -78,22 +78,14 @@ tbody tr:hover {
   cursor: pointer;
   width: 100%;
 }
-.title {
-  padding-top: 15px;
+.title{
+  text-align: center;
   display: flex;
-  justify-content: center; /* Centra los elementos horizontalmente */
-  align-items: center; /* Centra los elementos verticalmente */
-  position: relative; /* Para que el h1 absoluto se posicione en relación a este contenedor */
+  flex-direction: row;
+  justify-content: flex-end;
 }
-
-.title h1 {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%); /* Centra el h1 horizontalmente */
-}
-
-.title button {
-  margin-left: auto; /* Empuja el botón hacia el borde derecho del contenedor */
+.titulo{
+  margin-right: 600px;
 }
 .btn-register{
   border: none;
@@ -102,11 +94,34 @@ tbody tr:hover {
   background-color: rgb(31, 30, 30);
   color: white;
   font-size: 1rem;
-  width: 10%;
+  width: 100%;
+  padding: 10px;
   cursor: pointer;
 }
 .uppercase {
   width: 33%;
   text-transform: uppercase;
+}
+@media (max-width: 768px) {
+  .title{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .titulo{
+    margin-top: 10px;
+    width: 100%;
+  }
+  .filtros {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan si no hay espacio suficiente */
+    gap: 10px; /* Espacio entre los elementos */
+    justify-content: space-between; /* Distribuye los elementos horizontalmente */
+  }
+  .filtros > div {
+    flex: 3 3 calc(33.33% - 10px); /* Ocupa un tercio del contenedor con espacio para el gap */
+    box-sizing: border-box; /* Asegura que los márgenes y padding no afecten el ancho */
+  }
+
 }
 

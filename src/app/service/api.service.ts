@@ -26,7 +26,7 @@ export interface UsuariosResponse {
   providedIn: 'root'
 })
 export class ApiService {
-  url = 'http://10.99.22.17:3333';
+  url = 'http://localhost:3333';
 
   constructor(private http: HttpClient) { }
 
@@ -158,6 +158,10 @@ export class ApiService {
 
   cambiar_contrasena(id:any, contrasena:string):Observable<any>{
     return this.http.put<any>(`${this.url}/api/usuarios/recuperar-contrasena`,{id, contrasena})
+  }
+
+  crear_reporte_seguridad(data:any):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/reporte_seguridad/crear_reporte`,data)
   }
 
   

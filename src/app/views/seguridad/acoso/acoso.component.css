@@ -1,0 +1,116 @@
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.form-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: aliceblue;
+    margin: 1.5rem;
+    width: 70%;
+    border-radius: 10px;
+    border: 1px solid #ccc;   
+    background-color: #f3f2f2;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 20px;
+    gap:10px;
+}
+.title{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border-bottom: 1px solid #e79371;
+    padding-bottom: 5px;
+}
+.input-box{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap:20px;
+}
+.input{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+input{
+    border: 1px solid #c9c5c5;
+    border-radius: 10px;
+    height: 2.5rem;
+    width: 100%;
+    padding: 10px;
+}
+.reporte{
+    display: flex;
+    flex-direction: column;
+}
+label{
+    color: black;
+    font-size: 20px;
+}
+textarea{
+    border: 1px solid #c9c5c5;
+    border-radius: 10px;
+    font-size: 20px;
+    height: 20rem;
+    width: 100%;
+    padding:10px;
+    resize: none;
+}
+.box-modal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: space-around;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+}
+.box-modal img{
+    margin: 5px;
+    width: 70px;
+    height: 70px;
+}
+.btn {
+    padding: 12px 24px;
+    font-size: 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: #ff7f50; 
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    height: 100%;
+}
+.btn:hover {
+    background-color: #ff5722; 
+}
+.error{
+    margin-top: 5px;
+    font-size: 1.5rem;
+    text-align: center;
+    color: red;
+}
+.modal-title {
+  text-align: center;
+  color: #333;     /* Cambia el color si es necesario */
+  margin: 20px 0;  /* Espaciado superior e inferior */
+}
+@media (max-width: 768px) {
+
+  .form-container{
+    width: 100%;
+  }
+  .input-box{
+    flex-direction: column;
+  }
+}

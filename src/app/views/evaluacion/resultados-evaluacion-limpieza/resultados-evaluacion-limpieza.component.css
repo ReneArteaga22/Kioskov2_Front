@@ -139,7 +139,34 @@ tbody tr:hover {
   margin-left: 6px;
   margin-right: 10px; 
 }
+table th, table td {
+  border: 1px solid #ddd; /* Bordes entre celdas */
+}
+@media (max-width: 768px) {
 
-
-
-
+  .box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+  }
+  .container{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column; /* Colocar los enlaces en columna */
+  }
+  .container > div{
+    width: 100%;
+  }
+  .form {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan si no hay espacio suficiente */
+    gap: 10px; /* Espacio entre los elementos */
+    justify-content: space-between; /* Distribuye los elementos horizontalmente */
+  }
+  .form > div {
+    flex: 3 3 calc(33.33% - 10px); /* Ocupa un tercio del contenedor con espacio para el gap */
+    box-sizing: border-box; /* Asegura que los márgenes y padding no afecten el ancho */
+  }
+}

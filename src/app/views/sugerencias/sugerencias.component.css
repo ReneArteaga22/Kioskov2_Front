@@ -3,7 +3,7 @@
   justify-content: center;
 }
 .table{
-  width: 70%;
+  width: 90%;
   margin-top: 1.5rem;
   padding: 1rem;
   border-radius: 10px;
@@ -35,6 +35,9 @@ tbody tr:hover {
 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: #f0f0f0;
+}
+table th, table td {
+  border: 1px solid #ddd; /* Bordes entre celdas */
 }
 
 

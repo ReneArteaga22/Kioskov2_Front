@@ -10,7 +10,7 @@
   flex-direction: column;
   justify-content: center;
   width: 95%;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   padding: 1rem;
   border-radius: 10px;
   background-color: white;
@@ -19,15 +19,13 @@
 }
 .filters {
   display: flex;
-  gap: 30px; /* Espacio entre los filtros */
+  gap:10px; 
 }
-
 .filters > div {
-  flex-grow: 1; /* Los filtros se expanden uniformemente */
+  flex-grow: 1;
   display: flex;
-  align-items: center; /* Alinear verticalmente los elementos */
+  align-items: center;
 }
-
 select {
   width: 100%; /* Los select ocuparán todo el espacio dentro de su div */
   padding: 5px;
@@ -36,20 +34,29 @@ select {
   border-radius: 10px;
   height: 2.5rem;
 }
-.table{
+.table {
+  width: 100%;
   margin-top: 1.5rem;
-  padding: 1rem;
+}
+.reportes {
+  width: 100%;
+  overflow-x: auto; /* Activa el desplazamiento horizontal */
   border-radius: 10px;
   background-color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: 1px solid #c9c5c5;
-  text-align: center;
-  border-collapse: collapse; /* Elimina los espacios entre celdas */
+  padding: 1rem;
+  margin-top: 10px;
 }
 table {
   width: 100%;
   border-collapse: collapse; /* Elimina los espacios entre celdas */
-  margin-top: 1.5rem;
+  text-align: center;
+}
+
+table th, table td {
+  padding: 0.5rem; /* Espaciado interno */
+  border: 1px solid #ddd; /* Bordes entre celdas */
 }
 h1{
   border-bottom: 1px solid #e79371;
@@ -69,7 +76,6 @@ tbody tr:hover {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: #f0f0f0;
 }
-
 .btn{
   border: none;
   border-radius: 10px;
@@ -82,4 +88,20 @@ tbody tr:hover {
 h2{
   margin-top: 10px;
   color: red;
+}
+@media (max-width: 768px) {
+  .filters > div {
+    flex-wrap: wrap;
+    flex: 1 1 100%; /* En pantallas pequeñas, cada elemento ocupa todo el ancho */
+  }
+  .filters {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan si no hay espacio suficiente */
+    gap: 10px; /* Espacio entre los elementos */
+    justify-content: space-between; /* Distribuye los elementos horizontalmente */
+  }
+  .filters > div {
+    flex: 3 3 calc(33.33% - 10px); /* Ocupa un tercio del contenedor con espacio para el gap */
+    box-sizing: border-box; /* Asegura que los márgenes y padding no afecten el ancho */
+  }
 }
