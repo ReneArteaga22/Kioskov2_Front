@@ -41,6 +41,7 @@ export class RecuperarContrasenaComponent {
           setTimeout(() => { 
             this.visible = false; 
             this.router.navigate(['/'])
+            // SI SALE ESTO ES PORQUE EL MERGE SI JALO CHINGAO
           }, 1600);
         },error => {
           if(error.status === 404 || 500){
