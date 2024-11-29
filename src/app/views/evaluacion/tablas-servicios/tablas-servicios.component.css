@@ -9,7 +9,7 @@
   width: 100%;
   flex-direction: column;
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 1.5rem;
 }
 .servicios-btn{
   font-size: 3rem;
@@ -45,4 +45,11 @@ img{
   position: relative;
   width: 12rem;
   height: 12rem;
+}
+@media (max-width: 768px) {
+
+  .servicios-btn{
+    gap:20px;
+    flex-direction: column; /* Colocar los enlaces en columna */
+  }
 }

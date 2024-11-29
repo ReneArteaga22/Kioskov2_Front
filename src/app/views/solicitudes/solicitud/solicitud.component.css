@@ -6,7 +6,7 @@
 .info{
   display: flex;
   flex-direction: column;
-  width: 75%;
+  width: 90%;
   margin-top: 1.5rem;
   padding: 1rem;
   border-radius: 10px;
@@ -34,11 +34,15 @@
 }
 input{
   padding: 5px;
+  font-size: 17px;
   height: 2rem;
 }
 textarea{
+  resize: none;
   padding: 5px;
-  font-size: 1rem;
+  font-size: 117px;
+  height: 10rem;
+  font-size: 1.25rem;
 }
 .box-btn{
   display: flex;
@@ -71,4 +75,28 @@ button{
   font-size: 1rem;
   cursor: pointer;
   width: 100%;
+}
+@media (max-width: 768px) {
+  .input-1 {
+    flex-direction: column; /* Cambiar filas a columnas */
+  }
+
+  .box-btn {
+    flex-direction: column; /* Botones en columna */
+    gap: 1rem; /* Espaciado entre botones */
+  }
+
+  .btn-1, .btn-2 {
+    width: 100%; /* Botones ocupan todo el ancho */
+  }
+}
+
+@media (max-width: 480px) {
+  .info {
+    width: 90%; /* Reducir ancho en pantallas muy pequeñas */
+  }
+
+  textarea {
+    height: 8rem; /* Reducir altura del textarea */
+  }
 }

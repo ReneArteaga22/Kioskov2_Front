@@ -203,3 +203,25 @@ label{
 .custom-file-upload i { 
     margin-right: 8px;
 }
+@media (max-width: 768px) {
+  .comunicados{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column; /* Colocar los enlaces en columna */
+  }
+  .post{
+    background-color: #4deb94d0;
+    border: none;
+    width: 50%;
+    height: 2.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color:rgb(73, 71, 71);
+    font-size: 1.1rem;
+    }
+.post:hover{
+    background-color: #03b447d0;
+}
+}

@@ -97,7 +97,76 @@ tbody tr:hover {
   padding: 7px;
   height: 2rem;
 }
-.boton-margen {
+::ng-deep .custom-calendar {
+  display: flex;
+  align-items: center;
+}
+
+::ng-deep .custom-calendar .p-inputtext {
+  flex: 1;
+  padding-right: 10px; /* Ajusta el padding para centrar el icono */
+  border: 1px solid #007bff; /* Cambia el color del borde */
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px; /* Redondea las esquinas */
+  padding: 5px; /* Agrega espacio interno */
+  font-size: 16px; /* Cambia el tamaño de la fuente */
+ 
+}
+
+::ng-deep .custom-calendar .p-datepicker {
+  background-color: #f9f9f9; /* Cambia el color de fondo */
+  border: 1px solid #ddd; /* Cambia el color del borde */
+  border-radius: 5px; /* Redondea las esquinas */
+}
+
+::ng-deep .custom-calendar .p-datepicker-header {
+  background-color:dodgerblue; 
+  color: #fff; /* Cambia el color del texto */
+}
+
+::ng-deep .custom-calendar .p-datepicker-today,
+::ng-deep .custom-calendar .p-datepicker .p-highlight {
+  background-color: #007bff !important; /* Cambia el color de fondo del día seleccionado */
+  color: #fff !important; /* Cambia el color del texto del día seleccionado */
+}
+
+::ng-deep .custom-calendar .p-datepicker .p-datepicker-prev,
+::ng-deep .custom-calendar .p-datepicker .p-datepicker-next {
+  color: #007bff; /* Cambia el color de las flechas de navegación */
+}
+
+::ng-deep .boton-margen {
   margin-left: 6px;
   margin-right: 10px; 
+}
+table th, table td {
+  border: 1px solid #ddd; /* Bordes entre celdas */
+}
+@media (max-width: 768px) {
+
+  .box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+  }
+  .container{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column; /* Colocar los enlaces en columna */
+  }
+  .container > div{
+    width: 100%;
+  }
+  .form {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan si no hay espacio suficiente */
+    gap: 10px; /* Espacio entre los elementos */
+    justify-content: space-between; /* Distribuye los elementos horizontalmente */
+  }
+  .form > div {
+    flex: 3 3 calc(33.33% - 10px); /* Ocupa un tercio del contenedor con espacio para el gap */
+    box-sizing: border-box; /* Asegura que los márgenes y padding no afecten el ancho */
+  }
 }
