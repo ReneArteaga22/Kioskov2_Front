@@ -16,6 +16,7 @@ export class ComunicadoComponent implements OnInit {
   visible: boolean = false
   images: any[] = []
   timer = 35000
+  autoplayTimer: any
 
   // Estilos responsivos para el diálogo y el carrusel
   dialogStyle = {
@@ -54,37 +55,42 @@ export class ComunicadoComponent implements OnInit {
     }
   ]
 
-  constructor(private apiService: ApiService){}
+  constructor(private apiService: ApiService) {}
+
   ngOnInit(): void { 
     this.apiService.comunicados().subscribe( 
       response => { 
-        this.images = response.comunicados 
+        this.images = response.comunicados
         console.log(this.images)
-        // if(this.images.length > 0 ){
-        //   this.images.forEach((comunicado, index = 0)=>{
-        //     const tipo = comunicado.tipo
-        //     console.log(`Iteración ${index}:`,tipo)
-        //     this.setAutoplayInterval(tipo)
-        //   })
-        // }
-      }, error => { 
+        this.startAutoplay() // Iniciar autoplay después de cargar las imágenes
+      }, 
+      error => { 
         console.error('Error al obtener los comunicados', error) 
       } 
     )
+    setInterval(()=>{
+      location.reload()
+    },600000)
     this.visible = true 
-  } 
-  // setAutoplayInterval(tipo: string){ 
-  //   if (tipo === 'comunicado'){ 
-  //     this.timer = 35000 
-  //   } else if (tipo === 'menu'){ 
-  //     this.timer = 6000 
-  //   } else { 
-  //     this.timer = 3000 
-  //   } 
-  // } 
+    this.timer = 35000
+  }
 
-  // onCarouselChange(event:any) { 
-  //   const currentImage = this.images[event.page] 
-  //   this.setAutoplayInterval(currentImage.tipo) 
-  // }
+  startAutoplay() {
+    this.stopAutoplay() // Para evitar múltiples timers
+    this.autoplayTimer = setInterval(() => {
+      // Aquí puedes implementar la lógica para avanzar el carrusel, por ejemplo, llamando a un método del carrusel para avanzar a la siguiente imagen.
+      console.log('Autoplay avanzando...')
+    }, this.timer = 35000)
+  }
+
+  stopAutoplay() {
+    if (this.autoplayTimer) {
+      clearInterval(this.autoplayTimer)
+      this.autoplayTimer = null
+    }
+  }
+
+  handlePageChange() {
+    this.startAutoplay() // Reinicia el autoplay cuando el usuario cambia la página manualmente
+  }
 }

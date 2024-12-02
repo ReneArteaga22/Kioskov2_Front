@@ -5,7 +5,6 @@
   margin: 20px;
   justify-content: center; /* Centrar las tarjetas */
 }
-
 .card {
   padding:20px;
   display: flex;
@@ -23,9 +22,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
 }
-p-dialog::header{
-  text-align: center;
-}
 .card:hover {
   border-radius: 3%;
   background-color: #ffffff;
@@ -37,37 +33,19 @@ img {
   height: auto; /* Altura automática */
   border-radius: 3%;
 }
-
 /* Media Queries para Responsividad */
 @media (max-width: 768px) {
-  .navbar {
-    flex-direction: column; /* Colocar los elementos en columna en pantallas pequeñas */
-  }
-  
-  .nav-links {
-    flex-direction: column; /* Colocar los enlaces en columna */
-  }
-
-  .nav-links li {
-    margin: 0.5rem 0; /* Margen vertical para separación en columna */
-  }
-
   .cards {
-    flex-direction: column; /* Colocar las tarjetas en columna en pantallas pequeñas */
-    align-items: center; /* Centrar tarjetas */
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan si no hay espacio suficiente */
+    gap: 10px; /* Espacio entre los elementos */
+    justify-content: space-between; /* Distribuye los elementos horizontalmente */
   }
-}
-
-@media (max-width: 480px) {
-  .navbar {
-    padding: 1rem; /* Ajustar el padding en pantallas muy pequeñas */
+  .cards > .card {
+    flex: 2 2 calc(50% - 10px); /* Ocupa un tercio del contenedor con espacio para el gap */
+    box-sizing: border-box; /* Asegura que los márgenes y padding no afecten el ancho */
   }
-
-  .logo img {
-    max-height: 60px; /* Reducir la altura máxima en pantallas muy pequeñas */
-  }
-  
-  .card {
-    width: 90%; /* Ancho al 90% del contenedor en pantallas pequeñas */
+  .card{
+    max-width: 50%;
   }
 }

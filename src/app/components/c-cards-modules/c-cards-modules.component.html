@@ -1,4 +1,11 @@
 <div class="cards">
+    <!-- MODULO PARA USUARIOS DE COMEDOR -->
+    <div *ngIf="isComedor" class="card" [routerLink]="['/comedor']">
+        <h2>Comedor</h2>
+        <img src="icons/comedor.png" alt="">
+    </div>
+
+    <!-- MODULOS PARA GUEST -->
     <div *ngIf="!isLoggin" class="card" [routerLink]="['/soporte-rh-modulos']" >
         <h2>Soporte RH</h2>
         <img src="icons/rh.png" alt="https://www.freepik.es/">
@@ -9,55 +16,33 @@
         <img src="icons/seguridad.png" alt="https://www.freepik.es/">
     </div>
 
-    <!-- <div *ngIf="!isLoggin" class="card">
-        <h2>Directorio</h2>
-        <img src="icons/directorio.png" alt="https://www.freepik.es/">
-    </div>
-     -->
-    <div *ngIf="isComedor" class="card" [routerLink]="['/comedor']">
-        <h2>Comedor</h2>
-        <img src="icons/comedor.png" alt="">
-    </div>
-
     <div *ngIf="!isLoggin" class="card" [routerLink]="['/servicios']">
         <h2>Evaluacion de servicios</h2>
         <img src="icons/servicios.png" alt="https://www.freepik.es/">
     </div>
-
-    <!-- <div *ngIf="!isLoggin" class="card">
-        <h2>Encuestas</h2>
-        <img src="icons/encuestas.png" alt="https://www.freepik.es/">
-    </div> -->
 
     <div *ngIf="!isLoggin" class="card" [routerLink]="['/comunicado']" >
         <h2>Comunicados</h2>
         <img src="icons/comunicados.png" alt="https://www.freepik.es/">
     </div>
 
-    
-
-    <div *ngIf="!isLoggin" [routerLink]="['/buzon']" class="card">
+    <div *ngIf="!isLoggin"  class="card" [routerLink]="['/buzon']">
         <h2>Buzon de sugerencias</h2>
         <img src="icons/buzon.png" alt="https://www.freepik.es/">
     </div>
 
-    <!-- <div *ngIf="!isLoggin" [routerLink]="['/nominas']" class="card">
-        <h2>Reconocimientos</h2>
-        <img src="icons/trofeo.png" alt="https://www.freepik.es/">
-    </div> -->
-
-    <!-- MODULOS PARA USUARIOS rh, sistemas, seguridad -->
-    <div *ngIf="isRH || isSistemas || isSeguridad"  [routerLink]="['/solicitudes']" class="card">
+    <!-- MODULOS PARA USUARIOS RECURSOS  -->
+    <div *ngIf="isRH || isSistemas || isSeguridad" class="card" [routerLink]="['/solicitudes']" >
         <h2>Solicitudes</h2>
         <img src="icons/solicitud.png" alt="https://www.freepik.es/">
     </div>
 
-    <div *ngIf="isRH || isSistemas || isSeguridad"  [routerLink]="['/tablas-servicios']" class="card">
+    <div *ngIf="isRH || isSistemas || isSeguridad" class="card" [routerLink]="['/tablas-servicios']" >
         <h2>Resultados de evaluacion</h2>
         <img src="icons/resultados_evaluacion.png" alt="https://www.freepik.es/">
     </div>
     
-    <div *ngIf="isRH || isSistemas || isSeguridad"  [routerLink]="['/usuarios']" class="card">
+    <div *ngIf="isRH || isSistemas || isSeguridad" class="card" [routerLink]="['/usuarios']" >
         <h2>Usuarios</h2>
         <img src="icons/usuarios.png" alt="https://www.freepik.es/">
     </div>
@@ -67,7 +52,7 @@
         <img src="icons/comunicados.png" alt="https://www.freepik.es/">
     </div>
 
-    <div *ngIf="isRH || isSistemas || isSeguridad" [routerLink]="['/sugerencias']" class="card">
+    <div *ngIf="isRH || isSistemas || isSeguridad" class="card" [routerLink]="['/sugerencias']" >
         <h2>Buzon de sugerencias</h2>
         <img src="icons/buzon.png" alt="https://www.freepik.es/">
     </div>

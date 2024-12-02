@@ -46,7 +46,7 @@ textarea {
   border-radius: 6px;
   font-size: 20px;
   margin-bottom: 20px;
-  resize: vertical;
+  resize: none;
   background-color: #fafafa;
 }
 textarea::placeholder {
@@ -81,8 +81,9 @@ textarea::placeholder {
 }
 .carita :hover {
   opacity: 1;
-  width: 95px;
-  height: 95px;
+  width: 100px;
+  height: 100px;
+  transition: width 0.1s ease, height 0.1s ease, opacity 0.1s ease;
 }
 .box-btn {
   display: flex;
@@ -159,4 +160,37 @@ textarea::placeholder {
   margin-bottom: 10px;
   resize: vertical;
   background-color: #fafafa;
+}
+@media (max-width: 768px) {
+  .menu{
+    width: 90%;
+  }
+  .btn-menu{
+    width: 5rem;
+  }
+  .form{
+    width: 90%;
+  }
+  .carita img{
+    width: 60px;
+    height: 60px;
+    transition: width 0.1s ease, height 0.1s ease, opacity 0.1s ease;
+  }
+  .carita :hover {
+    opacity: 1;
+    width: 65px;
+    height: 65px;
+  }
+  .caritas.selected {
+    border-radius: 10px;
+    width: 100px;
+    background-color: rgba(156, 214, 156, 0.774);
+  }
+  h1 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: center;
+    color:black;
+    font-weight: 400;
+  }
 }
