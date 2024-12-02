@@ -21,7 +21,6 @@ import { saveAs } from 'file-saver';
   styleUrl: './resultados-evaluacion-limpieza.component.css'
 })
 export class ResultadosEvaluacionLimpiezaComponent {
-
   fechas: Date[] = [];
   visible: boolean = false;
   basicData: any;
@@ -35,6 +34,9 @@ export class ResultadosEvaluacionLimpiezaComponent {
   rows: number = 15;
   totalRecords: any;
   rangeDates: Date[] | undefined
+  planta1Data: any;
+  planta2Data: any;
+  combinedData: any;
 
   constructor(private apiService: ApiService) {
     this.filtrarForm = new FormGroup({
@@ -51,7 +53,7 @@ export class ResultadosEvaluacionLimpiezaComponent {
         this.totalRecords = this.evaluaciones.length;
         this.paginateUsuarios();
         this.configurarGrafica();
-        
+
       },
       error => {
         console.error('Error al obtener las evaluaciones', error);
@@ -89,37 +91,39 @@ export class ResultadosEvaluacionLimpiezaComponent {
       console.log('Formulario válido o fechas seleccionadas, enviando datos...'); // Verifica que esto se imprime
       const filtro = { ...this.filtrarForm.value };
       filtro.fechas = fechas;
-  
+
       console.log('Datos a enviar:', filtro); // Verifica los datos que se envían
-  
+
       this.apiService.filtrar_resultados_limpieza(filtro).subscribe(
         response => {
-          console.log('Respuesta del servidor:', response); // Verifica la respuesta del servidor
+          console.log('Respuesta del servidor:', response);
           this.evaluaciones = response.filtro;
           this.totalRecords = this.evaluaciones.length;
           this.paginateUsuarios();
+          this.configurarGrafica();
         },
         error => {
           console.error('Error al filtrar las evaluaciones', error);
         }
       );
     } else {
-      console.log('Formulario no válido y fechas no seleccionadas'); // Verifica si el formulario es inválido y no hay fechas
+      console.log('Formulario no válido y fechas no seleccionadas');
     }
   }
 
   clearFilters() {
     this.filtrarForm.reset();
     this.fechas = [];
-    this.obtenerEvaluaciones();  // Lógica para obtener todos los registros sin filtro
+    this.obtenerEvaluaciones();
+    this.configurarGrafica();
   }
 
   logFecha(event: any) {
     console.log('Fecha seleccionada:', event);
-    console.log('rangeDates:', this.fechas); // Verifica el contenido de rangeDates
+    console.log('rangeDates:', this.fechas);
   }
-  
-  
+
+
   mostrarComentario(id: number) {
     this.apiService.mostar_comentario_x_id(id).subscribe(
       response => {
@@ -133,24 +137,66 @@ export class ResultadosEvaluacionLimpiezaComponent {
     );
     console.log(id, typeof id);
   }
-  
+
 
   configurarGrafica() {
-    const calificaciones: { [key: string]: number } = { 'Muy bueno': 0, 'Bueno': 0, 'Malo': 0, 'Muy malo': 0 };
+    if (!this.evaluaciones.length) {
+      this.basicData = {
+        labels: ['Sin evaluaciones'],
+        datasets: []
+      };
+      return;
+    }
+    const calificacionesPlanta1: { [key: string]: number } = { 'Muy bueno': 0, 'Bueno': 0, 'Malo': 0, 'Muy malo': 0 };
+    const calificacionesPlanta2: { [key: string]: number } = { 'Muy bueno': 0, 'Bueno': 0, 'Malo': 0, 'Muy malo': 0 };
+    const calificacionesTotales: { [key: string]: number } = { 'Muy bueno': 0, 'Bueno': 0, 'Malo': 0, 'Muy malo': 0 };
+
+    
     this.evaluaciones.forEach(evaluacion => {
-      const calificacion = evaluacion.calificacion as keyof typeof calificaciones;
-      if (calificaciones[calificacion] !== undefined) {
-        calificaciones[calificacion]++;
+      const planta = evaluacion.planta;
+      const calificacion = evaluacion.calificacion as keyof typeof calificacionesPlanta1;
+
+      if (planta === 'planta 1' && calificacionesPlanta1[calificacion] !== undefined) {
+        calificacionesPlanta1[calificacion]++;
+      } else if (planta === 'planta 2' && calificacionesPlanta2[calificacion] !== undefined) {
+        calificacionesPlanta2[calificacion]++;
+      }
+
+      if (calificacionesTotales[calificacion] !== undefined) {
+        calificacionesTotales[calificacion]++;
       }
     });
 
-    this.basicData = {
-      labels: ['Evaluaciones'],
+    
+    this.planta1Data = {
+      labels: ['Evaluaciones Planta 1'],
       datasets: [
-        { label: 'Muy buenas', backgroundColor: 'green', data: [calificaciones['Muy bueno']] },
-        { label: 'Buenas', backgroundColor: 'yellow', data: [calificaciones['Bueno']] },
-        { label: 'Malas', backgroundColor: 'orange', data: [calificaciones['Malo']] },
-        { label: 'Muy malas', backgroundColor: 'red', data: [calificaciones['Muy malo']] }
+        { label: 'Muy buenas', backgroundColor: 'green', data: [calificacionesPlanta1['Muy bueno']] },
+        { label: 'Buenas', backgroundColor: 'yellow', data: [calificacionesPlanta1['Bueno']] },
+        { label: 'Malas', backgroundColor: 'orange', data: [calificacionesPlanta1['Malo']] },
+        { label: 'Muy malas', backgroundColor: 'red', data: [calificacionesPlanta1['Muy malo']] }
+      ]
+    };
+
+    
+    this.planta2Data = {
+      labels: ['Evaluaciones Planta 2'],
+      datasets: [
+        { label: 'Muy buenas', backgroundColor: 'green', data: [calificacionesPlanta2['Muy bueno']] },
+        { label: 'Buenas', backgroundColor: 'yellow', data: [calificacionesPlanta2['Bueno']] },
+        { label: 'Malas', backgroundColor: 'orange', data: [calificacionesPlanta2['Malo']] },
+        { label: 'Muy malas', backgroundColor: 'red', data: [calificacionesPlanta2['Muy malo']] }
+      ]
+    };
+
+    
+    this.combinedData = {
+      labels: ['Evaluaciones Generales'],
+      datasets: [
+        { label: 'Muy buenas', backgroundColor: 'green', data: [calificacionesTotales['Muy bueno']] },
+        { label: 'Buenas', backgroundColor: 'yellow', data: [calificacionesTotales['Bueno']] },
+        { label: 'Malas', backgroundColor: 'orange', data: [calificacionesTotales['Malo']] },
+        { label: 'Muy malas', backgroundColor: 'red', data: [calificacionesTotales['Muy malo']] }
       ]
     };
 
@@ -162,7 +208,6 @@ export class ResultadosEvaluacionLimpiezaComponent {
       }
     };
   }
-  
   exportToExcel() {
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.evaluaciones);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();

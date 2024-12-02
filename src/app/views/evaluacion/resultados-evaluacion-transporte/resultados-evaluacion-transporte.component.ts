@@ -9,35 +9,42 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { PaginatorModule } from 'primeng/paginator';
+import { CalendarModule } from 'primeng/calendar';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-resultados-evaluacion-transporte',
   standalone: true,
-  imports: [CNavBarComponent, ChartModule, NgFor, DatePipe, ReactiveFormsModule, DialogModule, ButtonModule, PaginatorModule],
+  imports: [CNavBarComponent, ChartModule, NgFor, DatePipe, ReactiveFormsModule, DialogModule, ButtonModule, PaginatorModule, CalendarModule],
   templateUrl: './resultados-evaluacion-transporte.component.html',
   styleUrl: './resultados-evaluacion-transporte.component.css'
 })
 export class ResultadosEvaluacionTransporteComponent implements OnInit {
-  comentario: string = '';
+  fechas: Date[] = [];
   visible: boolean = false;
   basicData: any;
   basicOptions: any;
-  evaluaciones: any[] = []
-  filtrarForm:FormGroup
-  isSubmit: boolean = false
+  evaluaciones: any[] = [];
+  filtrarForm: FormGroup;
+  isSubmit: boolean = false;
+  comentario: string = '';
   paginacionEvaluaciones: any[] = [];
   first: number = 0;
   rows: number = 15;
   totalRecords: any;
-  fechas: Date[] = [];
-
+  rangeDates: Date[] | undefined
+  planta1Data: any;
+  planta2Data: any;
+  combinedData: any;
 
   constructor(private apiService:ApiService) {
     this.filtrarForm = new FormGroup({
-      calificacion: new FormControl('',[Validators.required]),
-    })}
+      calificacion: new FormControl(''),
+      planta: new FormControl(''),
+      fechas: new FormControl(null)  // Agrega el campo de fecha
+    });
+  }
 
 
   ngOnInit(): void {
@@ -47,6 +54,7 @@ export class ResultadosEvaluacionTransporteComponent implements OnInit {
         this.totalRecords = this.evaluaciones.length;
         this.paginateUsuarios();
         this.configurarGrafica();
+
       },
       error => {
         console.error('Error al obtener las evaluaciones', error);
@@ -94,6 +102,7 @@ export class ResultadosEvaluacionTransporteComponent implements OnInit {
           this.evaluaciones = response.filtro;
           this.totalRecords = this.evaluaciones.length;
           this.paginateUsuarios();
+          this.configurarGrafica();
         },
         error => {
           console.error('Error al filtrar las evaluaciones', error);
@@ -107,7 +116,8 @@ export class ResultadosEvaluacionTransporteComponent implements OnInit {
   clearFilters() {
     this.filtrarForm.reset();
     this.fechas = [];
-    this.obtenerEvaluaciones();  // Lógica para obtener todos los registros sin filtro
+    this.obtenerEvaluaciones();  
+    this.configurarGrafica();
   }
 
   logFecha(event: any) {
@@ -128,8 +138,15 @@ export class ResultadosEvaluacionTransporteComponent implements OnInit {
     );
     console.log(id, typeof id);
   }
-
   configurarGrafica() {
+    if (!this.evaluaciones.length) {
+      this.basicData = {
+        labels: ['Sin evaluaciones'],
+        datasets: []
+      };
+      return;
+    }
+  
     const calificaciones: { [key: string]: number } = { 'Muy bueno': 0, 'Bueno': 0, 'Malo': 0, 'Muy malo': 0 };
     this.evaluaciones.forEach(evaluacion => {
       const calificacion = evaluacion.calificacion as keyof typeof calificaciones;
@@ -137,7 +154,7 @@ export class ResultadosEvaluacionTransporteComponent implements OnInit {
         calificaciones[calificacion]++;
       }
     });
-
+  
     this.basicData = {
       labels: ['Evaluaciones'],
       datasets: [
