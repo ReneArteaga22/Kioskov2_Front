@@ -88,3 +88,5 @@ export class ComunicadoComponent implements OnInit {
   //   this.setAutoplayInterval(currentImage.tipo) 
   // }
 }
+
+

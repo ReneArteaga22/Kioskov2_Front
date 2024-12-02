@@ -95,29 +95,31 @@ export class ResultadosEvaluacionComponent implements OnInit {
   
       this.apiService.filtrar_resultados_comedor(filtro).subscribe(
         response => {
-          console.log('Respuesta del servidor:', response); // Verifica la respuesta del servidor
+          console.log('Respuesta del servidor:', response); 
           this.evaluaciones = response.filtro;
           this.totalRecords = this.evaluaciones.length;
           this.paginateUsuarios();
+          this.configurarGrafica();
         },
         error => {
           console.error('Error al filtrar las evaluaciones', error);
         }
       );
     } else {
-      console.log('Formulario no válido y fechas no seleccionadas'); // Verifica si el formulario es inválido y no hay fechas
+      console.log('Formulario no válido y fechas no seleccionadas'); 
     }
   }
 
   clearFilters() {
     this.filtrarForm.reset();
     this.fechas = [];
-    this.obtenerEvaluaciones();  // Lógica para obtener todos los registros sin filtro
+    this.obtenerEvaluaciones();  
+    this.configurarGrafica(); 
   }
 
   logFecha(event: any) {
     console.log('Fecha seleccionada:', event);
-    console.log('rangeDates:', this.fechas); // Verifica el contenido de rangeDates
+    console.log('rangeDates:', this.fechas); 
   }
   
   
@@ -137,6 +139,14 @@ export class ResultadosEvaluacionComponent implements OnInit {
   
 
   configurarGrafica() {
+    if (!this.evaluaciones.length) {
+      this.basicData = {
+        labels: ['Sin evaluaciones'],
+        datasets: []
+      };
+      return;
+    }
+  
     const calificaciones: { [key: string]: number } = { 'Muy bueno': 0, 'Bueno': 0, 'Malo': 0, 'Muy malo': 0 };
     this.evaluaciones.forEach(evaluacion => {
       const calificacion = evaluacion.calificacion as keyof typeof calificaciones;
@@ -144,7 +154,7 @@ export class ResultadosEvaluacionComponent implements OnInit {
         calificaciones[calificacion]++;
       }
     });
-
+  
     this.basicData = {
       labels: ['Evaluaciones'],
       datasets: [
@@ -154,15 +164,8 @@ export class ResultadosEvaluacionComponent implements OnInit {
         { label: 'Muy malas', backgroundColor: 'red', data: [calificaciones['Muy malo']] }
       ]
     };
-
-    this.basicOptions = {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        xAxes: [{ barPercentage: 0.5, categoryPercentage: 0.5 }]
-      }
-    };
   }
+  
   
   exportToExcel() {
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.evaluaciones);
