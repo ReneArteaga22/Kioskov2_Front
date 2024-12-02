@@ -2,14 +2,21 @@
     <app-c-nav-bar></app-c-nav-bar>
     <div class="fondo"></div>
     <p-dialog [modal]="true" [(visible)]="visible" [style]="dialogStyle" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
-        <p-carousel [value]="images" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="timer" [responsiveOptions]="carouselResponsiveOptions">
+        <p-carousel 
+            [value]="images" 
+            [numVisible]="1" 
+            [numScroll]="1" 
+            [circular]="true" 
+            [autoplayInterval]="timer" 
+            [responsiveOptions]="carouselResponsiveOptions"
+            (onPageChange)="handlePageChange()">
             <ng-template pTemplate="item" let-image>
                 <div class="carousel-item" style="display:flex; justify-content:center; align-items:center; height: 100%;">
                     <img [src]="'http://10.99.22.17:3333' + image.imagen" alt="{{image.alt}}" [style]="carouselImageStyle">
                 </div>
             </ng-template>
         </p-carousel>
-    </p-dialog>
+    </p-dialog>    
 </div>
 
 <!-- CARDSS -->

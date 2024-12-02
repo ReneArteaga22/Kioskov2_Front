@@ -1,4 +1,4 @@
-.box{
+.cards {
   display: flex;
   flex-wrap: wrap; /* Permitir que las tarjetas se envuelvan */
   gap: 20px;
@@ -22,9 +22,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
 }
-p-dialog::header{
-  text-align: center;
-}
 .card:hover {
   border-radius: 3%;
   background-color: #ffffff;
@@ -35,4 +32,20 @@ img {
   width: 100%; /* Ajustar el ancho de la imagen al 100% del contenedor */
   height: auto; /* Altura automática */
   border-radius: 3%;
+}
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+  .cards {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan si no hay espacio suficiente */
+    gap: 10px; /* Espacio entre los elementos */
+    justify-content: space-between; /* Distribuye los elementos horizontalmente */
+  }
+  .cards > .card {
+    flex: 2 2 calc(25% - 10px); /* Ocupa un tercio del contenedor con espacio para el gap */
+    box-sizing: border-box; /* Asegura que los márgenes y padding no afecten el ancho */
+  }
+  .card{
+    max-width: 50%;
+  }
 }
