@@ -48,7 +48,9 @@
 .input textarea{
     border: 1px solid #ccc;  
     padding: 10px;
+    height: 5rem;
     border-radius: 10px;
+    resize: none;
 }
 .btn {
   padding: 12px 24px;
@@ -85,4 +87,17 @@ h3{
     height: 100px;
     margin-top: 10px;
 }
-
+@media (max-width: 768px) {
+    .box-inputs{
+        flex-direction: column;
+    }
+    .input{
+        width: 100%;
+    }
+    .select{
+        width: 93%;
+    }
+    .form{
+        width: 90%;
+    }
+}

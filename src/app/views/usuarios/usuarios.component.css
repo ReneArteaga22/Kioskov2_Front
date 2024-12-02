@@ -122,6 +122,5 @@ tbody tr:hover {
     flex: 3 3 calc(33.33% - 10px); /* Ocupa un tercio del contenedor con espacio para el gap */
     box-sizing: border-box; /* Asegura que los márgenes y padding no afecten el ancho */
   }
-
 }
 

@@ -1,13 +1,30 @@
+.box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .form{
   height: 100%;
+  flex-grow: 6;
   width: 80%;
-  margin: 80px auto;
+  margin: 15px auto;
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
   border: 1px solid #ccc;   
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-  
+}
+.menu{
+  margin: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  
+  width: 80%;
+  height: 3rem;
+  gap: 2rem;
 }
 h1 {
   font-size: 34px;
@@ -16,14 +33,12 @@ h1 {
   color:black;
   font-weight: 400;
 }
-
 .input label {
   display: block;
   font-size: 25px;
   margin-bottom: 8px;
   color: black;
 }
-
 textarea {
   width: 100%;
   padding: 12px;
@@ -31,15 +46,13 @@ textarea {
   border-radius: 6px;
   font-size: 20px;
   margin-bottom: 20px;
-  resize: vertical;
+  resize: none;
   background-color: #fafafa;
 }
-
 textarea::placeholder {
   color: rgb(102, 102, 102);
   font-size: 20px;
 }
-
 .box-img {
   display: flex;
   flex-direction: row;
@@ -52,7 +65,6 @@ textarea::placeholder {
   padding: 10px;
   background-color: #fafafa;
 }
-
 .box-img img {
   width: 90px;
   height: 90px;
@@ -60,7 +72,6 @@ textarea::placeholder {
   opacity: 0.8;
   transition: opacity 0.2s ease;
 }
-
 .caritas{
   transition: all 0.3s;
   display: flex;
@@ -68,13 +79,12 @@ textarea::placeholder {
   justify-content: center;
   align-items: center;
 }
-
 .carita :hover {
   opacity: 1;
-  width: 95px;
-  height: 95px;
+  width: 100px;
+  height: 100px;
+  transition: width 0.1s ease, height 0.1s ease, opacity 0.1s ease;
 }
-
 .box-btn {
   display: flex;
   justify-content: space-between;
@@ -82,7 +92,6 @@ textarea::placeholder {
   margin-top: 20px;
   height: 4rem;
 }
-
 .select-btn {
   padding: 10px;
   font-size: 14px;
@@ -90,13 +99,11 @@ textarea::placeholder {
   border-radius: 6px;
   background-color: #fafafa;
   width: 48%;
-  height: 100%;
-
+  height: 100%
 }
-
 .btn {
   padding: 12px 24px;
-  font-size: 14px;
+  font-size: 22px;
   border: none;
   border-radius: 6px;
   background-color: #ff7f50; 
@@ -106,11 +113,22 @@ textarea::placeholder {
   width: 100%;
   height: 100%;
 }
-
+.btn-menu{
+  cursor: pointer;
+  color: white;
+  font-size: 22px;
+  width: 10%;
+  border: none;
+  border-radius: 6px;
+  background-color: #ff7f50; 
+  transition: background-color 0.3s ease;
+}
 .btn:hover {
   background-color: #ff5722; 
 }
-
+.btn-menu:hover{
+  background-color: #ff5722; 
+}
 .caritas.selected {
   border-radius: 10px;
   width: 190px;
@@ -130,6 +148,49 @@ textarea::placeholder {
   margin-top: 10px;
 }
 .error{
-  font-size: 1.5rem;
-  color: red;
+    font-size: 1.5rem;
+    color:red;
+}
+.select{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 20px;
+  margin-bottom: 10px;
+  resize: vertical;
+  background-color: #fafafa;
+}
+@media (max-width: 768px) {
+  .menu{
+    width: 90%;
+  }
+  .btn-menu{
+    width: 5rem;
+  }
+  .form{
+    width: 90%;
+  }
+  .carita img{
+    width: 60px;
+    height: 60px;
+    transition: width 0.1s ease, height 0.1s ease, opacity 0.1s ease;
+  }
+  .carita :hover {
+    opacity: 1;
+    width: 65px;
+    height: 65px;
+  }
+  .caritas.selected {
+    border-radius: 10px;
+    width: 100px;
+    background-color: rgba(156, 214, 156, 0.774);
+  }
+  h1 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: center;
+    color:black;
+    font-weight: 400;
+  }
 }
