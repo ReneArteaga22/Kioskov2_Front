@@ -4,7 +4,7 @@
         <div>
             <h1>Graficas generales de transporte</h1>
             <p-chart type="bar" [data]="basicData" [options]="basicOptions"/>
-            <p-chart type="bar" [data]="basicData" [options]="basicOptions"/>
+
         </div>
         <div class="table">
             <div>
@@ -42,7 +42,12 @@
                             <td>{{evaluacion.calificacion}}</td>
                             <td>{{evaluacion.servicio}}</td>
                             <td>{{evaluacion.createdAt | date: 'yyyy/MM/dd'}}</td>
-                            <td><p-button (click)="mostrarComentario(evaluacion.id);" class="Comentario" label="Comentario"/></td>
+                            <td>  <p-button
+                                [disabled]="!evaluacion.comentario || evaluacion.comentario.trim() === ''"
+                                (click)="mostrarComentario(evaluacion.id)"
+                                class="Comentario"
+                                label="Comentario"
+                              ></p-button></td>
                         </tr>
                     </tbody>
                 </table>

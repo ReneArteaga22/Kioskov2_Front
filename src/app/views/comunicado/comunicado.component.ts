@@ -94,3 +94,5 @@ export class ComunicadoComponent implements OnInit {
     this.startAutoplay() // Reinicia el autoplay cuando el usuario cambia la página manualmente
   }
 }
+
+
