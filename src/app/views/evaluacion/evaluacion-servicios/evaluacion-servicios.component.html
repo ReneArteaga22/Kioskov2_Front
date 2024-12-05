@@ -1,15 +1,17 @@
 <app-c-nav-bar></app-c-nav-bar>
-<div class="cards">
-  <div class="card" (click)="servicio('transporte')">
-    <h2>Transporte</h2>
-    <img src="icons/bus.png" alt="">
-  </div>
-  <div class="card" [routerLink]="['/comedor-guest']">
-    <h2>Comedor</h2>
-    <img src="icons/comedor.png" alt="">
-  </div>
-  <div class="card" [routerLink]="['/limpieza-guest']">
-    <h2>Limpieza</h2>
-    <img src="icons/limpieza.png" alt="">
+<div class="box">
+  <div class="cards">
+    <div class="card" (click)="servicio('transporte')">
+      <h2>Transporte</h2>
+      <img src="icons/bus.png" alt="">
+    </div>
+    <div class="card" [routerLink]="['/comedor-guest']">
+      <h2>Comedor</h2>
+      <img src="icons/comedor.png" alt="">
+    </div>
+    <div class="card" [routerLink]="['/limpieza-guest']">
+      <h2>Limpieza</h2>
+      <img src="icons/limpieza.png" alt="">
+    </div>
   </div>
 </div>

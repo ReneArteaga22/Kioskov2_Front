@@ -27,6 +27,7 @@
 
     <!-- MODULOS PARA USUARIO DE RECURSOS HUMANOS, SISTEMAS Y SEGURIDAD -->
     <li *ngIf="isRH || isSistemas || isSeguridad"><a [routerLink]="['/solicitudes']">Solicitudes</a></li>
+    <li *ngIf="isRH || isSistemas || isSeguridad"><a [routerLink]="['/reportes-seguridad']">Seguridad</a></li>
     <li *ngIf="isRH || isSistemas || isSeguridad"><a [routerLink]="['/tablas-servicios']">Resultado de evaluaciones</a></li>
     <li *ngIf="isRH || isSistemas || isSeguridad"><a [routerLink]="['/usuarios']">Usuarios</a></li>
     <li *ngIf="isRH || isSistemas || isSeguridad"><a [routerLink]="['/comunicados']">Comunicados</a></li>
@@ -45,7 +46,8 @@
     <option *ngIf="!isLoggin" value="/login">Login</option>
     <!-- MENU SELECT PARA RUTAS DE GUEST -->
     <option *ngIf="isRH || isSistemas || isSeguridad" value="" disabled selected>Navega por los módulos</option>
-    <option *ngIf="isRH || isSistemas || isSeguridad" value="/solicitudes">Solicitudes</option>l
+    <option *ngIf="isRH || isSistemas || isSeguridad" value="/solicitudes">Solicitudes</option>
+    <option *ngIf="isRH || isSistemas || isSeguridad" value="/reportes-seguridad">Seguridad</option>
     <option *ngIf="isRH || isSistemas || isSeguridad" value="/tablas-servicios">Resultado de evaluaciones</option>
     <option *ngIf="isRH || isSistemas || isSeguridad" value="/usuarios">Usuarios</option>
     <option *ngIf="isRH || isSistemas || isSeguridad" value="/comunicados">Comunicados</option>

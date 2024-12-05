@@ -1,9 +1,15 @@
-.cards {
+.box{
   display: flex;
-  flex-wrap: wrap; /* Permitir que las tarjetas se envuelvan */
+  justify-content: center;
+  align-items: center;
+}
+.cards{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
   gap: 20px;
-  margin: 20px;
-  justify-content: center; /* Centrar las tarjetas */
+  margin-top: 20px;
 }
 .card {
   padding:20px;
@@ -27,6 +33,7 @@
   background-color: #ffffff;
   border: 2px solid #ccc;
 }
+
 /* Imágenes */
 img {
   width: 90%; /* Ajustar el ancho de la imagen al 100% del contenedor */

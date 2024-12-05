@@ -164,5 +164,9 @@ export class ApiService {
     return this.http.post<any>(`${this.url}/api/reporte_seguridad/crear_reporte`,data)
   }
 
+  reportes_seguridad():Observable<any>{
+    return this.http.get<any>(`${this.url}/api/reporte_seguridad/reportes`)
+  }
+
   
 }

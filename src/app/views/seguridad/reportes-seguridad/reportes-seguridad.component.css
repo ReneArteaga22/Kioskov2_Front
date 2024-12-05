@@ -1,0 +1,41 @@
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+}
+.container{
+    margin: 10px;
+    width: 90%;
+    padding: 15px;
+    background-color: pink;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #c9c5c5;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+table thead tr{
+    background-color: black;
+    color:white;
+    height: 2.5rem;
+}
+table thead tr, table tbody tr{
+    text-align: center;
+}
+table tbody tr{
+    height: 2.5rem;
+}
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+table tbody tr:hover{
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f0f0f0;
+}

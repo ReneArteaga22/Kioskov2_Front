@@ -38,6 +38,22 @@ export class ActosInsegurosComponent implements OnInit {
     },5000)
   }
 
+  ActiveModal(){
+    if (this.actosForm.invalid) {
+      this.error = true;
+      return;
+    }
+    if(this.actosForm.valid && !this.isSubmit){
+      this.visibleReporte = true
+      setTimeout(() => { 
+        this.router.navigate(['/seguridad']); 
+        this.visibleReporte = false; 
+      }, 1600);
+      this.enviar()
+    }
+  }
+
+
   enviar(){
     console.log(this.actosForm.value)
     if(this.actosForm.valid && !this.isSubmit){

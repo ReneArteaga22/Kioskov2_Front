@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from '../../service/api.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -33,14 +33,15 @@ export class CFormularioSoporteRhComponent{
     
     this.soporterhForm = new FormGroup({
       categoria: new FormControl(this.cookie.get('categoria')),
-      no_empleado: new FormControl(''),
+      no_empleado: new FormControl('',[Validators.required]),
       grupo: new FormControl(''),
       nombre: new FormControl(''),
-      descripcion: new FormControl(''),
+      descripcion: new FormControl('',[Validators.required]),
       planta: new FormControl(''),
       telefono: new FormControl(''),
     })
   }
+
 
   click(plant: string) {
     this.planta = plant
@@ -48,6 +49,20 @@ export class CFormularioSoporteRhComponent{
     return this.planta
   }
 
+  ActiveModal(){
+    if (this.soporterhForm.invalid) {
+      this.error = true;
+      return;
+    }
+    if(this.soporterhForm.valid && !this.isSubmit){
+      this.visible = true
+      setTimeout(() => { 
+        this.router.navigate(['/seguridad']); 
+        this.visible = false; 
+      }, 1600);
+      this.enviar()
+    }
+  }
   enviar() {
     console.log(this.soporterhForm.value);
     if (this.soporterhForm.valid && !this.isSubmit) {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CNavBarComponent } from '../../../components/c-nav-bar/c-nav-bar.component';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../../service/api.service';
 import { DialogModule } from 'primeng/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -28,7 +28,7 @@ export class AcosoComponent {
       categoria: new FormControl('acoso'),
       nombre: new FormControl,
       num_empleado:new FormControl,
-      descripcion: new FormControl
+      descripcion: new FormControl('',[Validators.required])
     })
   }
 
@@ -37,6 +37,21 @@ export class AcosoComponent {
     setTimeout(()=>{
       this.visible=false
     },5000)
+  }
+
+  ActiveModal(){
+    if (this.acosoForm.invalid) {
+      this.error = true;
+      return;
+    }
+    if(this.acosoForm.valid && !this.isSubmit){
+      this.visibleReporte = true
+      setTimeout(() => { 
+        this.router.navigate(['/seguridad']); 
+        this.visibleReporte = false; 
+      }, 1600);
+      this.enviar()
+    }
   }
 
   enviar(){
