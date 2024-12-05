@@ -1,55 +1,59 @@
 .box{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  gap:10px
-}
-.servicios{
   display: flex;
-  width: 100%;
-  flex-direction: column;
-  text-align: center;
-  margin-top: 1.5rem;
-}
-.servicios-btn{
-  font-size: 3rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  margin-top: 5rem;
-  position: absolute;
-  width: 100%;
 }
-.card{
+.cards{
   display: flex;
-  height: 22rem;
-  width: 17rem;
+  justify-content: center;
+  align-content: center;
+  width: 90%;
+  gap: 20px;
+  margin-top: 20px;
+}
+.card {
+  padding:20px;
+  display: flex;
+  flex-direction: column; /* Mantener el contenido en columna */
+  align-items: center;
+  justify-content: space-around;
+  height: auto; /* Ajustar altura automáticamente */
+  width: 18rem; /* Ancho fijo para tarjetas */
+  max-width: 100%; /* Ancho máximo */
   border-radius: 3%;
   text-align: center;
-  justify-content: center;
+  cursor: pointer;
   background-color: #f0f0f0;
   border: 2px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
 }
 .card:hover {
   border-radius: 3%;
   background-color: #ffffff;
   border: 2px solid #ccc;
 }
-img{
-  position: relative;
-  width: 12rem;
-  height: 12rem;
-}
-@media (max-width: 768px) {
 
-  .servicios-btn{
-    gap:20px;
-    flex-direction: column; /* Colocar los enlaces en columna */
+/* Imágenes */
+img {
+  width: 90%; /* Ajustar el ancho de la imagen al 100% del contenedor */
+  height: auto; /* Altura automática */
+  border-radius: 3%;
+  margin: 15px;
+}
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+  .cards {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan si no hay espacio suficiente */
+    gap: 10px; /* Espacio entre los elementos */
+    justify-content: space-between; /* Distribuye los elementos horizontalmente */
+  }
+  .cards > .card {
+    flex: 2 2 calc(50% - 10px); /* Ocupa un tercio del contenedor con espacio para el gap */
+    box-sizing: border-box; /* Asegura que los márgenes y padding no afecten el ancho */
+  }
+  .card{
+    max-width: 50%;
   }
 }
