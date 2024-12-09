@@ -26,7 +26,7 @@ export interface UsuariosResponse {
   providedIn: 'root'
 })
 export class ApiService {
-  url = 'http://10.99.22.17:3333';
+  url = 'http://localhost:3333';
 
   constructor(private http: HttpClient) { }
 
@@ -168,5 +168,9 @@ export class ApiService {
     return this.http.get<any>(`${this.url}/api/reporte_seguridad/reportes`)
   }
 
+  filtrar_reporte_seguridad(filtro:any):Observable<any>{
+    console.log('Enviando datos al servidor', filtro)
+    return this.http.post<any>(`${this.url}/api/reporte_seguridad/filtrar_reporte_seguridad`, filtro)
+  }
   
 }

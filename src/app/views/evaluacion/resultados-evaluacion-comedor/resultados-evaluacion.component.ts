@@ -55,7 +55,6 @@ export class ResultadosEvaluacionComponent implements OnInit {
         this.totalRecords = this.evaluaciones.length;
         this.paginateUsuarios();
         this.configurarGrafica();
-
       },
       error => {
         console.error('Error al obtener las evaluaciones', error);

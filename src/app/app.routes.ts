@@ -67,7 +67,7 @@ export const routes: Routes = [
   { path: 'seguridad',component:SeguridadComponent,canActivate:[]},
   { path: 'actos-inseguros',component:ActosInsegurosComponent,canActivate:[]},
   { path: 'acoso',component:AcosoComponent,canActivate:[]},
-  { path: 'resultados-evaluacion-limpieza',component:ResultadosEvaluacionLimpiezaComponent,canActivate:[]},
+  { path: 'resultados-evaluacion-limpieza',component:ResultadosEvaluacionLimpiezaComponent,canActivate:[rhGuard]},
   { path: 'directorio', component:DirectorioComponent,canActivate:[]},
   { path: 'reportes-seguridad',component:ReportesSeguridadComponent,canActivate:[rhGuard]}
 ]

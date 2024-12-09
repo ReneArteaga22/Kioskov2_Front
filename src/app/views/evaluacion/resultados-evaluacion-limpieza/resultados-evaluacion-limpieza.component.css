@@ -6,51 +6,51 @@
   height: 100%;
 }
 .container{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 95%;
-    margin-top: 1.5rem;
-    padding: 1rem;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: 1px solid #c9c5c5;
-    gap: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 95%;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #c9c5c5;
+  gap: 20px;
 }
 .container > div{
-    width: 50%;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: 1px solid #c9c5c5;
-    padding: 5px;
+  width: 50%;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #c9c5c5;
+  padding: 5px;
 }
 div h1{
-    text-align: center;
-    margin: 10px;
-    border-bottom: 1px solid #e79371;
+  text-align: center;
+  margin: 10px;
+  border-bottom: 1px solid #e79371;
 }
 .form{
-    display: flex;
-    flex-direction: row;
-    margin: .5rem;
-    gap: 10px;
+  display: flex;
+  flex-direction: row;
+  margin: .5rem;
+  gap: 10px;
 }
 .form > div{
-    flex-grow: 1;
+  flex-grow: 1;
 }
 select{
-    width: 100%; /* Los select ocuparán todo el espacio dentro de su div */
-    padding: 5px;
-    font-size: 1em;
-    border: 1px solid #c9c5c5;
-    border-radius: 10px;
-    height: 2rem;
+  width: 100%; /* Los select ocuparán todo el espacio dentro de su div */
+  padding: 5px;
+  font-size: 1em;
+  border: 1px solid #c9c5c5;
+  border-radius: 10px;
+  height: 2rem;
 }
 .table{
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 .btn{
   border: none;
@@ -96,6 +96,20 @@ tbody tr:hover {
   border-radius: 10px;
   padding: 7px;
   height: 2rem;
+}
+table th, table td {
+  border: 1px solid #ddd; /* Bordes entre celdas */
+  padding: 5px;
+}
+.reportes {
+  width: 100%;
+  overflow-x: auto; /* Activa el desplazamiento horizontal */
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #c9c5c5;
+  padding: 5px;
+  margin-top: 10px;
 }
 ::ng-deep .custom-calendar {
   display: flex;
@@ -145,28 +159,28 @@ table th, table td {
 @media (max-width: 768px) {
 
   .box{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
   }
   .container{
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column; /* Colocar los enlaces en columna */
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column; /* Colocar los enlaces en columna */
   }
   .container > div{
-    width: 100%;
+  width: 100%;
   }
   .form {
-    display: flex;
-    flex-wrap: wrap; /* Permite que los elementos se envuelvan si no hay espacio suficiente */
-    gap: 10px; /* Espacio entre los elementos */
-    justify-content: space-between; /* Distribuye los elementos horizontalmente */
+  display: flex;
+  flex-wrap: wrap; /* Permite que los elementos se envuelvan si no hay espacio suficiente */
+  gap: 10px; /* Espacio entre los elementos */
+  justify-content: space-between; /* Distribuye los elementos horizontalmente */
   }
   .form > div {
-    flex: 3 3 calc(33.33% - 10px); /* Ocupa un tercio del contenedor con espacio para el gap */
-    box-sizing: border-box; /* Asegura que los márgenes y padding no afecten el ancho */
+  flex: 3 3 calc(33.33% - 10px); /* Ocupa un tercio del contenedor con espacio para el gap */
+  box-sizing: border-box; /* Asegura que los márgenes y padding no afecten el ancho */
   }
 }

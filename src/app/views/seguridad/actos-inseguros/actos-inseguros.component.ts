@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router, RouterLink } from '@angular/router';
 import { CNavBarComponent } from '../../../components/c-nav-bar/c-nav-bar.component';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ApiService } from '../../../service/api.service';
 import { DialogModule } from 'primeng/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -27,7 +27,7 @@ export class ActosInsegurosComponent implements OnInit {
       categoria: new FormControl('actos_inseguros'),
       nombre: new FormControl,
       num_empleado:new FormControl,
-      descripcion: new FormControl
+      descripcion: new FormControl('',[Validators.required])
     })
   }
 
@@ -37,12 +37,7 @@ export class ActosInsegurosComponent implements OnInit {
       this.visible=false
     },5000)
   }
-
   ActiveModal(){
-    if (this.actosForm.invalid) {
-      this.error = true;
-      return;
-    }
     if(this.actosForm.valid && !this.isSubmit){
       this.visibleReporte = true
       setTimeout(() => { 
@@ -50,9 +45,11 @@ export class ActosInsegurosComponent implements OnInit {
         this.visibleReporte = false; 
       }, 1600);
       this.enviar()
+    }else{
+      this.error = true;
+      return;
     }
   }
-
 
   enviar(){
     console.log(this.actosForm.value)
@@ -60,13 +57,6 @@ export class ActosInsegurosComponent implements OnInit {
       this.apiService.crear_reporte_seguridad(this.actosForm.value).subscribe(
         response =>{
           console.log(response)
-          this.visibleReporte = true
-
-          setTimeout(() => { 
-            this.router.navigate(['/seguridad']); 
-            this.visibleReporte = false; 
-          }, 1600);
-
         },error =>{
           if(error.status === 500){
             this.error = true

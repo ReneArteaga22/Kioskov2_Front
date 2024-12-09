@@ -2,23 +2,56 @@
 <div class="box">
     <h1>Reporte </h1>
     <div class="container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Nombre de empleado</th>
-                    <th>Num. de empleado</th>
-                    <th>Descripcion del reporte</th>
-                    <th>Fecha</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr >
-                    <td>Bolillo</td>
-                    <td>666</td>
-                    <td>Mate a un wey</td>
-                    <td>1846</td>
-                </tr>
-            </tbody>
-        </table>
+        <form class="form" [formGroup]="filtroForm" (ngSubmit)="filtrar()">
+            <h2>Filtros</h2>
+            <div class="filtros">
+                <div class="flex-auto">
+                    <p-calendar
+                      formControlName="fechas"
+                      [(ngModel)]="fechas"
+                      selectionMode="range"
+                      [readonlyInput]="true"
+                      dateFormat="yy/mm/dd"
+                      (onSelect)="logFecha($event)"
+                      [iconDisplay]="'button'"
+                      [showIcon]="'true'"
+                      [showOnFocus]="'false'"
+                      inputId="buttondisplay"
+                      class="custom-calendar">
+                    </p-calendar>
+                </div>
+                <select class="select" formControlName="categoria">
+                    <option value=""disabled selected>Selecciona la categoria</option>
+                    <option value="acoso">Acoso</option>
+                    <option value="acto_inseguro">Acto inseguro</option>
+                </select>
+                <button class="btn">Buscar</button>
+
+            </div>
+        </form>
+        <div class="table">
+            <div class="reportes">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre de empleado</th>
+                            <th>Num. de empleado</th>
+                            <th>Descripcion del reporte</th>
+                            <th>Categoria</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let reporte of reportes">
+                            <td>{{reporte.nombre === null ? 'Anonimo' : reporte.nombre }}</td>
+                            <td>{{reporte.numEmpleado === null ? 'Anonimo' : reporte.numEmpleado }}</td>
+                            <td>{{reporte.descripcion}}</td>
+                            <td>{{reporte.categoria}}</td>
+                            <td>{{reporte.createdAt | date : "yyyy/MM/dd" }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>   
     </div>
 </div>

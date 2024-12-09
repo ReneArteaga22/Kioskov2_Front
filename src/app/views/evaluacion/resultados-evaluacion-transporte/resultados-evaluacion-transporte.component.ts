@@ -40,7 +40,7 @@ export class ResultadosEvaluacionTransporteComponent implements OnInit {
 
   constructor(private apiService:ApiService) {
     this.filtrarForm = new FormGroup({
-      calificacion: new FormControl(''),
+      calificacion: new FormControl('',[Validators.required]),
       planta: new FormControl(''),
       fechas: new FormControl(null)  // Agrega el campo de fecha
     });

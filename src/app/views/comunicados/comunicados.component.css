@@ -99,7 +99,7 @@ td{
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    color:rgb(73, 71, 71);
+    color:black;
     font-size: 1.1rem;
 }
 .post:hover{
@@ -218,7 +218,7 @@ label{
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    color:rgb(73, 71, 71);
+    color: black;
     font-size: 1.1rem;
     }
 .post:hover{

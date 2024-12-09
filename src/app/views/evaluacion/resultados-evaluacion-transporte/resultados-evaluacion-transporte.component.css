@@ -6,51 +6,47 @@
   height: 100%;
 }
 .container{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 95%;
-    margin-top: 1.5rem;
-    padding: 1rem;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: 1px solid #c9c5c5;
-    gap: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 95%;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #c9c5c5;
+  gap: 20px;
 }
 .container > div{
-    width: 50%;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: 1px solid #c9c5c5;
-    padding: 5px;
+  width: 50%;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #c9c5c5;
+  padding: 5px;
 }
 div h1{
-    text-align: center;
-    margin: 10px;
-    border-bottom: 1px solid #e79371;
+  text-align: center;
+  margin: 10px;
+  border-bottom: 1px solid #e79371;
 }
 .form{
-    display: flex;
-    flex-direction: row;
-    margin: .5rem;
-    gap: 10px;
+  display: flex;
+  flex-direction: row;
+  margin: .5rem;
+  gap: 10px;
 }
 .form > div{
-    flex-grow: 1;
+  flex-grow: 1;
 }
 select{
-    width: 100%; /* Los select ocuparán todo el espacio dentro de su div */
-    padding: 5px;
-    font-size: 1em;
-    border: 1px solid #c9c5c5;
-    border-radius: 10px;
-    height: 2rem;
-}
-.table{
-    display: flex;
-    flex-direction: column;
+  width: 100%; /* Los select ocuparán todo el espacio dentro de su div */
+  padding: 5px;
+  font-size: 1em;
+  border: 1px solid #c9c5c5;
+  border-radius: 10px;
+  height: 2rem;
 }
 .btn{
   border: none;
@@ -76,32 +72,28 @@ th{
   color: white;
   height: 2rem;
 }
-tr{
-  height: 2rem;
-  border-bottom: 1px solid #f0f0f0;
-}
 tbody tr:hover {
-
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: #f0f0f0;
 }
-.tabla{
-  display: flex;
-  justify-content: center;
-  width: 100%;
+table th, table td {
+  border: 1px solid #ddd; /* Bordes entre celdas */
+  padding: 5px;
 }
-.input{
+.reportes {
   width: 100%;
-  border: 1px solid #c9c5c5;
+  overflow-x: auto; /* Activa el desplazamiento horizontal */
   border-radius: 10px;
-  padding: 7px;
-  height: 2rem;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #c9c5c5;
+  padding: 5px;
+  margin-top: 10px;
 }
 ::ng-deep .custom-calendar {
   display: flex;
   align-items: center;
 }
-
 ::ng-deep .custom-calendar .p-inputtext {
   flex: 1;
   padding-right: 10px; /* Ajusta el padding para centrar el icono */
@@ -139,9 +131,7 @@ tbody tr:hover {
   margin-left: 6px;
   margin-right: 10px; 
 }
-table th, table td {
-  border: 1px solid #ddd; /* Bordes entre celdas */
-}
+
 @media (max-width: 768px) {
 
   .box{

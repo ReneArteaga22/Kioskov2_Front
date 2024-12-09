@@ -50,10 +50,6 @@ export class CFormularioSoporteRhComponent{
   }
 
   ActiveModal(){
-    if (this.soporterhForm.invalid) {
-      this.error = true;
-      return;
-    }
     if(this.soporterhForm.valid && !this.isSubmit){
       this.visible = true
       setTimeout(() => { 
@@ -61,8 +57,12 @@ export class CFormularioSoporteRhComponent{
         this.visible = false; 
       }, 1600);
       this.enviar()
+    }else{
+      this.error = true;
+      return;
     }
   }
+
   enviar() {
     console.log(this.soporterhForm.value);
     if (this.soporterhForm.valid && !this.isSubmit) {

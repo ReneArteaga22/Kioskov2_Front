@@ -47,6 +47,7 @@ input{
     height: 2.5rem;
     width: 100%;
     padding: 10px;
+    font-size: 1.5rem;
 }
 .reporte{
     display: flex;
@@ -63,6 +64,7 @@ textarea{
     height: 20rem;
     width: 100%;
     padding:10px;
+    font-size: 1.5rem;
     resize: none;
 }
 .box-modal{

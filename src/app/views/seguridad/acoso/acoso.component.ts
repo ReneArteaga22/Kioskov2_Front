@@ -40,10 +40,6 @@ export class AcosoComponent {
   }
 
   ActiveModal(){
-    if (this.acosoForm.invalid) {
-      this.error = true;
-      return;
-    }
     if(this.acosoForm.valid && !this.isSubmit){
       this.visibleReporte = true
       setTimeout(() => { 
@@ -51,6 +47,9 @@ export class AcosoComponent {
         this.visibleReporte = false; 
       }, 1600);
       this.enviar()
+    }else{
+      this.error = true;
+      return;
     }
   }
 
@@ -60,13 +59,6 @@ export class AcosoComponent {
       this.apiService.crear_reporte_seguridad(this.acosoForm.value).subscribe(
         response =>{
           console.log(response)
-          this.visibleReporte = true
-
-          setTimeout(() => { 
-            this.router.navigate(['/seguridad']); 
-            this.visibleReporte = false; 
-          }, 1600);
-
         },error =>{
           if(error.status === 500){
             this.error = true

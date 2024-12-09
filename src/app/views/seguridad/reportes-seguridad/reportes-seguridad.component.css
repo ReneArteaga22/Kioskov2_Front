@@ -39,3 +39,37 @@ table tbody tr:hover{
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background-color: #f0f0f0;
 }
+.form{
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e79371;
+}
+.btn{
+    margin-left: 15px;
+    border: none;
+    border-radius: 10px;
+    height: 2rem;
+    background-color: rgb(31, 30, 30);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 10rem;
+}
+.select{
+    padding: 5px;
+    font-size: 1em;
+    border: 1px solid #c9c5c5;
+    border-radius: 10px;
+    height: 2rem;
+    width: 14rem;
+}
+.reportes{
+    overflow-x: auto;
+}
+.filtros{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    gap:15px;
+}
+

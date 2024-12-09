@@ -8,16 +8,16 @@
             <div class="input-box">
                 <div class="input">
                     <label for="nombre">Nombre</label>
-                    <input id="nombre" type="text" placeholder="Ingresa tu nombre (opcional)" formControlName="nombre">
+                    <input id="nombre" type="text" placeholder="Nombre (opcional)" formControlName="nombre">
                 </div>
                 <div class="input">
                     <label for="no-empleado">Numero de empleado</label>
-                    <input id="no-empleado" type="number" placeholder="Ingresa tu Num. de empleado (opcional)" formControlName="num_empleado">
+                    <input id="no-empleado" type="number" placeholder="Num. de empleado (opcional)" formControlName="num_empleado">
                 </div>
             </div>
             <div class="reporte">
                 <label for="descripcion">Descripcion del reporte</label>
-                <textarea id="descripcion" placeholder="Escribe con detalle el motivo de tu reporte..." formControlName="descripcion"></textarea>
+                <textarea id="descripcion" placeholder="Escribe con detalle el motivo de tu reporte, de ser necesario escribe nombres..." formControlName="descripcion"></textarea>
                 <p *ngIf="error" class="error">No puedes deja el reporte vacio.</p>
             </div>
             <div class="reporte">
