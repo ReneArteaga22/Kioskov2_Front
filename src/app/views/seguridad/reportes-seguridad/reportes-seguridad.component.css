@@ -45,7 +45,6 @@ table tbody tr:hover{
     border-bottom: 1px solid #e79371;
 }
 .btn{
-    margin-left: 15px;
     border: none;
     border-radius: 10px;
     height: 2rem;
@@ -71,5 +70,15 @@ table tbody tr:hover{
     flex-direction: row;
     align-items: center;
     gap:15px;
+}
+::ng-deep .custom-calendar .p-inputtext {
+  flex: 1;
+  padding-right: 10px; /* Ajusta el padding para centrar el icono */
+  border: 1px solid #007bff; /* Cambia el color del borde */
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px; /* Redondea las esquinas */
+  padding: 5px; /* Agrega espacio interno */
+  font-size: 16px; /* Cambia el tamaño de la fuente */
+ 
 }
 
