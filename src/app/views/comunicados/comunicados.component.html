@@ -6,24 +6,26 @@
                 <button class="post" (click)="agregar()">Agregar Comunicado</button>
                 <h1>Comunicados</h1>
             </div>
-            <table>  
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Imagen</th>
-                        <th>Fecha</th>
-                        <th>Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let comunicado of paginacionComunicados">
-                        <td>{{comunicado.nombre}}</td>
-                        <td><img [src]="'http://10.99.22.17:3333/' + comunicado.imagen" alt="Imagen del comunicado"></td>
-                        <td>{{comunicado.createdAt | date : "yyyy/MM/dd"}}</td>
-                        <td><button class="delete" (click)="dialog(comunicado.id)"><i class="pi pi-trash" style="font-size: 2rem"></i></button></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="reporte">
+                <table>  
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Imagen</th>
+                            <th>Fecha</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let comunicado of paginacionComunicados">
+                            <td>{{comunicado.nombre}}</td>
+                            <td><img [src]="'http://10.99.22.17:3333/' + comunicado.imagen" alt="Imagen del comunicado"></td>
+                            <td>{{comunicado.createdAt | date : "yyyy/MM/dd"}}</td>
+                            <td><button class="delete" (click)="dialog(comunicado.id)"><i class="pi pi-trash" style="font-size: 2rem"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <div class="card flex justify-content-center">
                 <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="totalRecords">
                 </p-paginator>

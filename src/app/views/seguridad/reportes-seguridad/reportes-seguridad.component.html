@@ -1,9 +1,11 @@
 <app-c-nav-bar></app-c-nav-bar>
 <div class="box">
-    <h1>Reporte </h1>
     <div class="container">
+        <h1>Reportes de Actos inseguros y Acoso</h1>
+    </div>
+    <div class="container">
+        <h2>Filtros</h2>
         <form class="form" [formGroup]="filtroForm" (ngSubmit)="filtrar()">
-            <h2>Filtros</h2>
             <div class="filtros">
                 <div class="flex-auto">
                     <p-calendar
@@ -20,13 +22,16 @@
                       class="custom-calendar">
                     </p-calendar>
                 </div>
-                <select class="select" formControlName="categoria">
-                    <option value=""disabled selected>Selecciona la categoria</option>
-                    <option value="acoso">Acoso</option>
-                    <option value="acto_inseguro">Acto inseguro</option>
-                </select>
-                <button class="btn">Buscar</button>
-
+                <div>
+                    <select class="select" formControlName="categoria">
+                        <option value=""disabled selected>Selecciona la categoria</option>
+                        <option value="acoso">Acoso</option>
+                        <option value="acto_inseguro">Acto inseguro</option>
+                    </select>
+                </div>
+                <div>
+                    <button class="btn">Buscar</button>
+                </div>               
             </div>
         </form>
         <div class="table">

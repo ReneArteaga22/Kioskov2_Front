@@ -33,6 +33,10 @@
     border: 1px solid #c9c5c5;
     padding: 10px;
 }
+.reporte{
+    width: 100%;
+    overflow-x: auto;
+}
 .titulo{
     display: flex;
     align-items: center;
@@ -51,8 +55,11 @@
     background-color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border: 1px solid #c9c5c5;
+    overflow-x: auto;
+
 }
 table{
+    width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
 }
@@ -203,6 +210,9 @@ label{
 .custom-file-upload i { 
     margin-right: 8px;
 }
+table th, table td {
+    padding: 5px;
+}
 @media (max-width: 768px) {
   .comunicados{
     display: flex;
@@ -221,7 +231,13 @@ label{
     color: black;
     font-size: 1.1rem;
     }
-.post:hover{
-    background-color: #03b447d0;
-}
+    .post:hover{
+        background-color: #03b447d0;
+    }
+    .titulo h1{
+        font-size: 1.4rem;
+    }
+    .post{
+        font-size: 14.5px;
+    }
 }
