@@ -6,16 +6,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
 import { ApiService } from '../../../service/api.service';
 import { NgIf } from '@angular/common';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-comedor-guest',
   standalone: true,
-  imports: [CNavBarComponent, RouterLink, DialogModule, ReactiveFormsModule, NgIf],
+  imports: [CNavBarComponent, RouterLink, DialogModule, ReactiveFormsModule, NgIf, NgFor],
   templateUrl: './comedor-guest.component.html',
   styleUrl: './comedor-guest.component.css'
 })
 export class ComedorGuestComponent {
 
+  comunicado:any
+  visibleMenu: boolean = false
   visible: boolean = false;
   comedorForm:FormGroup
   selectedOption: string | null = null;
@@ -62,4 +65,13 @@ export class ComedorGuestComponent {
     this.comedorForm.patchValue({ calificacion: calificacion, servicio:servicio });
   }
 
+  menu(){
+    this.apiService.menu_comunicado().subscribe(
+      response =>{
+        this.comunicado = response.comunicados
+        this.visibleMenu = true
+        console.log(this.comunicado)
+      }
+    )
+  }
 }

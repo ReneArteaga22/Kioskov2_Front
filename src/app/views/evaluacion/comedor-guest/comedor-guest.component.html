@@ -2,7 +2,7 @@
 <div class="box">
     <div class="menu">
         <h2>Ver menu de la semana</h2>
-        <button class="btn-menu">Menu</button>
+        <button class="btn-menu" (click)="menu()">Menu</button>
     </div>
     <form class="form" [formGroup]="comedorForm" (ngSubmit)="enviar()"> 
         <h1>Formulario de calidad  para el Comedor</h1>
@@ -59,3 +59,9 @@
         </p-dialog>
     </div>
 </div>
+<p-dialog [modal]="true" [(visible)]="visibleMenu" [style]="{ width: '900px', height: '900px', borderRadius: '8px'}">
+    <div class="box-modal">
+        <img class="img-menu" *ngFor="let comunicado of comunicado" [src]="'http://10.99.22.17:3333/' + comunicado.imagen" alt="Menu Image">
+    </div>
+</p-dialog>
+

@@ -7,15 +7,18 @@ import { NgClass } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
 import { DialogModule } from 'primeng/dialog';
 import { NgIf } from '@angular/common';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-comedor',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, CNavBarComponent, NgClass, DialogModule, NgIf],
+  imports: [RouterLink, ReactiveFormsModule, CNavBarComponent, NgClass, DialogModule, NgIf, NgFor],
   templateUrl: './comedor.component.html',
   styleUrl: './comedor.component.css'
 })
 export class ComedorComponent {
+  comunicadoMenu:any
+  visibleMenu:boolean = false
   visible: boolean = false;
   selectedOption: string | null = null;
   comedorForm: FormGroup
@@ -73,7 +76,9 @@ export class ComedorComponent {
   menu(){
     this.apiService.menu_comunicado().subscribe(
       response =>{
-        console.log(response)
+        this.comunicadoMenu = response.comunicados
+        this.visibleMenu = true
+        console.log(this.comunicadoMenu)
       }
     )
   }
