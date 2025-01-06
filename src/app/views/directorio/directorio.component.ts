@@ -18,26 +18,26 @@ export class DirectorioComponent{
       label: 'Luis Garcia',
       expanded: true,
       data:{
-        image:'icons/cubony.jpg'
+        image:'icons/user.png'
       },
       children: [
         {
           label: 'Rene Arteaga ',
           expanded: true,
           data:{
-            image:'icons/cubony.jpg'
+            image:'icons/user.png'
           },
           children: [
             {
               label: 'Victoria Blanco',
               data:{
-                image:'icons/cubony.jpg'
+                image:'icons/user.png'
               }
             },
             {
               label: 'Viktor Miller',
               data:{
-                image:'icons/cubony.jpg'
+                image:'icons/user.png'
               }
             }
           ]
@@ -46,19 +46,19 @@ export class DirectorioComponent{
           label: 'France',
           expanded: true,
           data: {
-            image:'icons/cubony.jpg'
+            image:'icons/user.png'
           },
           children: [
             {
               label: 'France',
               data: {
-                image:'icons/cubony.jpg'
+                image:'icons/user.png'
               }
             },
             {
               label: 'Morocco',
               data:{
-                image:'icons/cubony.jpg'
+                image:'icons/user.png'
               }
             }
           ]
