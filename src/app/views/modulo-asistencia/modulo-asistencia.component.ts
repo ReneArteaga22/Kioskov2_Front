@@ -168,15 +168,15 @@ export class ModuloAsistenciaComponent implements OnInit {
   }
 
   showDialog(employee: any): void {
-    this.selectedEmployee = employee; // Guardamos la info del empleado
-    this.visible = true; // Mostramos el diálogo
+    this.selectedEmployee = employee; 
+    this.visible = true; 
   }
 
-  // Método para manejar la búsqueda
+
   onSearch(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
     const inputValue = inputElement.value;
-    this.filterEmployees(inputValue);  // Llamamos a la función que filtra los empleados
+    this.filterEmployees(inputValue);  
   }
 
   // Método para filtrar los empleados basados en el término de búsqueda
