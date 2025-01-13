@@ -1,0 +1,43 @@
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem;
+}
+img{
+    padding: 5px;
+    width:12rem;
+    height: 12rem;
+}
+.caja {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #000000; 
+  background-color: #f9f9f9;
+  margin: 10px;
+}
+.title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #c9c5c5;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+h1{
+    width: 100%;;
+    text-align: center;
+    margin: 10px;
+    border-bottom: 1px solid #e79371;
+}
+.text{
+    color: black;
+    font-size: 1.2rem;
+}

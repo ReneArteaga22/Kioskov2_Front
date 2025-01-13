@@ -1,18 +1,19 @@
 <div>
-    <app-c-nav-bar></app-c-nav-bar>
-    <div class="card overflow-x-auto">
-        <p-organizationChart [value]="data" [collapsible]="true">
-            <ng-template let-node pTemplate="default">
-                <div class="flex flex-col items-center">
-                    <img
-                        src="https://primefaces.org/cdn/primeng/images/flag/flag_placeholder.png"
-                        [alt]="node.label"
-                        [class]="'flag' + ' flag-' + node.data"
-                        width="32"
-                    />
-                    <div class="mt-4 font-medium text-lg">{{ node.label }}</div>
-                </div>
-            </ng-template>
-        </p-organizationChart>
+  <app-c-nav-bar></app-c-nav-bar>
+  <div class="box">
+    <div class="title">
+      <h1>Directorio</h1>
     </div>
+    <div class="title">
+      <p-organizationChart class="chart" [value]="data" [collapsible]="true">
+        <ng-template let-node pTemplate="default">
+          <div class="caja" (click)="hola()">
+            <img [src]="node.data.image" [alt]="node.label" [class]="'flag' + ' flag-' + node.data.code" width="32" />
+            <div class="text"> {{ node.label }}</div>
+          </div>
+        </ng-template>
+      </p-organizationChart>
+    </div>
+  </div>
 </div>
+<!-- comentario para poder subir avances -->

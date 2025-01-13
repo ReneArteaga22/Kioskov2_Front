@@ -24,6 +24,8 @@
     <li *ngIf="!isLoggin"><a [routerLink]="['/servicios']">Evaluacion de servicios</a></li>
     <li *ngIf="!isLoggin"><a [routerLink]="['/comunicado']">Comunicados</a></li>
     <li *ngIf="!isLoggin"><a [routerLink]="['/buzon']">Buzon</a></li>
+    <li *ngIf="!isLoggin"><a [routerLink]="['/directorio']">Directorio</a></li>
+
 
     <!-- MODULOS PARA USUARIO DE RECURSOS HUMANOS, SISTEMAS Y SEGURIDAD -->
     <li *ngIf="isRH || isSistemas || isSeguridad"><a [routerLink]="['/solicitudes']">Solicitudes</a></li>
@@ -43,8 +45,9 @@
     <option *ngIf="!isLoggin" value="/servicios">Evaluacion de servicios</option>
     <option *ngIf="!isLoggin" value="/comunicado">Comunicados</option>
     <option *ngIf="!isLoggin" value="/buzon">Buzon</option>
+    <option *ngIf="!isLoggin" value="/directorio">Directorio</option>
     <option *ngIf="!isLoggin" value="/login">Login</option>
-    <!-- MENU SELECT PARA RUTAS DE GUEST -->
+    <!-- MENU SELECT PARA RUTAS DE SISTEMAS, SEGURIDAD Y RH -->
     <option *ngIf="isRH || isSistemas || isSeguridad" value="" disabled selected>Navega por los módulos</option>
     <option *ngIf="isRH || isSistemas || isSeguridad" value="/solicitudes">Solicitudes</option>
     <option *ngIf="isRH || isSistemas || isSeguridad" value="/reportes-seguridad">Seguridad</option>
@@ -52,6 +55,7 @@
     <option *ngIf="isRH || isSistemas || isSeguridad" value="/usuarios">Usuarios</option>
     <option *ngIf="isRH || isSistemas || isSeguridad" value="/comunicados">Comunicados</option>
     <option *ngIf="isRH || isSistemas || isSeguridad" value="/sugerencias">Buzon</option>
+
     <!-- OPCION PARA CERRAR SESION -->
     <option *ngIf="isLoggin" value="/login">Cerrar Sesion</option>
   </select>

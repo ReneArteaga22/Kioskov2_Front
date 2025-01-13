@@ -1,54 +1,76 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CNavBarComponent } from '../../components/c-nav-bar/c-nav-bar.component';
 import { OrganizationChartModule } from 'primeng/organizationchart';
+import { EmployeeService } from '../../services/employee.service';
+import { NgFor } from '@angular/common';
 import { TreeNode } from 'primeng/api';
-
 
 @Component({
   selector: 'app-directorio',
   standalone: true,
-  imports: [CNavBarComponent, OrganizationChartModule],
+  imports: [CNavBarComponent, OrganizationChartModule, NgFor],
   templateUrl: './directorio.component.html',
   styleUrl: './directorio.component.css'
 })
-export class DirectorioComponent {
+export class DirectorioComponent{
   data: TreeNode[] = [
     {
-        label: 'Argentina',
-        expanded: true,
-        data: 'ar',
-        children: [
+      label: 'Luis Garcia',
+      expanded: true,
+      data:{
+        image:'icons/user.png'
+      },
+      children: [
+        {
+          label: 'Rene Arteaga ',
+          expanded: true,
+          data:{
+            image:'icons/user.png'
+          },
+          children: [
             {
-                label: 'Argentina',
-                expanded: true,
-                data: 'ar',
-                children: [
-                    {
-                        label: 'Argentina',
-                        data: 'ar'
-                    },
-                    {
-                        label: 'Croatia',
-                        data: 'hr'
-                    }
-                ]
+              label: 'Victoria Blanco',
+              data:{
+                image:'icons/user.png'
+              }
             },
             {
-                label: 'France',
-                expanded: true,
-                data: 'fr',
-                children: [
-                    {
-                        label: 'France',
-                        data: 'fr'
-                    },
-                    {
-                        label: 'Morocco',
-                        data: 'ma'
-                    }
-                ]
+              label: 'Viktor Miller',
+              data:{
+                image:'icons/user.png'
+              }
             }
-        ]
+          ]
+        },
+        {
+          label: 'France',
+          expanded: true,
+          data: {
+            image:'icons/user.png'
+          },
+          children: [
+            {
+              label: 'France',
+              data: {
+                image:'icons/user.png'
+              }
+            },
+            {
+              label: 'Morocco',
+              data:{
+                image:'icons/user.png'
+              }
+            }
+          ]
+        }
+      ]
     }
   ];
+
+  constructor(private apiService: EmployeeService) {
+  }
+
+  hola() {
+    alert('hola');
+  }
 }
