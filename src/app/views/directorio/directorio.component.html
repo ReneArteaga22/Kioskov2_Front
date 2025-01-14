@@ -5,7 +5,7 @@
             <h1>Directorio</h1>
         </div>
         <div class="title">
-            <p-organizationChart class="chart" [value]="usuarios" [collapsible]="true">
+            <p-organizationChart class="chart" [value]="data" [collapsible]="true">
               <ng-template let-node pTemplate="default">
                 <div class="caja" (click)="hola()">
                   <img [src]="node.data.image" [alt]="node.label" [class]="'flag' + ' flag-' + node.data.code" width="32" />
