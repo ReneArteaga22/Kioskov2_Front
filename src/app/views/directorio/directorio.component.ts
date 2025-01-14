@@ -13,32 +13,51 @@ import { TreeNode } from 'primeng/api';
   styleUrl: './directorio.component.css'
 })
 export class DirectorioComponent{
+<<<<<<< HEAD
 
+=======
+>>>>>>> 990a6dd7576fb0e23603b381691a115ba9ecdfb0
   data: TreeNode[] = [
     {
       label: 'Luis Garcia',
       expanded: true,
       data:{
+<<<<<<< HEAD
         image:'icons/lock.png'
+=======
+        image:'icons/user.png'
+>>>>>>> 990a6dd7576fb0e23603b381691a115ba9ecdfb0
       },
       children: [
         {
           label: 'Rene Arteaga ',
           expanded: true,
           data:{
+<<<<<<< HEAD
             image:'icons/lock.png'
+=======
+            image:'icons/user.png'
+>>>>>>> 990a6dd7576fb0e23603b381691a115ba9ecdfb0
           },
           children: [
             {
               label: 'Victoria Blanco',
               data:{
+<<<<<<< HEAD
                 image:'icons/lock.png'
+=======
+                image:'icons/user.png'
+>>>>>>> 990a6dd7576fb0e23603b381691a115ba9ecdfb0
               }
             },
             {
               label: 'Viktor Miller',
               data:{
+<<<<<<< HEAD
                 image:'icons/lock.png'
+=======
+                image:'icons/user.png'
+>>>>>>> 990a6dd7576fb0e23603b381691a115ba9ecdfb0
               }
             }
           ]
@@ -47,19 +66,31 @@ export class DirectorioComponent{
           label: 'France',
           expanded: true,
           data: {
+<<<<<<< HEAD
             image:'icons/lock.png'
+=======
+            image:'icons/user.png'
+>>>>>>> 990a6dd7576fb0e23603b381691a115ba9ecdfb0
           },
           children: [
             {
               label: 'France',
               data: {
+<<<<<<< HEAD
                 image:'icons/lock.png'
+=======
+                image:'icons/user.png'
+>>>>>>> 990a6dd7576fb0e23603b381691a115ba9ecdfb0
               }
             },
             {
               label: 'Morocco',
               data:{
+<<<<<<< HEAD
                 image:'icons/lock.png'
+=======
+                image:'icons/user.png'
+>>>>>>> 990a6dd7576fb0e23603b381691a115ba9ecdfb0
               }
             }
           ]
@@ -68,9 +99,10 @@ export class DirectorioComponent{
     }
   ];
 
-  constructor(private apiService:EmployeeService){}
+  constructor(private apiService: EmployeeService) {
+  }
 
-  hola(){
+  hola() {
     alert('hola');
   }
 }

@@ -1,4 +1,5 @@
 <div>
+<<<<<<< HEAD
     <app-c-nav-bar></app-c-nav-bar>
     <div class="box">
         <div class="title">
@@ -14,5 +15,22 @@
               </ng-template>
             </p-organizationChart>
           </div>
+=======
+  <app-c-nav-bar></app-c-nav-bar>
+  <div class="box">
+    <div class="title">
+      <h1>Directorio</h1>
+>>>>>>> 990a6dd7576fb0e23603b381691a115ba9ecdfb0
     </div>
+    <div class="title">
+      <p-organizationChart class="chart" [value]="data" [collapsible]="true">
+        <ng-template let-node pTemplate="default">
+          <div class="caja" (click)="hola()">
+            <img [src]="node.data.image" [alt]="node.label" [class]="'flag' + ' flag-' + node.data.code" width="32" />
+            <div class="text"> {{ node.label }}</div>
+          </div>
+        </ng-template>
+      </p-organizationChart>
+    </div>
+  </div>
 </div>
