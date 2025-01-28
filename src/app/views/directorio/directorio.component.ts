@@ -73,4 +73,12 @@ export class DirectorioComponent{
   hola() {
     alert('hola');
   }
+
+  directorio(){
+    this.apiService.getEmployees().subscribe(
+      response => {
+        this.data = response
+      }
+    )
+  }
 }

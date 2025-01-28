@@ -32,10 +32,10 @@
     </div>
 
     
-    <div *ngIf="!isLoggin"  class="card" [routerLink]="['/directorio']">
+    <!-- <div *ngIf="!isLoggin"  class="card" [routerLink]="['/directorio']">
         <h2>Directorio</h2>
         <img src="icons/directorio.png" alt="https://www.freepik.es/">
-    </div>
+    </div> -->
 
     <!-- MODULOS PARA USUARIOS RECURSOS  -->
     <div *ngIf="isRH || isSistemas || isSeguridad" class="card" [routerLink]="['/solicitudes']" >
