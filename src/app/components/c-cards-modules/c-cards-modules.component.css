@@ -18,21 +18,32 @@
   border-radius: 3%;
   text-align: center;
   cursor: pointer;
-  background-color: #f0f0f0;
-  border: 2px solid #ccc;
+  background-color: white;
+  border: 2px solid #eeecec;
+  box-shadow:0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease-in-out;/* Transición suave */
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+  max-width: 250px;
 }
 .card:hover {
-  border-radius: 3%;
-  background-color: #ffffff;
-  border: 2px solid #ccc;
+  transform: scale(1.05);
 }
 /* Imágenes */
 img {
   width: 100%; /* Ajustar el ancho de la imagen al 100% del contenedor */
   height: auto; /* Altura automática */
   border-radius: 3%;
+}
+.card p {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.4;
+  margin-top: 8px;
 }
 /* Media Queries para Responsividad */
 @media (max-width: 768px) {
@@ -50,3 +61,5 @@ img {
     max-width: 50%;
   }
 }
+
+

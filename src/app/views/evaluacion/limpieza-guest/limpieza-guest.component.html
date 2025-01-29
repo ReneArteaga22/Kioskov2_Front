@@ -1,7 +1,8 @@
 <app-c-nav-bar></app-c-nav-bar>
 <div class="box">
+    <h1 class="title">Formulario de calidad  para la Limpieza</h1>
     <form class="form" [formGroup]="limpiezaForm" (ngSubmit)="enviar()">
-        <h1>Formulario de calidad  para la Limpieza</h1>
+        
         <div class="input">
             <label>Deja un comentario</label>
             <textarea formControlName="comentario" placeholder="Escribe tu comentario (Opcional)"></textarea>
