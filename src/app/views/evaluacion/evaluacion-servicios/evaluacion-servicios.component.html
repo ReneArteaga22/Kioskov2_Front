@@ -1,17 +1,23 @@
 <app-c-nav-bar></app-c-nav-bar>
 <div class="box">
+  <div class="title">
+    <h1>Consulta tus referencias y solicitudes dando click en el modulo</h1>
+  </div>
   <div class="cards">
     <div class="card" (click)="servicio('transporte')">
       <h2>Transporte</h2>
       <img src="icons/bus.png" alt="">
+      <p>Evalúa el servicio de transporte para asegurar que cumpla con tus expectativas y necesidades.</p>
     </div>
     <div class="card" [routerLink]="['/comedor-guest']">
       <h2>Comedor</h2>
       <img src="icons/comedor.png" alt="">
+      <p>Califica la calidad y variedad del servicio de comedor, ayudándonos a mejorar la experiencia.</p>
     </div>
     <div class="card" [routerLink]="['/limpieza-guest']">
       <h2>Limpieza</h2>
       <img src="icons/limpieza.png" alt="">
+      <p>Comparte tu opinión sobre el servicio de limpieza para mantener un ambiente ordenado y cómodo.</p>
     </div>
   </div>
 </div>

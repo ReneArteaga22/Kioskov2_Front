@@ -1,11 +1,12 @@
 <app-c-nav-bar></app-c-nav-bar>
 <div class="box">
+    <h1 class="title">Formulario de calidad  para el Comedor</h1>
     <div class="menu">
         <h2>Ver menu de la semana</h2>
         <button class="btn-menu" (click)="menu()">Menu</button>
     </div>
     <form class="form" [formGroup]="comedorForm" (ngSubmit)="enviar()"> 
-        <h1>Formulario de calidad  para el Comedor</h1>
+     
         <div class="input">
             <label>Deja un comentario</label>
             <textarea formControlName="comentario" placeholder="Escribe tu comentario (Opcional)"></textarea>

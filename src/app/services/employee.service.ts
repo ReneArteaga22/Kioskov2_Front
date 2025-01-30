@@ -13,4 +13,8 @@ export class EmployeeService {
   { 
      return this.http.get<any>(`${this.apiUrl}/api/usuarios/employees`)
   }
+
+  directorio(): Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/api/usuarios/directorio`)
+  }
 }

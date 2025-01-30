@@ -3,68 +3,80 @@
     <div *ngIf="isComedor" class="card" [routerLink]="['/comedor']">
         <h2>Comedor</h2>
         <img src="icons/comedor.png" alt="">
+        <p>Consulta el menú y horario del comedor.</p>
     </div>
 
     <!-- MODULOS PARA GUEST -->
     <div *ngIf="!isLoggin" class="card" [routerLink]="['/soporte-rh-modulos']" >
         <h2>Soporte RH</h2>
         <img src="icons/rh.png" alt="https://www.freepik.es/">
+        <p>Accede a recursos humanos para recibir asistencia.</p>
     </div>
 
     <div *ngIf="!isLoggin" class="card" [routerLink]="['/seguridad']">
         <h2>Seguridad</h2>
         <img src="icons/seguridad.png" alt="https://www.freepik.es/">
+        <p>Reporta incidentes o contacta con seguridad.</p>
     </div>
 
     <div *ngIf="!isLoggin" class="card" [routerLink]="['/servicios']">
         <h2>Evaluacion de servicios</h2>
         <img src="icons/servicios.png" alt="https://www.freepik.es/">
+        <p>Déjanos tu opinión sobre los servicios internos.</p>
     </div>
 
     <div *ngIf="!isLoggin" class="card" [routerLink]="['/comunicado']" >
         <h2>Comunicados</h2>
         <img src="icons/comunicados.png" alt="https://www.freepik.es/">
+        <p>Mantente informado con los últimos comunicados.</p>
     </div>
 
     <div *ngIf="!isLoggin"  class="card" [routerLink]="['/buzon']">
         <h2>Buzon de sugerencias</h2>
         <img src="icons/buzon.png" alt="https://www.freepik.es/">
+        <p>Envía tus sugerencias y ayuda a mejorar la empresa.</p>
     </div>
 
     
-    <div *ngIf="!isLoggin"  class="card" [routerLink]="['/directorio']">
+    <!-- <div *ngIf="!isLoggin"  class="card" [routerLink]="['/directorio']">
         <h2>Directorio</h2>
         <img src="icons/directorio.png" alt="https://www.freepik.es/">
-    </div>
+    </div> -->
 
     <!-- MODULOS PARA USUARIOS RECURSOS  -->
     <div *ngIf="isRH || isSistemas || isSeguridad" class="card" [routerLink]="['/solicitudes']" >
         <h2>Solicitudes</h2>
         <img src="icons/solicitud.png" alt="https://www.freepik.es/">
+        <p>Consulta y gestiona todas las solicitudes ingresadas en el sistema.</p>
     </div>
 
     <div *ngIf="isSeguridad || isSistemas" class="card" [routerLink]="['/reportes-seguridad']">
         <h2>Seguridad</h2>
         <img src="icons/seguridad.png" alt="https://www.freepik.es/">
+        <p>Accede a los reportes y registros de seguridad del sistema.</p>
     </div>
 
     <div *ngIf="isRH || isSistemas || isSeguridad" class="card" [routerLink]="['/tablas-servicios']" >
         <h2>Resultados de evaluacion</h2>
         <img src="icons/resultados_evaluacion.png" alt="https://www.freepik.es/">
+        <p>Revisa los resultados de evaluaciones de desempeño y calidad.</p>
     </div>
     
     <div *ngIf="isRH || isSistemas || isSeguridad" class="card" [routerLink]="['/usuarios']" >
         <h2>Usuarios</h2>
         <img src="icons/usuarios.png" alt="https://www.freepik.es/">
+        <p>Gestiona y administra los usuarios registrados en el sistema.</p>
     </div>
 
     <div *ngIf="isRH || isSistemas || isSeguridad" class="card" [routerLink]="['/comunicados']">
         <h2>Comunicados</h2>
         <img src="icons/comunicados.png" alt="https://www.freepik.es/">
+        <p>Agrega los comunicados y anuncios importantes para los usuarios.</p>
     </div>
 
     <div *ngIf="isRH || isSistemas || isSeguridad" class="card" [routerLink]="['/sugerencias']" >
         <h2>Buzon de sugerencias</h2>
         <img src="icons/buzon.png" alt="https://www.freepik.es/">
+        <p>Revisa los resultados y sugerencias para mejorar el ambiente laboral.</p>
     </div>
 </div>

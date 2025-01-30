@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     width: 100%;
 }
 .form-container{
@@ -15,6 +16,16 @@
     border: 1px solid #ccc;   
     background-color: #f3f2f2;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    padding: 20px;
+    width: 70%;
+    gap:15px;
+    margin:30px;
+    border-radius: 10px;
+    border: 2px solid #eeecec; 
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); 
 }
 .form{
     display: flex;
@@ -22,13 +33,6 @@
     width: 100%;
     margin: 20px;
     gap:10px;
-}
-.title{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    border-bottom: 1px solid #e79371;
-    padding-bottom: 5px;
 }
 .input-box{
     display: flex;
@@ -106,6 +110,22 @@ textarea{
   text-align: center;
   color: #333;     /* Cambia el color si es necesario */
   margin: 20px 0;  /* Espaciado superior e inferior */
+}
+.title{
+    margin-top: 3rem;
+}
+.title h1 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    animation: fadeIn 1s ease-in-out; /* Se aplica la animación */
+    font-weight: 600;
+    margin-bottom: 10px;
+    animation: fadeIn 1s ease-in-out;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-style: italic;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
 @media (max-width: 768px) {
 

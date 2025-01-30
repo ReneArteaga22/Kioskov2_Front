@@ -1,18 +1,18 @@
 <app-c-nav-bar></app-c-nav-bar>
 <div class="box">
+    <div class="title">
+        <h1>Reporte de actos inseguros</h1>
+    </div>
     <div class="form-container">
         <form class="form" [formGroup]="actosForm" (ngSubmit)="ActiveModal()">
-            <div class="title">
-                <h1>Reporte de actos inseguros</h1>
-            </div>
             <div class="input-box">
                 <div class="input">
                     <label for="nombre">Nombre</label>
-                    <input id="nombre" type="text" placeholder="Nombre (opcional)" formControlName="nombre">
+                    <input id="nombre" type="text" placeholder="Nombre" formControlName="nombre">
                 </div>
                 <div class="input">
                     <label for="no-empleado">Numero de empleado</label>
-                    <input id="no-empleado" type="number" placeholder="Num. de empleado (opcional)" formControlName="num_empleado">
+                    <input id="no-empleado" type="number" placeholder="Num. de empleado" formControlName="num_empleado">
                 </div>
             </div>
             <div class="reporte">

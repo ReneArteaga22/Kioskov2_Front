@@ -18,26 +18,26 @@ export class DirectorioComponent{
       label: 'Luis Garcia',
       expanded: true,
       data:{
-        image:'icons/user.png'
+        image:'icons/lock.png'
       },
       children: [
         {
           label: 'Rene Arteaga ',
           expanded: true,
           data:{
-            image:'icons/user.png'
+            image:'icons/lock.png'
           },
           children: [
             {
               label: 'Victoria Blanco',
               data:{
-                image:'icons/user.png'
+                image:'icons/lock.png'
               }
             },
             {
               label: 'Viktor Miller',
               data:{
-                image:'icons/user.png'
+                image:'icons/lock.png'
               }
             }
           ]
@@ -46,19 +46,19 @@ export class DirectorioComponent{
           label: 'France',
           expanded: true,
           data: {
-            image:'icons/user.png'
+            image:'icons/lock.png'
           },
           children: [
             {
               label: 'France',
               data: {
-                image:'icons/user.png'
+                image:'icons/lock.png'
               }
             },
             {
               label: 'Morocco',
               data:{
-                image:'icons/user.png'
+                image:'icons/lock.png'
               }
             }
           ]
@@ -72,5 +72,13 @@ export class DirectorioComponent{
 
   hola() {
     alert('hola');
+  }
+
+  directorio(){
+    this.apiService.getEmployees().subscribe(
+      response => {
+        this.data = response
+      }
+    )
   }
 }

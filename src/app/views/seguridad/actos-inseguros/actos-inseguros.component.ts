@@ -25,8 +25,8 @@ export class ActosInsegurosComponent implements OnInit {
   constructor(private apiService:ApiService, private router:Router) {
     this.actosForm = new FormGroup({
       categoria: new FormControl('actos_inseguros'),
-      nombre: new FormControl,
-      num_empleado:new FormControl,
+      nombre: new FormControl('',[Validators.required]),
+      num_empleado:new FormControl('',[Validators.required]),
       descripcion: new FormControl('',[Validators.required])
     })
   }

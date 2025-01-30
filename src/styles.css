@@ -4,3 +4,7 @@
     margin: 0;
     padding: 0;
 }
+body {
+    background: linear-gradient(135deg, #f4f4f9, #f8f9fc);
+    background-attachment: fixed;
+}
