@@ -5,11 +5,12 @@ import { CNavBarComponent } from '../../../components/c-nav-bar/c-nav-bar.compon
 import { ApiService } from '../../../service/api.service';
 import { DialogModule } from 'primeng/dialog';
 import { NgIf } from '@angular/common';
+import { CFlechasComponent } from '../../../components/c-flechas/c-flechas.component';
 
 @Component({
   selector: 'app-transporte',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, CNavBarComponent, DialogModule, NgIf],
+  imports: [RouterLink, ReactiveFormsModule, CNavBarComponent, DialogModule, NgIf, CFlechasComponent],
   templateUrl: './transporte.component.html',
   styleUrl: './transporte.component.css'
 })

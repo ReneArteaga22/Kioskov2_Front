@@ -4,11 +4,12 @@ import { ApiService } from '../../../service/api.service';
 import { CookieService } from 'ngx-cookie-service';
 import { DatePipe } from '@angular/common';
 import { CNavBarComponent } from '../../../components/c-nav-bar/c-nav-bar.component';
+import { CFlechasComponent } from '../../../components/c-flechas/c-flechas.component';
 
 @Component({
   selector: 'app-solicitud',
   standalone: true,
-  imports: [RouterLink, DatePipe, CNavBarComponent],
+  imports: [RouterLink, DatePipe, CNavBarComponent, CFlechasComponent],
   templateUrl: './solicitud.component.html',
   styleUrl: './solicitud.component.css'
 })

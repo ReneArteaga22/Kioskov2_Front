@@ -4,10 +4,11 @@ import { ApiService } from '../../service/api.service';
 import { DatePipe } from '@angular/common';
 import { NgFor } from '@angular/common';
 import { CNavBarComponent } from '../../components/c-nav-bar/c-nav-bar.component';
+import { CFlechasComponent } from '../../components/c-flechas/c-flechas.component';
 @Component({
   selector: 'app-sugerencias',
   standalone: true,
-  imports: [RouterLink, DatePipe, NgFor ,CNavBarComponent],
+  imports: [RouterLink, DatePipe, NgFor ,CNavBarComponent, CFlechasComponent],
   templateUrl: './sugerencias.component.html',
   styleUrl: './sugerencias.component.css'
 })

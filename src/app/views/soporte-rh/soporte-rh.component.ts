@@ -4,10 +4,11 @@ import { ButtonModule } from 'primeng/button';
 import { NgIf } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
 import { CNavBarComponent } from '../../components/c-nav-bar/c-nav-bar.component';
+import { CFlechasComponent } from '../../components/c-flechas/c-flechas.component';
 @Component({
   selector: 'app-soporte-rh',
   standalone: true,
-  imports: [RouterLink, ButtonModule, NgIf, CNavBarComponent],
+  imports: [RouterLink, ButtonModule, NgIf, CNavBarComponent, CFlechasComponent],
   templateUrl: './soporte-rh.component.html',
   styleUrl: './soporte-rh.component.css'
 })

@@ -6,11 +6,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { CNavBarComponent } from '../../components/c-nav-bar/c-nav-bar.component';
+import { CFlechasComponent } from '../../components/c-flechas/c-flechas.component';
 
 @Component({
   selector: 'app-buzon',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, NgIf, DialogModule, CNavBarComponent],
+  imports: [RouterLink, ReactiveFormsModule, NgIf, DialogModule, CNavBarComponent, CFlechasComponent],
   templateUrl: './buzon.component.html',
   styleUrl: './buzon.component.css'
 })

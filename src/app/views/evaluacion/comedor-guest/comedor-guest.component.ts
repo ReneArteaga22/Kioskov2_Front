@@ -7,11 +7,12 @@ import { DialogModule } from 'primeng/dialog';
 import { ApiService } from '../../../service/api.service';
 import { NgIf } from '@angular/common';
 import { NgFor } from '@angular/common';
+import { CFlechasComponent } from '../../../components/c-flechas/c-flechas.component';
 
 @Component({
   selector: 'app-comedor-guest',
   standalone: true,
-  imports: [CNavBarComponent, RouterLink, DialogModule, ReactiveFormsModule, NgIf, NgFor],
+  imports: [CNavBarComponent, RouterLink, DialogModule, ReactiveFormsModule, NgIf, NgFor, CFlechasComponent],
   templateUrl: './comedor-guest.component.html',
   styleUrl: './comedor-guest.component.css'
 })

@@ -60,6 +60,7 @@
         </p-dialog>
     </div>
 </div>
+<app-c-flechas></app-c-flechas>
 <p-dialog [modal]="true" [(visible)]="visibleMenu" [style]="{ width: '900px', height: '900px', borderRadius: '8px'}">
     <div class="box-modal">
         <img class="img-menu" *ngFor="let comunicado of comunicado" [src]="'http://10.99.22.17:3333/' + comunicado.imagen" alt="Menu Image">

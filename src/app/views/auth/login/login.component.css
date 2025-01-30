@@ -14,8 +14,8 @@
     align-items: center;
     width: 100%;
     border-radius: 10px;
-    border: 1px solid #ccc;   
-    background-color: #f3f2f2;
+    border: 2px solid #eeecec;
+    background:white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
 .inputs{

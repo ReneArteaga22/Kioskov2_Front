@@ -6,11 +6,12 @@ import { DatePipe } from '@angular/common';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
+import { CFlechasComponent } from '../../../components/c-flechas/c-flechas.component';
 
 @Component({
   selector: 'app-reportes-seguridad',
   standalone: true,
-  imports: [CNavBarComponent, NgFor, DatePipe, ReactiveFormsModule, CalendarModule],
+  imports: [CNavBarComponent, NgFor, DatePipe, ReactiveFormsModule, CalendarModule, CFlechasComponent],
   templateUrl: './reportes-seguridad.component.html',
   styleUrl: './reportes-seguridad.component.css'
 })

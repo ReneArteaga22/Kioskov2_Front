@@ -1,6 +1,7 @@
 .box{
   display: flex;
   justify-content: center;
+  margin-bottom: 3rem;
 }
 .table{
   width: 90%;
@@ -19,6 +20,7 @@ table {
   margin-top: 1.5rem;
 }
 h1{
+  font-style: italic;
   border-bottom: 1px solid #e79371;
   padding-bottom: 5px;
 }

@@ -7,11 +7,12 @@ import { CookieService } from 'ngx-cookie-service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CNavBarComponent } from '../../components/c-nav-bar/c-nav-bar.component';
+import { CFlechasComponent } from '../../components/c-flechas/c-flechas.component';
 
 @Component({
   selector: 'app-solicitudes',
   standalone: true,
-  imports: [RouterLink, NgFor, DatePipe, ReactiveFormsModule, NgIf, CNavBarComponent],
+  imports: [RouterLink, NgFor, DatePipe, ReactiveFormsModule, NgIf, CNavBarComponent,CFlechasComponent],
   templateUrl: './solicitudes.component.html',
   styleUrl: './solicitudes.component.css'
 })

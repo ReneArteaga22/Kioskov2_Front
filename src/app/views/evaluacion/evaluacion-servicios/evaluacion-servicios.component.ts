@@ -5,10 +5,11 @@ import { Router, RouterLink } from '@angular/router';
 import { CNavBarComponent } from '../../../components/c-nav-bar/c-nav-bar.component';
 import { CookieService } from 'ngx-cookie-service';
 import { NgIf } from '@angular/common';
+import { CFlechasComponent } from '../../../components/c-flechas/c-flechas.component';
 @Component({
   selector: 'app-evaluacion-servicios',
   standalone: true,
-  imports: [RouterLink, CNavBarComponent, NgIf],
+  imports: [RouterLink, CNavBarComponent, NgIf, CFlechasComponent],
   templateUrl: './evaluacion-servicios.component.html',
   styleUrl: './evaluacion-servicios.component.css'
 })

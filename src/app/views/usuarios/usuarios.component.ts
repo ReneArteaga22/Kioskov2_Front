@@ -7,11 +7,12 @@ import { CookieService } from 'ngx-cookie-service'
 import { PaginatorModule } from 'primeng/paginator'
 import { CNavBarComponent } from '../../components/c-nav-bar/c-nav-bar.component'
 import { NgIf } from '@angular/common'
+import { CFlechasComponent } from '../../components/c-flechas/c-flechas.component'
 
 @Component({
   selector: 'app-usuarios',
   standalone: true,
-  imports: [RouterLink, NgFor, ReactiveFormsModule, PaginatorModule, CNavBarComponent, NgIf],
+  imports: [RouterLink, NgFor, ReactiveFormsModule, PaginatorModule, CNavBarComponent, NgIf,CFlechasComponent],
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.css'
 })

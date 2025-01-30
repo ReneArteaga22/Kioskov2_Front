@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-bottom: 5rem;
 }
 .logo{
     width: 30rem;
@@ -24,8 +25,8 @@
     padding-bottom: 1.5rem;
     padding-top: 1.5rem;
     border-radius: 10px;
-    border: 1px solid #ccc;   
-    background-color: #f3f2f2;
+    border: 2px solid #eeecec;
+    background:white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
 .input-1{

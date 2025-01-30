@@ -6,12 +6,13 @@ import { ApiService } from '../../../service/api.service';
 import { DialogModule } from 'primeng/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { CFlechasComponent } from '../../../components/c-flechas/c-flechas.component';
 
 
 @Component({
   selector: 'app-acoso',
   standalone: true,
-  imports: [RouterLink, CNavBarComponent, DialogModule, ReactiveFormsModule, NgIf],
+  imports: [RouterLink, CNavBarComponent, DialogModule, ReactiveFormsModule, NgIf, CFlechasComponent],
   templateUrl: './acoso.component.html',
   styleUrl: './acoso.component.css'
 })

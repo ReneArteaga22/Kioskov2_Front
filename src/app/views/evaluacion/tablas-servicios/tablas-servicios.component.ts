@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CNavBarComponent } from '../../../components/c-nav-bar/c-nav-bar.component';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import { CFlechasComponent } from '../../../components/c-flechas/c-flechas.component';
 
 @Component({
   selector: 'app-tablas-servicios',
   standalone: true,
-  imports: [CNavBarComponent, RouterLink],
+  imports: [CNavBarComponent, RouterLink, CFlechasComponent],
   templateUrl: './tablas-servicios.component.html',
   styleUrl: './tablas-servicios.component.css'
 })

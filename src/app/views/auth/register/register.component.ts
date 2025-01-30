@@ -5,11 +5,12 @@ import { Router, RouterLink } from '@angular/router';
 import { ApiService } from '../../../service/api.service';
 import { DialogModule } from 'primeng/dialog';
 import { NgIf } from '@angular/common';
+import { CFlechasComponent } from '../../../components/c-flechas/c-flechas.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, CBarComponent, DialogModule, NgIf],
+  imports: [RouterLink, ReactiveFormsModule, CBarComponent, DialogModule, NgIf, CFlechasComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })

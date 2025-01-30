@@ -5,11 +5,12 @@ import { DialogModule } from 'primeng/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from '../../../service/api.service';
 import { NgIf } from '@angular/common';
+import { CFlechasComponent } from '../../../components/c-flechas/c-flechas.component';
 
 @Component({
   selector: 'app-limpieza-guest',
   standalone: true,
-  imports: [CNavBarComponent, DialogModule, ReactiveFormsModule, NgIf],
+  imports: [CNavBarComponent, DialogModule, ReactiveFormsModule, NgIf, CFlechasComponent],
   templateUrl: './limpieza-guest.component.html',
   styleUrl: './limpieza-guest.component.css'
 })

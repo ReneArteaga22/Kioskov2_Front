@@ -6,11 +6,12 @@ import { ApiService } from '../../../service/api.service';
 import { DialogModule } from 'primeng/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { CFlechasComponent } from '../../../components/c-flechas/c-flechas.component';
 
 @Component({
   selector: 'app-actos-inseguros',
   standalone: true,
-  imports: [RouterLink, CNavBarComponent, DialogModule, ReactiveFormsModule, NgIf],
+  imports: [RouterLink, CNavBarComponent, DialogModule, ReactiveFormsModule, NgIf, CFlechasComponent],
   templateUrl: './actos-inseguros.component.html',
   styleUrl: './actos-inseguros.component.css'
 })

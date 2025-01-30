@@ -13,11 +13,12 @@ import { MessageService } from 'primeng/api';
 import { FileUploadModule } from 'primeng/fileupload';
 import { NgIf } from '@angular/common';
 import { FormBuilder } from '@angular/forms';
+import { CFlechasComponent } from '../../components/c-flechas/c-flechas.component';
 
 @Component({
   selector: 'app-comunicados',
   standalone: true,
-  imports: [RouterLink, NgFor, DatePipe, PaginatorModule,DialogModule,CNavBarComponent, ReactiveFormsModule, FileUploadModule, NgIf],
+  imports: [RouterLink, NgFor, DatePipe, PaginatorModule,DialogModule,CNavBarComponent, ReactiveFormsModule, FileUploadModule, NgIf, CFlechasComponent],
   templateUrl: './comunicados.component.html',
   styleUrl: './comunicados.component.css',
   providers: [MessageService]

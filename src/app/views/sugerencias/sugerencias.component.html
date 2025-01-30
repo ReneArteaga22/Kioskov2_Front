@@ -5,14 +5,12 @@
         <table>
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Sugerencia</th>
                     <th>Fecha</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let sugerencia of sugerencias">
-                    <td>{{sugerencia.id}}</td>
                     <td>{{sugerencia.sugerencia}}</td>
                     <td>{{sugerencia.createdAt | date: 'yyyy/MM/dd'}}</td>
                 </tr>
@@ -20,3 +18,4 @@
         </table>
     </div>
 </div>
+<app-c-flechas></app-c-flechas>

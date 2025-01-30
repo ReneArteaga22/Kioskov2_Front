@@ -5,6 +5,7 @@
   align-items: center;
   width: 100%;
   text-align: center;
+  margin-bottom: 5rem;
 }
 .container{
   display: flex;
@@ -44,6 +45,7 @@ input {
   font-size: 1rem;
 }
 h1{
+  font-style: italic;
   border-bottom: 1px solid #e79371;
   padding-bottom: 5px;
 }

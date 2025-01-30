@@ -12,11 +12,12 @@ import { PaginatorModule } from 'primeng/paginator';
 import { CalendarModule } from 'primeng/calendar';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
+import { CFlechasComponent } from '../../../components/c-flechas/c-flechas.component';
 
 @Component({
   selector: 'app-resultados-evaluacion-transporte',
   standalone: true,
-  imports: [CNavBarComponent, ChartModule, NgFor, DatePipe, ReactiveFormsModule, DialogModule, ButtonModule, PaginatorModule, CalendarModule],
+  imports: [CNavBarComponent, ChartModule, NgFor, DatePipe, ReactiveFormsModule, DialogModule, ButtonModule, PaginatorModule, CalendarModule, CFlechasComponent],
   templateUrl: './resultados-evaluacion-transporte.component.html',
   styleUrl: './resultados-evaluacion-transporte.component.css'
 })
