@@ -16,4 +16,7 @@ app-c-flechas {
     text-align: center; /* Alinea el contenido si es necesario */
     padding: 10px 0; /* Espaciado opcional */
 }
-html{height: 100vh;}
+html{
+    height: 100vh;
+    background: linear-gradient(135deg, #e7e7ec, #f4f6fc);
+}

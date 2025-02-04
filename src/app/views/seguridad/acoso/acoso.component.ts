@@ -57,7 +57,7 @@ export class AcosoComponent {
   enviar(){
     console.log(this.acosoForm.value)
     if(this.acosoForm.valid && !this.isSubmit){
-      this.apiService.crear_reporte_seguridad(this.acosoForm.value).subscribe(
+      this.apiService.reporte_acoso_y_acto_inseguro(this.acosoForm.value).subscribe(
         response =>{
           console.log(response)
         },error =>{

@@ -55,7 +55,7 @@ export class ActosInsegurosComponent implements OnInit {
   enviar(){
     console.log(this.actosForm.value)
     if(this.actosForm.valid && !this.isSubmit){
-      this.apiService.crear_reporte_seguridad(this.actosForm.value).subscribe(
+      this.apiService.reporte_acoso_y_acto_inseguro(this.actosForm.value).subscribe(
         response =>{
           console.log(response)
         },error =>{

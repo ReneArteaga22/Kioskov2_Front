@@ -66,7 +66,7 @@ export class CFormularioSoporteRhComponent{
   enviar() {
     console.log(this.soporterhForm.value);
     if (this.soporterhForm.valid && !this.isSubmit) {
-      this.apiService.crear_reporte(this.soporterhForm.value).subscribe(
+      this.apiService.reporte_soporte_recursos_humanos(this.soporterhForm.value).subscribe(
         response => {
           this.visible = true
           this.cookie.delete('categoria');

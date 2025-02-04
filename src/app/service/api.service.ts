@@ -26,7 +26,7 @@ export interface UsuariosResponse {
   providedIn: 'root'
 })
 export class ApiService {
-  url = 'http://10.99.22.17:3333';
+  url = 'http://localhost:3333';
 
   constructor(private http: HttpClient) { }
 
@@ -96,10 +96,6 @@ export class ApiService {
     return this.http.put<any>(`${this.url}/api/usuarios/modificar_estado/${id}`, {estatus})
   }
 
-  crear_reporte(userData:any):Observable<any>{
-    return this.http.post<any>(`${this.url}/api/reporte/crear-reporte`,userData)
-  }
-
   reportes():Observable<any>{
     return this.http.get<any>(`${this.url}/api/reporte/reportes`)
   }
@@ -160,10 +156,6 @@ export class ApiService {
     return this.http.put<any>(`${this.url}/api/usuarios/recuperar-contrasena`,{id, contrasena})
   }
 
-  crear_reporte_seguridad(data:any):Observable<any>{
-    return this.http.post<any>(`${this.url}/api/reporte_seguridad/crear_reporte`,data)
-  }
-
   reportes_seguridad():Observable<any>{
     return this.http.get<any>(`${this.url}/api/reporte_seguridad/reportes`)
   }
@@ -172,5 +164,12 @@ export class ApiService {
     console.log('Enviando datos al servidor', filtro)
     return this.http.post<any>(`${this.url}/api/reporte_seguridad/filtrar_reporte_seguridad`, filtro)
   }
+
+  reporte_acoso_y_acto_inseguro(data:any):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/email/reporte_acoso_y_acto_inseguro`,data)
+  }
   
+  reporte_soporte_recursos_humanos(data:any):Observable<any>{
+    return this.http.post<any>(`${this.url}/api/email/reporte_soporte_recursos_humanos`,data)
+  }
 }
