@@ -5,10 +5,9 @@
     padding: 0;
 }
 body {
-    background: linear-gradient(135deg, #ececf7, #f4f6fc);
+    background: linear-gradient(135deg, #e7e7ec, #f4f6fc);
 
 }
-
 app-c-flechas {
     position: fixed; /* O absolute si solo debe estar dentro del contenedor */
     bottom: 15px;
@@ -17,3 +16,4 @@ app-c-flechas {
     text-align: center; /* Alinea el contenido si es necesario */
     padding: 10px 0; /* Espaciado opcional */
 }
+html{height: 100vh;}
