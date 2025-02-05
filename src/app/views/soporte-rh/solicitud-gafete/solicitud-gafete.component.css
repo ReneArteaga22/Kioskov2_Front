@@ -1,6 +1,8 @@
+.box{
+    padding-bottom:5rem;
+}
 .form{
     margin-top: 3rem;
-    margin-bottom: 3rem;
 }
 h1{
     text-align: center;
@@ -24,12 +26,17 @@ h1{
 p{
     width: 70%;
     font-style:italic;
+    border-bottom:2px solid orange;
+    font-size:23px;
+    color:#2c3e50;
 }
 
 @media (max-width: 768px) {
     p{
         width: 90%;
-        text-align: center;
+        text-align: justify;
         font-style: italic;
+        padding:0 20px;
+        font-size:20px;
     }
 }
