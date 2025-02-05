@@ -2,10 +2,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1; /* asegúrate de que este valor sea menor que el de los botones */
+    position: relative; /* esto es necesario para que z-index funcione */
 }
 .container{
     display: flex;
     justify-content: space-between;
+    z-index: -1; /* asegúrate de que este valor sea menor que el de los botones */
+    position: relative; /* esto es necesario para que z-index funcione */
     width: 97%;
 }
 img{
@@ -18,4 +22,6 @@ img{
     background: none;
     border-radius: 40%;
     cursor: pointer;
+    z-index: 2; /* asegúrate de que este valor sea mayor que el de .container */
+    position: relative; /* esto es necesario para que z-index funcione */
 }

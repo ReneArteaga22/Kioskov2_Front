@@ -18,6 +18,7 @@
                     <button class="btn" type="submit" [disabled]="!loginForm.valid">Iniciar sesion</button>
                 </div>
                 <p style="text-align: center; font-style: italic;">Si tienes problemas para iniciar sesion, contacta con el equipo de sistemas.</p>
+                <p style="text-align: center; font-style: italic;">El boton de iniciar sesion se mantendra desactivado hasta que escribas tus credenciales.</p>
                 <div *ngIf="error" class="box-input">
                     <p class="error">Usuario o contraseña incorrectos</p>
                 </div>

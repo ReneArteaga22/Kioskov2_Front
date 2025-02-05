@@ -1,7 +1,9 @@
 .box{
   display: flex;
   justify-content: center;
-  margin-bottom: 3rem;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 6rem;
 }
 .table{
   width: 90%;
