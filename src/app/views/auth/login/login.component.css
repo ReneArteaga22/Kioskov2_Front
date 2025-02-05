@@ -60,6 +60,7 @@
     height: 2.5rem;
     width: 100%;
     padding: 10px;
+    font-size: 19px;
 }
 .error{
     text-align: center;
@@ -77,6 +78,9 @@
     width: 100px;
     height: 100px;
     margin-top: 10px;
+}
+label{
+    font-size: 20px;
 }
 @media (max-width: 768px) {
     .box-form{

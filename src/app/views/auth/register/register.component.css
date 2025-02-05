@@ -37,6 +37,7 @@
     border-radius: 10px;
     height: 2.5rem;
     width: 100%;
+    font-size:20px;
 }
 input{
     border: 1px solid #c9c5c5;
@@ -44,6 +45,7 @@ input{
     height: 2.5rem;
     width: 100%;
     padding: 10px;
+    font-size:20px;
 }
 .box-btn{
     display: flex;
@@ -77,4 +79,7 @@ input{
     width: 100px;
     height: 100px;
     margin-top: 10px;
+}
+label{
+    font-size:20px;
 }

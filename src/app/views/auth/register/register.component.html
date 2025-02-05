@@ -66,11 +66,11 @@
                         <input type="text" placeholder="Ingresa la fotografia" formControlName="foto">
                     </div> -->
                 </div>
-                <div *ngIf="error" class="box-input">
-                    <p class="error">No puedes dejar espacios vacios!!</p>
-                </div>
                 <div class="box-btn">
                     <button class="btn" type="submit">Registrar</button>
+                </div>
+                <div *ngIf="error" class="box-input">
+                    <p class="error">No puedes dejar espacios vacios!!</p>
                 </div>
             </div>
         </form>

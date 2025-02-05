@@ -17,8 +17,7 @@
                 <div class="box-btn">
                     <button class="btn" type="submit" [disabled]="!loginForm.valid">Iniciar sesion</button>
                 </div>
-                <p style="text-align: center; font-style: italic;">Si tienes problemas para iniciar sesion, contacta con el equipo de sistemas.</p>
-                <p style="text-align: center; font-style: italic;">El boton de iniciar sesion se mantendra desactivado hasta que escribas tus credenciales.</p>
+                <p style="text-align: center; font-style: italic; font-size: 18px;">Si tienes problemas para iniciar sesion, contacta con el equipo de sistemas.</p>
                 <div *ngIf="error" class="box-input">
                     <p class="error">Usuario o contraseña incorrectos</p>
                 </div>
@@ -26,6 +25,7 @@
                 </div>
             </div>
         </form>
+        <p style="text-align: center; font-style: italic; margin-top: 2rem; font-size: 18px;"><strong>NOTA:</strong> El boton de iniciar sesion se mantendra desactivado hasta que escribas tus credenciales.</p>
     </div>
     <div>
         <p-dialog [modal]="true" [(visible)]="visible" [style]="{ width: '400px', height: '200px', borderRadius: '8px'}">
