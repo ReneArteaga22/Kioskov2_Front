@@ -32,13 +32,18 @@
         <p>Mantente informado con los últimos comunicados.</p>
     </div>
 
+    <div *ngIf="!isLoggin" class="card" [routerLink]="['/encuestas']" >
+        <h2>Encuestas</h2>
+        <img src="icons/encuestas.png" alt="https://www.freepik.es/">
+        <p>Participa en nuestras encuestas y comparte tu opinión.</p>
+    </div>
+
     <div *ngIf="!isLoggin"  class="card" [routerLink]="['/buzon']">
         <h2>Buzon de sugerencias</h2>
         <img src="icons/buzon.png" alt="https://www.freepik.es/">
         <p>Envía tus sugerencias y ayuda a mejorar la empresa.</p>
     </div>
 
-    
     <!-- <div *ngIf="!isLoggin"  class="card" [routerLink]="['/directorio']">
         <h2>Directorio</h2>
         <img src="icons/directorio.png" alt="https://www.freepik.es/">
