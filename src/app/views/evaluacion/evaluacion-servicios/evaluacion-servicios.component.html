@@ -1,23 +1,31 @@
 <app-c-nav-bar></app-c-nav-bar>
 <div class="box">
   <div class="title">
-    <h1>Evalua y comenta sobre los servicios que ofrecemos, nos importa tu opinion.</h1>
+    <h1>Evaluacion de servicios</h1>
+    <p class="subtitle">Evalua y comenta sobre los servicios que ofrecemos, nos importa tu opinion.</p>
   </div>
   <div class="cards">
-    <div class="card" (click)="servicio('transporte')">
+
+    
+    <div class="card" [routerLink]="['/transporte']">
       <h2>Transporte</h2>
       <img src="icons/bus.png" alt="">
-      <p>Evalúa el servicio de transporte para asegurar que cumpla con tus expectativas y necesidades.</p>
+      <p>¿El servicio de transporte cumple con las expectativas?</p>
     </div>
     <div class="card" [routerLink]="['/comedor-guest']">
       <h2>Comedor</h2>
       <img src="icons/comedor.png" alt="">
-      <p>Califica la calidad y variedad del servicio de comedor, ayudándonos a mejorar la experiencia.</p>
+      <p>Que te parecio el servicio de comedor hoy.</p>
     </div>
     <div class="card" [routerLink]="['/limpieza-guest']">
       <h2>Limpieza</h2>
       <img src="icons/limpieza.png" alt="">
-      <p>Comparte tu opinión sobre el servicio de limpieza para mantener un ambiente ordenado y cómodo.</p>
+      <p>Comparte tu opinión sobre el servicio de limpieza.</p>
+    </div>
+    <div class="card" [routerLink]="['/enfermeria']">
+      <h2>Enfermeria</h2>
+      <img src="icons/medico.png" alt="">
+      <p>¿Estas satisfecho con tu cuidado?</p>
     </div>
   </div>
 </div>

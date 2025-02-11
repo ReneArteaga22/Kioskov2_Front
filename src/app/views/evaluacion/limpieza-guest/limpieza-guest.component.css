@@ -7,7 +7,6 @@
   height: 100%;
   flex-grow: 6;
   width: 80%;
-  margin: 15px auto;
   padding: 20px;
   border-radius: 10px;
   background-color: white;
@@ -15,7 +14,6 @@
   box-shadow:0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 .menu{
-  margin: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,7 +26,7 @@
 }
 .title{
   font-size: 2rem;
-  margin-top: 3rem;
+  margin-top: 1rem;
   color: #2c3e50;
   margin-bottom: 10px;
   animation: fadeIn 1s ease-in-out; /* Se aplica la animación */
@@ -207,5 +205,8 @@ textarea::placeholder {
     text-align: center;
     color:black;
     font-weight: 400;
+  }
+  .title{
+    font-size: 20px;
   }
 }

@@ -36,6 +36,7 @@ import { AcosoComponent } from './views/seguridad/acoso/acoso.component';
 import { DirectorioComponent } from './views/directorio/directorio.component';
 import { ReportesSeguridadComponent } from './views/seguridad/reportes-seguridad/reportes-seguridad.component';
 import { EncuestasComponent } from './views/encuestas/encuestas.component';
+import { EnfermeriaComponent } from './views/enfermeria/enfermeria.component';
 
 export const routes: Routes = [
   { path: '',component: HomeComponent},
@@ -71,5 +72,6 @@ export const routes: Routes = [
   { path: 'resultados-evaluacion-limpieza',component:ResultadosEvaluacionLimpiezaComponent,canActivate:[rhGuard]},
   { path: 'directorio', component:DirectorioComponent,canActivate:[]},
   { path: 'reportes-seguridad',component:ReportesSeguridadComponent,canActivate:[rhGuard]},
-  { path: 'encuestas',component:EncuestasComponent,canActivate:[]}
+  { path: 'encuestas',component:EncuestasComponent,canActivate:[]},
+  { path: 'enfermeria', component:EnfermeriaComponent,canActivate:[]}
 ]

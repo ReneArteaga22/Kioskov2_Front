@@ -2,7 +2,7 @@
     padding-bottom:5rem;
 }
 .form{
-    margin-top: 3rem;
+    margin-top:1rem;
 }
 h1{
     text-align: center;
@@ -38,5 +38,8 @@ p{
         font-style: italic;
         padding:0 20px;
         font-size:20px;
+    }
+    h1{
+        font-size: 20px;
     }
 }

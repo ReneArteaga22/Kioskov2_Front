@@ -9,9 +9,8 @@ body{
 }
 app-c-flechas {
     position: fixed; /* O absolute si solo debe estar dentro del contenedor */
-    bottom: 15px;
-    left: 0;
-    width: 100%; /* Ocupa todo el ancho */
+    bottom: 5px;
+    left: 8px;
     text-align: center; /* Alinea el contenido si es necesario */
     padding: 10px 0; /* Espaciado opcional */
     z-index: 1; /* asegúrate de que este valor sea menor que el de los botones */

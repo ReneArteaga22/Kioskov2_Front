@@ -28,7 +28,7 @@
 }
 .title{
   font-size: 2rem;
-  margin-top: 3rem;
+  margin-top: 1rem;
   color: #2c3e50;
   margin-bottom: 10px;
   animation: fadeIn 1s ease-in-out; /* Se aplica la animación */
@@ -204,5 +204,8 @@ textarea::placeholder {
     text-align: center;
     color:black;
     font-weight: 400;
+  }
+  .title{
+    font-size: 20px;
   }
 }

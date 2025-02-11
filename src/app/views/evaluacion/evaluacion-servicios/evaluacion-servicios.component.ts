@@ -29,15 +29,4 @@ export class EvaluacionServiciosComponent implements OnInit {
 
     this.isLoggin = this.cookie.check('sesion')
   }
-
-  servicio(servicioClick: string) {
-    if (servicioClick === 'transporte') {
-      this.router.navigate(['/transporte'])
-    }
-
-    if (servicioClick === 'comedor') {
-      this.router.navigate(['/comedor'])
-    }
-  }
-
 }

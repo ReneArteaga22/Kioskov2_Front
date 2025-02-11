@@ -109,5 +109,21 @@ img {
     flex-direction: column;
     text-align: center;
   }
+  img{
+    width: 70%;
+  }
+  .card p{
+    font-size: 17px;
+    color: #292929;
+  }
+  h2{
+    font-size: 20px;
+  }
+  .title h1{
+    font-size: 20px;
+  }
+  .subtitle{
+    font-size: 18px;
+  }
 }
 

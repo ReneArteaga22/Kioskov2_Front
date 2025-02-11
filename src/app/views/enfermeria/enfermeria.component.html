@@ -1,0 +1,65 @@
+<app-c-nav-bar></app-c-nav-bar>
+<div class="box">
+    <h1 class="title">Formulario de calidad  para Enfermeria</h1>
+    <form class="form" [formGroup]="enfermeriaForm" (ngSubmit)="enviar()"> 
+     
+        <div class="input">
+            <label>Deja un comentario</label>
+            <textarea formControlName="comentario" placeholder="Escribe tu comentario (Opcional)"></textarea>
+        </div>
+        <div class="input">
+            <label>Selecciona la planta</label>
+            <select class="select" formControlName="planta">
+                <option value="" selected disabled>Selecciona la planta</option>
+                <option value="planta 1">Planta 1</option>
+                <option value="planta 2">Planta 2</option>
+            </select>
+        </div>
+        <h1>Que te parecio el servicio? </h1>
+        <div class="box-img">
+            <div class="caritas" (click)="calificacion('Muy bueno','enfermeria')"  [class.selected]="selectedOption === 'Muy bueno'">
+                <h1>Muy bueno</h1>
+                <div class="carita">
+                    <img src="icons/love.png" alt="">
+                </div>
+            </div>
+            <div class="caritas" (click)="calificacion('Bueno','enfermeria')" [class.selected]="selectedOption === 'Bueno'" >
+                <h1>Bueno</h1>
+                <div class="carita">
+                    <img src="icons/happy.png" alt="">
+                </div>
+            </div>
+            <div class="caritas" (click)="calificacion('Malo','enfermeria')" [class.selected]="selectedOption === 'Malo'">
+                <h1>Malo</h1>
+                <div class="carita">
+                    <img src="icons/triste.png" alt="">
+                </div>
+            </div>
+            <div class="caritas" (click)="calificacion('Muy malo','enfermeria')" [class.selected]="selectedOption === 'Muy malo'">
+                <h1>Muy malo</h1>
+                <div class="carita">
+                    <img src="icons/sad.png" alt="">
+                </div>
+            </div>       
+        </div>
+        <p *ngIf="error" class="error">Porfavor selecciona una calificacion y tu planta.</p>
+        <div class="box-btn">
+            <button type="submit" class="btn">Enviar</button>
+        </div>
+    </form>
+    <div>
+        <p-dialog [modal]="true" [(visible)]="visible" [style]="{ width: '400px', height: '200px', borderRadius: '8px'}">
+            <div class="box-modal">
+                <h2 class="">Gracias por evaluar!</h2>
+                <img src="icons/mail.png" alt="">
+            </div>
+        </p-dialog>
+    </div>
+</div>
+<app-c-flechas></app-c-flechas>
+<p-dialog [modal]="true" [(visible)]="visibleMenu" [style]="{ width: '900px', height: '900px', borderRadius: '8px'}">
+    <div class="box-modal">
+        <img class="img-menu" *ngFor="let comunicado of comunicado" [src]="'http://10.99.22.17:3333/' + comunicado.imagen" alt="Menu Image">
+    </div>
+</p-dialog>
+
