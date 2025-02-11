@@ -46,12 +46,7 @@ export class EnfermeriaComponent {
         response => {
           this.visible = true;
           console.log(response)
-          setTimeout(() => {
-            this.visible = false;
-            this.enfermeriaForm.reset(); 
-            this.selectedOption = null;  
-            location.reload();
-          }, 1600);
+
         },
         error => {
           if (error.status === 400) {

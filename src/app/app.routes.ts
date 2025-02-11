@@ -37,6 +37,7 @@ import { DirectorioComponent } from './views/directorio/directorio.component';
 import { ReportesSeguridadComponent } from './views/seguridad/reportes-seguridad/reportes-seguridad.component';
 import { EncuestasComponent } from './views/encuestas/encuestas.component';
 import { EnfermeriaComponent } from './views/enfermeria/enfermeria.component';
+import { ConsultaMedicaComponent } from './views/soporte-rh/consulta-medica/consulta-medica.component';
 
 export const routes: Routes = [
   { path: '',component: HomeComponent},
@@ -73,5 +74,6 @@ export const routes: Routes = [
   { path: 'directorio', component:DirectorioComponent,canActivate:[]},
   { path: 'reportes-seguridad',component:ReportesSeguridadComponent,canActivate:[rhGuard]},
   { path: 'encuestas',component:EncuestasComponent,canActivate:[]},
-  { path: 'enfermeria', component:EnfermeriaComponent,canActivate:[]}
+  { path: 'enfermeria', component:EnfermeriaComponent,canActivate:[]},
+  { path: 'consulta-medica',component:ConsultaMedicaComponent,canActivate:[]}
 ]

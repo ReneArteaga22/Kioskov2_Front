@@ -39,5 +39,9 @@ export class SoporteRhComponent {
       this.cookie.set('categoria',categoria)
       this.router.navigate(['/nominas'])
     }
+    if(categoria === 'Enfermeria'){
+      this.cookie.set('categoria',categoria)
+      this.router.navigate(['/consulta-medica'])
+    }
   }
 }
