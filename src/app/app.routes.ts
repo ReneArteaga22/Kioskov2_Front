@@ -38,6 +38,7 @@ import { ReportesSeguridadComponent } from './views/seguridad/reportes-seguridad
 import { EncuestasComponent } from './views/encuestas/encuestas.component';
 import { EnfermeriaComponent } from './views/enfermeria/enfermeria.component';
 import { ConsultaMedicaComponent } from './views/soporte-rh/consulta-medica/consulta-medica.component';
+import { ResultadosEvaluacionEnfermeriaComponent } from './views/evaluacion/resultados-evaluacion-enfermeria/resultados-evaluacion-enfermeria.component';
 
 export const routes: Routes = [
   { path: '',component: HomeComponent},
@@ -47,6 +48,7 @@ export const routes: Routes = [
   { path: 'servicios', component: EvaluacionServiciosComponent, },
   { path: 'resultados-evaluacion-comedor', component: ResultadosEvaluacionComponent,canActivate:[rhGuard] },
   { path: 'resultados-evaluacion-transporte',component:ResultadosEvaluacionTransporteComponent,canActivate:[rhGuard]},
+  { path: 'resultados-evaluacion-enfermeria',component:ResultadosEvaluacionEnfermeriaComponent,canActivate:[rhGuard]},
   { path: 'usuarios', component: UsuariosComponent,canActivate:[rhGuard] },
   { path: 'recuperar-contrasena', component: RecuperarContrasenaComponent,},
   { path: 'login', component: LoginComponent,canActivate:[guardGuard] },

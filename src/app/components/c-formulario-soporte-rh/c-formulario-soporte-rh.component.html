@@ -1,56 +1,66 @@
 <div class="box">
-    <form class="form" [formGroup]="soporterhForm" (ngSubmit)="ActiveModal()">
+    <form class="form" [formGroup]="soporterhForm" (ngSubmit)="enviar()">
         <div class="box-inputs">
             <div class="input">
                 <label>Folio</label>
-                <input type="text" placeholder="Folio automatico por planta..." disabled>
+                <input type="text" [disabled]="isSubmitting" placeholder="Folio automatico por planta..." disabled>
             </div>
         </div>
         <div class="box-inputs">
             <div class="input">
                 <label>No. de empleado</label>
-                <input type="number" placeholder="Numero de empleado" formControlName="no_empleado">
+                <input type="number" [disabled]="isSubmitting" placeholder="Numero de empleado" formControlName="no_empleado">
+                <div *ngIf="soporterhForm.controls['no_empleado'].invalid && soporterhForm.controls['no_empleado'].touched" style="color: red; font-size: 20px;">
+                    Numero de empleado obligatorio.
+                </div>
             </div>
-            <select class="select" formControlName="grupo">
-                <option value="" disabled selected>Selecciona el grupo</option>
-                <option value="A">Grupo A</option>
-                <option value="B">Grupo B</option>
-                <option value="C">Grupo C</option>
-                <option value="D">Grupo D</option>
-                <option value="Calidad">Calidad</option>
-                <option value="Administrativo">Administrativo</option>
-            </select>
-            <select class="select" formControlName="planta">
-                <option value="" selected disabled>Selecciona una planta</option>
-                <option value="1">Planta 1</option>
-                <option value="2">Planta 2</option>
-            </select>
+            <div class="input">
+                <select class="select" formControlName="grupo">
+                    <option value="" disabled selected>Selecciona el grupo</option>
+                    <option value="A">Grupo A</option>
+                    <option value="B">Grupo B</option>
+                    <option value="C">Grupo C</option>
+                    <option value="D">Grupo D</option>
+                    <option value="Calidad">Calidad</option>
+                    <option value="Administrativo">Administrativo</option>
+                </select>
+                <div *ngIf="soporterhForm.controls['grupo'].invalid && soporterhForm.controls['grupo'].touched" style="color: red; font-size: 20px;">Porfavor selecciona un grupo.</div>
+            </div>
+
+            <div class="input">
+                <select class="select" formControlName="planta">
+                    <option value="" selected disabled>Selecciona una planta</option>
+                    <option value="1">Planta 1</option>
+                    <option value="2">Planta 2</option>
+                </select>
+                <div *ngIf="soporterhForm.controls['planta'].invalid && soporterhForm.controls['planta'].touched" style="color:red; font-size: 20px;">Porfavor selecciona tu planta.</div>
+            </div>
 
         </div>
         <div class="box-inputs">
             <div class="input">
                 <label>Nombre completo</label>
-                <input class="inp" type="text" placeholder="Escribe tu nombre completo" formControlName="nombre">
+                <input class="inp" type="text" [disabled]="isSubmitting" placeholder="Escribe tu nombre completo" formControlName="nombre">
+                <div *ngIf="soporterhForm.controls['nombre'].invalid && soporterhForm.controls['nombre'].touched" style="color: red; font-size: 20px;">
+                    El nombre es obligatorio.
+                </div>
             </div>
             <div class="input">
                 <label>Telefono</label>
-                <input class="inp" type="number" placeholder="Escribe tu numero de telefono" formControlName="telefono">
+                <input class="inp" type="number" [disabled]="isSubmitting" placeholder="Escribe tu numero de telefono" formControlName="telefono">
+                <div *ngIf="soporterhForm.controls['telefono'].invalid && soporterhForm.controls['telefono'].touched" style="color: red; font-size: 20px;">El telefono es obligatorio.</div>
             </div>
         </div>
         <div class="box-inputs">
             <div class="input">
                 <label>Reporte</label>
-                <textarea placeholder="Escribe tu reporte..." formControlName="descripcion"></textarea>
-            </div>
-        </div>
-        <div *ngIf="error" class="box-inputs">
-            <div class="input">
-                <h3>No puedes dejar campos vacios.</h3>
+                <textarea [disabled]="isSubmitting" placeholder="Escribe tu reporte..." formControlName="descripcion"></textarea>
+                <div *ngIf="soporterhForm.controls['descripcion'].invalid && soporterhForm.controls['descripcion'].touched" style="color: red; font-size: 20px;">Porfavor escribe tu reporte.</div>
             </div>
         </div>
         <div class="box-inputs">
             <div class="input">
-                <button class="btn" type="submit">Enviar</button>
+                <button class="btn" type="submit" [disabled]="!soporterhForm.valid || isSubmitting">Enviar</button>
             </div>
         </div>
     </form>

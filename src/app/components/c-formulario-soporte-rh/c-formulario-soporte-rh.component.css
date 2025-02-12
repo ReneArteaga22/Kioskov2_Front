@@ -37,9 +37,8 @@
     border: 1px solid #ccc;
     border-radius: 6px;
     background-color: #fafafa;
-    margin: 10px;
-    margin-top: 25px;
     height: 2.5rem;
+    width: 100%;
 }
 .input input{
     border: 1px solid #ccc; 

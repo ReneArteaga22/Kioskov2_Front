@@ -17,6 +17,7 @@ import { DialogModule } from 'primeng/dialog';
 })
 export class CFormularioSoporteRhComponent{
 
+  isSubmitting: boolean = false;
   visible:boolean = false
   hoy: string = ''
   isSubmit: boolean = false
@@ -33,53 +34,28 @@ export class CFormularioSoporteRhComponent{
     
     this.soporterhForm = new FormGroup({
       categoria: new FormControl(this.cookie.get('categoria')),
-      no_empleado: new FormControl('',[Validators.required]),
-      grupo: new FormControl(''),
-      nombre: new FormControl(''),
-      descripcion: new FormControl('',[Validators.required]),
-      planta: new FormControl(''),
-      telefono: new FormControl(''),
+      no_empleado: new FormControl('',Validators.required),
+      grupo: new FormControl('',Validators.required),
+      nombre: new FormControl('',Validators.required),
+      descripcion: new FormControl('',Validators.required),
+      planta: new FormControl('',Validators.required),
+      telefono: new FormControl('',Validators.required),
     })
   }
 
 
-  click(plant: string) {
-    this.planta = plant
-    console.log(this.planta)
-    return this.planta
-  }
-
-  ActiveModal(){
-    if(this.soporterhForm.valid && !this.isSubmit){
-      this.visible = true
-      setTimeout(() => { 
-        this.router.navigate(['/seguridad']); 
-        this.visible = false; 
-      }, 1600);
-      this.enviar()
-    }else{
-      this.error = true;
-      return;
-    }
-  }
-
-  enviar() {
-    console.log(this.soporterhForm.value);
-    if (this.soporterhForm.valid && !this.isSubmit) {
+  enviar(){
+    if(this.soporterhForm.value && !this.isSubmit){
+      this.isSubmitting = true
       this.apiService.reporte_soporte_recursos_humanos(this.soporterhForm.value).subscribe(
-        response => {
+        response =>{
+          this.soporterhForm.reset()
           this.visible = true
-          this.cookie.delete('categoria');
-
           setTimeout(()=>{
-            this.visible = false
+            this.visible=false
+            this.isSubmitting = false
             this.router.navigate(['/soporte-rh-modulos'])
-            this.isSubmit = false
           },1600)
-        },error =>{
-          if(error.status ===400 )[
-            this.error = true
-          ]
         }
       )
     }

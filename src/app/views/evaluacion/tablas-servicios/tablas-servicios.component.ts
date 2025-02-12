@@ -25,5 +25,8 @@ export class TablasServiciosComponent {
     if(servicioClick === 'limpieza'){
       this.router.navigate(['/resultados-evaluacion-limpieza'])
     }
+    if(servicioClick === 'enfermeria'){
+      this.router.navigate(['/resultados-evaluacion-enfermeria'])
+    }
   }
 }
