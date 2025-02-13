@@ -26,7 +26,7 @@ export interface UsuariosResponse {
   providedIn: 'root'
 })
 export class ApiService {
-  url = 'http://10.99.22.17:3333';
+  url = '/api';
 
   constructor(private http: HttpClient) { }
 
