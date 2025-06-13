@@ -39,6 +39,7 @@ import { EncuestasComponent } from './views/encuestas/encuestas.component';
 import { EnfermeriaComponent } from './views/enfermeria/enfermeria.component';
 import { ConsultaMedicaComponent } from './views/soporte-rh/consulta-medica/consulta-medica.component';
 import { ResultadosEvaluacionEnfermeriaComponent } from './views/evaluacion/resultados-evaluacion-enfermeria/resultados-evaluacion-enfermeria.component';
+import { AvanceComponent } from './views/inventario/avance/avance.component';
 
 export const routes: Routes = [
   { path: '',component: HomeComponent},
@@ -77,5 +78,7 @@ export const routes: Routes = [
   { path: 'reportes-seguridad',component:ReportesSeguridadComponent,canActivate:[rhGuard]},
   { path: 'encuestas',component:EncuestasComponent,canActivate:[]},
   { path: 'enfermeria', component:EnfermeriaComponent,canActivate:[]},
-  { path: 'consulta-medica',component:ConsultaMedicaComponent,canActivate:[]}
+  { path: 'consulta-medica',component:ConsultaMedicaComponent,canActivate:[]},
+  { path: 'avance',component:AvanceComponent,canActivate:[]}
+
 ]
