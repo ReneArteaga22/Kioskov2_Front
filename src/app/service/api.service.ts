@@ -22,7 +22,7 @@ export interface UsuariosResponse {
 }
 
 export interface Avance {
-  equipoId: number;
+  userId: number;
   porcentajeAvance: number
 }
 
