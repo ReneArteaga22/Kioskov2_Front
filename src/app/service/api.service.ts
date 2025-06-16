@@ -181,4 +181,8 @@ export class ApiService {
   reporte_soporte_recursos_humanos(data:any):Observable<any>{
     return this.http.post<any>(`${this.url}/email/reporte_soporte_recursos_humanos`,data)
   }
+
+  dashboard_avances():Observable<any>{
+    return this.http.get<any>(`${this.url}/avances/ver`)
+  }
 }

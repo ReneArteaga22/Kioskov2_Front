@@ -19,7 +19,7 @@ export class CNavBarComponent implements OnInit{
   isRH: boolean = false;
   isComedor: boolean = false
   isLoggin: boolean = false;
-  isInventario:boolean = false
+  isInventario: boolean = false
   visible:boolean = false
   closeSession:boolean = false
   images:any[]=[]

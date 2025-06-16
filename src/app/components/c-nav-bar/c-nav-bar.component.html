@@ -2,15 +2,15 @@
   <!-- LOGO DE CLAYENS EN LA BARRA DE NAVEGACION -->
   <div class="logo">
     <img [routerLink]="['/']" src="icons/CLAYENS_Mexico_Logo.png">
-    <li *ngIf="isRH || isSistemas || isSeguridad" class="dropdown">
-      <i *ngIf="isRH || isSistemas || isSeguridad" (click)="toggleMenu()" class="pi pi-user" style="font-size: 2rem; color: white;"></i>
+    <li *ngIf="isRH || isSistemas || isSeguridad || isInventario" class="dropdown">
+      <i *ngIf="isRH || isSistemas || isSeguridad || isInventario" (click)="toggleMenu()" class="pi pi-user" style="font-size: 2rem; color: white;"></i>
       <!-- BOTOM PARA CERRAR SESION -->
       <div *ngIf="isMenuOpen" class="dropdown-content">
-        <a *ngIf="isRH || isSistemas || isSeguridad" (click)="cerrarSesion()">Cerrar sesión</a>
+        <a *ngIf="isRH || isSistemas || isSeguridad || isInventario" (click)="cerrarSesion()">Cerrar sesión</a>
       </div>
     </li>
     <!-- NOMBRE DEL USUARIO INICIADO SESION -->
-    <div *ngIf="isRH || isSistemas || isSeguridad" class="user">
+    <div *ngIf="isRH || isSistemas || isSeguridad || isInventario" class="user">
       <a style="color: white;" (click)="toggleMenu()">Hola {{usuario}}!</a>
     </div>
   </div>
