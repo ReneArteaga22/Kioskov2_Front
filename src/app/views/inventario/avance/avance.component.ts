@@ -33,7 +33,7 @@ export class AvanceComponent implements OnInit
         this.usuario = response.usuario.id
         console.log(this.usuario)
         this.FormAvance.patchValue({
-          equipoId: this.usuario
+          userId: this.usuario
         });
       },error =>{
         if(error.status === 400){
@@ -44,7 +44,7 @@ export class AvanceComponent implements OnInit
   }
 
   public FormAvance = new FormGroup({
-    equipoId: new FormControl<number>(0), 
+    userId: new FormControl<number>(0), 
     porcentajeAvance: new FormControl<number | null>(null, [
       Validators.required,
       Validators.min(1),
@@ -57,7 +57,7 @@ export class AvanceComponent implements OnInit
       if(this.FormAvance.valid) {
         const formData = this.FormAvance.value;
         this.apiService.avanceInventario({
-        equipoId: Number(formData.equipoId),
+        userId: Number(formData.userId),
         porcentajeAvance: Number(formData.porcentajeAvance)
         }).subscribe
         ({
@@ -65,7 +65,7 @@ export class AvanceComponent implements OnInit
             Swal.fire('Exito', 'Avance registrado correctamente', 'success');
             this.FormAvance.reset();
             this.FormAvance.patchValue({
-              equipoId: this.usuario
+              userId: this.usuario
             });
           },
           error: (err) => {

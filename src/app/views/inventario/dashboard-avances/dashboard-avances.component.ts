@@ -40,26 +40,29 @@ export class DashboardAvancesComponent implements OnInit {
     });
   }
 
-  getProgressColor(porcentaje: number): any {
-   let backgroundColor, progressColor;
-    
-    if (porcentaje <= 25) {
-      backgroundColor = '#FFEBEE'; // Fondo rojo claro
-      progressColor = '#FF5252';   // Barra roja
-    } else if (porcentaje <= 50) {
-      backgroundColor = '#FFF8E1'; // Fondo amarillo claro
-      progressColor = '#FFD740';   // Barra amarilla
-    } else if (porcentaje <= 75) {
-      backgroundColor = '#E3F2FD'; // Fondo azul claro
-      progressColor = '#64B5F6';   // Barra azul
-    } else {
-      backgroundColor = '#E8F5E9'; // Fondo verde claro
-      progressColor = '#4CAF50';    // Barra verde
-    }
+//  getProgressBarStyle(porcentaje: number): any {
+//   // Definimos solo el color de la barra de progreso
+//   let progressColor;
+  
+//   if (porcentaje <= 25) {
+//     progressColor = '#FF5252'; // Rojo
+//   } else if (porcentaje <= 50) {
+//     progressColor = '#FFA000'; // Ámbar/naranja
+//   } else if (porcentaje <= 75) {
+//     progressColor = '#FFC107'; // Amarillo
+//   } else {
+//     progressColor = '#4CAF50'; // Verde
+//   }
 
-    return {
-      'background-color': backgroundColor,
-      '--progress-color': progressColor
-    };
-  }
+//   return {
+//     '--progress-color': progressColor,
+//     '--background-color': '#e9ecef' // Gris claro
+//   };
+// }
+getProgressBarClass(porcentaje: number): string {
+  if (porcentaje <= 25) return 'progress-red';
+  if (porcentaje <= 50) return 'progress-orange';
+  if (porcentaje <= 75) return 'progress-yellow';
+  return 'progress-green';
+}
 }

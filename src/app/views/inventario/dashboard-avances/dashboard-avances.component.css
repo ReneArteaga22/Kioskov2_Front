@@ -70,16 +70,25 @@
   }
 }
 
-/* Estilos para la barra de progreso */
-:host ::ng-deep  {
-  .custom-progress {
-    height: 12px;
-    border-radius: 6px;
-    
-    .p-progressbar-value {
-      background-color: var(--progress-color) !important;
-      transition: width 0.3s ease;
-      border-radius: 6px;
-    }
-  }
+:host ::ng-deep .p-progressbar {
+  height: 20px;
+  border-radius: 6px;
+  background-color: #e9ecef;
 }
+
+:host ::ng-deep .progress-red .p-progressbar-value {
+  background-color: #FF5252 !important;
+}
+
+:host ::ng-deep .progress-orange .p-progressbar-value {
+  background-color: #FFA000 !important;
+}
+
+:host ::ng-deep .progress-yellow .p-progressbar-value {
+  background-color: #FFC107 !important;
+}
+
+:host ::ng-deep .progress-green .p-progressbar-value {
+  background-color: #4CAF50 !important;
+}
+

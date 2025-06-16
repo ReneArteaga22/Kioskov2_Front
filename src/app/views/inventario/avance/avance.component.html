@@ -16,7 +16,7 @@
                     <h2 class="titulo">Avance por equipo 📈</h2>
                     <form [formGroup]="FormAvance" (ngSubmit)="RegistrarAvance()">
                         <div class="mb-3">
-                            <input type="hidden" formControlName="equipoId">
+                            <input type="hidden" formControlName="userId">
                             <label for="avance" class="form-label">Avance:</label>
                             <input type="number" formControlName="porcentajeAvance" class="form-control" placeholder="Ingresa el avance 1-100" required>
                         </div>

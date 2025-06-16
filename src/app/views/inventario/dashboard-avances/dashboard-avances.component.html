@@ -16,12 +16,12 @@
       <div class="card-content">
         <h3 class="team-name">{{avance.user.nombre}}</h3>
         <p-progressBar 
-            [value]="avance.porcentajeAvance" 
-            [showValue]="true"
-            [style]="getProgressColor(avance.porcentajeAvance)"
-            styleClass="custom-progress">
+          [value]="avance.porcentajeAvance"
+          [showValue]="true"
+          styleClass="custom-progress-bar"
+          [ngClass]="getProgressBarClass(avance.porcentajeAvance)">
         </p-progressBar>
-        <div class="percentage">{{avance.porcentajeAvance}}%</div>
+        <div class="percentage">{{avance.hora}}</div>
       </div>
     </div>
   </div>
