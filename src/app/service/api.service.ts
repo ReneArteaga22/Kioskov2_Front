@@ -21,6 +21,10 @@ export interface UsuariosResponse {
   usuarios: Usuario[];
 }
 
+export interface Avance {
+  equipoId: number;
+  porcentajeAvance: number
+}
 
 @Injectable({
   providedIn: 'root'
@@ -185,4 +189,7 @@ export class ApiService {
   dashboard_avances():Observable<any>{
     return this.http.get<any>(`${this.url}/avances/ver`)
   }
+  avanceInventario(avance:Avance):Observable<{msg:string; data:Avance}>{
+    return this.http.post<{msg:string;data:Avance}>(`${this.url}/avances/registrar`, avance);
+}
 }
