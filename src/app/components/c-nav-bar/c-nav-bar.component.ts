@@ -19,6 +19,7 @@ export class CNavBarComponent implements OnInit{
   isRH: boolean = false;
   isComedor: boolean = false
   isLoggin: boolean = false;
+  isInventario:boolean = false
   visible:boolean = false
   closeSession:boolean = false
   images:any[]=[]
@@ -57,6 +58,9 @@ export class CNavBarComponent implements OnInit{
     if(area === 'seguridad'){
       this.isSeguridad = true
     }
+    if(area === 'inventario'){
+      this.isInventario = true
+    }
     this.isLoggin = this.galleta.check('sesion') 
   }
 
@@ -66,6 +70,7 @@ export class CNavBarComponent implements OnInit{
     this.isLoggin = false
     this.isRH = false
     this.isSeguridad = false
+    this.isInventario = false
     this.closeSession = true
 
     setTimeout(()=>{

@@ -20,6 +20,7 @@ export class CCardsModulesComponent implements OnInit {
   isComedor: boolean = false;
   isLoggin: boolean = false;
   isSeguridad:boolean = false
+  isInventario: boolean = false;
   images: any[]=[];
   responsiveOptions: any[] | undefined;
 
@@ -39,8 +40,9 @@ export class CCardsModulesComponent implements OnInit {
     if(area === 'seguridad'){
       this.isSeguridad = true
     }
-    
-    
+    if(area === 'inventario'){
+      this.isInventario = true
+    }
     this.isLoggin = this.cookie.check('sesion');
   }
 }
