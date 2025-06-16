@@ -14,10 +14,11 @@
             <div class="col-md-8 col-lg-6">
                 <div class="form">
                     <h2 class="titulo">Avance por equipo 📈</h2>
-                    <form action="">
+                    <form [formGroup]="FormAvance" (ngSubmit)="RegistrarAvance()">
                         <div class="mb-3">
+                            <input type="hidden" formControlName="equipoId">
                             <label for="avance" class="form-label">Avance:</label>
-                            <input type="number" class="form-control" placeholder="Ingresa el avance 1-100" required>
+                            <input type="number" formControlName="porcentajeAvance" class="form-control" placeholder="Ingresa el avance 1-100" required>
                         </div>
                         <div class="text-center mt-4">
                             <button type="submit" class="btn btn-orange btn-lg">Registrar</button>
