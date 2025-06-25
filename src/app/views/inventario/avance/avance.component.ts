@@ -24,6 +24,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class AvanceComponent implements OnInit
 {
     usuario:number = 0
+    nombre:string = ''
   constructor(private galleta:CookieService, private apiService:ApiService){}
   ngOnInit()
   {
@@ -31,10 +32,12 @@ export class AvanceComponent implements OnInit
     this.apiService.usuario_x_id(id).subscribe(
       response=>{
         this.usuario = response.usuario.id
+        this.nombre = response.usuario.nombre
         console.log(this.usuario)
         this.FormAvance.patchValue({
           userId: this.usuario
         });
+        
       },error =>{
         if(error.status === 400){
           console.log('No deberias estar viendo esto... 😑')

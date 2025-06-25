@@ -6,11 +6,13 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { CarouselModule } from 'primeng/carousel';
 import { ApiService } from '../../service/api.service';
+import { DashboardAvancesComponent } from '../../views/inventario/dashboard-avances/dashboard-avances.component';
+import { AvanceComponent } from '../../views/inventario/avance/avance.component';
 
 @Component({
   selector: 'app-c-cards-modules',
   standalone: true,
-  imports: [RouterLink, NgIf, DialogModule, ButtonModule, CarouselModule],
+  imports: [RouterLink, NgIf, DialogModule, ButtonModule, CarouselModule, DashboardAvancesComponent, AvanceComponent],
   templateUrl: './c-cards-modules.component.html',
   styleUrls: ['./c-cards-modules.component.css'],
 })

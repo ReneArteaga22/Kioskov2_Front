@@ -191,5 +191,7 @@ export class ApiService {
   }
   avanceInventario(avance:Avance):Observable<{msg:string; data:Avance}>{
     return this.http.post<{msg:string;data:Avance}>(`${this.url}/avances/registrar`, avance);
-}
+  }
+  
+
 }
