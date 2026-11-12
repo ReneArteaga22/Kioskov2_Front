@@ -1,0 +1,76 @@
+:host {
+  --primario: #2563eb;
+  --fondo: #f5f7fb;
+  --card: #ffffff;
+  --borde: #e5e7eb;
+  --texto: #111827;
+  --muted: #6b7280;
+  --sel: #eff6ff;
+  --alerta: #dc2626;
+  --alerta-bg: #fef2f2;
+  display: block;
+  background: var(--fondo);
+  min-height: 100%;
+}
+
+.cat { max-width: 1400px; margin: 0 auto; padding: 1.5rem; color: var(--texto); }
+
+/* Encabezado */
+.cat-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.cat-head h1 { margin: 0; font-size: 1.5rem; font-weight: 700; }
+.sub { margin: .25rem 0 0; color: var(--muted); font-size: .9rem; }
+.head-acc { display: flex; gap: .5rem; }
+
+/* KPIs */
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1rem; margin-bottom: 1.25rem; }
+.kpi { background: var(--card); border: 1px solid var(--borde); border-radius: 12px; padding: 1rem 1.25rem; display: flex; flex-direction: column; }
+.kpi-n { font-size: 1.75rem; font-weight: 700; line-height: 1.1; }
+.kpi-l { color: var(--muted); font-size: .85rem; margin-top: .25rem; }
+.kpi-alerta { border-color: #fecaca; background: var(--alerta-bg); }
+.kpi-alerta .kpi-n { color: var(--alerta); }
+
+/* Tarjetas y layout */
+.card { background: var(--card); border: 1px solid var(--borde); border-radius: 12px; padding: 1.25rem; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+.card-angosta { max-width: 820px; }
+.split { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 1.25rem; align-items: start; }
+@media (max-width: 1000px) { .split { grid-template-columns: 1fr; } }
+
+.toolbar { display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem; flex-wrap: wrap; }
+.toolbar h3 { margin: 0; font-size: 1.1rem; }
+.filtros { display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; padding-bottom: 1rem; margin-bottom: 1rem; border-bottom: 1px solid var(--borde); }
+.grow { flex: 1 1 auto; }
+.w-full { width: 100%; }
+.muted { color: var(--muted); font-size: .85rem; }
+.chk { display: inline-flex; align-items: center; gap: .5rem; font-size: .9rem; color: var(--texto); }
+
+/* Tablas */
+.c { text-align: center !important; }
+.acc { text-align: right; white-space: nowrap; }
+.fila-click { cursor: pointer; }
+.fila-click:hover > td { background: #f9fafb; }
+.fila-sel > td { background: var(--sel) !important; }
+.fila-sel > td:first-child { box-shadow: inset 3px 0 0 var(--primario); }
+.fila-err > td { background: var(--alerta-bg); }
+.vacio { text-align: center; color: var(--muted); padding: 2rem !important; }
+
+/* Miembros */
+.miembros { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .5rem; max-height: 55vh; overflow: auto; }
+.miembros li { display: flex; align-items: center; gap: .75rem; padding: .5rem .75rem; border: 1px solid var(--borde); border-radius: 10px; }
+.miembros li.vacio { border-style: dashed; justify-content: center; }
+.avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--sel); color: var(--primario); display: grid; place-items: center; font-weight: 700; flex: none; }
+.placeholder { text-align: center; color: var(--muted); padding: 3rem 1rem; }
+.placeholder i { font-size: 2.5rem; opacity: .4; }
+
+/* Formularios en diálogos */
+.form { display: flex; flex-direction: column; gap: 1rem; padding-top: .25rem; }
+.form label { display: flex; flex-direction: column; gap: .35rem; font-size: .85rem; font-weight: 600; color: #374151; }
+.form label.chk { flex-direction: row; font-weight: 500; }
+.mono { font-family: Consolas, monospace; font-size: .85rem; margin: .5rem 0; }
+
+/* PrimeNG */
+:host ::ng-deep .cat-tabs .p-tabview-panels { background: transparent; padding: 1.25rem 0 0; }
+:host ::ng-deep .cat-tabs .p-tabview-nav { background: transparent; }
+:host ::ng-deep .cat-tabs .p-tabview-nav li .p-tabview-nav-link { background: transparent; }
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th { background: #f9fafb; font-size: .8rem; text-transform: uppercase; letter-spacing: .03em; color: var(--muted); }
+:host ::ng-deep .dd-alerta .p-dropdown { border-color: #fca5a5; background: var(--alerta-bg); }
+:host ::ng-deep .p-dialog .p-dialog-footer { display: flex; justify-content: flex-end; gap: .5rem; }

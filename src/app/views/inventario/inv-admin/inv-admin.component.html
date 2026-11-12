@@ -1,0 +1,259 @@
+<p-toast position="top-right"></p-toast>
+<p-confirmDialog [style]="{ width: '420px' }"></p-confirmDialog>
+
+<!-- ═════════ ENCABEZADO ═════════ -->
+<nav class="inv-nav">
+  <img class="inv-logo" [routerLink]="['/']" src="icons/CLAYENS_Torreon.png" alt="Clayens" />
+  <div class="inv-titulo">Inventario · Panel de administración</div>
+  <div class="inv-nav-acciones">
+    <span class="inv-avance">{{ avance }}% finalizado</span>
+    <p-button icon="pi pi-refresh" styleClass="p-button-rounded p-button-text p-button-plain"
+      pTooltip="Actualizar" (onClick)="cargarListas()"></p-button>
+  </div>
+  <p-button label="Catálogos" icon="pi pi-cog" styleClass="p-button-outlined p-button-sm"
+          routerLink="/inventario-admin/catalogos"></p-button>
+</nav>
+
+<div class="inv-page">
+  <!-- ═════════ CONTADORES POR ESTADO (clic = filtrar) ═════════ -->
+  <div class="inv-kpis">
+    <button type="button" class="inv-kpi" *ngFor="let e of ESTADOS"
+      [class.activo]="filtroEstado === e" [ngClass]="'est-' + e" (click)="filtrarPorEstado(e)">
+      <span class="inv-kpi-num">{{ conteo[e] }}</span>
+      <span class="inv-kpi-lbl">{{ etiqueta[e] }}</span>
+    </button>
+    <button type="button" class="inv-kpi est-DETENIDA" [class.activo]="soloDetenidas"
+      (click)="soloDetenidas = !soloDetenidas; recalcular()">
+      <span class="inv-kpi-num">{{ totalDetenidas }}</span>
+      <span class="inv-kpi-lbl">Detenidas (≥45 min)</span>
+    </button>
+  </div>
+
+  <!-- ═════════ ALTA RÁPIDA ═════════ -->
+  <section class="inv-panel">
+    <h3>Alta de lista</h3>
+    <form class="inv-alta" (ngSubmit)="crearLista()">
+      <div class="campo campo-folio">
+        <label for="folio">Folio *</label>
+        <input #folioInput id="folio" name="folio" pInputText [(ngModel)]="nuevo.folio"
+          placeholder="INV-26AD01000123" autocomplete="off" />
+      </div>
+
+      <div class="campo campo-ancho">
+        <label>Localidades *</label>
+        <p-multiSelect name="localidades" [options]="opcionesLocalidad" [(ngModel)]="nuevo.localidadIds"
+          (onChange)="onLocalidadesChange()" [filter]="true" filterPlaceHolder="Buscar localidad"
+          placeholder="Selecciona una o varias" display="chip" [showToggleAll]="false" appendTo="body"
+          styleClass="w-full"></p-multiSelect>
+      </div>
+
+      <div class="campo" *ngIf="nuevo.localidadIds.length > 1">
+        <label>Principal *</label>
+        <p-dropdown name="principal" [options]="opcionesPrincipal" [(ngModel)]="nuevo.principalId"
+          (onChange)="actualizarSugerido()" appendTo="body" styleClass="w-full"></p-dropdown>
+      </div>
+
+      <div class="campo">
+        <label>Equipo</label>
+        <p-dropdown name="equipo" [options]="opcionesEquipo" [(ngModel)]="nuevo.equipoId" [showClear]="true"
+          [placeholder]="equipoSugerido ? 'Planeado: ' + equipoSugerido : 'Elige equipo'" appendTo="body"
+          styleClass="w-full"></p-dropdown>
+      </div>
+
+      <div class="campo">
+        <label for="desc">Descripción</label>
+        <input id="desc" name="descripcion" pInputText [(ngModel)]="nuevo.descripcion" placeholder="Opcional" />
+      </div>
+
+      <div class="campo campo-botones">
+        <p-button type="submit" label="Agregar" icon="pi pi-plus" [loading]="ocupado"></p-button>
+        <p-button type="button" icon="pi pi-times" styleClass="p-button-text p-button-secondary"
+          pTooltip="Limpiar" (onClick)="limpiarAlta()"></p-button>
+      </div>
+    </form>
+    <small class="inv-hint">Enter agrega la lista. Localidades y equipo se conservan para capturar varias listas seguidas.</small>
+  </section>
+
+  <!-- ═════════ FILTROS Y ACCIONES MASIVAS ═════════ -->
+  <section class="inv-panel">
+    <div class="inv-barra">
+      <span class="p-input-icon-left inv-busqueda">
+        <i class="pi pi-search"></i>
+        <input pInputText [(ngModel)]="busqueda" (ngModelChange)="recalcular()" placeholder="Folio o localidad" />
+      </span>
+      <p-dropdown [options]="opcionesEstado" [(ngModel)]="filtroEstado" (onChange)="recalcular()"
+        placeholder="Estado" [showClear]="true"></p-dropdown>
+      <p-dropdown [options]="opcionesEquipo" [(ngModel)]="filtroEquipo" (onChange)="recalcular()"
+        placeholder="Equipo" [showClear]="true" [filter]="true"></p-dropdown>
+      <p-button label="Limpiar filtros" styleClass="p-button-text p-button-sm" (onClick)="limpiarFiltros()"></p-button>
+
+      <div class="inv-masivo" *ngIf="seleccion.length">
+        <strong>{{ seleccion.length }} seleccionada(s)</strong>
+        <p-dropdown [options]="opcionesEstado" [(ngModel)]="estadoMasivo" placeholder="Cambiar a…"></p-dropdown>
+        <p-button label="Aplicar" icon="pi pi-check" styleClass="p-button-sm" [disabled]="!estadoMasivo"
+          [loading]="ocupado" (onClick)="aplicarEstadoMasivo()"></p-button>
+        <p-button label="Reasignar" icon="pi pi-users" styleClass="p-button-sm p-button-help"
+          (onClick)="abrirReasignar()"></p-button>
+        <p-button icon="pi pi-times" styleClass="p-button-sm p-button-text p-button-secondary"
+          pTooltip="Quitar selección" (onClick)="seleccion = []"></p-button>
+      </div>
+    </div>
+
+    <!-- ═════════ TABLA ═════════ -->
+    <p-table [value]="filtradas" dataKey="id" [(selection)]="seleccion" [loading]="cargando"
+      [paginator]="filtradas.length > 50" [rows]="50" [rowsPerPageOptions]="[50, 100, 200]"
+      sortField="folio" [sortOrder]="1" styleClass="p-datatable-sm p-datatable-striped" [rowHover]="true">
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 3rem"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+          <th pSortableColumn="folio">Folio <p-sortIcon field="folio"></p-sortIcon></th>
+          <th pSortableColumn="principalNombre">Localidad <p-sortIcon field="principalNombre"></p-sortIcon></th>
+          <th pSortableColumn="equipoNombre">Equipo <p-sortIcon field="equipoNombre"></p-sortIcon></th>
+          <th pSortableColumn="estado">Estado <p-sortIcon field="estado"></p-sortIcon></th>
+          <th pSortableColumn="minutos">En estado <p-sortIcon field="minutos"></p-sortIcon></th>
+          <th pSortableColumn="ajusteNeto" class="num">Ajuste neto <p-sortIcon field="ajusteNeto"></p-sortIcon></th>
+          <th style="width: 18rem">Acciones</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-f>
+        <tr [class.fila-detenida]="f.detenida">
+          <td><p-tableCheckbox [value]="f"></p-tableCheckbox></td>
+          <td>
+            <span class="folio">{{ f.folio }}</span>
+            <div class="sub" *ngIf="f.descripcion">{{ f.descripcion }}</div>
+          </td>
+          <td>
+            {{ f.principalNombre }}
+            <div class="sub" *ngIf="f.otrasLocalidades">+ {{ f.otrasLocalidades }}</div>
+          </td>
+          <td [class.sin-equipo]="!f.equipoActualId">{{ f.equipoNombre }}</td>
+          <td><p-tag [value]="etiquetaDe(f.estado)" [severity]="severidad(f.estado)" [rounded]="true"></p-tag></td>
+          <td [class.txt-alerta]="f.detenida">
+            <i class="pi pi-exclamation-circle" *ngIf="f.detenida"></i> {{ tiempo(f.minutos) }}
+          </td>
+          <td class="num" [class.neg]="f.ajusteNeto < 0" [class.pos]="f.ajusteNeto > 0">
+            {{ f.ajustePositivo || f.ajusteNegativo ? moneda(f.ajusteNeto) : '—' }}
+          </td>
+          <td class="acciones">
+            <p-button *ngIf="f.siguiente" [label]="accionDe(f.estado)" icon="pi pi-arrow-right"
+              iconPos="right" styleClass="p-button-sm btn-avanzar" [disabled]="ocupado" (onClick)="avanzar(f)"></p-button>
+            <p-button icon="pi pi-dollar" styleClass="p-button-sm p-button-text" pTooltip="Ajuste"
+              [disabled]="!puedeAjuste(f)" (onClick)="abrirAjuste(f)"></p-button>
+            <p-button icon="pi pi-sliders-h" styleClass="p-button-sm p-button-text p-button-secondary"
+              pTooltip="Cambiar estado" (onClick)="abrirEstado(f)"></p-button>
+            <p-button icon="pi pi-history" styleClass="p-button-sm p-button-text p-button-secondary"
+              pTooltip="Historial" (onClick)="verDetalle(f)"></p-button>
+            <p-button *ngIf="f.estado === 'SIN_ENTREGAR'" icon="pi pi-trash"
+              styleClass="p-button-sm p-button-text p-button-danger" pTooltip="Eliminar" (onClick)="eliminar(f)"></p-button>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+        <tr><td colspan="8" class="vacio">No hay listas con estos filtros.</td></tr>
+      </ng-template>
+    </p-table>
+  </section>
+</div>
+
+<!-- ═════════ DIÁLOGO: CAMBIAR ESTADO ═════════ -->
+<p-dialog header="Cambiar estado" [(visible)]="dlgEstado.visible" [modal]="true" [style]="{ width: '420px' }">
+  <ng-container *ngIf="dlgEstado.fila as f">
+    <p><strong>{{ f.folio }}</strong> está en <strong>{{ etiquetaDe(f.estado) }}</strong>.</p>
+    <div class="campo">
+      <label>Nuevo estado</label>
+      <p-dropdown [options]="opcionesEstado" [(ngModel)]="dlgEstado.estado" appendTo="body" styleClass="w-full"></p-dropdown>
+    </div>
+    <div class="campo" *ngIf="esRetroceso">
+      <label>Motivo del regreso *</label>
+      <textarea pInputTextarea rows="3" [(ngModel)]="dlgEstado.comentario" class="w-full"></textarea>
+    </div>
+    <small class="inv-hint">Avanzar solo permite un paso a la vez. Regresar requiere motivo.</small>
+  </ng-container>
+  <ng-template pTemplate="footer">
+    <p-button label="Cancelar" styleClass="p-button-text" (onClick)="dlgEstado.visible = false"></p-button>
+    <p-button label="Guardar" icon="pi pi-check" [loading]="ocupado" (onClick)="guardarEstado()"></p-button>
+  </ng-template>
+</p-dialog>
+
+<!-- ═════════ DIÁLOGO: AJUSTE ═════════ -->
+<p-dialog header="Ajuste monetario" [(visible)]="dlgAjuste.visible" [modal]="true" [style]="{ width: '420px' }">
+  <ng-container *ngIf="dlgAjuste.fila as f">
+    <p><strong>{{ f.folio }}</strong> · {{ f.principalNombre }}</p>
+    <div class="campo">
+      <label>Sobrante (+)</label>
+      <p-inputNumber [(ngModel)]="dlgAjuste.sobrante" mode="currency" currency="MXN" locale="es-MX" [min]="0"
+        styleClass="w-full"></p-inputNumber>
+    </div>
+    <div class="campo">
+      <label>Faltante (−)</label>
+      <p-inputNumber [(ngModel)]="dlgAjuste.faltante" mode="currency" currency="MXN" locale="es-MX" [min]="0"
+        styleClass="w-full"></p-inputNumber>
+    </div>
+    <div class="neto" [class.neg]="netoAjuste < 0" [class.pos]="netoAjuste > 0">
+      Neto: {{ moneda(netoAjuste) }}
+    </div>
+    <small class="inv-hint">Captura ambos montos en positivo; el faltante se guarda como negativo.</small>
+  </ng-container>
+  <ng-template pTemplate="footer">
+    <p-button label="Cancelar" styleClass="p-button-text" (onClick)="dlgAjuste.visible = false"></p-button>
+    <p-button label="Guardar" icon="pi pi-check" [loading]="ocupado" (onClick)="guardarAjuste()"></p-button>
+  </ng-template>
+</p-dialog>
+
+<!-- ═════════ DIÁLOGO: REASIGNAR ═════════ -->
+<p-dialog header="Reasignar listas" [(visible)]="dlgReasignar.visible" [modal]="true" [style]="{ width: '460px' }">
+  <p>{{ seleccion.length }} lista(s) seleccionada(s). Las finalizadas se omiten.</p>
+  <div class="campo">
+    <label>Equipo destino *</label>
+    <p-dropdown [options]="opcionesEquipo" [(ngModel)]="dlgReasignar.equipoId" [filter]="true" appendTo="body"
+      placeholder="Selecciona equipo" styleClass="w-full"></p-dropdown>
+  </div>
+  <div class="campo">
+    <label>Motivo *</label>
+    <input pInputText [(ngModel)]="dlgReasignar.motivo" placeholder="Ej. Apoyo: Equipo 1 terminó" class="w-full" />
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button label="Cancelar" styleClass="p-button-text" (onClick)="dlgReasignar.visible = false"></p-button>
+    <p-button label="Reasignar" icon="pi pi-users" [loading]="ocupado" (onClick)="guardarReasignar()"></p-button>
+  </ng-template>
+</p-dialog>
+
+<!-- ═════════ DIÁLOGO: HISTORIAL ═════════ -->
+<p-dialog [header]="dlgDetalle.data?.lista?.folio ?? 'Historial'" [(visible)]="dlgDetalle.visible" [modal]="true"
+  [style]="{ width: '90vw', 'max-width': '720px' }">
+  <div *ngIf="!dlgDetalle.data" class="vacio"><i class="pi pi-spin pi-spinner"></i> Cargando…</div>
+  <ng-container *ngIf="dlgDetalle.data as d">
+    <div class="det-resumen">
+      <div><span>Equipo actual</span><strong>{{ d.lista.equipoActual?.nombre ?? '—' }}</strong></div>
+      <div><span>Equipo original</span><strong>{{ d.equipoOriginal?.nombre ?? '—' }}</strong></div>
+      <div><span>En estado actual</span><strong>{{ tiempo(d.minutosEnEstadoActual) }}</strong></div>
+    </div>
+
+    <h4>Tiempo por fase</h4>
+    <div class="det-fases">
+      <div *ngFor="let e of ESTADOS.slice(0, 4)">
+        <span>{{ etiqueta[e] }}</span><strong>{{ tiempo(minutosFase(e)) }}</strong>
+      </div>
+    </div>
+
+    <h4>Estados</h4>
+    <table class="det-tabla">
+      <tr *ngFor="let t of d.lista.transiciones">
+        <td>{{ t.fecha | date: 'dd/MM HH:mm' }}</td>
+        <td>{{ t.estadoAnterior ? etiqueta[t.estadoAnterior] + ' → ' : '' }}<strong>{{ etiqueta[t.estadoNuevo] }}</strong></td>
+        <td class="sub">{{ t.comentario }}</td>
+      </tr>
+    </table>
+
+    <h4>Asignaciones</h4>
+    <table class="det-tabla">
+      <tr *ngFor="let a of d.lista.asignaciones">
+        <td>{{ a.inicio | date: 'dd/MM HH:mm' }}</td>
+        <td><strong>{{ a.equipo.nombre }}</strong> <span class="sub" *ngIf="!a.fin">(actual)</span></td>
+        <td class="sub">{{ a.motivo }}</td>
+      </tr>
+    </table>
+  </ng-container>
+</p-dialog>

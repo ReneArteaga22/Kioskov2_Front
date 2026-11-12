@@ -1,0 +1,521 @@
+<app-c-nav-bar></app-c-nav-bar>
+
+<!-- ══ TOASTS ══ -->
+<div class="toast-container">
+  @for (t of toasts(); track t.id) {
+    <div class="toast toast-{{ t.type }}" (click)="removeToast(t.id)">
+      <span class="toast-icon">{{ toastIcon(t.type) }}</span>
+      <span class="toast-msg">{{ t.message }}</span>
+      <button class="toast-close">✕</button>
+    </div>
+  }
+</div>
+
+<!-- ══ MODAL DE CONFIRMACIÓN ══ -->
+@if (modalConfig()?.visible) {
+  <div class="modal-overlay" (click)="cerrarModal()">
+    <div class="modal-box" (click)="$event.stopPropagation()">
+      <div class="modal-icon">⚠</div>
+      <p class="modal-msg">{{ modalConfig()!.mensaje }}</p>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" (click)="cerrarModal()">Cancelar</button>
+        <button class="btn btn-danger" (click)="confirmarModal()">Sí, eliminar</button>
+      </div>
+    </div>
+  </div>
+}
+
+<div class="page-content">
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header-content">
+      <div class="page-title">
+        <h2>Control de Amonestaciones</h2>
+        <span class="page-subtitle">Semáforo de reincidencia · Alerta automática ≥ 3 por año</span>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-ghost" (click)="exportarXLSX()">⬇ Excel Registros</button>
+        <button class="btn btn-outline-dark" (click)="exportarJSON()">⬇ JSON</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOADING BAR -->
+  @if (cargando()) {
+    <div class="loading-bar"></div>
+  }
+
+  <!-- ERROR GLOBAL -->
+  @if (errorMsg()) {
+    <div class="alert-banner alert-error">
+      <span>⚠ {{ errorMsg() }}</span>
+      <button class="alert-close" (click)="cargar()">↻ Reintentar</button>
+    </div>
+  }
+
+  <!-- KPIs -->
+  <section class="kpis-grid">
+    <div class="kpi">
+      <span class="kpi-label">Total año {{ filtroYear }}</span>
+      <span class="kpi-value">{{ kpis().total }}</span>
+      <span class="kpi-hint">amonestaciones registradas</span>
+    </div>
+    <div class="kpi danger">
+      <span class="kpi-label">🔴 ROJO (≥ 3)</span>
+      <span class="kpi-value">{{ kpis().red }}</span>
+      <span class="kpi-hint">Alerta automática</span>
+    </div>
+    <div class="kpi warn">
+      <span class="kpi-label">🟡 AMARILLO (2)</span>
+      <span class="kpi-value">{{ kpis().yellow }}</span>
+      <span class="kpi-hint">Reincidencia media</span>
+    </div>
+    <div class="kpi ok">
+      <span class="kpi-label">🟢 VERDE (0–1)</span>
+      <span class="kpi-value">{{ kpis().green }}</span>
+      <span class="kpi-hint">Controlado</span>
+    </div>
+  </section>
+
+  <!-- ALERTA GLOBAL ROJO -->
+  @if (kpis().red > 0 && !errorMsg()) {
+    <div class="alert-banner alert-warning">
+      ⚠ <strong>ALERTA:</strong> {{ kpis().red }} empleado(s) con 3 o más
+      amonestaciones en {{ filtroYear }}. Revisa el panel de reincidencia.
+    </div>
+  }
+
+  <!-- FILTROS -->
+  <section class="filtros-bar card">
+    <div class="field">
+      <label>Año</label>
+      <select [(ngModel)]="filtroYear" (change)="cargar()">
+        @for (y of years(); track y) {
+          <option [ngValue]="y">{{ y }}</option>
+        }
+      </select>
+    </div>
+    <div class="field">
+      <label>Planta</label>
+      <select [(ngModel)]="filtroPlanta" (change)="cargar()">
+        <option value="">Todas</option>
+        @for (p of plantas; track p) {
+          <option>{{ p }}</option>
+        }
+      </select>
+    </div>
+    <div class="field flex-grow">
+      <label>Búsqueda (Nombre / No. Empleado / Motivo)</label>
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input
+          [(ngModel)]="filtroQ"
+          (input)="onSearchInput()"
+          placeholder="Escribe para filtrar…"
+          class="search-input"
+        />
+        @if (filtroQ) {
+          <button class="search-clear" (click)="filtroQ = ''; cargar()">✕</button>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- GRID PRINCIPAL -->
+  <div
+    class="main-grid-wrapper"
+    [style]="anchoIzq() !== null
+      ? 'grid-template-columns:' + anchoIzq() + '% var(--grid-handle-w) ' + (100 - anchoIzq()! - 1) + '%'
+      : ''"
+  >
+
+    <!-- ══ CARD CAPTURA + TABLA ══ -->
+    <div class="card">
+
+      <div class="card-header">
+        <div class="card-header-left">
+          <span class="card-header-dot" [class.editing]="!!editandoId"></span>
+          <h3>{{ editandoId ? '✏️ Editar amonestación' : '➕ Nueva amonestación' }}</h3>
+        </div>
+        <div class="card-header-right">
+          @if (editandoId) {
+            <button class="btn btn-cancel btn-sm" (click)="resetForm()">✕ Cancelar</button>
+          }
+          <button
+            class="btn-collapse"
+            [class.collapsed]="colapsadoForm()"
+            (click)="colapsadoForm.set(!colapsadoForm())"
+            [title]="colapsadoForm() ? 'Expandir' : 'Colapsar'"
+          >
+            <span class="collapse-icon">{{ colapsadoForm() ? '▼' : '▲' }}</span>
+            <span class="collapse-label">{{ colapsadoForm() ? 'Expandir' : 'Colapsar' }}</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="card-collapsible" [class.is-collapsed]="colapsadoForm()">
+        <div class="card-body">
+
+          <form [formGroup]="form" (ngSubmit)="submit()">
+
+            <div class="row-2">
+              <div class="field">
+                <label>Fecha <span class="required">*</span></label>
+                <input type="date" formControlName="fecha" [class.input-error]="invalid('fecha')" />
+                @if (invalid('fecha')) { <span class="error">La fecha es obligatoria</span> }
+              </div>
+              <div class="field">
+                <label>Hora <span class="required">*</span></label>
+                <input type="time" formControlName="hora" />
+              </div>
+            </div>
+
+            <div class="row-2">
+              <div class="field">
+                <label>Planta <span class="required">*</span></label>
+                <select formControlName="planta" [class.input-error]="invalid('planta')">
+                  <option value="">Selecciona…</option>
+                  @for (p of plantas; track p) { <option>{{ p }}</option> }
+                </select>
+                @if (invalid('planta')) { <span class="error">Selecciona una planta</span> }
+              </div>
+              <div class="field">
+                <label>Departamento <span class="required">*</span></label>
+                <select formControlName="departamento" [class.input-error]="invalid('departamento')">
+                  <option value="">Selecciona…</option>
+                  @for (d of deptos; track d) { <option>{{ d }}</option> }
+                </select>
+                @if (invalid('departamento')) { <span class="error">Selecciona un departamento</span> }
+              </div>
+            </div>
+
+            <div class="row-2">
+              <div class="field">
+  <label>No. Empleado <span class="required">*</span></label>
+
+  <div class="emp-autocomplete">
+    <input
+      formControlName="noEmpleado"
+      placeholder="Número o nombre del empleado…"
+      autocomplete="off"
+      [class.input-error]="invalid('noEmpleado')"
+      (input)="onNoEmpleadoInput($any($event.target).value)"
+      (blur)="cerrarDropdown()"
+    />
+
+    @if (buscandoEmp()) {
+      <span class="emp-spinner">⟳</span>
+    }
+
+    @if (mostrarDropdown() && sugerencias().length > 0) {
+      <div class="emp-dropdown">
+        @for (emp of sugerencias(); track emp.noEmpleado) {
+          <div class="emp-option" (mousedown)="seleccionarEmpleado(emp)">
+            <div class="emp-option-main">
+              <strong>{{ emp.noEmpleado }}</strong>
+              <span>{{ emp.nombre }}</span>
+            </div>
+            <div class="emp-option-sub">
+              {{ emp.puesto }} · {{ emp.departamento }} · {{ emp.planta }}
+              @if (emp.turno) { · Turno {{ emp.turno }} }
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  @if (invalid('noEmpleado')) {
+    <span class="error">El No. de empleado es obligatorio</span>
+  }
+</div>
+              <div class="field">
+                <label>Nombre completo <span class="required">*</span></label>
+                <input
+                  formControlName="nombre"
+                  placeholder="Nombre y apellidos"
+                  [class.input-error]="invalid('nombre')"
+                />
+                @if (invalid('nombre')) { <span class="error">El nombre es obligatorio</span> }
+              </div>
+            </div>
+
+            <div class="row-2">
+              <div class="field">
+                <label>Puesto <span class="required">*</span></label>
+                <input
+                  formControlName="puesto"
+                  placeholder="Ej. Operador"
+                  [class.input-error]="invalid('puesto')"
+                />
+                @if (invalid('puesto')) { <span class="error">El puesto es obligatorio</span> }
+              </div>
+              <div class="field">
+                <label>Reporta <span class="required">*</span></label>
+                <input
+                  formControlName="reporta"
+                  placeholder="Nombre de quien reporta"
+                  [class.input-error]="invalid('reporta')"
+                />
+                @if (invalid('reporta')) { <span class="error">El nombre de quien reporta es obligatorio</span> }
+              </div>
+            </div>
+
+            <div class="field full">
+              <div class="label-row">
+                <label>Motivo de amonestación <span class="required">*</span></label>
+                <span class="char-counter" [class.near-limit]="motivoLen > motivoMaxLen * 0.8">
+                  {{ motivoLen }} / {{ motivoMaxLen }}
+                </span>
+              </div>
+              <textarea
+                formControlName="motivo"
+                rows="3"
+                placeholder="Describe el motivo de la amonestación…"
+                [class.input-error]="invalid('motivo')"
+              ></textarea>
+              @if (invalid('motivo')) { <span class="error">El motivo es obligatorio</span> }
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary" [disabled]="cargando()">
+                {{ editandoId ? '✓ Actualizar amonestación' : '+ Guardar amonestación' }}
+              </button>
+              <button type="button" class="btn btn-ghost" (click)="resetForm()">Limpiar</button>
+            </div>
+
+          </form>
+
+          <hr class="divider" />
+
+          <!-- Cabecera tabla -->
+          <div class="table-header-row">
+            <span class="table-count">{{ registros().length }} registro(s) encontrado(s)</span>
+            @if (alturaTablaForm() !== null) {
+              <button class="btn-link" style="font-size:11px" (click)="resetAlturaTabla('form')">
+                ↺ Restablecer altura
+              </button>
+            }
+          </div>
+
+          <!-- Tabla de registros -->
+          <div
+            class="table-wrap table-scrollable"
+            [style.max-height.px]="alturaTablaForm() ?? 380"
+          >
+            <table>
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Hora</th>
+                  <th>Planta</th>
+                  <th>No. Emp</th>
+                  <th>Nombre</th>
+                  <th>Depto</th>
+                  <th>Motivo</th>
+                  <th>Reporta</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (r of registros(); track r.id) {
+                  <tr [class.editing]="r.id === editandoId">
+                    <td>{{ fmtFecha(r.fecha) }}</td>
+                    <td>{{ r.hora }}</td>
+                    <td>
+                      <span class="planta-tag">{{ r.planta }}</span>
+                    </td>
+                    <td><strong>{{ r.noEmpleado }}</strong></td>
+                    <td>{{ r.nombre }}</td>
+                    <td>{{ r.departamento }}</td>
+                    <td class="muted truncate" [title]="r.motivo">{{ r.motivo }}</td>
+                    <td>{{ r.reporta }}</td>
+                    <td class="acciones">
+                      <button class="btn-link" (click)="editar(r)">✏ Editar</button>
+                      <span class="sep">·</span>
+                      <button class="btn-link danger" (click)="eliminar(r.id!, r.nombre)">✕ Eliminar</button>
+                    </td>
+                  </tr>
+                } @empty {
+                  <tr>
+                    <td colspan="9" class="empty-state">
+                      <div class="empty-icon">📋</div>
+                      <div>Sin registros para los filtros seleccionados</div>
+                      @if (filtroQ || filtroPlanta) {
+                        <button class="btn-link" (click)="filtroQ = ''; filtroPlanta = ''; cargar()">
+                          Limpiar filtros
+                        </button>
+                      }
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Handle resize vertical -->
+          <div
+            class="resize-handle"
+            (mousedown)="iniciarResize($event, 'form')"
+            (touchstart)="iniciarResize($event, 'form')"
+            title="Arrastra para cambiar la altura de la tabla"
+          >
+            <span class="resize-dots">⠿</span>
+            <span class="resize-label">Ajustar altura</span>
+            <span class="resize-dots">⠿</span>
+          </div>
+
+          <p class="footer-note">
+            💡 Presiona <kbd>Esc</kbd> para cancelar edición. Arrastra la barra para cambiar la altura de la tabla.
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+    <!-- /CARD CAPTURA -->
+
+
+    <!-- ══ HANDLE HORIZONTAL (entre cards) ══ -->
+    <div
+      class="grid-resize-handle"
+      (mousedown)="iniciarResizeGrid($event)"
+      (touchstart)="iniciarResizeGrid($event)"
+      title="Arrastra para cambiar el ancho de los paneles"
+    >
+      <div class="grid-handle-bar"></div>
+    </div>
+
+
+    <!-- ══ CARD RESUMEN SEMÁFORO ══ -->
+    <div class="card">
+
+      <div class="card-header">
+        <h3>Resumen de reincidencia</h3>
+        <div class="card-header-right">
+          <button class="btn btn-ghost btn-sm" (click)="descargarAlertas()">⬇ Excel</button>
+          <button
+            class="btn-collapse"
+            [class.collapsed]="colapsadoResumen()"
+            (click)="colapsadoResumen.set(!colapsadoResumen())"
+            [title]="colapsadoResumen() ? 'Expandir' : 'Colapsar'"
+          >
+            <span class="collapse-icon">{{ colapsadoResumen() ? '▼' : '▲' }}</span>
+            <span class="collapse-label">{{ colapsadoResumen() ? 'Expandir' : 'Colapsar' }}</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="card-collapsible" [class.is-collapsed]="colapsadoResumen()">
+        <div class="card-body">
+
+          <!-- Leyenda semáforo -->
+          <div class="legend">
+            <span class="badge ok">🟢 VERDE: 0–1</span>
+            <span class="badge warn">🟡 AMARILLO: 2</span>
+            <span class="badge danger">🔴 ROJO: 3+</span>
+          </div>
+
+          <!-- Mini stats -->
+          <div class="mini-stats">
+            <div class="mini-stat">
+              <span>Total empleados</span>
+              <strong>{{ resumen().length }}</strong>
+            </div>
+            <div class="mini-stat danger-stat">
+              <span>En alerta</span>
+              <strong>{{ kpis().red }}</strong>
+            </div>
+          </div>
+
+          <!-- Cabecera tabla -->
+          <div class="table-header-row">
+            <span></span>
+            @if (alturaTablaResumen() !== null) {
+              <button class="btn-link" style="font-size:11px" (click)="resetAlturaTabla('resumen')">
+                ↺ Restablecer altura
+              </button>
+            }
+          </div>
+
+          <!-- Tabla resumen -->
+          <div
+            class="table-wrap resumen-table table-scrollable"
+            [style.max-height.px]="alturaTablaResumen() ?? 440"
+          >
+            <table>
+              <thead>
+                <tr>
+                  <th>No. Emp</th>
+                  <th>Nombre</th>
+                  <th>Planta</th>
+                  <th>Depto</th>
+                  <th>Total</th>
+                  <th>Estado</th>
+                  <th>Última</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (x of resumen(); track x.no_empleado) {
+                  <tr [class.row-red]="x.semaforo === 'rojo'">
+                    <td><strong>{{ x.no_empleado }}</strong></td>
+                    <td>{{ x.nombre }}</td>
+                    <td>{{ x.planta }}</td>
+                    <td>{{ x.departamento }}</td>
+                    <td class="center">
+                      <span class="conteo-badge" [class]="'conteo-' + x.semaforo">
+                        {{ x.conteo }}
+                      </span>
+                    </td>
+                    <td class="center">
+                      <span [class]="pillClass(x.semaforo)">{{ pillLabel(x.semaforo) }}</span>
+                    </td>
+                    <td>{{ fmtFecha(x.last_fecha) }}</td>
+                  </tr>
+                } @empty {
+                  <tr>
+                    <td colspan="7" class="empty-state">
+                      <div class="empty-icon">✅</div>
+                      <div>Sin registros para este año</div>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Handle resize vertical -->
+          <div
+            class="resize-handle"
+            (mousedown)="iniciarResize($event, 'resumen')"
+            (touchstart)="iniciarResize($event, 'resumen')"
+            title="Arrastra para cambiar la altura de la tabla"
+          >
+            <span class="resize-dots">⠿</span>
+            <span class="resize-label">Ajustar altura</span>
+            <span class="resize-dots">⠿</span>
+          </div>
+
+          <p class="footer-note">
+            Umbral de alerta: <strong>3</strong> amonestaciones dentro del mismo año calendario.
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+    <!-- /CARD RESUMEN -->
+
+  </div><!-- /main-grid-wrapper -->
+
+  <!-- Reset proporciones -->
+  @if (anchoIzq() !== null) {
+    <div class="grid-reset-row">
+      <button class="btn-link" (click)="resetAnchoGrid()">
+        ↺ Restablecer proporciones
+      </button>
+    </div>
+  }
+
+</div><!-- /page-content -->

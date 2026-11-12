@@ -1,0 +1,247 @@
+<p-toast position="top-right"></p-toast>
+<p-confirmDialog [style]="{ width: '420px' }"></p-confirmDialog>
+
+<div class="cat">
+  <!-- ═════════ ENCABEZADO ═════════ -->
+  <header class="cat-head">
+    <div>
+      <h1>Catálogos · Inventario 2026</h1>
+      <p class="sub">Áreas, equipos, integrantes y localidades</p>
+    </div>
+    <div class="head-acc">
+      <p-button label="Operación" icon="pi pi-list" styleClass="p-button-outlined p-button-sm" routerLink="/inventario-admin"></p-button>
+      <p-button icon="pi pi-refresh" styleClass="p-button-text p-button-sm" pTooltip="Recargar" (onClick)="cargar()" [loading]="cargando"></p-button>
+    </div>
+  </header>
+
+  <!-- ═════════ KPIs ═════════ -->
+  <section class="kpis">
+    <div class="kpi"><span class="kpi-n">{{ areas.length }}</span><span class="kpi-l">Áreas</span></div>
+    <div class="kpi"><span class="kpi-n">{{ equipos.length }}</span><span class="kpi-l">Equipos</span></div>
+    <div class="kpi"><span class="kpi-n">{{ localidades.length }}</span><span class="kpi-l">Localidades</span></div>
+    <div class="kpi" [class.kpi-alerta]="sinEquipo > 0">
+      <span class="kpi-n">{{ sinEquipo }}</span><span class="kpi-l">Localidades sin equipo</span>
+    </div>
+  </section>
+
+  <p-tabView [(activeIndex)]="tab" styleClass="cat-tabs">
+
+    <!-- ═════════════════ EQUIPOS Y MIEMBROS ═════════════════ -->
+    <p-tabPanel header="Equipos e integrantes" leftIcon="pi pi-users">
+      <div class="split">
+        <!-- Equipos -->
+        <div class="card">
+          <div class="toolbar">
+            <span class="p-input-icon-left grow">
+              <i class="pi pi-search"></i>
+              <input pInputText [(ngModel)]="qEquipo" (ngModelChange)="filtrar()" placeholder="Buscar equipo o integrante" class="w-full" />
+            </span>
+            <p-button label="Nuevo equipo" icon="pi pi-plus" styleClass="p-button-sm" (onClick)="abrirEquipo()"></p-button>
+          </div>
+
+          <p-table [value]="equiposVista" [loading]="cargando" dataKey="id" styleClass="p-datatable-sm" [scrollable]="true" scrollHeight="55vh">
+            <ng-template pTemplate="header">
+              <tr><th>Equipo</th><th class="c">Integrantes</th><th class="c">Localidades</th><th class="c">Activo</th><th></th></tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-e>
+              <tr class="fila-click" [class.fila-sel]="equipoSel?.id === e.id" (click)="seleccionarEquipo(e)">
+                <td><strong>{{ e.nombre }}</strong></td>
+                <td class="c">{{ e.integrantes?.length ?? 0 }}</td>
+                <td class="c">{{ locsDeEquipo(e.id) }}</td>
+                <td class="c" (click)="$event.stopPropagation()">
+                  <p-inputSwitch [ngModel]="e.activo" (onChange)="toggleActivo(e)" [disabled]="ocupado"></p-inputSwitch>
+                </td>
+                <td class="acc" (click)="$event.stopPropagation()">
+                  <p-button icon="pi pi-pencil" styleClass="p-button-text p-button-sm" pTooltip="Editar" (onClick)="abrirEquipo(e)"></p-button>
+                  <p-button icon="pi pi-trash" styleClass="p-button-text p-button-danger p-button-sm" pTooltip="Eliminar" (onClick)="eliminarEquipo(e)"></p-button>
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr><td colspan="5" class="vacio">Sin equipos. Crea el primero.</td></tr>
+            </ng-template>
+          </p-table>
+        </div>
+
+        <!-- Integrantes del equipo seleccionado -->
+        <div class="card">
+          <ng-container *ngIf="equipoSel; else sinSel">
+            <div class="toolbar">
+              <div class="grow">
+                <h3>{{ equipoSel.nombre }}</h3>
+                <span class="muted">{{ equipoSel.integrantes?.length ?? 0 }} integrante(s) · {{ locsDeEquipo(equipoSel.id) }} localidad(es)</span>
+              </div>
+              <p-button label="Agregar" icon="pi pi-user-plus" styleClass="p-button-sm" (onClick)="abrirMiembro()"></p-button>
+            </div>
+
+            <ul class="miembros">
+              <li *ngFor="let i of equipoSel.integrantes ?? []">
+                <span class="avatar">{{ i.nombreCompleto.charAt(0) }}</span>
+                <span class="grow">{{ i.nombreCompleto }}</span>
+                <p-tag [value]="i.rol" [severity]="i.rol === 'LIDER' ? 'warning' : 'info'"></p-tag>
+                <p-button icon="pi pi-pencil" styleClass="p-button-text p-button-sm" (onClick)="abrirMiembro(i)"></p-button>
+                <p-button icon="pi pi-times" styleClass="p-button-text p-button-danger p-button-sm" (onClick)="eliminarMiembro(i)"></p-button>
+              </li>
+              <li *ngIf="!(equipoSel.integrantes?.length)" class="vacio">Este equipo no tiene integrantes.</li>
+            </ul>
+          </ng-container>
+          <ng-template #sinSel>
+            <div class="placeholder">
+              <i class="pi pi-users"></i>
+              <p>Selecciona un equipo para ver y administrar sus integrantes.</p>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </p-tabPanel>
+
+    <!-- ═════════════════ LOCALIDADES ═════════════════ -->
+    <p-tabPanel header="Localidades" leftIcon="pi pi-map-marker">
+      <div class="card">
+        <div class="filtros">
+          <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input pInputText [(ngModel)]="qLocalidad" (ngModelChange)="filtrar()" placeholder="Buscar localidad" />
+          </span>
+          <p-dropdown [options]="opcionesArea" [(ngModel)]="fArea" (onChange)="filtrar()" placeholder="Área" [showClear]="true" [filter]="true" appendTo="body"></p-dropdown>
+          <p-dropdown [options]="opcionesEquipo" [(ngModel)]="fEquipo" (onChange)="filtrar()" placeholder="Equipo planeado" [showClear]="true" [filter]="true" appendTo="body"></p-dropdown>
+          <label class="chk"><p-inputSwitch [(ngModel)]="soloSinEquipo" (onChange)="filtrar()"></p-inputSwitch> Solo sin equipo</label>
+          <p-button label="Limpiar" icon="pi pi-filter-slash" styleClass="p-button-text p-button-sm" (onClick)="limpiarFiltrosLoc()"></p-button>
+          <span class="grow"></span>
+          <p-button label="Carga masiva" icon="pi pi-upload" styleClass="p-button-outlined p-button-sm" (onClick)="abrirMasivo()"></p-button>
+          <p-button label="Nueva" icon="pi pi-plus" styleClass="p-button-sm" (onClick)="abrirLocalidad()"></p-button>
+        </div>
+
+        <p-table [value]="localidadesVista" [loading]="cargando" dataKey="id" styleClass="p-datatable-sm"
+                 [paginator]="localidadesVista.length > 25" [rows]="25" sortMode="single">
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="areaId" style="width:110px">Área <p-sortIcon field="areaId"></p-sortIcon></th>
+              <th pSortableColumn="nombre">Localidad <p-sortIcon field="nombre"></p-sortIcon></th>
+              <th style="width:260px">Equipo planeado</th>
+              <th style="width:100px"></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-l>
+            <tr>
+              <td><p-tag [value]="nombreArea(l)" severity="secondary"></p-tag></td>
+              <td>{{ l.nombre }}</td>
+              <td>
+                <p-dropdown [options]="opcionesEquipo" [ngModel]="l.equipoPlaneadoId" (onChange)="asignarEquipo(l, $event.value)"
+                            placeholder="— Sin equipo —" [showClear]="true" [disabled]="ocupado" appendTo="body"
+                            styleClass="w-full" [class.dd-alerta]="!l.equipoPlaneadoId"></p-dropdown>
+              </td>
+              <td class="acc">
+                <p-button icon="pi pi-pencil" styleClass="p-button-text p-button-sm" (onClick)="abrirLocalidad(l)"></p-button>
+                <p-button icon="pi pi-trash" styleClass="p-button-text p-button-danger p-button-sm" (onClick)="eliminarLocalidad(l)"></p-button>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr><td colspan="4" class="vacio">Sin localidades con estos filtros.</td></tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </p-tabPanel>
+
+    <!-- ═════════════════ ÁREAS ═════════════════ -->
+    <p-tabPanel header="Áreas" leftIcon="pi pi-th-large">
+      <div class="card card-angosta">
+        <div class="toolbar">
+          <span class="grow muted">Las áreas agrupan localidades (ej. MP, PT, WIP).</span>
+          <p-button label="Nueva área" icon="pi pi-plus" styleClass="p-button-sm" (onClick)="abrirArea()"></p-button>
+        </div>
+        <p-table [value]="areas" [loading]="cargando" styleClass="p-datatable-sm">
+          <ng-template pTemplate="header">
+            <tr><th style="width:110px">Código</th><th>Nombre</th><th class="c">Localidades</th><th style="width:100px"></th></tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-a>
+            <tr>
+              <td><strong>{{ a.codigo }}</strong></td>
+              <td>{{ a.nombre }}</td>
+              <td class="c">{{ locsDeArea(a.id) }}</td>
+              <td class="acc">
+                <p-button icon="pi pi-pencil" styleClass="p-button-text p-button-sm" (onClick)="abrirArea(a)"></p-button>
+                <p-button icon="pi pi-trash" styleClass="p-button-text p-button-danger p-button-sm" (onClick)="eliminarArea(a)"></p-button>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage"><tr><td colspan="4" class="vacio">Sin áreas.</td></tr></ng-template>
+        </p-table>
+      </div>
+    </p-tabPanel>
+  </p-tabView>
+</div>
+
+<!-- ═════════════════ DIÁLOGOS ═════════════════ -->
+<p-dialog [(visible)]="dlgArea.visible" [header]="dlgArea.id ? 'Editar área' : 'Nueva área'" [modal]="true" [style]="{ width: '400px' }" [draggable]="false">
+  <div class="form">
+    <label>Código<input pInputText [(ngModel)]="dlgArea.codigo" maxlength="10" placeholder="MP" /></label>
+    <label>Nombre<input pInputText [(ngModel)]="dlgArea.nombre" placeholder="Materia Prima" (keyup.enter)="guardarArea()" /></label>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button label="Cancelar" styleClass="p-button-text" (onClick)="dlgArea.visible = false"></p-button>
+    <p-button label="Guardar" icon="pi pi-check" [loading]="ocupado" (onClick)="guardarArea()"></p-button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="dlgEquipo.visible" [header]="dlgEquipo.id ? 'Editar equipo' : 'Nuevo equipo'" [modal]="true" [style]="{ width: '400px' }" [draggable]="false">
+  <div class="form">
+    <label>Nombre<input pInputText [(ngModel)]="dlgEquipo.nombre" placeholder="Equipo 1" (keyup.enter)="guardarEquipo()" /></label>
+    <label class="chk"><p-inputSwitch [(ngModel)]="dlgEquipo.activo"></p-inputSwitch> Activo</label>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button label="Cancelar" styleClass="p-button-text" (onClick)="dlgEquipo.visible = false"></p-button>
+    <p-button label="Guardar" icon="pi pi-check" [loading]="ocupado" (onClick)="guardarEquipo()"></p-button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="dlgMiembro.visible" [header]="(dlgMiembro.id ? 'Editar integrante' : 'Agregar integrante') + ' · ' + (equipoSel?.nombre ?? '')"
+          [modal]="true" [style]="{ width: '440px' }" [draggable]="false">
+  <div class="form">
+    <label>Nombre completo<input pInputText [(ngModel)]="dlgMiembro.nombreCompleto" (keyup.enter)="guardarMiembro(true)" /></label>
+    <label>Rol<p-dropdown [options]="opcionesRol" [(ngModel)]="dlgMiembro.rol" appendTo="body" styleClass="w-full"></p-dropdown></label>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button label="Cancelar" styleClass="p-button-text" (onClick)="dlgMiembro.visible = false"></p-button>
+    <p-button *ngIf="!dlgMiembro.id" label="Guardar y agregar otro" styleClass="p-button-outlined" [loading]="ocupado" (onClick)="guardarMiembro(true)"></p-button>
+    <p-button label="Guardar" icon="pi pi-check" [loading]="ocupado" (onClick)="guardarMiembro()"></p-button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="dlgLocalidad.visible" [header]="dlgLocalidad.id ? 'Editar localidad' : 'Nueva localidad'" [modal]="true" [style]="{ width: '460px' }" [draggable]="false">
+  <div class="form">
+    <label>Área<p-dropdown [options]="opcionesArea" [(ngModel)]="dlgLocalidad.areaId" placeholder="Selecciona" [filter]="true" appendTo="body" styleClass="w-full"></p-dropdown></label>
+    <label>Nombre<input pInputText [(ngModel)]="dlgLocalidad.nombre" placeholder="Rack A" (keyup.enter)="guardarLocalidad(true)" /></label>
+    <label>Equipo planeado <small class="muted">(opcional)</small>
+      <p-dropdown [options]="opcionesEquipo" [(ngModel)]="dlgLocalidad.equipoPlaneadoId" placeholder="— Sin equipo —" [showClear]="true" [filter]="true" appendTo="body" styleClass="w-full"></p-dropdown>
+    </label>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button label="Cancelar" styleClass="p-button-text" (onClick)="dlgLocalidad.visible = false"></p-button>
+    <p-button *ngIf="!dlgLocalidad.id" label="Guardar y agregar otra" styleClass="p-button-outlined" [loading]="ocupado" (onClick)="guardarLocalidad(true)"></p-button>
+    <p-button label="Guardar" icon="pi pi-check" [loading]="ocupado" (onClick)="guardarLocalidad()"></p-button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="dlgMasivo.visible" header="Carga masiva de localidades" [modal]="true" [style]="{ width: '760px' }" [draggable]="false">
+  <p class="muted">Copia desde Excel 2 o 3 columnas: <strong>Código de área · Localidad · Equipo</strong> (el equipo es opcional). Sin encabezados.</p>
+  <textarea pInputTextarea [(ngModel)]="dlgMasivo.texto" rows="7" class="w-full mono" placeholder="MP&#9;Rack A&#9;Equipo 1"></textarea>
+  <div class="toolbar">
+    <p-button label="Previsualizar" icon="pi pi-eye" styleClass="p-button-outlined p-button-sm" (onClick)="previsualizar()"></p-button>
+    <span class="muted" *ngIf="dlgMasivo.previa.length">{{ masivoValidas.length }} válidas de {{ dlgMasivo.previa.length }}</span>
+  </div>
+  <p-table *ngIf="dlgMasivo.previa.length" [value]="dlgMasivo.previa" styleClass="p-datatable-sm" [scrollable]="true" scrollHeight="260px">
+    <ng-template pTemplate="header"><tr><th>Área</th><th>Localidad</th><th>Equipo</th><th>Resultado</th></tr></ng-template>
+    <ng-template pTemplate="body" let-p>
+      <tr [class.fila-err]="p.error">
+        <td>{{ p.area }}</td><td>{{ p.nombre }}</td><td>{{ p.equipo || '—' }}</td>
+        <td><p-tag [value]="p.error || 'OK'" [severity]="p.error ? 'danger' : 'success'"></p-tag></td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <ng-template pTemplate="footer">
+    <p-button label="Cancelar" styleClass="p-button-text" (onClick)="dlgMasivo.visible = false"></p-button>
+    <p-button [label]="'Cargar ' + masivoValidas.length" icon="pi pi-upload" [disabled]="!masivoValidas.length" [loading]="ocupado" (onClick)="cargarMasivo()"></p-button>
+  </ng-template>
+</p-dialog>

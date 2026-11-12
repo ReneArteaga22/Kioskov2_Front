@@ -1,59 +1,682 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-  <div>
-    <nav class="navbar">
-        <div class="logo">
-            <img [routerLink]="['/']" src="icons/CLAYENS_Torreon.png">
-        </div>
-        
-        <div class="campaign-message">
-            Status del primer inventario 2025
-        </div>
-        
-     <div class="user-actions">
-        <p-card [header]="'Promedio de Avance'" 
-                [styleClass]="'progress-card ' + getProgressClass(getPromedioAvance())">
-        <h2 class="percentage-value" [ngClass]="getProgressClass(getPromedioAvance())">
-            {{ getPromedioAvance() }}%
-        </h2>
-    </p-card>
-</div>
-    </nav>
-</div>
-    <div class="dashboard-wrapper">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
 
+  <body>
+    <div>
+      <nav class="navbar">
+        <div class="logo">
+          <img [routerLink]="['/']" src="icons/CLAYENS_Torreon.png" />
+        </div>
+
+        <div class="campaign-message">Status inventario Nov-2025</div>
+        <div class="user-actions">
+          <!-- Tarjeta de Promedio de Avance -->
+          <p-card
+            [header]="'Promedio de Avance'"
+            [styleClass]="
+              'progress-card ' +
+              getProgressClass(estadisticas.promedioGeneral || 0)
+            "
+          >
+            <h2
+              class="percentage-value"
+              [ngClass]="getProgressClass(estadisticas.promedioGeneral || 0)"
+            >
+              {{ estadisticas.promedioGeneral || 0 }}%
+            </h2>
+          </p-card>
+
+          <!-- ====================================================== -->
+          <!-- NUEVO: Tarjeta de Ajuste Total General -->
+          <!-- ====================================================== -->
+          <!-- <p-card
+            [header]="'Ajuste Total General'"
+            styleClass="progress-card progress-red"
+          >
+            <h2 class="percentage-value progress-red">
+              {{ formatCurrency(estadisticas.totalAjusteGeneral || 0) }}
+            </h2>
+          </p-card> -->
+        </div>
+      </nav>
+    </div>
+
+    <!-- Agregar después del navbar, antes del filter-container -->
+<div class="kpi-container" *ngIf="!loading">
+  <div class="kpi-card">
+    <div class="kpi-icon">📊</div>
+    <div class="kpi-content">
+      <span class="kpi-label">Total Localidades</span>
+      <span class="kpi-value">{{ getTotalLocalidades() }}</span>
+    </div>
+  </div>
   
-        <div class="cards-container" *ngIf="!loading; else loadingTemplate">
-          <div class="team-card" *ngFor="let avance of avances">
-            <div class="card-content">
-              <h3 class="team-name">{{ avance.user.nombre + ' '+ '('+avance.user.apellidos+')'}}</h3>
-            
-              <p-progressBar
-                [value]="avance.porcentajeAvance"
-                [showValue]="true"
-                styleClass="custom-progress-bar"
-                [ngClass]="getProgressBarClass(avance.porcentajeAvance)">
-              </p-progressBar>
-          
-              <div class="percentage">{{ avance.porcentajeAvance }}%</div>
-              <div class="timestamp">Actualizado: {{ avance.hora }}</div>
+  <div class="kpi-card kpi-success">
+    <div class="kpi-icon">✅</div>
+    <div class="kpi-content">
+      <span class="kpi-label">Finalizadas</span>
+      <span class="kpi-value">{{ getLocalidadesPorEstatus('FINALIZADO') }}</span>
+      <span class="kpi-sublabel">{{ getPercentajePorEstatus('FINALIZADO') }}% del total</span>
+    </div>
+  </div>
+  
+  <div class="kpi-card kpi-warning">
+    <div class="kpi-icon">⏳</div>
+    <div class="kpi-content">
+      <span class="kpi-label">En Proceso</span>
+      <span class="kpi-value">{{ getLocalidadesEnProceso() }}</span>
+      <span class="kpi-sublabel">Conteo, Captura, Validación</span>
+    </div>
+  </div>
+  
+  <div class="kpi-card kpi-danger">
+    <div class="kpi-icon">💰</div>
+    <div class="kpi-content">
+      <span class="kpi-label">Ajuste Global</span>
+      <span class="kpi-value">{{ formatCurrency(estadisticas.totalAjusteGeneral || 0) }}</span>
+    </div>
+  </div>
+
+  <!-- NUEVO: Mini gráfico de barras por estatus -->
+  <div class="kpi-card kpi-chart">
+    <div class="kpi-content" style="width: 100%;">
+      <span class="kpi-label mb-2">Distribución por Estatus</span>
+      <div class="mini-chart">
+        <div class="chart-bar">
+          <div class="bar-label">CONTEO</div>
+          <div class="bar-bg">
+            <div class="bar-fill bar-red" [style.width.%]="getPercentajePorEstatus('CONTEO')"></div>
+          </div>
+          <div class="bar-value">{{ getLocalidadesPorEstatus('CONTEO') }}</div>
+        </div>
+        <div class="chart-bar">
+          <div class="bar-label">CAPTURA</div>
+          <div class="bar-bg">
+            <div class="bar-fill bar-orange" [style.width.%]="getPercentajePorEstatus('CAPTURA')"></div>
+          </div>
+          <div class="bar-value">{{ getLocalidadesPorEstatus('CAPTURA') }}</div>
+        </div>
+        <div class="chart-bar">
+          <div class="bar-label">VALIDACIÓN</div>
+          <div class="bar-bg">
+            <div class="bar-fill bar-yellow" [style.width.%]="getPercentajePorEstatus('VALIDACION')"></div>
+          </div>
+          <div class="bar-value">{{ getLocalidadesPorEstatus('VALIDACION') }}</div>
+        </div>
+        <div class="chart-bar">
+          <div class="bar-label">FINALIZADO</div>
+          <div class="bar-bg">
+            <div class="bar-fill bar-green" [style.width.%]="getPercentajePorEstatus('FINALIZADO')"></div>
+          </div>
+          <div class="bar-value">{{ getLocalidadesPorEstatus('FINALIZADO') }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====================================================== -->
+<!-- == FILTROS MEJORADOS (REEMPLAZAR TU filter-container) == -->
+<!-- ====================================================== -->
+<div class="filter-container" *ngIf="!loading">
+  <!-- Columna izquierda: Filtros básicos -->
+  <div class="filter-section">
+    <!-- Filtro Planta -->
+    <div class="filtro-item">
+      <label for="filtroPlanta">🏭 Planta:</label>
+      <p-dropdown
+        id="filtroPlanta"
+        [options]="opcionesPlanta"
+        [(ngModel)]="filtroPlanta"
+        (onChange)="onFiltroChange()"
+        placeholder="Todas"
+        
+      ></p-dropdown>
+    </div>
+
+    <!-- Filtro Estatus -->
+    <div class="filtro-item">
+      <label for="filtroEstatus">🏷️ Estatus:</label>
+      <p-dropdown
+        id="filtroEstatus"
+        [options]="opcionesEstatus"
+        [(ngModel)]="filtroEstatus"
+        (onChange)="onFiltroChange()"
+        placeholder="Todos"
+        
+      ></p-dropdown>
+    </div>
+
+    <!-- NUEVO: Búsqueda -->
+    <div class="filtro-item filtro-busqueda">
+      <label for="busqueda">🔍 Buscar:</label>
+      <input 
+        id="busqueda"
+        type="text" 
+        class="search-input"
+        [(ngModel)]="textoBusqueda"
+        (ngModelChange)="onFiltroChange()"
+        placeholder="Buscar equipo o localidad..."
+        pInputText
+      />
+    </div>
+
+    <!-- NUEVO: Ordenamiento -->
+    <div class="filtro-item">
+      <label for="ordenamiento">🔀 Ordenar:</label>
+      <p-dropdown
+        id="ordenamiento"
+        [options]="opcionesOrdenamiento"
+        [(ngModel)]="ordenActual"
+        (onChange)="onOrdenamientoChange()"
+        placeholder="Ordenar por..."
+      ></p-dropdown>
+    </div>
+  </div>
+
+  <!-- Columna derecha: Controles de vista -->
+  <div class="filter-section filter-controls">
+    <!-- Toggle Vista -->
+    <div class="filtro-item">
+      <label>👁️ Ver por:</label>
+      <p-selectButton
+        [options]="opcionesVista"
+        [(ngModel)]="vistaActual"
+        (onChange)="onVistaChange()"
+        optionLabel="label"
+        optionValue="value"
+      >
+        <ng-template let-item pTemplate>
+          <i [class]="item.icon"></i>
+          <span class="ms-2">{{ item.label }}</span>
+        </ng-template>
+      </p-selectButton>
+    </div>
+
+    <!-- NUEVO: Última actualización y botón refrescar -->
+    <div class="filtro-item update-info">
+      <div class="last-update">
+        <!-- <i class="pi pi-clock"></i> -->
+        <span>Actualizar </span>
+      </div>
+      <p-button
+        icon="pi pi-refresh"
+        [loading]="actualizandoManual"
+        (onClick)="refrescarDashboard()"
+        styleClass="p-button-rounded p-button-text p-button-sm refresh-button-custom"
+        pTooltip="Actualizar dashboard"
+      ></p-button>
+    </div>
+
+    <!-- NUEVO: Botón Exportar -->
+    <!-- <div class="filtro-item">
+      <p-button
+        label="Exportar"
+        icon="pi pi-download"
+        (onClick)="exportarExcel()"
+        styleClass="p-button-success p-button-sm"
+        pTooltip="Descargar reporte en Excel"
+      ></p-button>
+    </div> -->
+  </div>
+</div>
+
+<!-- NUEVO: Toast para notificaciones -->
+<p-toast position="top-right"></p-toast>
+
+
+    <!-- 2. CONTENEDOR PRINCIPAL DEL DASHBOARD -->
+    <div class="dashboard-wrapper">
+      <!-- Icono de Carga -->
+      <ng-template #loadingTemplate>
+        <div class="spinner-container">
+          <p-progressSpinner></p-progressSpinner>
+        </div>
+      </ng-template>
+
+      <!-- == CONTENEDOR DE FILTROS == -->
+
+      <!-- <div class="filter-container p-3" *ngIf="!loading">
+      
+        <div class="filtro-item">
+          <label for="filtroPlanta">Filtrar por Planta:</label>
+          <p-dropdown
+            id="filtroPlanta"
+            [options]="opcionesPlanta"
+            [(ngModel)]="filtroPlanta"
+            (onChange)="onFiltroChange()"
+            placeholder="Todas las Plantas"
+            [showClear]="true"
+          ></p-dropdown>
+        </div>
+        
+        <div class="filtro-item">
+          <label for="filtroEstatus">Filtrar por Estatus:</label>
+          <p-dropdown
+            id="filtroEstatus"
+            [options]="opcionesEstatus"
+            [(ngModel)]="filtroEstatus"
+            (onChange)="onFiltroChange()"
+            placeholder="Todos los Estatus"
+            [showClear]="true"
+          ></p-dropdown>
+        </div>
+       
+
+        <div class="filtro-item">
+          <label>Ver por:</label>
+          <p-selectButton
+            [options]="opcionesVista"
+            [(ngModel)]="vistaActual"
+            (onChange)="onVistaChange()"
+            optionLabel="label"
+            optionValue="value"
+          >
+            <ng-template let-item pTemplate>
+              <i [class]="item.icon"></i>
+              <span class="ms-2">{{ item.label }}</span>
+            </ng-template>
+          </p-selectButton>
+        </div>
+      </div> -->
+
+      <!-- ============================================= -->
+      <!-- == CONTENEDOR DE CONTENIDO (CONDICIONAL) == -->
+      <!-- ============================================= -->
+      <div class="content-container" *ngIf="!loading; else loadingTemplate">
+        <!-- ************************* -->
+        <!-- **** VISTA POR EQUIPOS **** -->
+        <!-- ************************* -->
+        <div *ngIf="vistaActual === 'equipos'">
+          <!-- Contenedor de Tarjetas de Equipo -->
+          <div class="cards-container">
+            <!-- El *ngFor ahora usa la lista filtrada -->
+            <!-- [ngClass]="{'card-critical': necesitaAtencion(avance) === 'critical', 'card-warning': necesitaAtencion(avance) === 'warning'} -->
+            <div class="team-card"  *ngFor="let avance of avancesFiltrados"  >
+              <div class="card-content">
+                <!-- Encabezado -->
+                <div
+                  class="team-header d-flex justify-content-between align-items-center"
+                >
+                  <h3 class="team-name mb-0">{{ avance.apellidos }}</h3>
+                  <span class="update-time"
+                    >Actualizado: {{ avance.hora }}</span
+                  >
+                </div>
+
+                <!-- Barra de Progreso (usa el promedio del equipo) -->
+                <p-progressBar
+                  [value]="avance.promedioAvance"
+                  [showValue]="true"
+                  styleClass="custom-progress-bar"
+                  [ngClass]="getProgressBarClass(avance.promedioAvance)"
+                ></p-progressBar>
+                <div class="percentage">{{ avance.promedioAvance }}%</div>
+
+                <!-- ====================================================== -->
+                <!-- NUEVO: Mostrar Ajuste Total por Equipo -->
+                <!-- ====================================================== -->
+                <div class="team-adjustment">
+                  <span>Ajuste Total:</span>
+                  <span class="fw-bold text-danger">{{
+                    formatCurrency(avance.totalAjusteEquipo || 0)
+                  }}</span>
+                </div>
+
+                <!-- Acordeón (Cerrado por defecto [activeIndex]="null") -->
+                <p-accordion [multiple]="true" [activeIndex]="null" class="mt-2">
+                  <!-- Pestaña de Miembros -->
+                  <p-accordionTab
+                    [header]="
+                      'Miembros (' + (avance.miembros?.length || 0) + ')'
+                    "
+                    *ngIf="avance.miembros?.length > 0"
+                  >
+                    <ul class="list-unstyled mt-0 ms-2">
+                      <li *ngFor="let miembro of avance.miembros">
+                        {{ miembro.nombre_completo }} -
+                        <em>{{ miembro.puesto }}</em>
+                      </li>
+                    </ul>
+                  </p-accordionTab>
+
+                  <!-- Pestaña de Localidades -->
+                  <p-accordionTab
+                    [header]="
+                      'Localidades (' + (avance.localidades?.length || 0) + ')'
+                    "
+                  >
+                    <div
+                      class="localidades-list"
+                      *ngIf="
+                        avance.localidades?.length > 0;
+                        else noLocalidadesFiltradas
+                      "
+                    >
+                      <div
+                        class="localidad-item"
+                        *ngFor="let loc of avance.localidades"
+                      >
+                        <div
+                          class="d-flex justify-content-between align-items-center"
+                        >
+                          <span class="localidad-nombre">{{ loc.nombre }}</span>
+                          <!-- ====================================================== -->
+                          <!-- NUEVO: Porcentaje de localidad -->
+                          <!-- ====================================================== -->
+                          <span class.active="active-class-if-needed" class="localidad-porcentaje" [ngClass]="getProgressBarClass(loc.porcentaje)">
+                            {{ loc.porcentaje }}%
+                          </span>
+                          <p-tag
+                            [value]="loc.estatus"
+                            [severity]="getEstatusSeverity(loc.estatus)"
+                            [rounded]="true"
+                            styleClass="status-tag"
+                          ></p-tag>
+                        </div>
+
+                        <!-- === MODIFICACIÓN DE DINERO AQUÍ === -->
+                        <div class="dinero-details mt-2">
+                         
+                          <div
+                            class="dinero-item"
+                            pTooltip="Categoría de la localidad"
+                          >
+                            <span>Categoría:</span>
+                            <span class="text-primary fw-bold">{{
+                              loc.categoria || 'N/A'
+                            }}</span>
+                          </div>
+
+                          <!-- Comentado: Total -->
+                          <!-- 
+                          <div class="dinero-item" pTooltip="Valor total en libros">
+                            <span>Total:</span>
+                            <span class="text-info fw-bold">{{
+                              formatCurrency(loc.dinero.total)
+                            }}</span>
+                          </div> 
+                          -->
+
+                          <!-- Comentado: Encontrado -->
+                          <!--
+                          <div class="dinero-item" pTooltip="Valor físico contado">
+                            <span>Encontrado:</span>
+                            <span class="text-success fw-bold">{{
+                              formatCurrency(loc.dinero.encontrado)
+                            }}</span>
+                          </div>
+                          -->
+
+                          <!-- Solo se muestra Ajuste -->
+                          <div
+                            class="dinero-item"
+                            pTooltip="Ajuste / No Encontrado"
+                          >
+                            <span>Ajuste:</span>
+                            <span class="text-danger fw-bold">{{
+                              formatCurrency(loc.dinero.noEncontrado)
+                            }}</span>
+                          </div>
+                        </div>
+                        <!-- === FIN DE MODIFICACIÓN === -->
+                      </div>
+                    </div>
+                    <!-- MENSAJE SI EL FILTRO DE ESTATUS OCULTA TODO -->
+                    <ng-template #noLocalidadesFiltradas>
+                      <div class="text-center text-muted fst-italic p-2">
+                        No hay localidades que coincidan con el estatus
+                        seleccionado.
+                      </div>
+                    </ng-template>
+                  </p-accordionTab>
+                </p-accordion>
+
+                <!-- Botón "Ver más" -->
+                <p-button
+                  label="Ver más"
+                  icon="pi pi-search"
+                  styleClass="p-button-sm p-button-info p-button-outlined mt-3"
+                  (onClick)="mostrarDetalle(avance)"
+                ></p-button>
+              </div>
+            </div>
+
+            <!-- Mensaje si no hay resultados de filtro (VISTA EQUIPOS) -->
+            <div
+              *ngIf="avancesFiltrados.length === 0"
+              class="no-results-message"
+            >
+              No se encontraron equipos que coincidan con los filtros
+              seleccionados.
             </div>
           </div>
         </div>
 
-  <ng-template #loadingTemplate>
-    <div class="spinner-container">
-      <p-progressSpinner></p-progressSpinner>
+        <!-- ***************************** -->
+        <!-- **** VISTA POR LOCALIDADES **** -->
+        <!-- ***************************** -->
+        <div *ngIf="vistaActual === 'localidades'">
+          <div class="localidades-list-container">
+            <!-- Iteramos sobre la nueva lista filtrada de localidades -->
+            <div
+              class="localidad-card"
+              *ngFor="let loc of localidadesFiltradas"
+            >
+              <!-- Encabezado de la tarjeta de localidad -->
+              <div class="localidad-card-header">
+                <div>
+                  <span class="localidad-nombre fs-6">{{ loc.nombre }}</span>
+                  <span class="localidad-equipo text-muted fst-italic ms-2"
+                    >({{ loc.equipoApellidos }})</span
+                  >
+                </div>
+                <!-- ====================================================== -->
+                <!-- NUEVO: Porcentaje de localidad -->
+                <!-- ====================================================== -->
+                <span class.active="active-class-if-needed" class="localidad-porcentaje" [ngClass]="getProgressBarClass(loc.porcentaje)">
+                  {{ loc.porcentaje }}%
+                </span>
+                <p-tag
+                  [value]="loc.estatus"
+                  [severity]="getEstatusSeverity(loc.estatus)"
+                  [rounded]="true"
+                  styleClass="status-tag"
+                ></p-tag>
+              </div>
+
+              <!-- Cuerpo con detalles de dinero -->
+              <div class="localidad-card-body">
+                <!-- === MODIFICACIÓN DE DINERO AQUÍ === -->
+                <div class="dinero-details modal-dinero-details mt-2">
+                  <!-- NUEVO: Campo Categoría -->
+                  <div
+                    class="dinero-item"
+                    pTooltip="Categoría de la localidad"
+                  >
+                    <span>Categoría:</span>
+                    <span class="text-primary fw-bold">{{
+                      loc.categoria || 'N/A'
+                    }}</span>
+                  </div>
+
+                  <!-- Comentado: Total -->
+                  <!--
+                  <div class="dinero-item" pTooltip="Valor total en libros">
+                    <span>Total:</span>
+                    <span class="text-info fw-bold">{{
+                      formatCurrency(loc.dinero.total)
+                    }}</span>
+                  </div>
+                  -->
+
+                  <!-- Comentado: Encontrado -->
+                  <!--
+                  <div class="dinero-item" pTooltip="Valor físico contado">
+                    <span>Encontrado:</span>
+                    <span class="text-success fw-bold">{{
+                      formatCurrency(loc.dinero.encontrado)
+                    }}</span>
+                  </div>
+                  -->
+
+                  <!-- Solo se muestra Ajuste -->
+                  <div class="dinero-item" pTooltip="Ajuste / No Encontrado">
+                    <span>Ajuste:</span>
+                    <span class="text-danger fw-bold">{{
+                      formatCurrency(loc.dinero.noEncontrado)
+                    }}</span>
+                  </div>
+                </div>
+                <!-- === FIN DE MODIFICACIÓN === -->
+              </div>
+            </div>
+
+            <!-- Mensaje si no hay resultados de filtro (VISTA LOCALIDADES) -->
+            <div
+              *ngIf="localidadesFiltradas.length === 0"
+              class="no-results-message"
+            >
+              No se encontraron localidades que coincidan con los filtros
+              seleccionados.
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </ng-template>
-</div>
-</body>
+
+    <!-- ============================== -->
+    <!-- == MODAL DE DETALLES == -->
+    <!-- ============================== -->
+    <p-dialog
+      [header]="equipoSeleccionado?.apellidos"
+      [(visible)]="mostrarModal"
+      [modal]="true"
+      [style]="{ width: '90vw', 'max-width': '750px' }"
+      [draggable]="false"
+      [resizable]="false"
+    >
+      <ng-template pTemplate="content">
+        <!-- Sección de Miembros -->
+        <div class="modal-section">
+          <h5>Miembros ({{ equipoSeleccionado.miembros?.length || 0 }})</h5>
+          <ul
+            class="list-unstyled mt-2 ms-2"
+            *ngIf="equipoSeleccionado.miembros?.length > 0; else noMiembros"
+          >
+            <li *ngFor="let miembro of equipoSeleccionado.miembros">
+              {{ miembro.nombre_completo }} - <em>{{ miembro.puesto }}</em>
+            </li>
+          </ul>
+          <ng-template #noMiembros>
+            <p class="text-muted fst-italic">No hay miembros asignados.</p>
+          </ng-template>
+        </div>
+
+        <!-- Sección de Localidades -->
+        <div class="modal-section mt-4">
+          <h5>Localidades ({{ equipoSeleccionado.localidades?.length || 0 }})</h5>
+          <div
+            class="localidades-list modal-localidades-list mt-2"
+            *ngIf="
+              equipoSeleccionado.localidades?.length > 0;
+              else noLocalidades
+            "
+          >
+            <!-- AQUI MOSTRAMOS LA LISTA COMPLETA, SIN FILTROS -->
+            <div
+              class="localidad-item"
+              *ngFor="let loc of equipoSeleccionado.localidades"
+            >
+              <div
+                class="d-flex justify-content-between align-items-center"
+              >
+                <span class="localidad-nombre fs-6">{{ loc.nombre }}</span>
+                <!-- ====================================================== -->
+                <!-- NUEVO: Porcentaje de localidad -->
+                <!-- ====================================================== -->
+                <span class.active="active-class-if-needed" class="localidad-porcentaje" [ngClass]="getProgressBarClass(loc.porcentaje)">
+                  {{ loc.porcentaje }}%
+                </span>
+                <p-tag
+                  [value]="loc.estatus"
+                  [severity]="getEstatusSeverity(loc.estatus)"
+                  [rounded]="true"
+                  styleClass="status-tag"
+                ></p-tag>
+              </div>
+
+              <!-- === MODIFICACIÓN DE DINERO AQUÍ (EN EL MODAL) === -->
+              <div class="dinero-details modal-dinero-details mt-2">
+                <!-- NUEVO: Campo Categoría -->
+                <div
+                  class="dinero-item"
+                  pTooltip="Categoría de la localidad"
+                >
+                  <span>Categoría:</span>
+                  <span class="text-primary fw-bold">{{
+                    loc.categoria || 'N/A'
+                  }}</span>
+                </div>
+
+                <!-- Comentado: Total -->
+                <!--
+                <div class="dinero-item">
+                  <span>Total:</span>
+                  <span class="text-info fw-bold">{{
+                    formatCurrency(loc.dinero.total)
+                  }}</span>
+                </div>
+                -->
+
+                <!-- Comentado: Encontrado -->
+                <!--
+                <div class="dinero-item">
+                  <span>Encontrado:</span>
+                  <span class="text-success fw-bold">{{
+                    formatCurrency(loc.dinero.encontrado)
+                  }}</span>
+                </div>
+                -->
+
+                <!-- Solo se muestra Ajuste -->
+                <div class="dinero-item">
+                  <span>Ajuste:</span>
+                  <span class="text-danger fw-bold">{{
+                    formatCurrency(loc.dinero.noEncontrado)
+                  }}</span>
+                </div>
+              </div>
+              <!-- === FIN DE MODIFICACIÓN === -->
+            </div>
+          </div>
+          <ng-template #noLocalidades>
+            <p class="text-muted fst-italic">No hay localidades asignadas.</p>
+          </ng-template>
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="footer">
+        <p-button
+          label="Cerrar"
+          icon="pi pi-times"
+          styleClass="p-button-secondary"
+          (onClick)="cerrarModal()"
+        ></p-button>
+      </ng-template>
+    </p-dialog>
+  </body>
 </html>

@@ -1,59 +1,41 @@
-
-body
-{
-  font-family: 'Poppins', sans-serif;
-  color: #333;
+.admin-wrapper {
+    padding: 2rem;
+    background-color: var(--bg-page);
+    min-height: 100vh;
 }
 
-.form
-{
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
-        
-.titulo 
-{
-  color: #2c3e50;
-  text-align: center;
-  margin-bottom: 30px;
-  font-weight: 600;
-  font-size: 2.2rem;
+.admin-card {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
 }
 
-.form-label 
-{
-  font-weight: 500;
-  margin-top: 15px;
-  font-size: 1.2rem;
-
+/* Ajustes para la tabla */
+:host ::ng-deep .p-datatable .p-datatable-header {
+    background-color: var(--bg-card);
+    border: none;
+    padding: 1rem 0;
 }
 
-.form-control 
-{
-  border-radius: 5px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  transition: border 0.3s;
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+    background-color: var(--neutral-100);
+    color: var(--neutral-700);
+    font-weight: 600;
 }
 
-.btn-orange 
-{
-  background-color: #ff680d !important;
-  border-color:#ff680d;
-  color: white !important;
-  padding: 10px 25px;
-  font-weight: 500;
-  transition: all 0.4s;
-
+:host ::ng-deep .p-button-rounded {
+    width: 2rem;
+    height: 2rem;
 }
 
-.btn-orange:hover 
-{
-  background-color: #e74c3c;
-  border-color: #e74c3c;
-  transform: translateY(-2px);
+/* Estilo para inputs dentro de la tabla */
+:host ::ng-deep .p-inputtext {
+    width: 100%;
+}
+
+/* Resaltar el ajuste negativo/positivo */
+.text-danger {
+    color: var(--color-danger);
+    font-weight: bold;
 }

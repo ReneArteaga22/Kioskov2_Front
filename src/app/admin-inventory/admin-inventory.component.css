@@ -1,0 +1,333 @@
+/* =================================================================== */
+/* == PALETA DE COLORES Y VARIABLES GLOBALES (TU DISEÑO) == */
+/* =================================================================== */
+:host {
+  /* Colores Principales */
+  --color-primary: #2563eb;
+  --color-primary-dark: #1e40af;
+  --color-primary-light: #60a5fa;
+  --color-primary-lighter: #dbeafe;
+
+  /* Neutrales (Escala de grises) */
+  --neutral-50: #f8fafc;
+  --neutral-100: #f1f5f9;
+  --neutral-200: #e2e8f0;
+  --neutral-300: #cbd5e1;
+  --neutral-400: #94a3b8;
+  --neutral-500: #64748b;
+  --neutral-600: #475569;
+  --neutral-700: #334155;
+  --neutral-800: #1e293b;
+  --neutral-900: #0f172a;
+
+  /* Estados Semánticos */
+  --color-danger: #dc2626;
+  --color-danger-light: #fecaca;
+  --color-warning: #f59e0b;
+  --color-warning-light: #fde68a;
+  --color-success: #059669;
+  --color-success-light: #a7f3d0;
+  --color-info: #0284c7;
+  --color-info-light: #bae6fd;
+
+  /* Estatus Específicos del Inventario */
+  --status-conteo: #fb2d2d;
+  --status-conteo-bg: #ff6f6f7b;
+  --status-captura: #f59e0b;
+  --status-captura-bg: #fed7aa;
+  --status-validacion: #0284c7;
+  --status-validacion-bg: #bae6fd;
+  --status-finalizado: #059669;
+  --status-finalizado-bg: #d1fae5;
+
+  /* Fondos */
+  --bg-page: var(--neutral-100);
+  --bg-card: #ffffff;
+  --bg-card-hover: var(--neutral-50);
+  --bg-navbar: var(--neutral-800);
+  
+  /* Sombras */
+  --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.1);
+  
+  /* Bordes */
+  --border-radius-md: 12px;
+  --border-radius-lg: 16px;
+  --border-radius-full: 9999px;
+
+  /* Configuración General */
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-page);
+  display: block;
+  min-height: 100vh;
+}
+
+/* =================================================================== */
+/* == NAVBAR (Para mantener consistencia si usas el componente) == */
+/* =================================================================== */
+/* Nota: Si usas <app-c-nav-bar>, estos estilos aplicarán a su contenedor
+   o puedes omitirlos si el componente ya trae sus estilos */
+
+/* =================================================================== */
+/* == CONTENEDOR PRINCIPAL DE ADMIN == */
+/* =================================================================== */
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg-navbar);
+  padding: 1rem 2rem;
+  box-shadow: var(--shadow-md);
+}
+
+.admin-wrapper {
+  padding: 2rem;
+  background-color: var(--bg-page);
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Tarjeta Principal (Contenedor de la Tabla) */
+.admin-card {
+  background: var(--bg-card);
+  padding: 1.5rem;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--neutral-200);
+}
+
+/* =================================================================== */
+/* == BARRA DE HERRAMIENTAS (Toolbar) == */
+/* =================================================================== */
+
+:host ::ng-deep .p-toolbar {
+  background: linear-gradient(135deg, var(--neutral-700) 0%, var(--neutral-500) 100%);
+  border: none;
+  border-radius: var(--border-radius-md);
+  padding: 1rem 1.5rem;
+  color: #ffffff;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.5rem;
+}
+
+/* Título del Toolbar */
+.text-primary {
+  color: #ffffff !important; /* Blanco para resaltar sobre el fondo oscuro */
+  font-weight: 600;
+  font-size: 1.25rem;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Botón de Recargar */
+:host ::ng-deep .p-toolbar button {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+:host ::ng-deep .p-toolbar button:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* =================================================================== */
+/* == TABLA DE DATOS (PrimeNG Table) == */
+/* =================================================================== */
+
+/* Cabecera de la Tabla */
+:host ::ng-deep .p-datatable .p-datatable-header {
+  background-color: var(--bg-card);
+  border: none;
+  padding: 0 0 1.5rem 0;
+}
+
+/* Input de Búsqueda Global */
+:host ::ng-deep .p-input-icon-left {
+  width: 100%;
+}
+
+:host ::ng-deep .p-input-icon-left > i {
+  color: var(--color-primary);
+}
+
+:host ::ng-deep .p-inputtext {
+  width: 100%;
+  border-radius: var(--border-radius-md);
+  border: 2px solid var(--neutral-300);
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+:host ::ng-deep .p-inputtext:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-lighter);
+}
+
+/* Encabezados de Columnas */
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  background-color: var(--neutral-50);
+  color: var(--neutral-600);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  padding: 1rem;
+  border-bottom: 2px solid var(--neutral-200);
+}
+
+/* Filas de la Tabla */
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr {
+  background: var(--bg-card);
+  color: var(--neutral-700);
+  transition: background-color 0.2s;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr:hover {
+  background-color: var(--neutral-50) !important;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--neutral-200);
+  font-size: 0.9rem;
+}
+
+/* Texto en negrita para nombres principales */
+.font-bold {
+  font-weight: 600;
+  color: var(--neutral-800);
+}
+
+/* =================================================================== */
+/* == COMPONENTES DE EDICIÓN (Inputs & Dropdowns) == */
+/* =================================================================== */
+
+/* Dropdown de Estatus */
+:host ::ng-deep .p-dropdown {
+  width: 100%;
+  border-radius: var(--border-radius-md);
+  border-color: var(--neutral-300);
+}
+
+:host ::ng-deep .p-dropdown:not(.p-disabled).p-focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-lighter);
+}
+
+/* Inputs Numéricos (Dinero) */
+:host ::ng-deep .p-inputnumber-input {
+  border-radius: var(--border-radius-md);
+  text-align: right;
+  font-weight: 600;
+  color: var(--neutral-700);
+}
+
+/* Input de Ajuste (Resaltar negativo/positivo) */
+.input-ajuste :host ::ng-deep .p-inputnumber-input {
+  color: var(--color-danger);
+}
+
+/* Textos de Dinero (Modo Lectura) */
+.text-danger {
+  color: var(--color-danger) !important;
+  font-weight: 700;
+}
+
+/* =================================================================== */
+/* == TAGS DE ESTATUS (Coherencia con Dashboard) == */
+/* =================================================================== */
+
+:host ::ng-deep .p-tag {
+  min-width: 100px;
+  border-radius: var(--border-radius-full);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  padding: 0.3rem 0.5rem;
+}
+
+/* Estilos específicos basados en tu paleta */
+:host ::ng-deep .p-tag.p-tag-danger { /* Conteo */
+  background-color: var(--status-conteo-bg);
+  color: var(--status-conteo);
+}
+
+:host ::ng-deep .p-tag.p-tag-warning { /* Captura */
+  background-color: var(--status-captura-bg);
+  color: var(--status-captura);
+}
+
+:host ::ng-deep .p-tag.p-tag-info { /* Validación */
+  background-color: var(--status-validacion-bg);
+  color: var(--status-validacion);
+}
+
+:host ::ng-deep .p-tag.p-tag-success { /* Finalizado */
+  background-color: var(--status-finalizado-bg);
+  color: var(--status-finalizado);
+}
+
+/* =================================================================== */
+/* == BOTONES DE ACCIÓN == */
+/* =================================================================== */
+
+:host ::ng-deep .p-button-rounded {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: var(--border-radius-full) !important;
+}
+
+/* Botón Editar (Lápiz) */
+:host ::ng-deep .p-button-text.p-button-secondary,
+:host ::ng-deep button[icon="pi pi-pencil"] {
+  color: var(--neutral-500);
+}
+:host ::ng-deep button[icon="pi pi-pencil"]:hover {
+  background-color: var(--neutral-100);
+  color: var(--color-primary);
+}
+
+/* Botón Guardar (Check) */
+:host ::ng-deep .p-button-success {
+  color: var(--color-success) !important;
+}
+:host ::ng-deep .p-button-success:hover {
+  background-color: var(--color-success-light) !important;
+}
+
+/* Botón Cancelar (X) */
+:host ::ng-deep .p-button-danger {
+  color: var(--color-danger) !important;
+}
+:host ::ng-deep .p-button-danger:hover {
+  background-color: var(--color-danger-light) !important;
+}
+
+/* =================================================================== */
+/* == RESPONSIVE == */
+/* =================================================================== */
+
+@media (max-width: 768px) {
+  .admin-wrapper {
+    padding: 1rem;
+  }
+  
+  .admin-card {
+    padding: 1rem;
+  }
+  
+  /* Ajustes para tabla en móviles si fuera necesario */
+  :host ::ng-deep .p-datatable-thead > tr > th {
+    font-size: 0.75rem;
+    padding: 0.75rem;
+  }
+}

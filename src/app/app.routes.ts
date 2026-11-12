@@ -41,6 +41,12 @@ import { ConsultaMedicaComponent } from './views/soporte-rh/consulta-medica/cons
 import { ResultadosEvaluacionEnfermeriaComponent } from './views/evaluacion/resultados-evaluacion-enfermeria/resultados-evaluacion-enfermeria.component';
 import { AvanceComponent } from './views/inventario/avance/avance.component';
 import { DashboardAvancesComponent } from './views/inventario/dashboard-avances/dashboard-avances.component';
+import { AdminInventoryComponent } from './admin-inventory/admin-inventory.component';
+import { AmonestacionesComponent} from './views/amonestaciones/amonestaciones.component'
+import { sistemasGuard } from './service/sistemas.guard';
+import { InvAdminComponent } from './views/inventario/inv-admin/inv-admin.component';
+import { InvCatalogosComponent } from './views/inventario/inv-catalogos/inv-catalogos.component';
+import { InvDashboardComponent } from './views/inventario/inv-dashboard/inv-dashboard.component';
 
 export const routes: Routes = [
   { path: '',component: HomeComponent},
@@ -81,5 +87,10 @@ export const routes: Routes = [
   { path: 'enfermeria', component:EnfermeriaComponent,canActivate:[]},
   { path: 'consulta-medica',component:ConsultaMedicaComponent,canActivate:[]},
   { path: 'avance',component:AvanceComponent,canActivate:[]},
-  { path: 'dashboard-avances',component:DashboardAvancesComponent,canActivate:[]}
+  { path: 'dashboard-avances',component:DashboardAvancesComponent,canActivate:[]},
+  { path: 'admin-inventory', component: AdminInventoryComponent},
+  { path: 'amonestaciones', component: AmonestacionesComponent },
+  { path: 'inventario-admin', component: InvAdminComponent, canActivate: [sistemasGuard] },
+  { path: 'inventario-admin/catalogos', component: InvCatalogosComponent, canActivate: [sistemasGuard] },
+  { path: 'inventario-dashboard', component: InvDashboardComponent },   // público
 ]

@@ -1,14 +1,14 @@
 <div class="cards">
     <!-- MODULO PARA USUARIOS DE COMEDOR -->
-    <div *ngIf="isComedor" class="card" [routerLink]="['/comedor']">
+     <div *ngIf="isComedor" class="card" [routerLink]="['/comedor']">
         <h2>Comedor</h2>
         <img src="icons/comedor.png" alt="">
         <p>Consulta el menú y horario del comedor.</p>
-    </div>
+    </div> 
 
     <!-- MODULOS PARA GUEST -->
     
-    <!-- <div *ngIf="!isLoggin" class="card" [routerLink]="['/soporte-rh-modulos']" >
+     <div *ngIf="!isLoggin" class="card" [routerLink]="['/soporte-rh-modulos']" >
         <h2>Soporte RH</h2>
         <img src="icons/rh.png" alt="https://www.freepik.es/">
         <p>Accede a recursos humanos para recibir asistencia.</p>
@@ -18,31 +18,31 @@
         <h2>Seguridad</h2>
         <img src="icons/seguridad.png" alt="https://www.freepik.es/">
         <p>Reporta incidentes o contacta con seguridad.</p>
-    </div> -->
+    </div> 
 
-    <!-- <div *ngIf="!isLoggin" class="card" [routerLink]="['/servicios']">
+    <div *ngIf="!isLoggin" class="card" [routerLink]="['/servicios']">
         <h2>Evaluacion de servicios</h2>
         <img src="icons/servicios.png" alt="https://www.freepik.es/">
         <p>Déjanos tu opinión sobre los servicios internos.</p>
-    </div> -->
+    </div>
 
-    <div *ngIf="!isLoggin" class="card" [routerLink]="['/comunicado']" >
+    <!-- <div *ngIf="!isLoggin" class="card" [routerLink]="['/comunicado']" >
         <h2>Comunicados</h2>
         <img src="icons/comunicados.png" alt="https://www.freepik.es/">
         <p>Mantente informado con los últimos comunicados.</p>
-    </div>
+    </div>  -->
 
-    <!-- <div *ngIf="!isLoggin" class="card" [routerLink]="['/encuestas']" >
+     <!-- <div *ngIf="!isLoggin" class="card" [routerLink]="['/encuestas']" >
         <h2>Encuestas</h2>
         <img src="icons/encuestas.png" alt="https://www.freepik.es/">
         <p>Participa en nuestras encuestas y comparte tu opinión.</p>
-    </div> -->
+    </div>  -->
 
-    <!-- <div *ngIf="!isLoggin"  class="card" [routerLink]="['/buzon']">
+     <div *ngIf="!isLoggin"  class="card" [routerLink]="['/buzon']">
         <h2>Buzon de sugerencias</h2>
         <img src="icons/buzon.png" alt="https://www.freepik.es/">
         <p>Envía tus sugerencias y ayuda a mejorar la empresa.</p>
-    </div> -->
+    </div> 
     
     <!-- <div *ngIf="!isLoggin"  class="card" [routerLink]="['/directorio']">
         <h2>Directorio</h2>
@@ -50,7 +50,7 @@
     </div> -->
 
     <!-- MODULOS PARA USUARIOS RECURSOS  -->
-    <div *ngIf="isRH || isSistemas || isSeguridad" class="card" [routerLink]="['/solicitudes']" >
+    <!-- <div *ngIf="isRH || isSistemas || isSeguridad" class="card" [routerLink]="['/solicitudes']" >
         <h2>Solicitudes</h2>
         <img src="icons/solicitud.png" alt="https://www.freepik.es/">
         <p>Consulta y gestiona todas las solicitudes ingresadas en el sistema.</p>
@@ -84,15 +84,36 @@
         <h2>Buzon de sugerencias</h2>
         <img src="icons/buzon.png" alt="https://www.freepik.es/">
         <p>Revisa los resultados y sugerencias para mejorar el ambiente laboral.</p>
+    </div> -->
+    <div *ngIf="!isLoggin" class="card" [routerLink]="['/comunicado']" >
+        <h2>Comunicados</h2>
+        <img src="icons/comunicados.png" alt="https://www.freepik.es/">
+        <p>Mantente informado con los últimos comunicados.</p>
     </div>
-    <div *ngIf="isInventario" class="card" [routerLink]="['/avance']" >
+    <div *ngIf="isComedor" class="card" [routerLink]="['/comedor']">
+        <h2>Comedor</h2>
+        <img src="icons/comedor.png" alt="">
+        <p>Consulta el menú y horario del comedor.</p>
+    </div>
+
+    <div *ngIf="isRH || isSistemas || isSeguridad" class="card" [routerLink]="['/comunicados']">
+        <h2>Comunicados</h2>
+        <img src="icons/comunicados.png" alt="https://www.freepik.es/">
+        <p>Agrega los comunicados y anuncios importantes para los usuarios.</p>
+    </div>
+    <div *ngIf="isSistemas" class="card" [routerLink]="['/inventario-admin']">
         <h2>Avance Inventario </h2>
         <img src="icons/inventory.png" alt="https://www.freepik.es/">
         <p>Ingresa tu avance en el inventario </p>
     </div>
-    <div *ngIf="!isLoggin || isInventario" class="card" [routerLink]="['/dashboard-avances']" >
+    <div *ngIf="!isLoggin || isInventario || isSistemas" class="card" [routerLink]="['/inventario-dashboard']" >
         <h2>Dashboard Inventario</h2>
         <img src="icons/inventory_dash.png" alt="https://www.freepik.es/">
         <p>Primer Inventario 2025</p>
+    </div> 
+    <div *ngIf="isSistemas || isSeguridad" class="card" [routerLink]="['/amonestaciones']">
+        <h2>Amonestaciones</h2>
+        <img src="icons/precaucion.png" alt="Icono de amonestaciones">
+        <p>Gestión, registro y seguimiento de amonestaciones del personal.</p>
     </div>
 </div>
