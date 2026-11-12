@@ -33,11 +33,11 @@
   --color-info: #0284c7;
   --color-info-light: #bae6fd;
 
-  /* Estatus del inventario (misma paleta del original + Sin entregar) */
+  /* Estatus del inventario (misma paleta de dashboard-avances + Sin entregar) */
   --status-sin: #64748b;
   --status-sin-bg: #e2e8f0;
   --status-conteo: #fb2d2d;
-  --status-conteo-bg: #ffe1e1;
+  --status-conteo-bg: #ff6f6f7b;
   --status-captura: #f59e0b;
   --status-captura-bg: #fed7aa;
   --status-validacion: #0284c7;
@@ -48,12 +48,14 @@
   /* Fondos */
   --bg-page: var(--neutral-100);
   --bg-card: #ffffff;
+  --bg-card-hover: var(--neutral-50);
   --bg-navbar: var(--neutral-800);
 
   /* Sombras */
   --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.1);
   --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.1);
 
   /* Bordes */
   --border-radius-sm: 8px;
@@ -74,6 +76,13 @@
 .s-CAPTURA      { --st: var(--status-captura);    --st-bg: var(--status-captura-bg); }
 .s-VALIDACION   { --st: var(--status-validacion); --st-bg: var(--status-validacion-bg); }
 .s-FINALIZADO   { --st: var(--status-finalizado); --st-bg: var(--status-finalizado-bg); }
+
+/* Iconos inline (pi) seguidos de texto, en pills, flags, títulos y encabezados */
+.att-title .pi, .ac-det .pi, .flag .pi, .chip .pi, .att-col h6 .pi,
+.filtro-item label .pi, .error-banner .pi, .txt-danger .pi, .link-btn .pi {
+  margin-right: .35em;
+  font-size: .9em;
+}
 
 /* Utilidades */
 .w-100 { width: 100%; }
@@ -197,7 +206,16 @@
 .kpi-card.kpi-active { background: #fef2f2; box-shadow: 0 0 0 2px var(--color-danger), var(--shadow-md); }
 .kpi-card.kpi-chart { padding: .8rem 1.25rem; }
 
-.kpi-icon { font-size: 2rem; opacity: .85; flex-shrink: 0; animation: float 3s ease-in-out infinite; }
+.kpi-icon {
+  width: 42px; height: 42px; flex-shrink: 0; border-radius: var(--border-radius-md);
+  display: grid; place-items: center; font-size: 1.25rem;
+  background: var(--color-primary-lighter); color: var(--color-primary-dark);
+  animation: float 3s ease-in-out infinite;
+}
+.kpi-card.kpi-success .kpi-icon { background: var(--color-success-light); color: var(--color-success); }
+.kpi-card.kpi-warning .kpi-icon { background: var(--color-warning-light); color: #92400e; }
+.kpi-card.kpi-danger  .kpi-icon { background: var(--color-danger-light); color: var(--color-danger); }
+.kpi-card.kpi-neutral .kpi-icon { background: var(--neutral-200); color: var(--neutral-600); }
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 
 .kpi-content { display: flex; flex-direction: column; gap: .2rem; min-width: 0; }
@@ -378,7 +396,7 @@
   padding: .7rem 1rem; border: none; background: transparent; cursor: pointer; font: inherit; text-align: left;
   color: var(--neutral-800);
 }
-.attention-header:hover { background: var(--neutral-50); }
+.attention-header:hover { background: var(--bg-card-hover); }
 .att-title { font-weight: 700; font-size: .95rem; white-space: nowrap; }
 .att-summary { flex: 1; display: flex; flex-wrap: wrap; gap: .4rem; }
 .att-pill { font-size: .72rem; font-weight: 600; background: var(--neutral-100); color: var(--neutral-600); border-radius: var(--border-radius-full); padding: .15rem .6rem; }
@@ -396,7 +414,7 @@
   border: none; background: transparent; padding: .35rem .5rem; border-radius: var(--border-radius-sm);
   font: inherit; font-size: .82rem; text-align: left; cursor: pointer; color: inherit;
 }
-.att-row:hover { background: var(--neutral-50); }
+.att-row:hover { background: var(--bg-card-hover); }
 .att-folio { font-family: Consolas, monospace; font-weight: 600; }
 .att-team { color: var(--neutral-600); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .att-time { color: var(--color-danger); font-weight: 700; white-space: nowrap; }
@@ -576,7 +594,8 @@
    ===================================================================== */
 :host ::ng-deep .p-dialog .p-dialog-header { padding: 1rem 1.5rem; background: var(--bg-card); border-bottom: 1px solid var(--neutral-200); }
 :host ::ng-deep .p-dialog .p-dialog-title { font-weight: 600; font-size: 1.25rem; color: var(--neutral-800); }
-:host ::ng-deep .p-dialog .p-dialog-content { padding: 1.25rem 1.5rem; background: var(--neutral-50); }
+:host ::ng-deep .p-dialog { box-shadow: var(--shadow-xl); }
+:host ::ng-deep .p-dialog .p-dialog-content { padding: 1.25rem 1.5rem; background: var(--bg-card-hover); }
 :host ::ng-deep .p-dialog .p-dialog-footer { padding: .75rem 1.5rem; border-top: 1px solid var(--neutral-200); background: var(--bg-card); }
 
 .modal-summary {

@@ -30,10 +30,11 @@ import {
 const TITULO = 'Status Inventario 2026';
 const REFRESCO_SEG = 30;
 const PAGINA_LOCALIDADES = 40;   // localidades visibles por área antes de "Mostrar más"
+const PAGINA_EQUIPOS = 12;       // equipos visibles antes de "Mostrar más"
 const TOP_DETENIDAS = 6;
 
 type Vista = 'equipos' | 'localidades' | 'listas';
-type Orden = 'nombre' | 'avance-asc' | 'avance-desc' | 'detenidas' | 'pendientes';
+type Orden = 'atencion' | 'nombre' | 'avance-asc' | 'avance-desc' | 'detenidas' | 'pendientes';
 type Nivel = 'none' | 'red' | 'orange' | 'blue' | 'green';
 interface Opcion<T> { label: string; value: T; icon?: string; }
 
@@ -93,6 +94,7 @@ export class InvDashboardComponent implements OnInit, OnDestroy {
 
   // ───────── Resultado de filtros ─────────
   equiposFiltrados: EquipoVM[] = [];
+  equiposPagina: EquipoVM[] = [];
   gruposFiltrados: GrupoVM[] = [];
   listasFiltradas: ListaVM[] = [];
   totalLocalidadesFiltradas = 0;
@@ -101,13 +103,15 @@ export class InvDashboardComponent implements OnInit, OnDestroy {
   filtroArea: number | null = null;
   filtroEstatus: EstadoLista | null = null;
   textoBusqueda = '';
-  ordenActual: Orden = 'nombre';
+  ordenActual: Orden = 'atencion';
   soloDetenidas = false;
   vistaActual: Vista = 'equipos';
+  visiblesEquipos = PAGINA_EQUIPOS;
 
   opcionesArea: Opcion<number>[] = [];
   readonly opcionesEstatus: Opcion<EstadoLista>[] = ESTADOS.map((e) => ({ label: ETIQUETA[e], value: e }));
   readonly opcionesOrden: Opcion<Orden>[] = [
+    { label: 'Atención primero', value: 'atencion' },
     { label: 'Nombre', value: 'nombre' },
     { label: 'Menor avance', value: 'avance-asc' },
     { label: 'Mayor avance', value: 'avance-desc' },
@@ -231,6 +235,7 @@ export class InvDashboardComponent implements OnInit, OnDestroy {
       (!codigo || e.areas.includes(codigo)) &&
       (!est || e.porEstado[est] > 0) &&
       (!this.soloDetenidas || e.detenidas > 0)));
+    this.equiposPagina = this.equiposFiltrados.slice(0, this.visiblesEquipos);
 
     const locs = this.ordenar(this.localidades.filter((l) =>
       (!q || l.texto.includes(q)) &&
@@ -259,6 +264,8 @@ export class InvDashboardComponent implements OnInit, OnDestroy {
   private ordenar<T extends { nombre: string; avance: number; detenidas: number; pendientes: number }>(xs: T[]): T[] {
     const porNombre = (a: T, b: T) => a.nombre.localeCompare(b.nombre, 'es', { numeric: true });
     const cmp: Record<Orden, (a: T, b: T) => number> = {
+      // Detenidas primero, luego menor avance: lo que más necesita decisión queda arriba.
+      'atencion': (a, b) => b.detenidas - a.detenidas || a.avance - b.avance || porNombre(a, b),
       'nombre': porNombre,
       'avance-asc': (a, b) => a.avance - b.avance || porNombre(a, b),
       'avance-desc': (a, b) => b.avance - a.avance || porNombre(a, b),
@@ -272,6 +279,7 @@ export class InvDashboardComponent implements OnInit, OnDestroy {
     const folio = (a: ListaVM, b: ListaVM) => a.folio.localeCompare(b.folio, 'es', { numeric: true });
     const min = (l: ListaVM) => l.minutosEnEstado ?? 0;
     const cmp: Record<Orden, (a: ListaVM, b: ListaVM) => number> = {
+      'atencion': (a, b) => Number(b.detenida) - Number(a.detenida) || min(b) - min(a) || folio(a, b),
       'nombre': folio,
       'avance-asc': (a, b) => a.paso - b.paso || folio(a, b),
       'avance-desc': (a, b) => b.paso - a.paso || folio(a, b),
@@ -283,7 +291,7 @@ export class InvDashboardComponent implements OnInit, OnDestroy {
 
   limpiarFiltros(): void {
     this.filtroArea = null; this.filtroEstatus = null; this.textoBusqueda = ''; this.soloDetenidas = false;
-    this.aplicar();
+    this.onFiltroCambio();
   }
 
   get hayFiltros(): boolean {
@@ -292,12 +300,12 @@ export class InvDashboardComponent implements OnInit, OnDestroy {
 
   filtrarArea(id: number): void {
     this.filtroArea = this.filtroArea === id ? null : id;
-    this.aplicar();
+    this.onFiltroCambio();
   }
 
   toggleDetenidas(): void {
     this.soloDetenidas = !this.soloDetenidas;
-    this.aplicar();
+    this.onFiltroCambio();
   }
 
   verTodasDetenidas(): void {
@@ -305,6 +313,17 @@ export class InvDashboardComponent implements OnInit, OnDestroy {
     this.ordenActual = 'detenidas';
     this.vistaActual = 'listas';
     this.aplicar();
+  }
+
+  /** Cualquier cambio de filtro/orden/búsqueda vuelve la paginación de equipos a la primera página. */
+  onFiltroCambio(): void {
+    this.visiblesEquipos = PAGINA_EQUIPOS;
+    this.aplicar();
+  }
+
+  verMasEquipos(): void {
+    this.visiblesEquipos += PAGINA_EQUIPOS;
+    this.equiposPagina = this.equiposFiltrados.slice(0, this.visiblesEquipos);
   }
 
   // ═════════════════ GRUPOS DE LOCALIDADES ═════════════════

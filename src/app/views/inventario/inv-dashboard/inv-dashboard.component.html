@@ -28,7 +28,7 @@
   <!-- ============================================= -->
   <div class="kpi-container">
     <div class="kpi-card">
-      <div class="kpi-icon">📋</div>
+      <div class="kpi-icon"><i class="pi pi-list"></i></div>
       <div class="kpi-content">
         <span class="kpi-label">Total listas</span>
         <span class="kpi-value">{{ d.global.total }}</span>
@@ -37,7 +37,7 @@
     </div>
 
     <div class="kpi-card kpi-success">
-      <div class="kpi-icon">✅</div>
+      <div class="kpi-icon"><i class="pi pi-check-circle"></i></div>
       <div class="kpi-content">
         <span class="kpi-label">Finalizadas</span>
         <span class="kpi-value">{{ d.global.finalizadas }}</span>
@@ -46,7 +46,7 @@
     </div>
 
     <div class="kpi-card kpi-warning">
-      <div class="kpi-icon">⏳</div>
+      <div class="kpi-icon"><i class="pi pi-spinner"></i></div>
       <div class="kpi-content">
         <span class="kpi-label">En proceso</span>
         <span class="kpi-value">{{ enProceso }}</span>
@@ -55,7 +55,7 @@
     </div>
 
     <div class="kpi-card kpi-neutral">
-      <div class="kpi-icon">📦</div>
+      <div class="kpi-icon"><i class="pi pi-inbox"></i></div>
       <div class="kpi-content">
         <span class="kpi-label">Sin entregar</span>
         <span class="kpi-value">{{ d.global.sinEntregar }}</span>
@@ -65,7 +65,7 @@
 
     <button type="button" class="kpi-card kpi-danger kpi-click" [class.kpi-active]="soloDetenidas"
             (click)="toggleDetenidas()" [attr.aria-pressed]="soloDetenidas">
-      <div class="kpi-icon">🚨</div>
+      <div class="kpi-icon"><i class="pi pi-exclamation-triangle"></i></div>
       <div class="kpi-content">
         <span class="kpi-label">Detenidas</span>
         <span class="kpi-value">{{ d.global.detenidas }}</span>
@@ -99,7 +99,7 @@
       <span class="ac-cod">{{ a.codigo }}</span>
       <span class="ac-bar"><span class="ac-fill" [ngClass]="'fill-' + a.nivel" [style.width.%]="a.avance"></span></span>
       <span class="ac-pct">{{ a.total ? a.avance + '%' : '—' }}</span>
-      <span class="ac-det" *ngIf="a.detenidas">🚨 {{ a.detenidas }}</span>
+      <span class="ac-det" *ngIf="a.detenidas"><i class="pi pi-exclamation-triangle"></i> {{ a.detenidas }}</span>
     </button>
   </div>
 
@@ -109,32 +109,32 @@
   <div class="filter-container">
     <div class="filter-section">
       <div class="filtro-item">
-        <label for="fArea">🏭 Área:</label>
-        <p-dropdown inputId="fArea" [options]="opcionesArea" [(ngModel)]="filtroArea" (onChange)="aplicar()"
+        <label for="fArea"><i class="pi pi-building"></i> Área:</label>
+        <p-dropdown inputId="fArea" [options]="opcionesArea" [(ngModel)]="filtroArea" (onChange)="onFiltroCambio()"
                     placeholder="Todas" [showClear]="true" appendTo="body"></p-dropdown>
       </div>
 
       <div class="filtro-item">
-        <label for="fEstatus">🏷️ Estatus:</label>
-        <p-dropdown inputId="fEstatus" [options]="opcionesEstatus" [(ngModel)]="filtroEstatus" (onChange)="aplicar()"
+        <label for="fEstatus"><i class="pi pi-tag"></i> Estatus:</label>
+        <p-dropdown inputId="fEstatus" [options]="opcionesEstatus" [(ngModel)]="filtroEstatus" (onChange)="onFiltroCambio()"
                     placeholder="Todos" [showClear]="true" appendTo="body"></p-dropdown>
       </div>
 
       <div class="filtro-item filtro-busqueda">
-        <label for="busqueda">🔍 Buscar:</label>
+        <label for="busqueda"><i class="pi pi-search"></i> Buscar:</label>
         <input id="busqueda" type="text" class="search-input" pInputText [(ngModel)]="textoBusqueda"
-               (ngModelChange)="aplicar()" placeholder="Equipo, persona, folio o localidad..." />
+               (ngModelChange)="onFiltroCambio()" placeholder="Equipo, persona, folio o localidad..." />
       </div>
 
       <div class="filtro-item">
-        <label for="fOrden">🔀 Ordenar:</label>
-        <p-dropdown inputId="fOrden" [options]="opcionesOrden" [(ngModel)]="ordenActual" (onChange)="aplicar()"
+        <label for="fOrden"><i class="pi pi-sort-alt"></i> Ordenar:</label>
+        <p-dropdown inputId="fOrden" [options]="opcionesOrden" [(ngModel)]="ordenActual" (onChange)="onFiltroCambio()"
                     appendTo="body"></p-dropdown>
       </div>
 
       <div class="filtro-item filtro-switch">
-        <label for="fDet">🚨 Solo detenidas:</label>
-        <p-inputSwitch inputId="fDet" [(ngModel)]="soloDetenidas" (onChange)="aplicar()"></p-inputSwitch>
+        <label for="fDet"><i class="pi pi-exclamation-triangle"></i> Solo detenidas:</label>
+        <p-inputSwitch inputId="fDet" [(ngModel)]="soloDetenidas" (onChange)="onFiltroCambio()"></p-inputSwitch>
       </div>
 
       <div class="filtro-item" *ngIf="hayFiltros">
@@ -145,7 +145,7 @@
 
     <div class="filter-section filter-controls">
       <div class="filtro-item">
-        <label>👁️ Ver por:</label>
+        <label><i class="pi pi-eye"></i> Ver por:</label>
         <p-selectButton [options]="opcionesVista" [(ngModel)]="vistaActual" optionLabel="label" optionValue="value" [allowEmpty]="false">
           <ng-template let-item pTemplate>
             <i [class]="item.icon"></i>
@@ -166,7 +166,7 @@
   </div>
 
   <div class="error-banner" *ngIf="error" role="status">
-    ⚠️ No se pudo actualizar ({{ error }}). Se muestran los datos de las {{ d.generadoEn | date: 'HH:mm:ss' }}.
+    <i class="pi pi-exclamation-triangle"></i> No se pudo actualizar ({{ error }}). Se muestran los datos de las {{ d.generadoEn | date: 'HH:mm:ss' }}.
   </div>
 </ng-container>
 
@@ -187,7 +187,7 @@
     <section class="attention"
              *ngIf="detenidasTop.length || d.alertas.equiposQuePuedenApoyar.length || d.alertas.localidadesSinLista.length || d.alertas.sinEquipo.length">
       <button type="button" class="attention-header" (click)="atencionAbierta = !atencionAbierta" [attr.aria-expanded]="atencionAbierta">
-        <span class="att-title">⚠️ Requiere atención</span>
+        <span class="att-title"><i class="pi pi-exclamation-triangle"></i> Requiere atención</span>
         <span class="att-summary">
           <span *ngIf="d.global.detenidas" class="att-pill att-pill-danger">{{ d.global.detenidas }} detenidas</span>
           <span *ngIf="d.alertas.sinEquipo.length" class="att-pill">{{ d.alertas.sinEquipo.length }} sin equipo</span>
@@ -207,17 +207,17 @@
             <span class="att-time">{{ tiempo(l.minutosEnEstado) }}</span>
           </button>
           <button type="button" class="link-btn" *ngIf="d.global.detenidas > detenidasTop.length" (click)="verTodasDetenidas()">
-            Ver las {{ d.global.detenidas }} detenidas →
+            Ver las {{ d.global.detenidas }} detenidas <i class="pi pi-arrow-right"></i>
           </button>
         </div>
 
         <div class="att-col" *ngIf="d.alertas.equiposQuePuedenApoyar.length">
-          <h6>🤝 Pueden apoyar</h6>
+          <h6><i class="pi pi-users"></i> Pueden apoyar</h6>
           <div class="chips"><span class="chip chip-ok" *ngFor="let e of d.alertas.equiposQuePuedenApoyar">{{ e.nombre }}</span></div>
         </div>
 
         <div class="att-col" *ngIf="d.alertas.sinEquipo.length">
-          <h6>👤 Listas sin equipo</h6>
+          <h6><i class="pi pi-user"></i> Listas sin equipo</h6>
           <div class="chips">
             <button type="button" class="chip chip-btn" *ngFor="let l of d.alertas.sinEquipo | slice: 0 : 10" (click)="abrirLista(l.id)">{{ l.folio }}</button>
             <span class="chip-more" *ngIf="d.alertas.sinEquipo.length > 10">y {{ d.alertas.sinEquipo.length - 10 }} más</span>
@@ -225,7 +225,7 @@
         </div>
 
         <div class="att-col" *ngIf="d.alertas.localidadesSinLista.length">
-          <h6>📍 Localidades sin lista</h6>
+          <h6><i class="pi pi-map-marker"></i> Localidades sin lista</h6>
           <div class="chips">
             <span class="chip" *ngFor="let l of d.alertas.localidadesSinLista | slice: 0 : 10">{{ l.area }} · {{ l.nombre }}</span>
             <span class="chip-more" *ngIf="d.alertas.localidadesSinLista.length > 10">y {{ d.alertas.localidadesSinLista.length - 10 }} más</span>
@@ -238,9 +238,9 @@
     <!-- **** VISTA POR EQUIPOS **** -->
     <!-- ************************* -->
     <ng-container *ngIf="vistaActual === 'equipos'">
-      <div class="results-bar">Mostrando <strong>{{ equiposFiltrados.length }}</strong> de {{ d.porEquipo.length }} equipos · clic en un equipo para ver detalle</div>
+      <div class="results-bar">Mostrando <strong>{{ equiposPagina.length }}</strong> de {{ equiposFiltrados.length }} equipos ({{ d.porEquipo.length }} en total) · clic en un equipo para ver detalle</div>
       <div class="cards-container">
-        <div class="team-card" *ngFor="let e of equiposFiltrados; trackBy: porId" [ngClass]="'gen-' + e.estadoGeneral"
+        <div class="team-card" *ngFor="let e of equiposPagina; trackBy: porId" [ngClass]="'gen-' + e.estadoGeneral"
              role="button" tabindex="0" (click)="abrirEquipo(e)" (keydown.enter)="abrirEquipo(e)">
           <div class="team-header">
             <div class="th-left">
@@ -264,16 +264,22 @@
           </div>
 
           <div class="team-footer" *ngIf="e.detenidas || e.recibidasDeOtros || e.cedidasAOtros || e.puedeApoyar">
-            <span class="flag flag-danger" *ngIf="e.detenidas">🚨 {{ e.detenidas }} detenida(s) · máx. {{ tiempo(e.maxMinutosDetenida) }}</span>
-            <span class="flag" *ngIf="e.recibidasDeOtros">⬅️ Recibió {{ e.recibidasDeOtros }}</span>
-            <span class="flag" *ngIf="e.cedidasAOtros">➡️ Cedió {{ e.cedidasAOtros }}</span>
-            <span class="flag flag-ok" *ngIf="e.puedeApoyar">🤝 Puede apoyar</span>
+            <span class="flag flag-danger" *ngIf="e.detenidas"><i class="pi pi-exclamation-triangle"></i> {{ e.detenidas }} detenida(s) · máx. {{ tiempo(e.maxMinutosDetenida) }}</span>
+            <span class="flag" *ngIf="e.recibidasDeOtros"><i class="pi pi-arrow-circle-left"></i> Recibió {{ e.recibidasDeOtros }}</span>
+            <span class="flag" *ngIf="e.cedidasAOtros"><i class="pi pi-arrow-circle-right"></i> Cedió {{ e.cedidasAOtros }}</span>
+            <span class="flag flag-ok" *ngIf="e.puedeApoyar"><i class="pi pi-thumbs-up"></i> Puede apoyar</span>
           </div>
         </div>
 
         <div *ngIf="!equiposFiltrados.length" class="no-results-message">
           No se encontraron equipos que coincidan con los filtros seleccionados.
         </div>
+      </div>
+
+      <div class="ver-mas" *ngIf="equiposFiltrados.length > equiposPagina.length">
+        <button type="button" class="btn-ver-mas" (click)="verMasEquipos()">
+          Mostrar más ({{ equiposFiltrados.length - equiposPagina.length }} restantes)
+        </button>
       </div>
     </ng-container>
 
@@ -290,7 +296,7 @@
           <span class="ag-name">{{ g.nombre }}</span>
           <span class="ag-meta">
             {{ g.localidades.length }} localidades · {{ g.finalizadas }}/{{ g.total }} listas
-            <ng-container *ngIf="g.detenidas"> · 🚨 {{ g.detenidas }}</ng-container>
+            <ng-container *ngIf="g.detenidas"> · <i class="pi pi-exclamation-triangle"></i> {{ g.detenidas }}</ng-container>
           </span>
           <span class="localidad-porcentaje" [ngClass]="'progress-' + g.nivel">{{ g.total ? g.avance + '%' : '—' }}</span>
         </button>
@@ -315,7 +321,7 @@
 
               <div class="loc-meta">
                 <span>{{ l.finalizadas }}/{{ l.total }} listas</span>
-                <span class="txt-danger" *ngIf="l.detenidas">🚨 {{ l.detenidas }}</span>
+                <span class="txt-danger" *ngIf="l.detenidas"><i class="pi pi-exclamation-triangle"></i> {{ l.detenidas }}</span>
               </div>
             </div>
           </div>
@@ -361,7 +367,7 @@
               <td>{{ l.principal }}<span class="muted" *ngIf="l.extra"> +{{ l.extra }}</span></td>
               <td>{{ l.areaCodigo }}</td>
               <td class="text-end" [class.txt-danger]="l.detenida">
-                <span *ngIf="l.detenida">🚨 </span>{{ l.estado === 'FINALIZADO' ? '—' : tiempo(l.minutosEnEstado) }}
+                <i *ngIf="l.detenida" class="pi pi-exclamation-triangle"></i> {{ l.estado === 'FINALIZADO' ? '—' : tiempo(l.minutosEnEstado) }}
               </td>
             </tr>
           </ng-template>
@@ -469,7 +475,7 @@
         <ng-template pTemplate="header"><tr><th>Folio</th><th>Estatus</th><th>Equipo</th></tr></ng-template>
         <ng-template pTemplate="body" let-x>
           <tr class="row-click" [class.row-det]="x.detenida" (click)="abrirLista(x.id)">
-            <td class="mono fw-600">{{ x.folio }} <span *ngIf="x.detenida">🚨</span></td>
+            <td class="mono fw-600">{{ x.folio }} <i *ngIf="x.detenida" class="pi pi-exclamation-triangle"></i></td>
             <td><span class="est-tag" [ngClass]="'s-' + x.estado">{{ etiqueta(x.estado) }}</span></td>
             <td>{{ x.equipoActual ?? '—' }}</td>
           </tr>
