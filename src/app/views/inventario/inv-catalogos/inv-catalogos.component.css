@@ -49,10 +49,19 @@
 .cat { max-width: 1400px; margin: 0 auto; padding: 1.5rem; color: var(--neutral-800); }
 
 /* Encabezado */
-.cat-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
-.cat-head h1 { margin: 0; font-size: 1.5rem; font-weight: 700; color: var(--neutral-800); }
+.cat-nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  background: var(--neutral-800); color: #fff; padding: 0.5rem 1.5rem; min-height: 70px;
+  box-shadow: var(--shadow-md); }
+.cat-logo { max-height: 50px; cursor: pointer; }
+.cat-titulo { flex: 1; display: flex; flex-direction: column; align-items: center; gap: .1rem; text-align: center; }
+.cat-titulo-main { font-size: 1.1rem; font-weight: 600; }
+.cat-titulo-sub { font-size: .75rem; opacity: .75; }
+.cat-nav-acciones { display: flex; align-items: center; gap: .5rem; }
+:host ::ng-deep .cat-nav .p-button.p-button-text,
+:host ::ng-deep .cat-nav .p-button.p-button-outlined { color: #fff; }
+:host ::ng-deep .cat-nav .p-button.p-button-outlined { border-color: rgba(255,255,255,.4); }
+:host ::ng-deep .cat-nav .p-button.p-button-outlined:hover { background: rgba(255,255,255,.12); }
 .sub { margin: .25rem 0 0; color: var(--neutral-500); font-size: .9rem; }
-.head-acc { display: flex; gap: .5rem; }
 
 /* KPIs */
 .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; margin-bottom: 1.25rem; }
@@ -109,8 +118,16 @@
 
 /* PrimeNG */
 :host ::ng-deep .cat-tabs .p-tabview-panels { background: transparent; padding: 1.25rem 0 0; }
-:host ::ng-deep .cat-tabs .p-tabview-nav { background: transparent; }
-:host ::ng-deep .cat-tabs .p-tabview-nav li .p-tabview-nav-link { background: transparent; }
+:host ::ng-deep .cat-tabs .p-tabview-nav { background: transparent; border-color: var(--neutral-200); }
+:host ::ng-deep .cat-tabs .p-tabview-nav li .p-tabview-nav-link {
+  background: transparent; color: var(--neutral-500); font-weight: 600; border-color: transparent;
+}
+:host ::ng-deep .cat-tabs .p-tabview-nav li:not(.p-highlight):hover .p-tabview-nav-link {
+  color: var(--color-primary-dark); border-color: var(--neutral-200);
+}
+:host ::ng-deep .cat-tabs .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  color: var(--color-primary-dark); border-color: var(--color-primary);
+}
 :host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
   background: var(--neutral-50); color: var(--neutral-500);
   font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;

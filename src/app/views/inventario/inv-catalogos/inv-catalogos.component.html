@@ -1,19 +1,20 @@
 <p-toast position="top-right"></p-toast>
 <p-confirmDialog [style]="{ width: '420px' }"></p-confirmDialog>
 
-<div class="cat">
-  <!-- ═════════ ENCABEZADO ═════════ -->
-  <header class="cat-head">
-    <div>
-      <h1>Catálogos · Inventario 2026</h1>
-      <p class="sub">Áreas, equipos, integrantes y localidades</p>
-    </div>
-    <div class="head-acc">
-      <p-button label="Operación" icon="pi pi-list" styleClass="p-button-outlined p-button-sm" routerLink="/inventario-admin"></p-button>
-      <p-button icon="pi pi-refresh" styleClass="p-button-text p-button-sm" pTooltip="Recargar" (onClick)="cargar()" [loading]="cargando"></p-button>
-    </div>
-  </header>
+<!-- ═════════ ENCABEZADO ═════════ -->
+<nav class="cat-nav">
+  <img class="cat-logo" [routerLink]="['/']" src="icons/CLAYENS_Torreon.png" alt="Clayens" />
+  <div class="cat-titulo">
+    <span class="cat-titulo-main">Catálogos · Inventario 2026</span>
+    <span class="cat-titulo-sub">Áreas, equipos, integrantes y localidades</span>
+  </div>
+  <div class="cat-nav-acciones">
+    <p-button label="Operación" icon="pi pi-list" styleClass="p-button-outlined p-button-sm" routerLink="/inventario-admin"></p-button>
+    <p-button icon="pi pi-refresh" styleClass="p-button-rounded p-button-text p-button-plain" pTooltip="Recargar" (onClick)="cargar()" [loading]="cargando"></p-button>
+  </div>
+</nav>
 
+<div class="cat">
   <!-- ═════════ KPIs ═════════ -->
   <section class="kpis">
     <div class="kpi">
