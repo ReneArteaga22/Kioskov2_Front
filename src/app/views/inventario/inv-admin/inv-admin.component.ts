@@ -38,6 +38,9 @@ const ETIQUETA: Record<EstadoLista, string> = {
 const ACCION_SIGUIENTE: Record<EstadoLista, string> = {
   SIN_ENTREGAR: 'Entregar', CONTEO: 'A captura', CAPTURA: 'A validación', VALIDACION: 'Finalizar', FINALIZADO: '',
 };
+const ICONO: Record<EstadoLista, string> = {
+  SIN_ENTREGAR: 'pi-inbox', CONTEO: 'pi-list', CAPTURA: 'pi-pencil', VALIDACION: 'pi-check-square', FINALIZADO: 'pi-check-circle',
+};
 
 @Component({
   selector: 'app-inv-admin',
@@ -57,6 +60,7 @@ export class InvAdminComponent implements OnInit, OnDestroy {
   readonly ESTADOS = ESTADOS;
   readonly etiqueta = ETIQUETA;
   readonly accionSiguiente = ACCION_SIGUIENTE;
+  readonly icono = ICONO;
 
   // ───────── Datos ─────────
   filas: Fila[] = [];

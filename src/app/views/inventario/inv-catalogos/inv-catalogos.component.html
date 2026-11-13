@@ -16,11 +16,21 @@
 
   <!-- ═════════ KPIs ═════════ -->
   <section class="kpis">
-    <div class="kpi"><span class="kpi-n">{{ areas.length }}</span><span class="kpi-l">Áreas</span></div>
-    <div class="kpi"><span class="kpi-n">{{ equipos.length }}</span><span class="kpi-l">Equipos</span></div>
-    <div class="kpi"><span class="kpi-n">{{ localidades.length }}</span><span class="kpi-l">Localidades</span></div>
+    <div class="kpi">
+      <span class="kpi-icon"><i class="pi pi-th-large"></i></span>
+      <span class="kpi-texto"><span class="kpi-n">{{ areas.length }}</span><span class="kpi-l">Áreas</span></span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-icon"><i class="pi pi-users"></i></span>
+      <span class="kpi-texto"><span class="kpi-n">{{ equipos.length }}</span><span class="kpi-l">Equipos</span></span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-icon"><i class="pi pi-map-marker"></i></span>
+      <span class="kpi-texto"><span class="kpi-n">{{ localidades.length }}</span><span class="kpi-l">Localidades</span></span>
+    </div>
     <div class="kpi" [class.kpi-alerta]="sinEquipo > 0">
-      <span class="kpi-n">{{ sinEquipo }}</span><span class="kpi-l">Localidades sin equipo</span>
+      <span class="kpi-icon"><i class="pi pi-exclamation-triangle"></i></span>
+      <span class="kpi-texto"><span class="kpi-n">{{ sinEquipo }}</span><span class="kpi-l">Localidades sin equipo</span></span>
     </div>
   </section>
 

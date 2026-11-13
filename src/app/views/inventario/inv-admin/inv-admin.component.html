@@ -19,13 +19,19 @@
   <div class="inv-kpis">
     <button type="button" class="inv-kpi" *ngFor="let e of ESTADOS"
       [class.activo]="filtroEstado === e" [ngClass]="'est-' + e" (click)="filtrarPorEstado(e)">
-      <span class="inv-kpi-num">{{ conteo[e] }}</span>
-      <span class="inv-kpi-lbl">{{ etiqueta[e] }}</span>
+      <span class="inv-kpi-icon"><i class="pi" [ngClass]="icono[e]"></i></span>
+      <span class="inv-kpi-texto">
+        <span class="inv-kpi-num">{{ conteo[e] }}</span>
+        <span class="inv-kpi-lbl">{{ etiqueta[e] }}</span>
+      </span>
     </button>
     <button type="button" class="inv-kpi est-DETENIDA" [class.activo]="soloDetenidas"
       (click)="soloDetenidas = !soloDetenidas; recalcular()">
-      <span class="inv-kpi-num">{{ totalDetenidas }}</span>
-      <span class="inv-kpi-lbl">Detenidas (≥45 min)</span>
+      <span class="inv-kpi-icon"><i class="pi pi-exclamation-triangle"></i></span>
+      <span class="inv-kpi-texto">
+        <span class="inv-kpi-num">{{ totalDetenidas }}</span>
+        <span class="inv-kpi-lbl">Detenidas (≥45 min)</span>
+      </span>
     </button>
   </div>
 
